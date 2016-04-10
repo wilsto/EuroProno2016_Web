@@ -3,23 +3,22 @@
 ## Pour commencer
 Ce projet a été généré avec [Angular Full-Stack Generator](https://github.com/DaftMonk/generator-angular-fullstack) version 3.5.0.
 
-Build Systems: Grunt
-Testing: Mocha + Chai + Sinon
-Chai assertions: Expect
+- Build Systems: Grunt
+- Testing: Mocha + Chai (assertions: Expect) + Sinon 
 
 ### Client
-Scripts: TypeScript
-Markup: HTML
-Stylesheets: CSS
-Angular Routers: ui-router
-CSS Frameworks: Bootstrap + Option to include UI Bootstrap
+- Scripts: TypeScript
+- Markup: HTML
+- Stylesheets: CSS
+- Angular Routers: ui-router
+- CSS Frameworks: Bootstrap + UI Bootstrap
 
 ### Server
-Scripts: Babel
-Database:MongoDB
-Authentication boilerplate: Yes
-oAuth integrations: Facebook Twitter Google
-Socket.io integration: Yes
+- Scripts: Babel
+- Database:MongoDB
+- Authentication boilerplate: Yes
+- oAuth integrations: Facebook Twitter Google
+- Socket.io integration: Yes
 
 ### Prérequis
 
