@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/wilsto/EuroProno2016_Web.png?label=ready&title=Ready)](https://waffle.io/wilsto/EuroProno2016_Web)
 # euro-prono2016-web
 
 ## Pour commencer
