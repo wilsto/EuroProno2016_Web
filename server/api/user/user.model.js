@@ -11,13 +11,29 @@ var UserSchema = new Schema({
   name: String,
   email: {
     type: String,
-    lowercase: true
+    lowercase: true,
+    required: function() {
+      if (authTypes.indexOf(this.provider) === -1) {
+        return true;
+      } else {
+        return false;
+      }
+    }
   },
   role: {
     type: String,
     default: 'user'
   },
-  password: String,
+  password: {
+    type: String,
+    required: function() {
+      if (authTypes.indexOf(this.provider) === -1) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  },
   provider: String,
   salt: String,
   facebook: {},
@@ -108,8 +124,12 @@ UserSchema
       return next();
     }
 
-    if (!validatePresenceOf(this.password) && authTypes.indexOf(this.provider) === -1) {
-      return next(new Error('Invalid password'));
+    if (!validatePresenceOf(this.password)) {
+      if (authTypes.indexOf(this.provider) === -1) {
+        return next(new Error('Invalid password'));
+      } else {
+        return next();
+      }
     }
 
     // Make salt with a callback
@@ -203,7 +223,11 @@ UserSchema.methods = {
    */
   encryptPassword(password, callback) {
     if (!password || !this.salt) {
-      return null;
+      if (!callback) {
+        return null;
+      } else {
+        return callback('Missing password or salt');
+      }
     }
 
     var defaultIterations = 10000;
