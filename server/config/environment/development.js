@@ -4,12 +4,12 @@
 // ==================================
 module.exports = {
 
-  // MongoDB connection options
-  mongo: {
-    uri: 'mongodb://localhost/europrono2016web-dev'
-  },
+    // MongoDB connection options
+    mongo: {
+        uri: 'mongodb://localhost/europrono2016web-dev'
+    },
 
-  // Seed database on startup
-  seedDB: true
+    // Seed database on startup
+    seedDB: true
 
 };
