@@ -26,6 +26,127 @@
     margin-left: 15px;
 }
 
+
+/* Login */
+
+.login {
+    position: relative;
+    width: 350px;
+    display: none;
+    float: left;
+    left: 210px;
+}
+
+.arrow-up {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 15px solid #ECF0F1;
+    left: 10%;
+    position: absolute;
+    top: -10px;
+}
+
+.formholder {
+    background: #ecf0f1;
+    width: 280px;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+.wrap {
+    width: 250px;
+    height: auto;
+    margin: auto;
+}
+
+.avatar {
+    width: 100%;
+    margin: auto;
+    position: relative;
+    bottom: 10px;
+}
+
+.avatar img {
+    width: 80px;
+    height: 80px;
+    border-radius: 100px;
+    margin: auto;
+    border: 5px solid #448ed3;
+    display: block;
+}
+
+.wrap input {
+    border: none;
+    background: #fff;
+    font-family: Lato;
+    font-weight: 700;
+    display: block;
+    height: 40px;
+    outline: none;
+    width: 100%;
+    margin: auto;
+    padding: 6px 12px 6px 12px;
+}
+
+.bar {
+    width: 100%;
+    height: 1px;
+    background: #fff;
+}
+
+.bar i {
+    width: 95%;
+    margin: auto;
+    height: 1px;
+    display: block;
+    background: #d1d1d1;
+}
+
+.wrap input[type="text"] {
+    border-radius: 7px 7px 0px 0px;
+}
+
+.wrap input[type="password"] {
+    border-radius: 0px 0px 7px 7px;
+}
+
+.forgot_link {
+    color: #83afdf;
+    color: #83afdf;
+    text-decoration: none;
+    font-size: 12px;
+    position: relative;
+    left: 193px;
+    top: -36px;
+}
+
+.wrap button {
+    width: 100%;
+    border-radius: 7px;
+    background: #448ed3;
+    text-decoration: center;
+    border: none;
+    color: #FFF;
+    margin-top: -5px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    outline: none;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.btn-login {
+    width: 100%;
+    margin-top: 10px;
+    text-align: left;
+    text-transform: capitalize;
+}
+
+
+/* parallax & section */
+
 #ep2016-header {
     position: absolute;
     z-index: 99;
@@ -1220,42 +1341,6 @@
     .ep2016-nav-toggle {
         display: block;
     }
-}
-
-.btn {
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    -webkit-transition: 0.3s;
-    -o-transition: 0.3s;
-    transition: 0.3s;
-}
-
-.btn.btn-primary {
-    background: #A4D792;
-    color: #fff;
-    border: none !important;
-    border: 2px solid transparent !important;
-}
-
-.btn.btn-primary:hover,
-.btn.btn-primary:active,
-.btn.btn-primary:focus {
-    box-shadow: none;
-    background: #A4D792;
-}
-
-.btn:hover,
-.btn:active,
-.btn:focus {
-    background: #393e46 !important;
-    color: #fff;
-    outline: none !important;
-}
-
-.btn.btn-default:hover,
-.btn.btn-default:focus,
-.btn.btn-default:active {
-    border-color: transparent;
 }
 
 .social {

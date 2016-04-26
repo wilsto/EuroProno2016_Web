@@ -10,6 +10,7 @@
     ],
     "files": [
         "client/app/account/account.ts",
+        "client/app/account/forgot/forgot.controller.ts",
         "client/app/account/login/login.controller.ts",
         "client/app/account/settings/settings.controller.ts",
         "client/app/account/signup/signup.controller.ts",
