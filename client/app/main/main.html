@@ -1,18 +1,218 @@
-<header class="hero-unit" id="banner">
-  <div class="container">
-    <h1>EuroProno'16</h1>
-    <p class="lead">Vibrer au son des matchs de l'euro</p>
-  </div>
-</header>
-
-<div class="container">
-  <img src="assets/images/logo_800_400..jpg" alt="I'm EuroProno2016">
-  <div class="row">
-    <div class="col-lg-12">
-      <h1 class="page-header">News:</h1>
-      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="thing in $ctrl.awesomeThings">
-        <li><a href="#" uib-tooltip="{{thing.info}}">{{thing.name}}<button type="button" class="close" ng-click="$ctrl.deleteThing(thing)">&times;</button></a></li>
-      </ul>
+<header role="banner" id="ep2016-header">
+    <div class="container">
+        <!-- <div class="row"> -->
+        <nav class="navbar navbar-default">
+            <div class="navbar-header">
+                <!-- Mobile Toggle Menu Button -->
+                <a href="#" class="js-ep2016-nav-toggle ep2016-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
+                <a class="navbar-brand" href="index.html">EuroProno 2016</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a ng-click="$ctrl.toggle_audio()"><i class="glyphicon glyphicon-volume-down" ng-if="$ctrl.audioOn"></i><i class="glyphicon glyphicon-volume-off" ng-if="!$ctrl.audioOn"></i></a>
+                    </li>
+                    <li class="active"><a href="#" data-nav-section="home"><span>Home</span></a></li>
+                    <li><a href="#" data-nav-section="services"><span>What is ep'16</span></a></li>
+                    <li><a href="#" data-nav-section="about"><span>About Us</span></a></li>
+                    <li ng-hide="$ctrl.isLoggedIn()"><a href="#" data-nav-section="contact"><span>Login</span></a></li>
+                    <li ng-show="$ctrl.isLoggedIn()">
+                        <a class="external" href="/settings"><span>{{ $ctrl.getCurrentUser().name }} </span></a>
+                    </li>
+                    <li ng-show="$ctrl.isLoggedIn()" style="margin-left:-20px">
+                        <a class="external" href="/settings"><i class="glyphicon glyphicon-cog"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- </div> -->
     </div>
-  </div>
-</div>
+</header>
+<section id="ep2016-home" data-section="home" style="background-image: url('assets/images/bg2.jpg');">
+    <div class="container">
+        <div class="text-wrap">
+            <div class="text-inner">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <h1 class="to-animate" style="font-size: 66px;font-weight: bold">Play for fun, play to win</h1>
+                        <h2 class="to-animate">Live intensely every match of Euro 2016</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slant"></div>
+</section>
+<section id="ep2016-intro">
+    <div class="container">
+        <div class="row row-bottom-padded-lg">
+            <div class="ep2016-block to-animate" style="background-image: url('assets/images/euro_bg.gif');">
+                <div class="overlay-darker"></div>
+                <div class="overlay"></div>
+                <div class="ep2016-text">
+                    <i class="ep2016-intro-icon iconmoon-soccer-ball-o"></i>
+                    <h2>Euro2016</h2>
+                    <p>Follow real scores of all matchs of Euro 2016, with 24 teams playing 51 games in 10 stadiums.</p>
+                    <p><a href="#" class="btn btn-primary">Jump In</a></p>
+                </div>
+            </div>
+            <div class="ep2016-block to-animate" style="background-image: url('assets/images/game_bg.jpg');">
+                <div class="overlay-darker"></div>
+                <div class="overlay"></div>
+                <div class="ep2016-text">
+                    <i class="ep2016-intro-icon icon-game-controller"></i>
+                    <h2>Play</h2>
+                    <p>Just for fun or because you used to gamble and be right, enter in the arena of pronotics.</p>
+                    <p><a href="#" class="btn btn-primary">Gamble</a></p>
+                </div>
+            </div>
+            <div class="ep2016-block to-animate" style="background-image: url('assets/images/board_bg.jpg');">
+                <div class="overlay-darker"></div>
+                <div class="overlay"></div>
+                <div class="ep2016-text">
+                    <i class="ep2016-intro-icon icon-speedometer"></i>
+                    <h2>Battle</h2>
+                    <p>No kidding. :) So you think you are the player who will smash others with your skills of gambling ? </p>
+                    <p><a href="#" class="btn btn-primary">Find it out</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="row watch-video text-center to-animate">
+            <span>Watch the video</span>
+            <a target="_blank" href="https://www.youtube.com/watch?v=0RnBvuAzKeQ" class="popup-vimeo btn-video"><i class="iconmoon-play2"></i></a>
+        </div>
+    </div>
+</section>
+<section id="ep2016-services" data-section="services" style="background-image: url('assets/images/bg6.jpg');">
+    <div class="container">
+        <div class="row" style="height: 300px!important">
+            <div class="col-md-12 section-heading text-left">
+                <h2 class=" left-border to-animate">Services</h2>
+                <div class="row">
+                    <div class="col-md-8 subtext to-animate">
+                        <h3>Have Fun together ! The initial reason for our existence. We are gamers at heart. We play games all the time so we assembled a (talented ?)  team that will ensure that your game is fully fun-ctional and bug-free as possible.</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-6 ep2016-service to-animate">
+                <i class="icon to-animate-2 iconmoon-eye2" style="    margin-top:50px;margin-bottom: -70px;"></i>
+                <h3>Follow the tournament</h3>
+                <p>We love football. We love France. And this year again (after 98 ;-), a big football event take place in our country. If needed, this is one more reason to follow together our team through the Euro 2016</p>
+            </div>
+            <div class="col-md-6 col-sm-6 ep2016-service to-animate">
+                <i class="icon to-animate-2 iconmoon-money" style="    margin-top:50px;margin-bottom: -70px;"></i>
+                <h3>Gamble on all matchs</h3>
+                <p>We want to vibrate on each match during this euro, and not only France, we will do pronotics for the whole tournament</p>
+            </div>
+            <div class="clearfix visible-sm-block"></div>
+            <div class="col-md-6 col-sm-6 ep2016-service to-animate">
+                <i class="icon to-animate-2 iconmoon-group" style="    margin-top:50px;margin-bottom: -70px;"></i>
+                <h3>Create or join your team</h3>
+                <p>Fun is bigger with friends, family or collegues, we can create or join our own teams and share this event with maximum of players</p>
+            </div>
+            <div class="col-md-6 col-sm-6 ep2016-service to-animate">
+                <i class="icon to-animate-2 iconmoon-star2" style="    margin-top:50px;margin-bottom: -70px;"> </i>
+                <h3>Measure yourself to others</h3>
+                <p>Play is fun but win is great, mostly if you can be better than others good players. But can you really ?</p>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="ep2016-about" data-section="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 section-heading text-center">
+                <h2 class="to-animate">About Us</h2>
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 subtext to-animate">
+                        <h3>In a galaxy far far away, or maybe just in France, near the <i>Stade de France</i>, there live three guys.</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="ep2016-person text-center to-animate">
+                    <figure><img src="assets/images/Ced.png" alt="Image"></figure>
+                    <h3>Cédric</h3>
+                    <span class="ep2016-position">Doubist</span>
+                    <p>Ici le texte qui décrit Cédric. Il y a meme de la place pour en mettre un peu plus que la première phrase</p>
+                    <ul class="social social-circle">
+                        <li><a href="#" target="_blank"><i class="iconmoon-twitter"></i></a></li>
+                        <li><a href="#" target="_blank"><i class="iconmoon-facebook"></i></a></li>
+                        <li><a href="https://github.com/CedDev" target="_blank"><i class="iconmoon-github"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="ep2016-person text-center to-animate">
+                    <figure><img src="assets/images/Ned.jpg" alt="Image" style="height:120px"></figure>
+                    <h3>Edouard</h3>
+                    <span class="ep2016-position">Goal Keeper</span>
+                    <p>Ici le texte qui décrit Edouard. Il y a aussi de la place pour en mettre un peu plus que la première phrase</p>
+                    <ul class="social social-circle">
+                        <li><a href="#" target="_blank"><i class="iconmoon-twitter"></i></a></li>
+                        <li><a href="#" target="_blank"><i class="iconmoon-facebook"></i></a></li>
+                        <li><a href="#" target="_blank"><i class="iconmoon-github"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="ep2016-person text-center to-animate">
+                    <figure><img src="assets/images/Will.png" alt="Image"></figure>
+                    <h3>Will</h3>
+                    <span class="ep2016-position">Geek 2.0</span>
+                    <p>Born with a keyboard and mouse
+                        <span style="text-decoration: line-through;">to play videogames </span>to program, rest assured I found some times for other tech stuff too.</p>
+                    <ul class="social social-circle">
+                        <li><a href="#" target="_blank"><i class="iconmoon-twitter"></i></a></li>
+                        <li><a href="#" target="_blank"><i class="iconmoon-facebook"></i></a></li>
+                        <li><a href="https://github.com/wilsto" target="_blank"><i class="iconmoon-github"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="ep2016-counters" style="background-image: url('assets/images/bg5.jpg');" data-stellar-background-ratio="0.5">
+    <div class="ep2016-overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 section-heading text-center to-animate">
+                <h2>Fun Facts</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="ep2016-counter to-animate">
+                    <i class="ep2016-counter-icon icon-game-controller to-animate-2"></i>
+                    <span class="ep2016-counter-number js-counter" data-from="0" data-to="89" data-speed="5000" data-refresh-interval="50">89</span>
+                    <span class="ep2016-counter-label">Pronostics</span>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="ep2016-counter to-animate">
+                    <i class="ep2016-counter-icon iconmoon-code to-animate-2"></i>
+                    <span class="ep2016-counter-number js-counter" data-from="0" data-to="2665" data-speed="5000" data-refresh-interval="50">2665</span>
+                    <span class="ep2016-counter-label">Line of codes</span>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="ep2016-counter to-animate">
+                    <i class="ep2016-counter-icon icon-cup to-animate-2"></i>
+                    <span class="ep2016-counter-number js-counter" data-from="0" data-to="302" data-speed="5000" data-refresh-interval="50">302</span>
+                    <span class="ep2016-counter-label">Cup of coffees</span>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="ep2016-counter to-animate">
+                    <i class="ep2016-counter-icon icon-people to-animate-2"></i>
+                    <span class="ep2016-counter-number js-counter" data-from="0" data-to="52" data-speed="5000" data-refresh-interval="50">52</span>
+                    <span class="ep2016-counter-label">Happy teams</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
