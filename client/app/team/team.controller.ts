@@ -3,7 +3,8 @@
 (function() {
 
 	class TeamController {
-		constructor() {
+		constructor($scope, $http) {
+			//$http.get();
 			// Use the User $resource to fetch all users
 			this.teams = [
 				{ "id": 1, "code": "A3", "name": "Albanie", "group": "A" },
@@ -31,10 +32,18 @@
 				{ "id": 23, "code": "D3", "name": "Turquie", "group": "D" },
 				{ "id": 24, "code": "C2", "name": "Ukraine", "group": "C" }
 			];
+
+			
+			$scope.orderProp = 'group';
+			
+			$scope.sort = function sort(type) {
+				$scope.orderProp = type;
+			};
 		}
 
 
 	}
+
 
 angular.module('euroProno2016WebApp.teams')
   .controller('TeamController', TeamController);

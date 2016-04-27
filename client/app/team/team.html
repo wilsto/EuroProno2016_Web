@@ -2,14 +2,15 @@
 <div class="container">
 
   <h2 style="color:white;">Teams</h2>
-
+            <button type="button" ng-click="sort('name');">sort by Name</button>
+            <button type="button" ng-click="sort('group');">sort by Group</button>
   <ul class="list-group user-list">
-    <li class="list-group-item" ng-repeat="team in team.teams">
+    <li class="list-group-item" ng-repeat="team in team.teams | orderBy:orderProp">
         <div class="user-info"> 
         <div class="col-md-1"><img src="assets/images/{{team.id}}.png" alt="{{team.id}}" class="circle"></div>
         <div class="col-md-2"> Groupe :<span class="text-muted">{{team.group}}</span></div>
             <span><strong>{{team.name}}</strong> </span>
-            
+
         </div>
         
     </li>
