@@ -46,13 +46,8 @@ export function create(req, res, next) {
                 expiresIn: 60 * 60 * 24 * 7
             });
             client.sendEmail({
-<<<<<<< HEAD
                 'From': process.env.MAILFROM,
                 'To': process.env.MAILFROM,
-=======
-                'From': 'willy@stophe.fr',
-                'To': 'willy.stophe.pro@gmail.com',
->>>>>>> develop
                 'Subject': 'New User : ' + user.name,
                 'TextBody': 'New user named ' + user.name + ' with email as ' + user.email
             });
