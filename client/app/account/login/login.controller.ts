@@ -9,7 +9,6 @@ class LoginController {
 
         this.Auth = Auth;
         this.$state = $state;
-
     }
 
     login(form) {
