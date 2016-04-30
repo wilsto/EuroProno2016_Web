@@ -33,6 +33,19 @@
     padding: 0.2em 0;
 }
 
+.wrap-container {
+    width: 1045px;
+    padding: 0 auto;
+    background-color: #FFF;
+    box-shadow: 0 0 3px #CACACA;
+}
+
+.bg_default {
+    background-image: url('../assets/images/bg_default.jpg');
+    background-size: 100% auto;
+    background-attachment: fixed;
+}
+
 @font-face {
     font-family: 'icomoon';
     src: url('../assets/fonts/icomoon/icomoon.eot?qtatmt');

@@ -2,6 +2,7 @@ node_modules
 public
 .tmp
 .tscache/
+.tscache/client/
 .idea
 client/bower_components
 dist
