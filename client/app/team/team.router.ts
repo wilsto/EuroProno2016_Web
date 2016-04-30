@@ -7,7 +7,7 @@ angular.module('euroProno2016WebApp.teams')
         url: '/team',
         templateUrl: 'app/team/team.html',
         controller: 'TeamController',
-        controllerAs: 'team',
+        controllerAs: 'vm',
         authenticate: 'team'
       });
   });
