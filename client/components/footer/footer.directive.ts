@@ -7,6 +7,8 @@ angular.module('euroProno2016WebApp')
             restrict: 'E',
             link: function(scope, element) {
                 element.addClass('footer');
-            }
+            },
+            controller: 'FooterController',
+            controllerAs: 'foo'
         };
     });

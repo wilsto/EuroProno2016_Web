@@ -1,11 +1,11 @@
 .userStats {
-    background-color: #f9f9f9;
+    background-color: #e6e6e6;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
     padding: 1px;
     display: block;
-    margin-top: 25px;
+    padding: 15px;
 }
 
 .userStats .pic {
@@ -23,10 +23,9 @@
 .userStats .data {
     display: block;
     position: relative;
-    height: 200px;
     padding: 4px;
     padding-left: 15px;
-    background: #e6e6e6;
+    background: #FFFFFF;
     overflow: hidden;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -155,4 +154,63 @@ div.photo span {
     float: right;
     display: inline-block;
     padding: 2px 5px;
+}
+
+.accomplish {
+    list-style-type: none;
+}
+
+.accomplish li {
+    width: 100%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-top: 1px solid #DBDBDB;
+    border-bottom: 1px solid #DBDBDB;
+}
+
+.accomplish li span {
+    padding-left: 15px;
+}
+
+.accomplish .image {
+    font-size: 28px;
+    margin-left: -40px;
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+    border: 1px solid #DBDBDB;
+}
+
+.accomplish .ticked {
+    float: right;
+    padding-right: 10px;
+}
+
+.accomplish .ticked i {
+    font-size: 28px;
+}
+
+.iconcol-grey {
+    color: #FF3F00;
+}
+
+.iconcol-green {
+    color: green;
+}
+
+.badge {
+    width: 100px;
+    height: 100px;
+    line-height: 60px;
+}
+
+.badge i {
+    margin: 0;
+    font-size: 38px;
+    vertical-align: middle;
+}
+
+.badge span {
+    margin-top: -15px;
+    display: block;
 }

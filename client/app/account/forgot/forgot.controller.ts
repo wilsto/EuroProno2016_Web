@@ -14,20 +14,17 @@ class ForgotController {
 
     forgot(form) {
         this.submitted = true;
+        if (form.$valid) {
+            this.$http.get('/auth/forgot', {
+                    email: this.user.email
+                })
+                .then(() => {
 
-        /*        if (form.$valid) {
-                    this.Auth.login({
-                            email: this.user.email,
-                            password: this.user.password
-                        })
-                        .then(() => {
-                            // Logged in, redirect to home
-                            this.$state.go('main');
-                        })
-                        .catch(err => {
-                            this.errors.other = err.message;
-                        });
-                }*/
+                })
+                .catch(err => {
+                    this.errors.other = err.message;
+                });
+        }
     }
 }
 
