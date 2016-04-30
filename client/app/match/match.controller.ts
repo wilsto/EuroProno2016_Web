@@ -52,32 +52,32 @@
         }
 
 
-        updMatch(form) {
-            this.submitted = true;
-            if (form.$valid) {
+        // updMatch(form) {
+        //     this.submitted = true;
+        //     if (form.$valid) {
 
-                console.log('form', form);
-                this.$http.put('/api/matchs', {
-                    typematch: this.newmatch.typematch,
-                    group: this.newmatch.group,
-                    team1: this.newmatch.team1,
-                    team2: this.newmatch.team2,
-                    date: this.newmatch.date,
-                    stade: this.newmatch.stade,
-                    image: this.newmatch.image
-                }).then(res => {
-                    this.loadMatchs();
-                    this.newmatch.typematch = '';
-                    this.newmatch.group = '';
-                    this.newmatch.team1 = '';
-                    this.newmatch.team2 = '';
-                    this.newmatch.date = '';
-                    this.newmatch.stade = '';
-                    this.newmatch.image = '';
+        //         console.log('form', form);
+        //         this.$http.put('/api/matchs', {
+        //             typematch: this.newmatch.typematch,
+        //             group: this.newmatch.group,
+        //             team1: this.newmatch.team1,
+        //             team2: this.newmatch.team2,
+        //             date: this.newmatch.date,
+        //             stade: this.newmatch.stade,
+        //             image: this.newmatch.image
+        //         }).then(res => {
+        //             this.loadMatchs();
+        //             this.newmatch.typematch = '';
+        //             this.newmatch.group = '';
+        //             this.newmatch.team1 = '';
+        //             this.newmatch.team2 = '';
+        //             this.newmatch.date = '';
+        //             this.newmatch.stade = '';
+        //             this.newmatch.image = '';
 
-                });
-            }
-        }
+        //         });
+        //     }
+        // }
 
     }
 
