@@ -16,9 +16,9 @@ function respondWithResult(res, statusCode) {
     statusCode = statusCode || 200;
     return function(entity) {
         if (entity) {
-            res.status(statusCode).json(entity);
+            return res.status(statusCode).json(entity);
         } else {
-            res.status(statusCode).json(null);
+            return res.status(statusCode).json(null);
         }
     };
 }
@@ -38,7 +38,7 @@ function removeEntity(res) {
         if (entity) {
             return entity.remove()
                 .then(() => {
-                    res.status(204).end();
+                    return res.status(204).end();
                 });
         }
     };
