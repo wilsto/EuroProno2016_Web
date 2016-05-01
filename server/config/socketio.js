@@ -17,6 +17,7 @@ function onConnect(socket) {
   });
 
   // Insert sockets below
+  require('../api/prono/prono.socket').register(socket);
   require('../api/match/match.socket').register(socket);
   require('../api/team/team.socket').register(socket);
   require('../api/thing/thing.socket').register(socket);

@@ -1,12 +1,37 @@
-<div class="container">
-  <p>The delete user and user index api routes are restricted to users with the 'admin' role.</p>
-  <ul class="list-group user-list">
-    <li class="list-group-item" ng-repeat="user in admin.users">
-	    <div class="user-info">
-	        <strong>{{user.name}}</strong><br>
-	        <span class="text-muted">{{user.email}}</span>
-	    </div>
-        <a ng-click="admin.delete(user)" class="trash"><span class="fa fa-trash fa-2x"></span></a>
-    </li>
-  </ul>
+<div class="bg_default">
+    <div class="container wrap-container">
+        <div class="row">
+            <div class="col-sm-12">
+                <img src="assets/images/admin_bg.jpg" alt="" style="width: 100%;height: auto;margin-bottom:30px;">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- BEGIN LOGIN FORM -->
+                <p>Enter name, mail or leagues to filter.</p>
+                <input type="text" autofocus class="form-control">
+                <hr>
+                <ul class="list-group user-list">
+                    <li class="list-group-item" ng-repeat="user in vm.users">
+                        <div class="user-info">
+                            <img class="img-circle pull-right" width="50" height="50" ng-src="{{avatarUrl !== undefined && avatarUrl || 'assets/images/inconnu.gif'}}">
+                            <!-- <img alt="{{user.name}}" ng-src="assets/images/avatars/{{user._id}}.png" style="width:25px" class="img-circle" err-src="assets/images/avatars/avatar.png" /> -->
+                            <strong>{{user.name}}</strong>
+                            <br>
+                            <span class="text-muted">{{user.email}}</span>
+                        </div>
+                        <a ng-click="vm.delete(user)" class="trash"><span class="icon-trash"></span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <footer></footer>
+    </div>
 </div>

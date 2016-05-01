@@ -10,14 +10,14 @@ var client = new postmark.Client("29e166e9-7166-4623-a39e-21c5c9e33ae9");
 function validationError(res, statusCode) {
     statusCode = statusCode || 422;
     return function(err) {
-        res.status(statusCode).json(err);
+        return res.status(statusCode).json(err);
     }
 }
 
 function handleError(res, statusCode) {
     statusCode = statusCode || 500;
     return function(err) {
-        res.status(statusCode).send(err);
+        return res.status(statusCode).send(err);
     };
 }
 
@@ -28,7 +28,7 @@ function handleError(res, statusCode) {
 export function index(req, res) {
     return User.find({}, '-salt -password').exec()
         .then(users => {
-            res.status(200).json(users);
+            return res.status(200).json(users);
         })
         .catch(handleError(res));
 }
