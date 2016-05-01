@@ -1,9 +1,10 @@
-/// <reference path="../../typings/tsd.d.ts" />
+/// <reference path="../../../typings/tsd.d.ts" />
 'use strict';
 
 (function() {
 
     class MatchController {
+        allmatchs = [];
         matchs = [];
         orderProp = 'group';
 
@@ -17,11 +18,33 @@
 
         }
 
+        addFilter(type, val) {
+            this.matchs = this.filterMatch(type, val);
+        };
+
+
         loadMatchs() {
             this.$http.get('api/matchs').then(response => {
-                //console.log('data', response.data);
-                this.matchs = response.data;
+                this.allmatchs = response.data;
+                this.matchs = this.filterMatch();
             });
+        }
+
+        filterMatch(myCol = '', myFiltre = '') {
+            if (myFiltre === '') {
+                return this.allmatchs;
+            } else {
+                return this.allmatchs.filter(
+                    function(i) {
+                        if (myCol !== '') {
+                            return i[myCol] === myFiltre;
+                        } else {
+                            return null;
+                        }
+
+                    }
+                );
+            }
         }
 
         createMatch(form) {
