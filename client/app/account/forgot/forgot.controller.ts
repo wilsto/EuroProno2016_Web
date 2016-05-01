@@ -2,27 +2,31 @@
 'use strict';
 
 class ForgotController {
-    constructor(Auth, $state) {
+    constructor(Auth, $state, $http) {
+        this.$http = $http;
         this.user = {};
         this.errors = {};
         this.submitted = false;
 
         this.Auth = Auth;
         this.$state = $state;
-
     }
 
     forgot(form) {
         this.submitted = true;
         if (form.$valid) {
             this.$http.get('/auth/forgot', {
-                    email: this.user.email
+                    params: {
+                        email: this.user.email,
+                    }
                 })
-                .then(() => {
-
+                .then(response => {
+                    console.log('data', response.data);
+                    this.message = response.data;
                 })
                 .catch(err => {
-                    this.errors.other = err.message;
+                    console.log('err', err);
+                    this.errors.other = err.message || err.status + ' ' + err.statusText;
                 });
         }
     }

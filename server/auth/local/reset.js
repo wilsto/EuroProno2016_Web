@@ -1,9 +1,9 @@
 var url = require('url');
-var jwt = require('jsonwebtoken');
 var postmark = require('postmark');
-var clientMail = new postmark.Client('308974d8-3847-4675-8666-9dd2feadcfc4');
+var jwt = require('jsonwebtoken');
+var clientMail = new postmark.Client('29e166e9-7166-4623-a39e-21c5c9e33ae9');
 var config = require('../../config/environment');
-var User = require('../../api/user/user.model');
+import User from '../../api/user/user.model';
 
 function resetPassword(req, res) {
     var token = req.query.token;
@@ -33,7 +33,7 @@ function resetPassword(req, res) {
                         'From': process.env.MAILFROM,
                         'To': email,
                         'Subject': 'EuroProno2016 Changed Password Confirmation',
-                        'HtmlBody': 'Hello ' + user.name + ', <br/><br/> The password for your EuroProno2016 account was recently changed.<br/><br/> If you made this change, then we\'re all set!<br/><br/> If not, please contact me at admin.boardos@free.fr ' +
+                        'HtmlBody': 'Hello ' + user.name + ', <br/><br/> The password for your EuroProno2016 account was recently changed.<br/><br/> If you made this change, then we\'re all set!<br/><br/> If not, please contact us at contact@europrono2016.com ' +
                             '<br><br>EuroProno2016'
                     }, function(err, to) {
                         if (err) {

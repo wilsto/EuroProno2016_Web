@@ -3,6 +3,7 @@ public
 .tmp
 .tscache/
 .tscache/client/
+_data/
 .idea
 client/bower_components
 dist

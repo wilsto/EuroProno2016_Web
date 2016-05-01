@@ -33,6 +33,12 @@ angular.module('euroProno2016WebApp')
                 controller: 'ForgotController',
                 controllerAs: 'vm'
             })
+            .state('reset', {
+                url: '/reset/:token',
+                templateUrl: 'app/account/reset/reset.html',
+                controller: 'ResetController',
+                controllerAs: 'vm'
+            })
             .state('settings', {
                 url: '/settings',
                 templateUrl: 'app/account/settings/settings.html',
