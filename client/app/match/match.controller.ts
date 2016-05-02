@@ -12,7 +12,7 @@
             this.$http = $http;
             this.loadMatchs();
 
-            console.log($cookies.lang);
+            console.log($cookies);
 
             $scope.sort = function(type) {
                 this.orderProp = type;
