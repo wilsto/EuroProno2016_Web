@@ -8,7 +8,7 @@ var MatchSchema = new Schema({
     group: String,
     team1: String,
     team2: String,
-    date: String,
+    date: Date,
     stade: String,
     image: String,
     active: Boolean
