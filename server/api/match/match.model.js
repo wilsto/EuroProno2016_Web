@@ -6,6 +6,7 @@ var mongoose = require('mongoose'),
 var MatchSchema = new Schema({
     typematch: String,
     group: String,
+    grouporder: Number,
     team1: String,
     team2: String,
     date: Date,

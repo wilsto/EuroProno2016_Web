@@ -33,13 +33,15 @@
                     code: this.newteam.code,
                     name: this.newteam.name,
                     group: this.newteam.group,
-                    image: this.newteam.image
+                    image: this.newteam.image,
+                    comment: this.newteam.comment
                 }).then(res => {
                     this.loadTeams();
                     this.newteam.code = '';
                     this.newteam.name = '';
                     this.newteam.group = '';
                     this.newteam.image = '';
+                    this.newteam.comment = '';
                 });
             }
         }

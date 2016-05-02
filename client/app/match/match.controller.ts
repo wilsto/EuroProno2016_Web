@@ -8,9 +8,11 @@
         matchs = [];
         orderProp = 'group';
 
-        constructor($scope, $http) {
+        constructor($scope, $http, $cookies) {
             this.$http = $http;
             this.loadMatchs();
+
+            console.log($cookies.lang);
 
             $scope.sort = function(type) {
                 this.orderProp = type;
@@ -55,6 +57,7 @@
                 this.$http.post('/api/matchs', {
                     typematch: this.newmatch.typematch,
                     group: this.newmatch.group,
+                    grouporder: this.newmatch.grouporder,
                     team1: this.newmatch.team1,
                     team2: this.newmatch.team2,
                     date: this.newmatch.date,
@@ -64,6 +67,7 @@
                     this.loadMatchs();
                     this.newmatch.typematch = '';
                     this.newmatch.group = '';
+                    this.newmatch.grouporder = '';
                     this.newmatch.team1 = '';
                     this.newmatch.team2 = '';
                     this.newmatch.date = '';

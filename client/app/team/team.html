@@ -15,7 +15,8 @@
                             <div class="user-info">
                                 <div class="col-md-1"><img src="assets/images/{{team.image}}.png" alt="{{team.image}}" class="circle"></div>
                                 <div class="col-md-2"> Group :<span class="text-muted">{{team.group}}</span></div>
-                                <span><strong>{{team.name}}</strong> </span>
+                                <div class="col-md-2"><span><strong>{{team.name}}</strong> </span></div>
+                                <div class="col-md-4"><span class="text-muted">{{team.comment}}</span></div>
                             </div>
                         </li>
                     </ul>
@@ -36,11 +37,15 @@
                             </div>
                             <div class="form-group">
                                 <label>Group</label>
-                                <input type="text" name="group" class="form-control" ng-model="vm.newteam.group" required style="background-color: #FFF" tabindex=2>
+                                <input type="text" name="group" class="form-control" ng-model="vm.newteam.group" required style="background-color: #FFF" tabindex=3>
                             </div>
                             <div class="form-group">
                                 <label>Image</label>
-                                <input type="text" name="image" class="form-control" ng-model="vm.newteam.image" required style="background-color: #FFF" tabindex=2>
+                                <input type="text" name="image" class="form-control" ng-model="vm.newteam.image" required style="background-color: #FFF" tabindex=4>
+                            </div>
+                            <div class="form-group">
+                                <label>Comment</label>
+                                <input type="text" name="comment" class="form-control" ng-model="vm.newteam.comment" required style="background-color: #FFF" tabindex=5>
                             </div>
                             <div>
                                 <button class="btn btn-success btn-lg " type="submit" style="float:right;width:200px">
