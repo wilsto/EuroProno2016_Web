@@ -46,6 +46,24 @@
     background-attachment: fixed;
 }
 
+@media screen and (max-width: 768px) {
+    .wrap-container {
+        width: 768px;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .wrap-container {
+        width: 640px;
+    }
+}
+
+@media screen and (max-width: 480x) {
+    .wrap-container {
+        width: 480px;
+    }
+}
+
 @font-face {
     font-family: 'icomoon';
     src: url('../assets/fonts/icomoon/icomoon.eot?qtatmt');

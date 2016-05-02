@@ -1,0 +1,2641 @@
+.save {
+    background-color: #FFF;
+    position: fixed;
+    bottom: 0;
+    margin: 0 auto;
+    width: 1020px;
+    z-index: 100;
+    padding-top: 10px;
+    border-top: solid 1px #aaa
+}
+
+@media screen and (max-width: 768px) {
+    .save {
+        width: 748px;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .save {
+        width: 620px;
+    }
+}
+
+@media screen and (max-width: 480x) {
+    .save {
+        width: 460px;
+    }
+}
+
+.save a {
+    padding-right: 25px;
+    width: 200px;
+    margin-bottom: 10px;
+}
+
+.tooltipdate {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltipdate .tooltipdatetext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    /* Position the tooltipdate */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltipdate:hover .tooltipdatetext {
+    visibility: visible;
+}
+
+.pronoPouleClassement span.equipe {
+    font-size: 12px;
+}
+
+#pronoContentContainer {
+    /*border-bottom: solid 1px #ccc;*/
+    margin-bottom: 5px;
+}
+
+#pronoContentContainer #pronoContent {
+    width: 625px;
+    margin: 0 auto;
+    left: 0;
+    position: relative;
+}
+
+.winner-header {
+    background: #83ac09;
+    text-align: center;
+    color: #fff;
+    line-height: 24px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+span.nom {
+    font-weight: 700;
+    font-size: 14px;
+}
+
+span.nom {
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.win span.nom {
+    font-weight: 700;
+    font-size: 14px;
+}
+
+#pop-in-partage .titre {
+    font-size: 17px !important;
+    font-family: 'museo_sans900'!important;
+    font-weight: 100 !important;
+    text-transform: uppercase;
+    font-style: initial !important;
+}
+
+.pronoContentToolTip h1 {
+    font-family: 'museo_sans900', Arial, sans-serif;
+    font-weight: 100 !important;
+    font-size: 26px;
+    text-transform: uppercase;
+    margin: 15px 0 0 5px;
+}
+
+.resultsPage .pronoContentToolTip h1 {
+    font-size: 33px;
+    text-transform: none;
+}
+
+.pronoContentToolTip .title {
+    color: #000;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 10px 0;
+    display: block;
+}
+
+.pronoContentToolTip .tooltip {
+    font-style: italic;
+    font-size: 14px
+}
+
+.club.pronoPouleTeamsLine.tass {}
+
+#pronoPoules,
+#pronoPhaseFinale {
+    width: 100%;
+    float: left;
+    position: relative;
+}
+
+h1.accroche {
+    font-family: 'museo_sans900', Arial, sans-serif;
+    font-weight: 100 !important;
+    font-size: 36px;
+    margin-bottom: 15px;
+    text-align: center;
+    line-height: 45px;
+    margin: 0 auto;
+}
+
+.bandeau_play {
+    width: 80%;
+    margin: 0 auto;
+    padding: 10px;
+    height: 50px;
+    margin-top: 20px;
+    background: #e9edf4;
+    color: #2c323c;
+    text-align: right;
+    text-transform: uppercase;
+    font-size: 21px;
+}
+
+.bandeau_play span {
+    line-height: 54px;
+    font-family: 'museo_sans900';
+    font-weight: 100 !important;
+}
+
+.bandeau_play a {
+    float: right;
+    margin-left: 20px;
+    width: 65%;
+    text-align: center;
+    font-family: 'museo_sans900';
+    font-weight: 100 !important;
+    background-color: #2c323c;
+    color: #FFF;
+    padding: 13px;
+}
+
+.bandeau_play a .fleche {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    width: 20px;
+    height: 21px;
+    color: #FFF;
+    background: url(/v6/img/sprite_v65.png) no-repeat;
+    background-position: -15px -567px;
+    position: relative;
+    top: 3px;
+    right: 8px;
+}
+
+
+/*
+////////////////////// Page des groupes //////////////////////
+*/
+
+#validVote {
+    background-color: #2c323c;
+    color: #fff;
+    position: absolute;
+    bottom: -94px;
+    cursor: pointer;
+    padding: 13px 15px;
+    font-weight: 700;
+    right: 358px;
+    font-family: Arial;
+    font-size: 11px;
+    text-align: center;
+    font-weight: normal;
+}
+
+#validVote > span {
+    display: block;
+    text-transform: uppercase;
+    font-family: 'museo_sans900';
+    font-size: 25px;
+    font-weight: 100 !important;
+}
+
+.pronoPouleMatchs .match .eq,
+.pronoPouleMatchs .match .eq > span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: Arial;
+    font-size: 14px;
+    color: #161a21;
+    font-weight: 700
+}
+
+.pronoPoule {
+    /*    width: 300px;*/
+    /*background: #F5F5F5;*/
+    /*border: 1px solid #999; */
+    float: left;
+    margin: 10px 0;
+    padding: 4px;
+}
+
+.pronoPoule1 {
+    margin-right: 20px;
+}
+
+h3.pronoPouleTitle {
+    text-align: left;
+    margin-bottom: 10px;
+    padding: 4px 0;
+    padding-right: 3px;
+    margin-left: 30px;
+}
+
+h3.pronoPouleTitle > span {
+    display: inline-block;
+    font-family: 'interstateregular';
+    font-size: 25px;
+    text-transform: uppercase;
+    border-color: #83ac09;
+    color: #83ac09;
+    border-bottom: 4px solid;
+    height: 32px;
+}
+
+.pronoPouleMatchs {
+    width: 100%;
+    font-size: 12px;
+    line-height: 20px;
+}
+
+.pronoPouleMatchs tr.matchOddEven1 {
+    /*background-color: #FFF;*/
+}
+
+.pronoPouleMatchs td {
+    padding: 3px 0;
+    vertical-align: middle;
+}
+
+.pronoPouleMatchs td.flag {
+    padding-right: 5px;
+    padding-left: 5px;
+    width: 14px;
+    position: relative;
+    top: 1px;
+}
+
+.pronoPouleMatchs td.flag1 .countryflags,
+.pronoPouleMatchs td.flag2 .countryflags {
+    margin: 0 10px;
+}
+
+.pronoPouleMatchs td.eq1 {
+    text-align: right;
+}
+
+.pronoPouleMatchs td.eq2 {
+    text-align: left;
+}
+
+.pronoPouleMatchs .eq .france {
+    color: #00F !important;
+}
+
+.pronoPouleMatchs td.score {
+    width: 23%;
+    text-align: center;
+}
+
+.pronoPouleMatchs td.score input {
+    width: 25px;
+    border: solid 1px #ccc;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 2px 4px;
+    text-align: center;
+    color: #7c8699;
+    background: #e9eef5;
+}
+
+.pronoPouleMatchs td.score input:first-child,
+.resultsPage .score1 {
+    margin-left: 0;
+}
+
+.pronoPouleMatchs td.score input.error {
+    background-color: #FFF2F2;
+    border-color: #F00;
+}
+
+.score input.colorgagne,
+.resultsPage .score .score1.colorgagne,
+.resultsPage .score .score2.colorgagne {
+    color: #424a59!important;
+}
+
+.pronoPouleClassement {
+    background-color: #FFF;
+    /*border: solid 1px #aaa;
+    border-bottom: solid 2px #000;
+    box-shadow: 0 0 8px rgba(0,0,0,0.3);*/
+    margin-top: 20px;
+    position: relative;
+    width: 90%;
+    margin: 20px auto 0;
+}
+
+tr.match {
+    height: 30px;
+}
+
+.pronoPouleClassement .pronoPouleCla {
+    width: 24px;
+    float: left;
+    text-align: center;
+}
+
+.pronoPouleClassement .pronoPouleClaLine {
+    height: 30px;
+    line-height: 30px;
+    margin-left: -180px;
+    font-weight: bold;
+}
+
+.pronoPouleClassement .pronoPouleTeamsLine {
+    height: 30px;
+    line-height: 30px;
+    border-top: 1px solid #e9edf4;
+}
+
+.pronoPouleClassement .pronoPouleClaLine:first-child,
+.pronoPouleClassement .pronoPouleTeamsLine:first-child {
+    border: 0;
+}
+
+.pronoPouleClassement .pronoPouleClaLine2,
+.pronoPouleClassement .pronoPouleTeams .pronoPouleTeamsLine2 {
+    /*background-color: #F5F5F5;*/
+}
+
+.pronoPouleClassement .pronoPouleTeams .countryflags-mini {
+    margin-right: 5px;
+    margin-left: -80px;
+}
+
+.pronoPouleClassement .pronoPouleClaTitleContainer {
+    height: 24px;
+    /*background-color: #84AD09;
+    border-bottom: solid 2px #638503;*/
+    color: #000;
+    line-height: 24px;
+    padding: 0 10px;
+    text-align: center;
+    text-transform: uppercase;
+    border-bottom: 1px solid #d4dae6;
+    /*text-shadow: -1px -1px 0 rgba(0,0,0,0.4);*/
+}
+
+.pronoPouleClassement .pronoPouleClaClsmt {
+    float: left;
+    font-size: 12px;
+}
+
+.pronoPouleClassement .pronoPouleClaPts {
+    width: 32px;
+    float: right;
+    font-size: 12px;
+    margin-right: 10;
+}
+
+.pronoPouleClassement .equipe .france {
+    color: #00F !important;
+}
+
+.pronoPouleClassement .drapeau {
+    width: 14px;
+    height: 12px;
+    margin: 5px 5px 0 0;
+    padding: 0;
+}
+
+.pronoPouleClassement .pronoPouleTeamsLine .pts {
+    width: 32px;
+    float: right;
+    font-weight: 700;
+    text-align: center;
+    font-size: 16px;
+    /* vertical-align: baseline; */
+}
+
+.pronoPouleClassement .pronoPouleTeamsLine .pts.diff {
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.pronoPouleClassement .pronoPouleTeams {
+    list-style-type: none;
+}
+
+.pronoContentToolTip {
+    margin-bottom: 10px;
+}
+
+#pronoNext,
+#pronoPrev {
+    width: 150px;
+    text-align: center;
+    background: #2c323c;
+    padding: 15px 15px;
+    margin: 0 auto;
+    height: 28px;
+    line-height: 18px;
+    color: #fff;
+    margin-top: 20px;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+#pronoPrev {
+    position: relative;
+    color: #2c323c;
+    background: none;
+    right: 105px;
+    padding: 15px 15px;
+    bottom: 4px;
+    height: 62px;
+}
+
+#pronoPrev p {
+    position: relative;
+    bottom: 1px;
+    width: 141px;
+    color: #2b323c;
+    left: 9px;
+    line-height: 10px;
+    text-align: center;
+}
+
+#pronoPrev:after {
+    right: 160px;
+    top: 34%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(0, 0, 0, 0);
+    border-right-color: #2c323c;
+    border-width: 10px;
+    margin-top: -10px;
+}
+
+#pronoNext > span,
+#pronoPrev > span {
+    font-size: 24px;
+    display: block;
+    font-family: 'museo_sans900';
+    font-weight: 100 !important;
+}
+
+
+/*
+////////////////////// Page des finales //////////////////////
+*/
+
+#pronoPhaseFinale .wrapPhaseFinale {
+    /* display: none; */
+    margin-left: -20px;
+}
+
+#pronoPhaseFinale .pronoContentToolTip {
+    margin-bottom: 20px;
+}
+
+#pronoPhaseFinale .phase {
+    width: 208px;
+    float: left;
+}
+
+#pronoPhaseFinale .phase .matchQuart {}
+
+.ContDemi2 {
+    margin-top: 50px
+}
+
+#pronoPhaseFinale .phaseHuit.phase .match {
+    margin: 15px 0;
+}
+
+#pronoPhaseFinale .phase .match {
+    font-size: 12px;
+    height: 100px;
+    background: url(http://static.lequipe.fr/v6/img/football/prono-path-match.png) no-repeat right 11px;
+    padding: 0 20px;
+}
+
+#pronoPhaseFinale .phase .match .countryflags {
+    display: inline-block;
+    margin-right: 12px;
+    margin-left: 11px;
+    vertical-align: middle;
+    position: relative;
+    top: -2px;
+    *display: inline;
+    *zoom: 1;
+}
+
+.ContQuart2 {
+    margin-top: 6px;
+}
+
+.ContQuart3 {
+    margin-top: 41px;
+}
+
+.ContQuart4 {
+    margin-top: 7px;
+}
+
+#pronoPhaseFinale .phase .match.matchFinale {
+    background: none !important;
+}
+
+#pronoPhaseFinale .phase .match.matchFinale.winA {}
+
+#pronoPhaseFinale .phase .match.matchFinale.winB {}
+
+#pronoPhaseFinale .phase .match.winA .eq1,
+#pronoPhaseFinale .phase .match.winB .eq2 {
+    /*background-color: #373e4b;
+    border: solid 1px #373e4b;*/
+    color: #000;
+    font-weight: bold;
+    line-height: 31px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    background: url('/v6/img/football/border-foot.jpg')#fff;
+    background-size: 100% 5px;
+    background-repeat: repeat-x;
+    border-right: 1px solid #9ca6b9;
+}
+
+#pronoPhaseFinale .phase .match.winA .eq2,
+#pronoPhaseFinale .phase .match.winB .eq1 {
+    background-image: none;
+    border-right: solid 1px #9ca6b9;
+}
+
+#pronoPhaseFinale .phase .match .eq {
+    width: 158px;
+    height: 30px;
+    background-color: #FFF;
+    border: solid 1px #9ca6b9;
+    /*box-shadow: 4px 4px 10px rgba(0,0,0,0.2);*/
+    line-height: 31px;
+    padding: 0 4px;
+    border-right: 6px solid #9ca6b9;
+}
+
+#pronoPhaseFinale .phase .match .eq.toRemove {
+    box-shadow: none;
+}
+
+#pronoPhaseFinale .phase .match .eq .nom .france {
+    color: #00F !important;
+}
+
+#pronoPhaseFinale .phase .match .eq .drapeau {
+    width: 14px;
+    height: 12px;
+    margin: 6px 6px 0 3px;
+}
+
+#pronoPhaseFinale .phase .match .score {
+    height: 27px;
+    line-height: 27px;
+    padding: 5px 4px;
+    text-align: center;
+}
+
+#pronoPhaseFinale .phase .match .score .scoreInputs {
+    position: relative;
+    z-index: 10;
+}
+
+#pronoPhaseFinale .phase .match .score input {
+    font-size: 16px;
+    font-family: 'museo_sans900';
+    font-weight: 100 !important;
+    padding: 2px 4px;
+    text-align: center;
+    background-color: #555;
+    color: #7c8699;
+    background: #e9eef5;
+    width: 19px;
+    height: 23px;
+    /* border-left: 1px solid #fff; */
+    /*margin-left: 4px;*/
+}
+
+#pronoPhaseFinale .phase .match .score .scoreTab {
+    display: none;
+    font-size: 11px;
+    margin-left: -75px;
+    position: relative;
+    top: -2px;
+}
+
+#pronoPhaseFinale .phase .match .score .scoreTab input {
+    width: 18px;
+    height: 16px;
+    font-size: 12px;
+    font-family: 'museo_sans900';
+    font-weight: 100 !important;
+    padding: 2px 4px;
+    text-align: center;
+    background-color: #555;
+    color: #7c8699;
+    background: #e9eef5;
+}
+
+
+/* Demi finale */
+
+#pronoPhaseFinale .phase .matchDemiContainer {}
+
+#pronoPhaseFinale .phase .matchDemiContainer.last {
+    margin-bottom: 0;
+}
+
+#pronoPhaseFinale .phase .matchDemiContainer .pathQuartDemi {
+    width: 100%;
+    height: 173px;
+    background-repeat: no-repeat;
+    background-image: url(http://static.lequipe.fr/v6/img/football/prono-path-demi-finale.png?12);
+    margin-left: -2px;
+}
+
+.phaseQuart .pathA,
+.phaseQuart .pathB {
+    height: 52px;
+    background-image: url(http://static.lequipe.fr/v6/img/football/prono-path-quart-demi.png?12);
+    background-repeat: no-repeat;
+}
+
+.pathQuartDemi.pathA,
+.pathQuartDemi.pathB {
+    background-repeat: no-repeat;
+}
+
+.matchHuit5 {
+    margin-top: 53px !important
+}
+
+.phaseQuart .pathA {
+    background-position: -2px 21px;
+    height: 73px
+}
+
+.phaseQuart .pathB {
+    background-position: -2px -110px;
+}
+
+#pronoPhaseFinale .phase .matchDemiContainer .pathQuartDemi.pathA {
+    background-position: left 16px;
+    margin-top: 15px;
+}
+
+#pronoPhaseFinale .phase .matchDemiContainer .pathQuartDemi.pathB {
+    background-position: left -326px;
+    background-repeat: no-repeat;
+}
+
+#pronoPhaseFinale .phase .matchDemiContainer.last .pathQuartDemi.pathB {
+    background-position: left -332px;
+}
+
+#pronoPhaseFinale .phase .matchDemiContainer .pathQuartDemi.win.pathA {}
+
+#pronoPhaseFinale .phase .matchDemiContainer .pathQuartDemi.win.pathB {}
+
+#pronoPhaseFinale .phase .matchDemiContainer.first .pathQuartDemi.pathB {
+    height: 227px;
+}
+
+#pronoPhaseFinale .phase .matchDemiContainer.last .pathQuartDemi.pathA {
+    height: 122px;
+    background-position: left -37px;
+    background-repeat: no-repeat;
+}
+
+#pronoPhaseFinale .phase .matchDemiContainer.last .pathQuartDemi.win.pathA {}
+
+
+/* Finale */
+
+#pronoPhaseFinale .phase .pathDemiFinale {
+    width: 100%;
+    height: 229px;
+    background-repeat: no-repeat;
+    background-image: url(http: //static.lequipe.fr/v6/img/football/prono-path-finaleee.png?k1i
+);
+    margin-left: -2px;
+}
+
+#pronoPhaseFinale .phase .pathDemiFinale.pathA {
+    background-position: 1px 28px;
+}
+
+#pronoPhaseFinale .phase .pathDemiFinale.pathB {
+    background-position: 1px -300px;
+    height: 214px;
+}
+
+.phFinale .pathA {
+    height: 164px;
+    margin-top: 210px;
+}
+
+#pronoPhaseFinale input:disabled {
+    background: #f5f5f5!important;
+    color: #DDD!important;
+}
+
+#pronoPhaseFinale .phase .pathDemiFinale.win.pathA {}
+
+#pronoPhaseFinale .phase .pathDemiFinale.win.pathB {}
+
+.phaseVainqueur {
+    position: relative;
+}
+
+#pronoPhaseFinale #winnerContainer {
+    height: 41px;
+    margin-left: 20px;
+    position: absolute;
+    z-index: 40;
+    width: 147px;
+    left: 188px;
+    bottom: 250px;
+}
+
+#pronoPhaseFinale #winner {
+    height: 37px;
+    background-color: #FFF;
+    border: solid 1px #CCC;
+    display: block;
+    font-size: 27px;
+    font-weight: bold;
+    line-height: 38px;
+    text-align: left;
+}
+
+#pronoPhaseFinale #winner.win {
+    border-right: 1px solid #9ca6b9;
+    border-left: 1px solid #9ca6b9;
+    color: #000;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    border-bottom: 4px solid #83ac09;
+}
+
+#pronoPhaseFinale #winner.win {
+    cursor: default;
+}
+
+#pronoPhaseFinale #winner.win .countryflags {
+    position: relative;
+    top: -1px;
+    margin-left: 15px;
+    margin-right: 10px;
+}
+
+#pronoPhaseFinale #winner .countryflags {
+    display: inline-block;
+    vertical-align: middle;
+    *display: inline;
+    *zoom: 1;
+}
+
+#pronoPhaseFinale #winner.win .equipe {
+    /* padding-right: 24px;*/
+}
+
+#pronoPhaseFinale #winner.win .drapeau {
+    display: block;
+}
+
+#pronoPhaseFinale.resultsPage .score {
+    font-weight: bold;
+}
+
+#pronoPhaseFinale.resultsPage .score .scoreInputs {
+    font-size: 16px;
+}
+
+#pronoPhaseFinale.resultsPage .score .tabRes {
+    border-left: solid 1px #999;
+    font-size: 11px;
+    padding-left: 5px;
+    position: relative;
+    top: -2px;
+}
+
+#partage .mail-envoyer,
+#partage .comment {
+    display: none;
+}
+
+.vainqueur {
+    text-align: center;
+    line-height: 20px;
+    background: #84ad09;
+    color: #fff;
+    font-weight: 700;
+}
+
+
+/* PAGE RESULTATS */
+
+#pronoPhaseFinale.resultsPage .phase .matchQuart {
+    margin-bottom: 10px;
+}
+
+#pronoPhaseFinale.resultsPage .phase .matchDemiContainer .pathQuartDemi.pathA {
+    background-position: left -69px;
+}
+
+#pronoPhaseFinale.resultsPage .phase .matchDemiContainer .pathQuartDemi {
+    height: 40px;
+}
+
+#pronoPhaseFinale.resultsPage .phase .matchDemiContainer.first .pathQuartDemi.pathB {
+    height: 27px;
+}
+
+#pronoPhaseFinale.resultsPage .phase .matchDemiContainer .pathQuartDemi.pathB {
+    background-position: left -376px;
+}
+
+#pronoPhaseFinale.resultsPage .phase .matchDemiContainer.last .pathQuartDemi.pathA {
+    height: 80px;
+    background-position: left -30px;
+}
+
+#pronoPhaseFinale.resultsPage .phase .matchDemiContainer.last .pathQuartDemi.pathB {
+    background-position: left -375px;
+}
+
+#pronoPhaseFinale.resultsPage .phase .pathDemiFinale.pathA {
+    background-position: 1px 101px;
+}
+
+#pronoPhaseFinale.resultsPage .phase .pathDemiFinale {
+    height: 161px;
+}
+
+#pronoPhaseFinale.resultsPage .phase .pathDemiFinale.pathB {
+    background-position: 1px -435px;
+    height: 274px;
+}
+
+#pronoPhaseFinale.resultsPage #winnerContainer {
+    top: auto;
+    bottom: 0;
+    right: 50%;
+    margin-right: -73px;
+    text-align: center;
+    height: 70px;
+}
+
+#pronoPhaseFinale.resultsPage #winnerContainer > div:first-child {
+    font-size: 20px;
+    display: block;
+    font-family: 'museo_sans900';
+    font-weight: 100 !important;
+    line-height: 40px;
+    text-transform: uppercase;
+}
+
+.resultsPage #pronoContentContainer {
+    margin-top: 30px;
+}
+
+.resultsPage h1,
+.resultsPage .pronoContentToolTip {
+    margin-bottom: 0
+}
+
+.resultsPage #content {
+    padding-left: 0
+}
+
+.resultsPage .score .score1,
+.resultsPage .score .score2 {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    font-size: 16px;
+    font-family: 'museo_sans900';
+    font-weight: bold;
+    padding: 2px 4px;
+    text-align: center;
+    background-color: #555;
+    color: #7c8699;
+    background: #e9eef5;
+    width: 19px;
+    height: 23px;
+    line-height: 23px;
+}
+
+
+/* FLAGS */
+
+
+/* sprite 24px */
+
+.countryflags {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    background: url('../../assets/images/countryflags.png') no-repeat;
+    width: 24px;
+    height: 14px;
+    background-size: 392px 240px;
+}
+
+.countryflags-mini {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    background: url('../../assets/images/countryflags-mini.png') no-repeat;
+    width: 14px;
+    height: 8px;
+    background-size: 224px 135px;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+}
+
+.countryflags-mini.AAA {
+    background-position: -1px -0px;
+}
+
+.countryflags-mini.AFG {
+    background-position: -16px -0px;
+}
+
+.countryflags-mini.AFS {
+    background-position: -31px -0px;
+}
+
+.countryflags-mini.RSA {
+    background-position: -31px -0px;
+}
+
+.countryflags-mini.AGO {
+    background-position: -46px -0px;
+}
+
+.countryflags-mini.Albania {
+    background-position: -61px -0px;
+}
+
+.countryflags-mini.ALG {
+    background-position: -76px -0px;
+}
+
+.countryflags-mini.Germany {
+    background-position: -91px -0px;
+}
+
+.countryflags-mini.AND {
+    background-position: -106px -0px;
+}
+
+.countryflags-mini.England {
+    background-position: -121px -0px;
+}
+
+.countryflags-mini.ANT {
+    background-position: -136px -0px;
+}
+
+.countryflags-mini.ARG {
+    background-position: -151px -0px;
+}
+
+.countryflags-mini.ARM {
+    background-position: -166px -0px;
+}
+
+.countryflags-mini.ARS {
+    background-position: -181px -0px;
+}
+
+.countryflags-mini.AUS {
+    background-position: -196px -0px;
+}
+
+.countryflags-mini.Austria {
+    background-position: -1px -9px;
+}
+
+.countryflags-mini.AZE {
+    background-position: -16px -9px;
+}
+
+.countryflags-mini.BAH {
+    background-position: -31px -9px;
+}
+
+.countryflags-mini.BAN {
+    background-position: -46px -9px;
+}
+
+.countryflags-mini.BAR {
+    background-position: -61px -9px;
+}
+
+.countryflags-mini.Belgium {
+    background-position: -76px -9px;
+}
+
+.countryflags-mini.BEN {
+    background-position: -91px -9px;
+}
+
+.countryflags-mini.BLR {
+    background-position: -106px -9px;
+}
+
+.countryflags-mini.BLZ {
+    background-position: -121px -9px;
+}
+
+.countryflags-mini.BOL {
+    background-position: -136px -9px;
+}
+
+.countryflags-mini.BOS {
+    background-position: -151px -9px;
+}
+
+.countryflags-mini.BOT {
+    background-position: -166px -9px;
+}
+
+.countryflags-mini.BRE {
+    background-position: -181px -9px;
+}
+
+.countryflags-mini.BRN {
+    background-position: -196px -9px;
+}
+
+.countryflags-mini.BRU {
+    background-position: -1px -18px;
+}
+
+.countryflags-mini.BUF {
+    background-position: -16px -18px;
+}
+
+.countryflags-mini.BUL {
+    background-position: -31px -18px;
+}
+
+.countryflags-mini.BUR {
+    background-position: -46px -18px;
+}
+
+.countryflags-mini.CAB {
+    background-position: -61px -18px;
+}
+
+.countryflags-mini.CAM {
+    background-position: -76px -18px;
+}
+
+.countryflags-mini.CAN {
+    background-position: -91px -18px;
+}
+
+.countryflags-mini.CDN {
+    background-position: -106px -18px;
+}
+
+.countryflags-mini.CDS {
+    background-position: -121px -18px;
+}
+
+.countryflags-mini.CEI {
+    background-position: -136px -18px;
+}
+
+.countryflags-mini.CHL {
+    background-position: -151px -18px;
+}
+
+.countryflags-mini.CHN {
+    background-position: -166px -18px;
+}
+
+.countryflags-mini.CHY {
+    background-position: -181px -18px;
+}
+
+.countryflags-mini.CIV {
+    background-position: -196px -18px;
+}
+
+.countryflags-mini.COL {
+    background-position: -1px -27px;
+}
+
+.countryflags-mini.COM {
+    background-position: -16px -27px;
+}
+
+.countryflags-mini.CPV {
+    background-position: -31px -27px;
+}
+
+.countryflags-mini.CRI {
+    background-position: -46px -27px;
+}
+
+.countryflags-mini.Croatia {
+    background-position: -61px -27px;
+}
+
+.countryflags-mini.CUB {
+    background-position: -76px -27px;
+}
+
+.countryflags-mini.DAN {
+    background-position: -91px -27px;
+}
+
+.countryflags-mini.DJI {
+    background-position: -106px -27px;
+}
+
+.countryflags-mini.DOM {
+    background-position: -121px -27px;
+}
+
+.countryflags-mini.EAU {
+    background-position: -136px -27px;
+}
+
+.countryflags-mini.ECO {
+    background-position: -76px -126px;
+}
+
+.countryflags-mini.EGY {
+    background-position: -166px -27px;
+}
+
+.countryflags-mini.EQU {
+    background-position: -181px -27px;
+}
+
+.countryflags-mini.ERY {
+    background-position: -196px -27px;
+}
+
+.countryflags-mini.Spain {
+    background-position: -1px -36px;
+}
+
+.countryflags-mini.EST {
+    background-position: -16px -36px;
+}
+
+.countryflags-mini.ETH {
+    background-position: -31px -36px;
+}
+
+.countryflags-mini.FID {
+    background-position: -46px -36px;
+}
+
+.countryflags-mini.FIN {
+    background-position: -61px -36px;
+}
+
+.countryflags-mini.France {
+    background-position: -76px -36px;
+}
+
+.countryflags-mini.GAB {
+    background-position: -91px -36px;
+}
+
+.countryflags-mini.Wales {
+    background-position: -91px -126px;
+}
+
+.countryflags-mini.GAM {
+    background-position: -121px -36px;
+}
+
+.countryflags-mini.GBR {
+    background-position: -136px -36px;
+}
+
+.countryflags-mini.GEO {
+    background-position: -151px -36px;
+}
+
+.countryflags-mini.GEQ,
+.countryflags-mini.GEC {
+    background-position: -166px -36px;
+}
+
+.countryflags-mini.GHA {
+    background-position: -181px -36px;
+}
+
+.countryflags-mini.GRD {
+    background-position: -196px -36px;
+}
+
+.countryflags-mini.GRE {
+    background-position: -1px -45px;
+}
+
+.countryflags-mini.GUA {
+    background-position: -16px -45px;
+}
+
+.countryflags-mini.GUB {
+    background-position: -31px -45px;
+}
+
+.countryflags-mini.GUI {
+    background-position: -46px -45px;
+}
+
+.countryflags-mini.GUY {
+    background-position: -61px -45px;
+}
+
+.countryflags-mini.HAI {
+    background-position: -76px -45px;
+}
+
+.countryflags-mini.HND {
+    background-position: -91px -45px;
+}
+
+.countryflags-mini.HOL {
+    background-position: -106px -45px;
+}
+
+.countryflags-mini.Hungary {
+    background-position: -121px -45px;
+}
+
+.countryflags-mini.Northern {
+    background-position: -107px -126px;
+}
+
+.countryflags-mini.IND {
+    background-position: -151px -45px;
+}
+
+.countryflags-mini.INO {
+    background-position: -166px -45px;
+}
+
+.countryflags-mini.Republic {
+    background-position: -181px -45px;
+}
+
+.countryflags-mini.IRN {
+    background-position: -196px -45px;
+}
+
+.countryflags-mini.IRQ {
+    background-position: -1px -54px;
+}
+
+.countryflags-mini.Iceland {
+    background-position: -16px -54px;
+}
+
+.countryflags-mini.ISR {
+    background-position: -31px -54px;
+}
+
+.countryflags-mini.Italy {
+    background-position: -46px -54px;
+}
+
+.countryflags-mini.JAM {
+    background-position: -61px -54px;
+}
+
+.countryflags-mini.JAP {
+    background-position: -76px -54px;
+}
+
+.countryflags-mini.JOR {
+    background-position: -91px -54px;
+}
+
+.countryflags-mini.KAZ {
+    background-position: -106px -54px;
+}
+
+.countryflags-mini.KEN {
+    background-position: -121px -54px;
+}
+
+.countryflags-mini.KIB {
+    background-position: -136px -54px;
+}
+
+.countryflags-mini.KIR {
+    background-position: -151px -54px;
+}
+
+.countryflags-mini.KOS {
+    background-position: -166px -54px;
+}
+
+.countryflags-mini.KOW {
+    background-position: -181px -54px;
+}
+
+.countryflags-mini.LAO {
+    background-position: -196px -54px;
+}
+
+.countryflags-mini.LBR {
+    background-position: -1px -63px;
+}
+
+.countryflags-mini.LBY {
+    background-position: -16px -63px;
+}
+
+.countryflags-mini.LES {
+    background-position: -31px -63px;
+}
+
+.countryflags-mini.LET {
+    background-position: -46px -63px;
+}
+
+.countryflags-mini.LIB {
+    background-position: -61px -63px;
+}
+
+.countryflags-mini.LIE {
+    background-position: -76px -63px;
+}
+
+.countryflags-mini.LIT {
+    background-position: -91px -63px;
+}
+
+.countryflags-mini.LUX {
+    background-position: -106px -63px;
+}
+
+.countryflags-mini.MAC {
+    background-position: -121px -63px;
+}
+
+.countryflags-mini.MCD {
+    background-position: -121px -63px;
+}
+
+.countryflags-mini.MAD {
+    background-position: -136px -63px;
+}
+
+.countryflags-mini.MAL {
+    background-position: -151px -63px;
+}
+
+.countryflags-mini.MAR {
+    background-position: -166px -63px;
+}
+
+.countryflags-mini.MAU {
+    background-position: -181px -63px;
+}
+
+.countryflags-mini.MCO {
+    background-position: -196px -63px;
+}
+
+.countryflags-mini.MDI {
+    background-position: -1px -72px;
+}
+
+.countryflags-mini.MEX {
+    background-position: -16px -72px;
+}
+
+.countryflags-mini.MGL {
+    background-position: -31px -72px;
+}
+
+.countryflags-mini.MHL {
+    background-position: -46px -72px;
+}
+
+.countryflags-mini.MIC {
+    background-position: -61px -72px;
+}
+
+.countryflags-mini.MLI {
+    background-position: -76px -72px;
+}
+
+.countryflags-mini.MLT {
+    background-position: -91px -72px;
+}
+
+.countryflags-mini.MNE {
+    background-position: -106px -72px;
+}
+
+.countryflags-mini.MOL {
+    background-position: -121px -72px;
+}
+
+.countryflags-mini.MOZ {
+    background-position: -136px -72px;
+}
+
+.countryflags-mini.MRI {
+    background-position: -151px -72px;
+}
+
+.countryflags-mini.MWI {
+    background-position: -166px -72px;
+}
+
+.countryflags-mini.MYA {
+    background-position: -181px -72px;
+}
+
+.countryflags-mini.NAM {
+    background-position: -196px -72px;
+}
+
+.countryflags-mini.NAU {
+    background-position: -1px -81px;
+}
+
+.countryflags-mini.NEP {
+    background-position: -16px -81px;
+}
+
+.countryflags-mini.NGA {
+    background-position: -31px -81px;
+}
+
+.countryflags-mini.NIC {
+    background-position: -46px -81px;
+}
+
+.countryflags-mini.NIG {
+    background-position: -61px -81px;
+}
+
+.countryflags-mini.NOR {
+    background-position: -76px -81px;
+}
+
+.countryflags-mini.NZL {
+    background-position: -91px -81px;
+}
+
+.countryflags-mini.NZE {
+    background-position: -91px -81px;
+}
+
+.countryflags-mini.OMN {
+    background-position: -106px -81px;
+}
+
+.countryflags-mini.OUG {
+    background-position: -121px -81px;
+}
+
+.countryflags-mini.OUZ {
+    background-position: -136px -81px;
+}
+
+.countryflags-mini.PAK {
+    background-position: -151px -81px;
+}
+
+.countryflags-mini.PAN {
+    background-position: -166px -81px;
+}
+
+.countryflags-mini.PAR {
+    background-position: -181px -81px;
+}
+
+.countryflags-mini.PER {
+    background-position: -196px -81px;
+}
+
+.countryflags-mini.PHI {
+    background-position: -1px -90px;
+}
+
+.countryflags-mini.PLW {
+    background-position: -16px -90px;
+}
+
+.countryflags-mini.PNG {
+    background-position: -31px -90px;
+}
+
+.countryflags-mini.Poland {
+    background-position: -46px -90px;
+}
+
+.countryflags-mini.Portugal {
+    background-position: -61px -90px;
+}
+
+.countryflags-mini.PRT {
+    background-position: -61px -126px;
+}
+
+.countryflags-mini.QAT {
+    background-position: -76px -90px;
+}
+
+.countryflags-mini.RCA {
+    background-position: -91px -90px;
+}
+
+.countryflags-mini.RDC {
+    background-position: -106px -90px;
+}
+
+.countryflags-mini.RDO {
+    background-position: -121px -90px;
+}
+
+.countryflags-mini.Romania {
+    background-position: -136px -90px;
+}
+
+.countryflags-mini.Czech {
+    background-position: -151px -90px;
+}
+
+.countryflags-mini.Russia {
+    background-position: -166px -90px;
+}
+
+.countryflags-mini.RWA {
+    background-position: -181px -90px;
+}
+
+.countryflags-mini.SAL {
+    background-position: -196px -90px;
+}
+
+.countryflags-mini.SAM {
+    background-position: -1px -99px;
+}
+
+.countryflags-mini.SAN {
+    background-position: -16px -99px;
+}
+
+.countryflags-mini.SEM {
+    background-position: -31px -99px;
+}
+
+.countryflags-mini.SEN {
+    background-position: -46px -99px;
+}
+
+.countryflags-mini.SER {
+    background-position: -61px -99px;
+}
+
+.countryflags-mini.SEY {
+    background-position: -76px -99px;
+}
+
+.countryflags-mini.SIE {
+    background-position: -91px -99px;
+}
+
+.countryflags-mini.SIN {
+    background-position: -106px -99px;
+}
+
+.countryflags-mini.SKN {
+    background-position: -121px -99px;
+}
+
+.countryflags-mini.SLM {
+    background-position: -136px -99px;
+}
+
+.countryflags-mini.Slovakia {
+    background-position: -151px -99px;
+}
+
+.countryflags-mini.SLU {
+    background-position: -166px -99px;
+}
+
+.countryflags-mini.SLV {
+    background-position: -181px -99px;
+}
+
+.countryflags-mini.SLN {
+    background-position: -181px -99px;
+}
+
+.countryflags-mini.SOM {
+    background-position: -196px -99px;
+}
+
+.countryflags-mini.SOU {
+    background-position: -1px -108px;
+}
+
+.countryflags-mini.SRI {
+    background-position: -16px -108px;
+}
+
+.countryflags-mini.STP {
+    background-position: -31px -108px;
+}
+
+.countryflags-mini.Sweden {
+    background-position: -46px -108px;
+}
+
+.countryflags-mini.Switzerland {
+    background-position: -61px -108px;
+}
+
+.countryflags-mini.SUR {
+    background-position: -76px -108px;
+}
+
+.countryflags-mini.SVG {
+    background-position: -91px -108px;
+}
+
+.countryflags-mini.SWA {
+    background-position: -106px -108px;
+}
+
+.countryflags-mini.SYR {
+    background-position: -121px -108px;
+}
+
+.countryflags-mini.TAI {
+    background-position: -136px -108px;
+}
+
+.countryflags-mini.TAN {
+    background-position: -151px -108px;
+}
+
+.countryflags-mini.TCA {
+    background-position: -166px -108px;
+}
+
+.countryflags-mini.THA {
+    background-position: -181px -108px;
+}
+
+.countryflags-mini.TIM {
+    background-position: -196px -108px;
+}
+
+.countryflags-mini.TJK {
+    background-position: -1px -117px;
+}
+
+.countryflags-mini.TOG {
+    background-position: -16px -117px;
+}
+
+.countryflags-mini.TON {
+    background-position: -31px -117px;
+}
+
+.countryflags-mini.TRI {
+    background-position: -46px -117px;
+}
+
+.countryflags-mini.TUK {
+    background-position: -61px -117px;
+}
+
+.countryflags-mini.TUN {
+    background-position: -76px -117px;
+}
+
+.countryflags-mini.Turkey {
+    background-position: -91px -117px;
+}
+
+.countryflags-mini.TUV {
+    background-position: -106px -117px;
+}
+
+.countryflags-mini.Ukraine {
+    background-position: -121px -117px;
+}
+
+.countryflags-mini.URS {
+    background-position: -136px -117px;
+}
+
+.countryflags-mini.URU {
+    background-position: -151px -117px;
+}
+
+.countryflags-mini.USA {
+    background-position: -166px -117px;
+}
+
+.countryflags-mini.VAN {
+    background-position: -181px -117px;
+}
+
+.countryflags-mini.VEN {
+    background-position: -196px -117px;
+}
+
+.countryflags-mini.VIE {
+    background-position: -1px -126px;
+}
+
+.countryflags-mini.YEM {
+    background-position: -16px -126px;
+}
+
+.countryflags-mini.ZAM {
+    background-position: -31px -126px;
+}
+
+.countryflags-mini.ZIM {
+    background-position: -46px -126px;
+}
+
+.countryflags.AAA {
+    background-position: -2px -0px;
+}
+
+.countryflags.AFG {
+    background-position: -28px -0px;
+}
+
+.countryflags.AFS {
+    background-position: -54px -0px;
+}
+
+.countryflags.RSA {
+    background-position: -54px -0px;
+}
+
+.countryflags.AGO {
+    background-position: -80px -0px;
+}
+
+.countryflags.Albania {
+    background-position: -106px -0px;
+}
+
+.countryflags.ALG {
+    background-position: -132px -0px;
+}
+
+.countryflags.Germany {
+    background-position: -158px -0px;
+}
+
+.countryflags.AND {
+    background-position: -184px -0px;
+}
+
+.countryflags.England {
+    background-position: -210px -0px;
+}
+
+.countryflags.ANT {
+    background-position: -236px -0px;
+}
+
+.countryflags.ARG {
+    background-position: -262px -0px;
+}
+
+.countryflags.ARM {
+    background-position: -288px -0px;
+}
+
+.countryflags.ARS {
+    background-position: -314px -0px;
+}
+
+.countryflags.AUS {
+    background-position: -340px -0px;
+}
+
+.countryflags.Austria {
+    background-position: -2px -16px;
+}
+
+.countryflags.AZE {
+    background-position: -28px -16px;
+}
+
+.countryflags.BAH {
+    background-position: -54px -16px;
+}
+
+.countryflags.BAN {
+    background-position: -80px -16px;
+}
+
+.countryflags.BAR {
+    background-position: -106px -16px;
+}
+
+.countryflags.Belgium {
+    background-position: -132px -16px;
+}
+
+.countryflags.BEN {
+    background-position: -158px -16px;
+}
+
+.countryflags.BLR {
+    background-position: -184px -16px;
+}
+
+.countryflags.BLZ {
+    background-position: -210px -16px;
+}
+
+.countryflags.BOL {
+    background-position: -236px -16px;
+}
+
+.countryflags.BOS {
+    background-position: -262px -16px;
+}
+
+.countryflags.BOT {
+    background-position: -288px -16px;
+}
+
+.countryflags.BRE {
+    background-position: -314px -16px;
+}
+
+.countryflags.BRN {
+    background-position: -340px -16px;
+}
+
+.countryflags.BRU {
+    background-position: -2px -32px;
+}
+
+.countryflags.BUF {
+    background-position: -28px -32px;
+}
+
+.countryflags.BUL {
+    background-position: -54px -32px;
+}
+
+.countryflags.BUR {
+    background-position: -80px -32px;
+}
+
+.countryflags.CAB {
+    background-position: -106px -32px;
+}
+
+.countryflags.CAM {
+    background-position: -132px -32px;
+}
+
+.countryflags.CAN {
+    background-position: -158px -32px;
+}
+
+.countryflags.CDN {
+    background-position: -184px -32px;
+}
+
+.countryflags.CDS {
+    background-position: -210px -32px;
+}
+
+.countryflags.CEI {
+    background-position: -236px -32px;
+}
+
+.countryflags.CHL {
+    background-position: -262px -32px;
+}
+
+.countryflags.CHN {
+    background-position: -288px -32px;
+}
+
+.countryflags.CHY {
+    background-position: -314px -32px;
+}
+
+.countryflags.CIV {
+    background-position: -340px -32px;
+}
+
+.countryflags.COL {
+    background-position: -2px -48px;
+}
+
+.countryflags.COM {
+    background-position: -28px -48px;
+}
+
+.countryflags.CPV {
+    background-position: -54px -48px;
+}
+
+.countryflags.CRI {
+    background-position: -80px -48px;
+}
+
+.countryflags.Croatia {
+    background-position: -106px -48px;
+}
+
+.countryflags.CUB {
+    background-position: -132px -48px;
+}
+
+.countryflags.DAN {
+    background-position: -158px -48px;
+}
+
+.countryflags.DJI {
+    background-position: -184px -48px;
+}
+
+.countryflags.DOM {
+    background-position: -210px -48px;
+}
+
+.countryflags.EAU {
+    background-position: -236px -48px;
+}
+
+.countryflags.ECO {
+    background-position: -132px -224px;
+}
+
+.countryflags.EGY {
+    background-position: -288px -48px;
+}
+
+.countryflags.EQU {
+    background-position: -314px -48px;
+}
+
+.countryflags.ERY {
+    background-position: -340px -48px;
+}
+
+.countryflags.Spain {
+    background-position: -2px -64px;
+}
+
+.countryflags.EST {
+    background-position: -28px -64px;
+}
+
+.countryflags.ETH {
+    background-position: -54px -64px;
+}
+
+.countryflags.FID {
+    background-position: -80px -64px;
+}
+
+.countryflags.FIN {
+    background-position: -106px -64px;
+}
+
+.countryflags.France {
+    background-position: -132px -64px;
+}
+
+.countryflags.GAB {
+    background-position: -158px -64px;
+}
+
+.countryflags.Wales {
+    background-position: -158px -224px;
+}
+
+.countryflags.GAM {
+    background-position: -210px -64px;
+}
+
+.countryflags.GBR {
+    background-position: -236px -64px;
+}
+
+.countryflags.GEO {
+    background-position: -262px -64px;
+}
+
+.countryflags.GEQ,
+.countryflags.GEC {
+    background-position: -288px -64px;
+}
+
+.countryflags.GHA {
+    background-position: -314px -64px;
+}
+
+.countryflags.GRD {
+    background-position: -340px -64px;
+}
+
+.countryflags.GRE {
+    background-position: -2px -80px;
+}
+
+.countryflags.GUA {
+    background-position: -28px -80px;
+}
+
+.countryflags.GUB {
+    background-position: -54px -80px;
+}
+
+.countryflags.GUI {
+    background-position: -80px -80px;
+}
+
+.countryflags.GUY {
+    background-position: -106px -80px;
+}
+
+.countryflags.HAI {
+    background-position: -132px -80px;
+}
+
+.countryflags.HND {
+    background-position: -158px -80px;
+}
+
+.countryflags.HOL {
+    background-position: -184px -80px;
+}
+
+.countryflags.Hungary {
+    background-position: -210px -80px;
+}
+
+.countryflags.Northern {
+    background-position: -182px -224px;
+}
+
+.countryflags.IND {
+    background-position: -262px -80px;
+}
+
+.countryflags.INO {
+    background-position: -288px -80px;
+}
+
+.countryflags.Republic {
+    background-position: -314px -80px;
+}
+
+.countryflags.IRN {
+    background-position: -340px -80px;
+}
+
+.countryflags.IRQ {
+    background-position: -2px -96px;
+}
+
+.countryflags.Iceland {
+    background-position: -28px -96px;
+}
+
+.countryflags.ISR {
+    background-position: -54px -96px;
+}
+
+.countryflags.Italy {
+    background-position: -80px -96px;
+}
+
+.countryflags.JAM {
+    background-position: -106px -96px;
+}
+
+.countryflags.JAP {
+    background-position: -132px -96px;
+}
+
+.countryflags.JOR {
+    background-position: -158px -96px;
+}
+
+.countryflags.KAZ {
+    background-position: -184px -96px;
+}
+
+.countryflags.KEN {
+    background-position: -210px -96px;
+}
+
+.countryflags.KIB {
+    background-position: -236px -96px;
+}
+
+.countryflags.KIR {
+    background-position: -262px -96px;
+}
+
+.countryflags.KOS {
+    background-position: -288px -96px;
+}
+
+.countryflags.KOW {
+    background-position: -314px -96px;
+}
+
+.countryflags.LAO {
+    background-position: -340px -96px;
+}
+
+.countryflags.LBR {
+    background-position: -2px -112px;
+}
+
+.countryflags.LBY {
+    background-position: -28px -112px;
+}
+
+.countryflags.LES {
+    background-position: -54px -112px;
+}
+
+.countryflags.LET {
+    background-position: -80px -112px;
+}
+
+.countryflags.LIB {
+    background-position: -106px -112px;
+}
+
+.countryflags.LIE {
+    background-position: -132px -112px;
+}
+
+.countryflags.LIT {
+    background-position: -158px -112px;
+}
+
+.countryflags.LUX {
+    background-position: -184px -112px;
+}
+
+.countryflags.MAC {
+    background-position: -210px -112px;
+}
+
+.countryflags.MCD {
+    background-position: -210px -112px;
+}
+
+.countryflags.MAD {
+    background-position: -236px -112px;
+}
+
+.countryflags.MAL {
+    background-position: -262px -112px;
+}
+
+.countryflags.MAR {
+    background-position: -288px -112px;
+}
+
+.countryflags.MAU {
+    background-position: -314px -112px;
+}
+
+.countryflags.MCO {
+    background-position: -340px -112px;
+}
+
+.countryflags.MDI {
+    background-position: -2px -128px;
+}
+
+.countryflags.MEX {
+    background-position: -28px -128px;
+}
+
+.countryflags.MGL {
+    background-position: -54px -128px;
+}
+
+.countryflags.MHL {
+    background-position: -80px -128px;
+}
+
+.countryflags.MIC {
+    background-position: -106px -128px;
+}
+
+.countryflags.MLI {
+    background-position: -132px -128px;
+}
+
+.countryflags.MLT {
+    background-position: -158px -128px;
+}
+
+.countryflags.MNE {
+    background-position: -184px -128px;
+}
+
+.countryflags.MOL {
+    background-position: -210px -128px;
+}
+
+.countryflags.MOZ {
+    background-position: -236px -128px;
+}
+
+.countryflags.MRI {
+    background-position: -262px -128px;
+}
+
+.countryflags.MWI {
+    background-position: -288px -128px;
+}
+
+.countryflags.MYA {
+    background-position: -314px -128px;
+}
+
+.countryflags.NAM {
+    background-position: -340px -128px;
+}
+
+.countryflags.NAU {
+    background-position: -2px -144px;
+}
+
+.countryflags.NEP {
+    background-position: -28px -144px;
+}
+
+.countryflags.NGA {
+    background-position: -54px -144px;
+}
+
+.countryflags.NIC {
+    background-position: -80px -144px;
+}
+
+.countryflags.NIG {
+    background-position: -106px -144px;
+}
+
+.countryflags.NOR {
+    background-position: -132px -144px;
+}
+
+.countryflags.NZL {
+    background-position: -158px -144px;
+}
+
+.countryflags.NZE {
+    background-position: -158px -144px;
+}
+
+.countryflags.OMN {
+    background-position: -184px -144px;
+}
+
+.countryflags.OUG {
+    background-position: -210px -144px;
+}
+
+.countryflags.OUZ {
+    background-position: -236px -144px;
+}
+
+.countryflags.PAK {
+    background-position: -262px -144px;
+}
+
+.countryflags.PAN {
+    background-position: -288px -144px;
+}
+
+.countryflags.PAR {
+    background-position: -314px -144px;
+}
+
+.countryflags.PER {
+    background-position: -340px -144px;
+}
+
+.countryflags.PHI {
+    background-position: -2px -160px;
+}
+
+.countryflags.PLW {
+    background-position: -28px -160px;
+}
+
+.countryflags.PNG {
+    background-position: -54px -160px;
+}
+
+.countryflags.Poland {
+    background-position: -80px -160px;
+}
+
+.countryflags.Portugal {
+    background-position: -106px -160px;
+}
+
+.countryflags.PRT {
+    background-position: -106px -224px;
+}
+
+.countryflags.QAT {
+    background-position: -132px -160px;
+}
+
+.countryflags.RCA {
+    background-position: -158px -160px;
+}
+
+.countryflags.RDC {
+    background-position: -184px -160px;
+}
+
+.countryflags.RDO {
+    background-position: -210px -160px;
+}
+
+.countryflags.Romania {
+    background-position: -236px -160px;
+}
+
+.countryflags.Czech {
+    background-position: -262px -160px;
+}
+
+.countryflags.Russia {
+    background-position: -288px -160px;
+}
+
+.countryflags.RWA {
+    background-position: -314px -160px;
+}
+
+.countryflags.SAL {
+    background-position: -340px -160px;
+}
+
+.countryflags.SAM {
+    background-position: -2px -176px;
+}
+
+.countryflags.SAN {
+    background-position: -28px -176px;
+}
+
+.countryflags.SEM {
+    background-position: -54px -176px;
+}
+
+.countryflags.SEN {
+    background-position: -80px -176px;
+}
+
+.countryflags.SER,
+.countryflags.SRB {
+    background-position: -106px -176px;
+}
+
+.countryflags.SEY {
+    background-position: -132px -176px;
+}
+
+.countryflags.SIE {
+    background-position: -158px -176px;
+}
+
+.countryflags.SIN {
+    background-position: -184px -176px;
+}
+
+.countryflags.SKN {
+    background-position: -210px -176px;
+}
+
+.countryflags.SLM {
+    background-position: -236px -176px;
+}
+
+.countryflags.Slovakia {
+    background-position: -262px -176px;
+}
+
+.countryflags.SLU {
+    background-position: -288px -176px;
+}
+
+.countryflags.SLV {
+    background-position: -314px -176px;
+}
+
+.countryflags.SLN {
+    background-position: -314px -176px;
+}
+
+.countryflags.SOM {
+    background-position: -340px -176px;
+}
+
+.countryflags.SOU {
+    background-position: -2px -192px;
+}
+
+.countryflags.SRI {
+    background-position: -28px -192px;
+}
+
+.countryflags.STP {
+    background-position: -54px -192px;
+}
+
+.countryflags.Sweden {
+    background-position: -80px -192px;
+}
+
+.countryflags.Switzerland {
+    background-position: -106px -192px;
+}
+
+.countryflags.SUR {
+    background-position: -132px -192px;
+}
+
+.countryflags.SVG {
+    background-position: -158px -192px;
+}
+
+.countryflags.SWA {
+    background-position: -184px -192px;
+}
+
+.countryflags.SYR {
+    background-position: -210px -192px;
+}
+
+.countryflags.TAI {
+    background-position: -236px -192px;
+}
+
+.countryflags.TAN {
+    background-position: -262px -192px;
+}
+
+.countryflags.TCA {
+    background-position: -288px -192px;
+}
+
+.countryflags.THA {
+    background-position: -314px -192px;
+}
+
+.countryflags.TIM {
+    background-position: -340px -192px;
+}
+
+.countryflags.TJK {
+    background-position: -2px -208px;
+}
+
+.countryflags.TOG {
+    background-position: -28px -208px;
+}
+
+.countryflags.TON {
+    background-position: -54px -208px;
+}
+
+.countryflags.TRI {
+    background-position: -80px -208px;
+}
+
+.countryflags.TUK {
+    background-position: -106px -208px;
+}
+
+.countryflags.TUN {
+    background-position: -132px -208px;
+}
+
+.countryflags.Turkey {
+    background-position: -158px -208px;
+}
+
+.countryflags.TUV {
+    background-position: -184px -208px;
+}
+
+.countryflags.Ukraine {
+    background-position: -210px -208px;
+}
+
+.countryflags.URS {
+    background-position: -236px -208px;
+}
+
+.countryflags.URU {
+    background-position: -262px -208px;
+}
+
+.countryflags.USA {
+    background-position: -288px -208px;
+}
+
+.countryflags.VAN {
+    background-position: -314px -208px;
+}
+
+.countryflags.VEN {
+    background-position: -340px -208px;
+}
+
+.countryflags.VIE {
+    background-position: -2px -224px;
+}
+
+.countryflags.YEM {
+    background-position: -28px -224px;
+}
+
+.countryflags.ZAM {
+    background-position: -54px -224px;
+}
+
+.countryflags.ZIM {
+    background-position: -80px -224px;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (min--moz-device-pixel-ratio: 1.5),
+only screen and (min-resolution: 240dpi) {
+    .countryflags {
+        background-image: url(../../assets/images/countryflags.png);
+    }
+    .countryflags-mini {
+        background-image: url(../../assets/images/countryflags-mini.png);
+    }
+}

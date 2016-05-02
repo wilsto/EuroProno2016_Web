@@ -1,15 +1,18 @@
-/// <reference path="../../typings/tsd.d.ts" />
+/// <reference path="../../../typings/tsd.d.ts" />
 'use strict';
 
 (function() {
 
     class MatchController {
+        allmatchs = [];
         matchs = [];
         orderProp = 'group';
 
-        constructor($scope, $http) {
+        constructor($scope, $http, $cookies) {
             this.$http = $http;
             this.loadMatchs();
+
+            console.log($cookies);
 
             $scope.sort = function(type) {
                 this.orderProp = type;
@@ -17,11 +20,33 @@
 
         }
 
+        addFilter(type, val) {
+            this.matchs = this.filterMatch(type, val);
+        };
+
+
         loadMatchs() {
             this.$http.get('api/matchs').then(response => {
-                //console.log('data', response.data);
-                this.matchs = response.data;
+                this.allmatchs = response.data;
+                this.matchs = this.filterMatch();
             });
+        }
+
+        filterMatch(myCol = '', myFiltre = '') {
+            if (myFiltre === '') {
+                return this.allmatchs;
+            } else {
+                return this.allmatchs.filter(
+                    function(i) {
+                        if (myCol !== '') {
+                            return i[myCol] === myFiltre;
+                        } else {
+                            return null;
+                        }
+
+                    }
+                );
+            }
         }
 
         createMatch(form) {
@@ -32,6 +57,7 @@
                 this.$http.post('/api/matchs', {
                     typematch: this.newmatch.typematch,
                     group: this.newmatch.group,
+                    grouporder: this.newmatch.grouporder,
                     team1: this.newmatch.team1,
                     team2: this.newmatch.team2,
                     date: this.newmatch.date,
@@ -41,6 +67,7 @@
                     this.loadMatchs();
                     this.newmatch.typematch = '';
                     this.newmatch.group = '';
+                    this.newmatch.grouporder = '';
                     this.newmatch.team1 = '';
                     this.newmatch.team2 = '';
                     this.newmatch.date = '';

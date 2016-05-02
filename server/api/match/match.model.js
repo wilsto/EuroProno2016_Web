@@ -6,9 +6,10 @@ var mongoose = require('mongoose'),
 var MatchSchema = new Schema({
     typematch: String,
     group: String,
+    grouporder: Number,
     team1: String,
     team2: String,
-    date: String,
+    date: Date,
     stade: String,
     image: String,
     active: Boolean

@@ -6,7 +6,7 @@
     class MainController {
         bg_audio = true;
         // TODO change to false to not start music
-        audioOn = true;
+        audioOn = false;
         bg = new Audio('assets/audio/bg.mp3');
 
         constructor($http, $scope, socket, Auth) {
