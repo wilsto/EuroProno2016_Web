@@ -58,9 +58,9 @@
                                 <div class="pronoPouleClaLine pronoPouleClaLine2">4</div>
                             </div>
                             <ul class="pronoPouleTeams">
-                                <li class="club pronoPouleTeamsLine tass" ng-repeat="team in vm.teams | filter:{group:value.$key} | orderBy:'$key'">
-                                    <div class="pts diff">0</div>
-                                    <div class="pts nbPts">0</div>
+                                <li class="club pronoPouleTeamsLine tass" ng-repeat="team in vm.teams | filter:{group:value.$key} | orderBy:['-points','-diff']">
+                                    <div class="pts diff">{{team.diff}}</div>
+                                    <div class="pts nbPts">{{team.points}}</div>
                                     <span class="countryflags-mini {{team.name}}">&nbsp;</span>
                                     <span class="equipe">
                                           {{team.name}}
