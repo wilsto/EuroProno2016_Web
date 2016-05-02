@@ -1,0 +1,85 @@
+<div class="bg_default">
+    <div class="container wrap-container" id='pronoContentContainer'>
+        <div class="row">
+            <div class="col-sm-12">
+                <img src="assets/images/prono_bg.jpg" alt="" style="width: 100%;height: auto;margin-bottom:30px;">
+            </div>
+        </div>
+        <div class="save">
+            <a href="/" class="btn btn-default btn-lg">Don't Save</a>
+            <a href="" class="btn btn-primary btn-lg pull-right" ng-click="vm.saveProno()">Save</a>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="pronoPoules" class="pronoContent">
+                    <div class="pronoContentToolTip">
+                        <span class="title">For each match, prognotic the score and choose wich team will go in finale phase.</span>
+                        <span class="">Teams ranking are automatically updated as soon as your enter your score.</span>
+                    </div>
+                    <div class="col-sm-12" ng-class="{'col-md-6':value.$key.length <2}" ng-repeat="value in vm.matchs | groupBy: 'group' | toArray:true | orderBy:'grouporder'" id="prono_group_{{key}}">
+                        <h3 class="pronoPouleTitle">
+                            <span><span ng-if="value.$key.length <2">Group</span> {{value.$key}}</span>
+                        </h3>
+                        <table class="pronoPouleMatchs">
+                            <tbody>
+                                <tr class="match" ng-repeat="match in value | orderBy:'date'" id="prono_match_{{match._id}}">
+                                    <td class="eq eq1">
+                                        {{match.team1}}
+                                    </td>
+                                    <td class="flag flag1">
+                                        <div class="countryflags  {{match.team1}}"></div>
+                                    </td>
+                                    <td class="score">
+                                        <input type="text" class="score1" size="1" maxlength="2" ng-model="match.score1" ng-change="vm.scoreChange(match, value.$key)">
+                                        <div class="tooltipdate"><i class="icon-calendar"></i>
+                                            <span class="tooltipdatetext">{{ match.date | date : 'MMM d, HH:mm' : timezone}} </span>
+                                        </div>
+                                        <input type="text" class="score2" size="1" maxlength="2" ng-model="match.score2" ng-change="vm.scoreChange(match, value.$key)">
+                                    </td>
+                                    <td class="flag flag2">
+                                        <div class="countryflags  {{match.team2}}"></div>
+                                    </td>
+                                    <td class="eq eq2">
+                                        {{match.team2}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="pronoPouleClassement" ng-if="value.$key.length <2">
+                            <div class="pronoPouleClaTitleContainer">
+                                <div class="pronoPouleClaPts">Diff.</div>
+                                <div class="pronoPouleClaPts">Pts</div>
+                                <h4 class="pronoPouleClaClsmt">Ranking</h4>
+                            </div>
+                            <div class="pronoPouleCla">
+                                <div class="pronoPouleClaLine pronoPouleClaLine1">1</div>
+                                <div class="pronoPouleClaLine pronoPouleClaLine2">2</div>
+                                <div class="pronoPouleClaLine pronoPouleClaLine1">3</div>
+                                <div class="pronoPouleClaLine pronoPouleClaLine2">4</div>
+                            </div>
+                            <ul class="pronoPouleTeams">
+                                <li class="club pronoPouleTeamsLine tass" ng-repeat="team in vm.teams | filter:{group:value.$key} | orderBy:'$key'">
+                                    <div class="pts diff">0</div>
+                                    <div class="pts nbPts">0</div>
+                                    <span class="countryflags-mini {{team.name}}">&nbsp;</span>
+                                    <span class="equipe">
+                                          {{team.name}}
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- fin auto -->
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <footer></footer>
+    </div>
+</div>
