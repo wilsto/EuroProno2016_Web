@@ -14,10 +14,6 @@
 
         $onInit() {
             console.log('init');
-
-            this.prono = { user_id: this.getCurrentUser()._id, date: Date.now() };
-            console.log('this.prono ', this.prono);
-
             this.$http.get('/api/matchs').then(response => {
                 this.matchs = response.data;
                 console.log('matchs', this.matchs);
@@ -29,8 +25,14 @@
             });
 
             this.$http.get('/api/pronos/user_id/' + this.getCurrentUser()._id).then(response => {
-                this.pronos = response.data[0];
-                console.log('pronos', this.pronos);
+                try {
+                    this.prono = response.data[0];
+                    this.toUpdate = true;
+                } catch (err) {
+                    this.prono = { user_id: this.getCurrentUser()._id, date: Date.now() };
+                    this.toUpdate = false;
+                }
+                console.log('prono', this.prono);
             });
 
         }
@@ -44,7 +46,16 @@
 
         saveProno() {
             console.log('Save Prono');
-            console.log('this.matchs', this.matchs);
+            if (this.toUpdate) {
+                this.$http.put('/api/pronos/' + this.prono._id, this.prono).then(response => {
+                    console.log('prono updated', response);
+                });
+            } else {
+                this.$http.post('/api/pronos', this.prono).then(response => {
+                    console.log('prono created', response);
+                });
+            }
+
         }
     }
 
