@@ -20,7 +20,8 @@ module.exports = function(grunt) {
         protractor: 'grunt-protractor-runner',
         buildcontrol: 'grunt-build-control',
         istanbul_check_coverage: 'grunt-mocha-istanbul',
-        ngconstant: 'grunt-ng-constant'
+        ngconstant: 'grunt-ng-constant',
+        removelogging: 'grunt-remove-logging'
     });
 
     // Time how long tasks take. Can help when optimizing build times
@@ -250,7 +251,8 @@ module.exports = function(grunt) {
             dist: {
                 src: [
                     '<%= yeoman.dist %>/<%= yeoman.client %>/!(bower_components){,*/}*.{js,css}',
-                    '<%= yeoman.dist %>/<%= yeoman.client %>/assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+                    '<%= yeoman.dist %>/<%= yeoman.client %>/assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+                    '!<%= yeoman.dist %>/<%= yeoman.client %>/assets/images/stades/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
                 ]
             }
         },
@@ -298,7 +300,11 @@ module.exports = function(grunt) {
                 }]
             }
         },
-
+        removelogging: {
+            dist: {
+                src: ['<%= yeoman.dist %>/client/**/*.js', '<%= yeoman.dist %>/server/**/*.js', '!<%= yeoman.dist %>/client/bower_components/**/*.js'] // Each file will be overwritten with the output!
+            }
+        },
         // Allow the use of non-minsafe AngularJS files. Automatically makes it
         // minsafe compatible so Uglify does not destroy the ng references
         ngAnnotate: {
@@ -621,7 +627,8 @@ module.exports = function(grunt) {
                         return (aMod === bMod) ? 0 : (aMod ? -1 : 1);
                     },
                     starttag: '<!-- injector:js -->',
-                    endtag: '<!-- endinjector -->'
+                    endtag: '<!-- endinjector -->',
+                    lineEnding: grunt.util.linefeed
                 },
                 files: {
                     '<%= yeoman.client %>/index.html': [
@@ -644,7 +651,8 @@ module.exports = function(grunt) {
                         return '<link rel="stylesheet" href="' + filePath + '">';
                     },
                     starttag: '<!-- injector:css -->',
-                    endtag: '<!-- endinjector -->'
+                    endtag: '<!-- endinjector -->',
+                    lineEnding: grunt.util.linefeed
                 },
                 files: {
                     '<%= yeoman.client %>/index.html': [
@@ -810,6 +818,7 @@ module.exports = function(grunt) {
         'babel:server',
         'cdnify',
         'cssmin',
+        'removelogging:dist',
         'uglify',
         'filerev',
         'usemin'
