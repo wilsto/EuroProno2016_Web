@@ -301,7 +301,7 @@ module.exports = function(grunt) {
         },
         removelogging: {
             dist: {
-                src: ['<%= yeoman.dist %>/**/*.js'] // Each file will be overwritten with the output!
+                src: ['<%= yeoman.dist %>/client/**/*.js', '<%= yeoman.dist %>/server/**/*.js', '!<%= yeoman.dist %>/client/bower_components/**/*.js'] // Each file will be overwritten with the output!
             }
         },
         // Allow the use of non-minsafe AngularJS files. Automatically makes it
@@ -626,7 +626,8 @@ module.exports = function(grunt) {
                         return (aMod === bMod) ? 0 : (aMod ? -1 : 1);
                     },
                     starttag: '<!-- injector:js -->',
-                    endtag: '<!-- endinjector -->'
+                    endtag: '<!-- endinjector -->',
+                    lineEnding: grunt.util.linefeed
                 },
                 files: {
                     '<%= yeoman.client %>/index.html': [
@@ -649,7 +650,8 @@ module.exports = function(grunt) {
                         return '<link rel="stylesheet" href="' + filePath + '">';
                     },
                     starttag: '<!-- injector:css -->',
-                    endtag: '<!-- endinjector -->'
+                    endtag: '<!-- endinjector -->',
+                    lineEnding: grunt.util.linefeed
                 },
                 files: {
                     '<%= yeoman.client %>/index.html': [
