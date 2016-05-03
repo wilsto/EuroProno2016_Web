@@ -14,7 +14,7 @@
             <div class="col-sm-12">
                 <div id="pronoPoules" class="pronoContent">
                     <div class="pronoContentToolTip">
-                        <span class="title">{{ 'For each match, prognotic the score and choose wich team will go in finale phase.'| translate }}</span>
+                        <span class="title" translate>For each match, prognotic the score and choose wich team will go in finale phase.</span>
                         <span class="">{{'Teams ranking are automatically updated as soon as your enter your score.' | translate}}</span>
                     </div>
                     <div class="col-sm-12" ng-class="{'col-md-6':value.$key.length <2}" ng-repeat="value in vm.matchs | groupBy: 'group' | toArray:true | orderBy:vm._grouporder" id="prono_group_{{key}}">

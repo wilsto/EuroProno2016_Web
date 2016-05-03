@@ -14,7 +14,8 @@ angular.module('euroProno2016WebApp', [
         'ui.bootstrap',
         'validation.match',
         'angular.filter',
-        'pascalprecht.translate'
+        'pascalprecht.translate',
+        'ngBootbox'
     ])
     .config(function($urlRouterProvider, $locationProvider, $translateProvider) {
         $urlRouterProvider
@@ -22,66 +23,68 @@ angular.module('euroProno2016WebApp', [
 
         $locationProvider.html5Mode(true);
 
-        $translateProvider.translations('fr', {
+        $translateProvider.useUrlLoader('/api/traductions/loader');
+        /*$translateProvider.translations('fr', {
 
-            'For each match, prognotic the score and choose wich team will go in finale phase.': 'Pour chaque match, pronostiquez le score et choisissez quelle équipe ira en finale.',
-            'Teams ranking are automatically updated as soon as your enter your score.': 'Les classements sont réalisés automatiquement dès que vous saisissez le score.',
+    'For each match, prognotic the score and choose wich team will go in finale phase.': 'Pour chaque match, pronostiquez le score et choisissez quelle équipe ira en finale.',
+    'Teams ranking are automatically updated as soon as your enter your score.': 'Les classements sont réalisés automatiquement dès que vous saisissez le score.',
 
-            'sort by Name': 'Trier par nom',
-            'sort by Group': 'Trier par groupe',
-            'Group': 'Groupe',
-            'Ranking': 'Rang',
-            'BUTTON_LANG_EN': 'english',
-            'BUTTON_LANG_FR': 'french',
-            //Pays
-            'Albania': 'Albanie',
-            'Austria': 'Autriche',
-            'Belgium': 'Belgique',
-            'Croatia': 'Croatie',
-            'Czech Republic': 'République Tchèque',
-            'England': 'Angleterre',
-            'Germany': 'Allemagne',
-            'Hungary': 'Hongrie',
-            'Iceland': 'Islande',
-            'Italy': 'Italie',
-            'Northern Irland': 'Irlande du nord',
-            'Republic of Irland': 'République d Irlande',
-            'Spain': 'Espagne',
-            'Wales': 'Pays de Galles',
-            'Romania': 'Roumanie',
-            'Russia': 'Russie',
-            'Slovakia': 'Slovaquie',
-            'Sweden': 'Suède',
-            'Switzerland': 'Suisse',
-            'Turkey': 'Turquie',
-            'Poland': 'Pologne',
-            'Day 1': 'Jour 1',
-            'Day 2': 'Jour 2',
-            'Day 3': 'Jour 3',
-            'Round of 16': '8 eme',
-            'Quarter Finals': 'Quart de finale',
-            'Semi Final': 'Demi finale',
-            'Small final': 'Petite finale',
-            'Stadium': 'Stade',
-            'Teams': 'Equipes',
-            'Final': 'Finale',
-            'Runner-up A': 'Second A',
-            'Runner-up B': 'Second B',
-            'Runner-up C': 'Second C',
-            'Runner-up D': 'Second D',
-            'Runner-up E': 'Second E',
-            'Runner-up F': 'Second F',
-            'Winner A': 'Vainqueur A',
-            'Winner B': 'Vainqueur B',
-            'Winner C': 'Vainqueur C',
-            'Winner D': 'Vainqueur D',
-            'Winner E': 'Vainqueur E',
-            'Winner F': 'Vainqueur F',
-            'Third-place A/C/D': 'Troisième A/C/D',
-            'Third-place B/E/F': 'Troisième B/E/F',
-            'Third-place C/D/E': 'Troisième C/D/E',
-            'Third-place A/B/F': 'Troisième A/B/F'
-        });
+    'sort by Name': 'Trier par nom',
+    'sort by Group': 'Trier par groupe',
+    'Group': 'Groupe',
+    'Ranking': 'Rang',
+    'BUTTON_LANG_EN': 'english',
+    'BUTTON_LANG_FR': 'french',
+    //Pays
+    'Albania': 'Albanie',
+    'Austria': 'Autriche',
+    'Belgium': 'Belgique',
+    'Croatia': 'Croatie',
+    'Czech Republic': 'République Tchèque',
+    'England': 'Angleterre',
+    'Germany': 'Allemagne',
+    'Hungary': 'Hongrie',
+    'Iceland': 'Islande',
+    'Italy': 'Italie',
+    'Northern Ireland': 'Irlande du nord',
+    'Republic of Ireland': 'République d\'Irlande',
+    'Spain': 'Espagne',
+    'Wales': 'Pays de Galles',
+    'Romania': 'Roumanie',
+    'Russia': 'Russie',
+    'Slovakia': 'Slovaquie',
+    'Sweden': 'Suède',
+    'Switzerland': 'Suisse',
+    'Turkey': 'Turquie',
+    'Poland': 'Pologne',
+    'Day 1': 'Jour 1',
+    'Day 2': 'Jour 2',
+    'Day 3': 'Jour 3',
+    'Round of 16': '8 eme',
+    'Quarter Finals': 'Quart de finale',
+    'Semi Final': 'Demi finale',
+    'Small final': 'Petite finale',
+    'Stadium': 'Stade',
+    'Teams': 'Equipes',
+    'Final': 'Finale',
+    'Runner-up A': 'Second A',
+    'Runner-up B': 'Second B',
+    'Runner-up C': 'Second C',
+    'Runner-up D': 'Second D',
+    'Runner-up E': 'Second E',
+    'Runner-up F': 'Second F',
+    'Winner A': 'Vainqueur A',
+    'Winner B': 'Vainqueur B',
+    'Winner C': 'Vainqueur C',
+    'Winner D': 'Vainqueur D',
+    'Winner E': 'Vainqueur E',
+    'Winner F': 'Vainqueur F',
+    'Third-place A/C/D': 'Troisième A/C/D',
+    'Third-place B/E/F': 'Troisième B/E/F',
+    'Third-place C/D/E': 'Troisième C/D/E',
+    'Third-place A/B/F': 'Troisième A/B/F'
+});
+
 
 
         $translateProvider.translations('es', {
@@ -105,7 +108,7 @@ angular.module('euroProno2016WebApp', [
             'Iceland': 'Islandia',
             'Italy': 'Italia',
             'Northern Ireland': 'Irlanda del Norte',
-            'Republic of Irland': 'República de Irlanda',
+            'Republic of Ireland': 'República de Irlanda',
             'Spain': 'España',
             'Ukraine': 'Ucrania',
             'Wales': 'Gales',
@@ -145,7 +148,7 @@ angular.module('euroProno2016WebApp', [
 
         $translateProvider.translations('de', {
             'For each match, prognotic the score and choose wich team will go in finale phase.': 'Für jedes Spiel prognotic die Partitur und wählen Sie wich Team in Finale Phase gehen.',
-            'Teams ranking are automatically updated as soon as your enter your score.': 'Teams Ranking werden , sobald Ihr geben Sie Ihre Punktzahl automatisch aktualisiert',
+            'Teams ranking are automatically updated as soon as your enter your score.': 'Die Ranglisten werden automatisch vorgenommen , wenn Sie die Partitur eingeben.',
 
             'sort by Name': 'Nach Name sortieren',
             'sort by Group': 'sortieren nach Gruppe',
@@ -160,12 +163,12 @@ angular.module('euroProno2016WebApp', [
             'Belgium': 'Belgien',
             'Croatia': 'Kroatien',
             'Czech Republic': 'Tschechische Rep',
-            'Northern Ireland': 'Nordirland',
+            'Northern Ireland': 'Nordireland',
+            'Republic of Ireland': 'Republik Ireland',
             'Germany': 'Deutschland',
             'Hungary': 'Ungarn',
             'Iceland': 'Island',
             'Italy': 'Italien',
-            'Republic of Irland': 'Republik Irland',
             'Spain': 'Spanien',
             'Romania': 'Rumänien',
             'Russia': 'Russland',
@@ -201,7 +204,7 @@ angular.module('euroProno2016WebApp', [
             'Third-place A/B/F': 'Dritter A/B/F'
 
         });
-
+*/
         $translateProvider.preferredLanguage('en');
 
     });

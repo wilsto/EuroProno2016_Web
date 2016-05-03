@@ -1,0 +1,53 @@
+.trad-info {
+    width: 100%;
+}
+
+.trad-border {
+    border: 3px solid #53a7ea;
+    padding: 20px;
+    margin: 0;
+}
+
+.trad-info span {
+    display: inline-block;
+    width: 18%;
+}
+
+.form-trad {
+    font-size: 16px;
+    width: 90%;
+}
+
+.expandable span:first-child {
+    width: 200px;
+    margin-top: 10px;
+}
+
+.expandable span {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.expandable span div {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.expandable .form-trad {
+    display: inline-block;
+    width: 95%;
+}
+
+.expandable a {
+    width: 200px;
+    float: right;
+    position: absolute;
+    top: 0;
+    margin-top: 10px;
+}
+
+.expandable a:last-child {
+    width: 10%;
+    margin-top: 10px;
+    display: inline-block;
+}
