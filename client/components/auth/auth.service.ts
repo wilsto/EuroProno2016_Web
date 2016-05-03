@@ -27,8 +27,9 @@
                     })
                     .then(res => {
                         $cookies.put('token', res.data.token);
-                        currentUser = User.get();
-                        return currentUser.$promise;
+                        currentUser = User.get(function() {
+                            return currentUser.$promise;
+                        });
                     })
                     .then(user => {
                         safeCb(callback)(null, user);
@@ -60,8 +61,9 @@
                 return User.save(user,
                     function(data) {
                         $cookies.put('token', data.token);
-                        currentUser = User.get();
-                        return safeCb(callback)(null, user);
+                        currentUser = User.get(function() {
+                            return safeCb(callback)(null, user);
+                        });
                     },
                     function(err) {
                         Auth.logout();
