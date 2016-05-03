@@ -105,6 +105,14 @@
             });
         }
 
+        _grouporder(arr) {
+            var test = _.min(_.map(arr, function(group) {
+                return parseInt(group.grouporder, 10);
+            }));
+            console.log('test', test);
+            return test;
+        }
+
         //sauvegarde les pronos
         saveProno() {
             console.log('Save Prono');
