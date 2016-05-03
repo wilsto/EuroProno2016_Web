@@ -29,6 +29,8 @@
         "client/app/team/team.controller.ts",
         "client/app/team/team.module.ts",
         "client/app/team/team.router.ts",
+        "client/app/traduction/traduction.controller.ts",
+        "client/app/traduction/traduction.ts",
         "client/components/auth/auth.module.ts",
         "client/components/auth/auth.service.ts",
         "client/components/auth/interceptor.service.ts",
