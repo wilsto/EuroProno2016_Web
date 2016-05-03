@@ -5,9 +5,10 @@
                 <img src="assets/images/prono_bg.jpg" alt="" style="width: 100%;height: auto;margin-bottom:30px;">
             </div>
         </div>
-        <div class="save">
-            <a href="/" class="btn btn-default btn-lg">Don't Save</a>
-            <a href="" class="btn btn-primary btn-lg pull-right" ng-click="vm.saveProno()">Save</a>
+        <div class="save" ng-class="vm.isLoggedIn() ? 'bg-default' : 'bg-danger'">
+            <a href="/" class="btn btn-default btn-lg" ng-if="vm.isLoggedIn()">Don't Save</a>
+            <a href="" class="btn btn-primary btn-lg pull-right" ng-click="vm.saveProno()" ng-if="vm.isLoggedIn()">Save</a>
+            <span class="PronoNotLoggedIn" ng-if="!vm.isLoggedIn()">Please <a href="/login">login</a> or <a href="/signup">register</a> to be able to play on EuroProno2016</span>
         </div>
         <div class="row">
             <div class="col-sm-12">
@@ -30,11 +31,11 @@
                                         <div class="countryflags  {{match.team1}}"></div>
                                     </td>
                                     <td class="score">
-                                        <input type="text" class="score1" size="1" maxlength="2" ng-model="match.score1" ng-change="vm.scoreChange(match, value.$key)">
+                                        <input type="text" class="score1" size="1" maxlength="2" ng-model="match.score1" ng-change="vm.scoreChange(match, value.$key)" ng-disabled="!vm.isLoggedIn()">
                                         <div class="tooltipdate"><i class="icon-calendar"></i>
                                             <span class="tooltipdatetext">{{ match.date | date : 'MMM d, HH:mm' : timezone}} </span>
                                         </div>
-                                        <input type="text" class="score2" size="1" maxlength="2" ng-model="match.score2" ng-change="vm.scoreChange(match, value.$key)">
+                                        <input type="text" class="score2" size="1" maxlength="2" ng-model="match.score2" ng-change="vm.scoreChange(match, value.$key)" ng-disabled="!vm.isLoggedIn()">
                                     </td>
                                     <td class="flag flag2">
                                         <div class="countryflags  {{match.team2}}"></div>
