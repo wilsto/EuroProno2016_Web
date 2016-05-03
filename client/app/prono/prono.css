@@ -978,6 +978,10 @@ tr.match {
 
 /* FLAGS */
 
+.flagmax {
+    *zoom: 2;
+}
+
 
 /* sprite 24px */
 
@@ -1003,6 +1007,112 @@ tr.match {
     position: relative;
     top: -1px;
 }
+
+.countryflagmax {
+    width: 50px;
+    height: 50px;
+    background: url('../../assets/images/countryflags-max.png') no-repeat;
+    background-size: 250px 250px;
+}
+
+.countryflagmax.France {
+    background-position: 0px 0px;
+}
+
+.countryflagmax.Switzerland {
+    background-position: 0px -50px;
+}
+
+.countryflagmax.Russia {
+    background-position: 0px -100px;
+}
+
+.countryflagmax.Republic.of.Irland {
+    background-position: 0px -150px;
+}
+
+.countryflagmax.Ukraine {
+    background-position: 0px -200px;
+}
+
+.countryflagmax.Romania {
+    background-position: -50px 0px;
+}
+
+.countryflagmax.Wales {
+    background-position: -50px -50px;
+}
+
+.countryflagmax.Poland {
+    background-position: -50px -100px;
+}
+
+.countryflagmax.Belgium {
+    background-position: -50px -150px;
+}
+
+.countryflagmax.Austria {
+    background-position: -50px -200px;
+}
+
+.countryflagmax.Albania {
+    background-position: -100px 0px;
+}
+
+.countryflagmax.Croatia {
+    background-position: -100px -50px;
+}
+
+.countryflagmax.Sweden {
+    background-position: -100px -100px;
+}
+
+.countryflagmax.Germany {
+    background-position: -100px -150px;
+}
+
+.countryflagmax.Portugal {
+    background-position: -100px -200px;
+}
+
+.countryflagmax.Slovakia {
+    background-position: -150px 0px;
+}
+
+.countryflagmax.Turkey {
+    background-position: -150px -50px;
+}
+
+.countryflagmax.Spain {
+    background-position: -150px -100px;
+}
+
+.countryflagmax.Hungary {
+    background-position: -150px -150px;
+}
+
+.countryflagmax.Iceland {
+    background-position: -150px -200px;
+}
+
+.countryflagmax.England {
+    background-position: -200px 0px;
+}
+
+.countryflagmax.Northern.Irland {
+    background-position: -200px -50px;
+}
+
+.countryflagmax.Czech.Republic {
+    background-position: -200px -1.0px;
+}
+
+.countryflagmax.Italy {
+    background-position: -200px -150px;
+}
+
+
+/* mini */
 
 .countryflags-mini.AAA {
     background-position: -1px -0px;
