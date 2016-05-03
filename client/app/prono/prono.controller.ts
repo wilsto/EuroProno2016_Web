@@ -105,12 +105,11 @@
             });
         }
 
+        // retourne la valeur la plus petite des grouporder du group (appelé par ng-repeat GROUP)
         _grouporder(arr) {
-            var test = _.min(_.map(arr, function(group) {
+            return _.min(_.map(arr, function(group) {
                 return parseInt(group.grouporder, 10);
             }));
-            console.log('test', test);
-            return test;
         }
 
         //sauvegarde les pronos
