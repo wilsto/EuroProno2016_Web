@@ -14,18 +14,18 @@
             <div class="col-sm-12">
                 <div id="pronoPoules" class="pronoContent">
                     <div class="pronoContentToolTip">
-                        <span class="title">For each match, prognotic the score and choose wich team will go in finale phase.</span>
-                        <span class="">Teams ranking are automatically updated as soon as your enter your score.</span>
+                        <span class="title">{{ 'For each match, prognotic the score and choose wich team will go in finale phase.'| translate }}</span>
+                        <span class="">{{'Teams ranking are automatically updated as soon as your enter your score.' | translate}}</span>
                     </div>
                     <div class="col-sm-12" ng-class="{'col-md-6':value.$key.length <2}" ng-repeat="value in vm.matchs | groupBy: 'group' | toArray:true | orderBy:vm._grouporder" id="prono_group_{{key}}">
                         <h3 class="pronoPouleTitle">
-                            <span><span ng-if="value.$key.length <2">Group</span> {{value.$key}} </span>
+                            <span><span ng-if="value.$key.length <2">{{'Group' | translate }}</span> {{value.$key | translate}} </span>
                         </h3>
                         <table class="pronoPouleMatchs">
                             <tbody>
                                 <tr class="match" ng-repeat="match in value | orderBy:'date'" id="prono_match_{{match._id}}">
                                     <td class="eq eq1">
-                                        {{match.team1}}
+                                        {{match.team1 | translate}}
                                     </td>
                                     <td class="flag flag1">
                                         <div class="countryflags  {{match.team1}}"></div>
@@ -41,7 +41,7 @@
                                         <div class="countryflags  {{match.team2}}"></div>
                                     </td>
                                     <td class="eq eq2">
-                                        {{match.team2}}
+                                        {{match.team2 | translate}}
                                     </td>
                                 </tr>
                             </tbody>
@@ -50,7 +50,7 @@
                             <div class="pronoPouleClaTitleContainer">
                                 <div class="pronoPouleClaPts">Diff.</div>
                                 <div class="pronoPouleClaPts">Pts</div>
-                                <h4 class="pronoPouleClaClsmt">Ranking</h4>
+                                <h4 class="pronoPouleClaClsmt">{{'Ranking' | translate }}</h4>
                             </div>
                             <div class="pronoPouleCla">
                                 <div class="pronoPouleClaLine pronoPouleClaLine1">1</div>
@@ -64,7 +64,7 @@
                                     <div class="pts nbPts">{{team.points}}</div>
                                     <span class="countryflags-mini {{team.name}}">&nbsp;</span>
                                     <span class="equipe">
-                                          {{team.name}}
+                                          {{team.name | translate}}
                                     </span>
                                 </li>
                             </ul>

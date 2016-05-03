@@ -21,6 +21,7 @@ class NavbarController {
         this.getCurrentUser(function(me) {
             that.$translate.use(me.lang || navigator.language || navigator.userLanguage);
         });
+
     }
 }
 

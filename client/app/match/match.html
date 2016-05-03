@@ -19,15 +19,15 @@
                         <button type="button" class="btn btn-primary btn-xs" ng-click="vm.addFilter('group','F');">F</button>
                     </div>
                     <div class="btn-group" role="group" aria-label="...">
-                        <button type="button" class="btn btn-danger btn-xs" ng-click="vm.addFilter('typematch','Day 1');"> Day 1</button>
-                        <button type="button" class="btn btn-danger btn-xs" ng-click="vm.addFilter('typematch','Day 2');"> Day 2</button>
-                        <button type="button" class="btn btn-danger btn-xs" ng-click="vm.addFilter('typematch','Day 3');"> Day 3</button>
+                        <button type="button" class="btn btn-danger btn-xs" ng-click="vm.addFilter('typematch','Day 1');">{{'Day 1' | translate }} </button>
+                        <button type="button" class="btn btn-danger btn-xs" ng-click="vm.addFilter('typematch','Day 2');">{{'Day 2' | translate }}</button>
+                        <button type="button" class="btn btn-danger btn-xs" ng-click="vm.addFilter('typematch','Day 3');">{{'Day 3' | translate }}</button>
                     </div>
                     <div class="btn-group" role="group" aria-label="...">
-                        <button type="button" class="btn btn-success btn-xs" ng-click="vm.addFilter('group','Round of 16');"> Round of 16</button>
-                        <button type="button" class="btn btn-success btn-xs" ng-click="vm.addFilter('group','Quarter Finals');"> Quarter Final</button>
-                        <button type="button" class="btn btn-success btn-xs" ng-click="vm.addFilter('group','Semi Final');"> Semi Final</button>
-                        <button type="button" class="btn btn-success btn-xs" ng-click="vm.addFilter('typematch','Final');"> Final</button>
+                        <button type="button" class="btn btn-success btn-xs" ng-click="vm.addFilter('group','Round of 16');">{{'Round of 16' | translate }}</button>
+                        <button type="button" class="btn btn-success btn-xs" ng-click="vm.addFilter('group','Quarter Finals');">{{'Quarter Finals' | translate }}</button>
+                        <button type="button" class="btn btn-success btn-xs" ng-click="vm.addFilter('group','Semi Final');">{{'Semi Final' | translate }}</button>
+                        <button type="button" class="btn btn-success btn-xs" ng-click="vm.addFilter('typematch','Final');">{{'Final' | translate }}</button>
                     </div>
                     <div class="table-responsive ">
                         <table class="table table-responsive ">
@@ -35,17 +35,17 @@
                                 <tr>
                                     <th><a href='#' ng-click="sort('match'); " style="color:white; ">Match</a></th>
                                     <th>
-                                        <a href='#' ng-click="sort( 'group'); " style="color:white; ">Group</a>
+                                        <a href='#' ng-click="sort( 'group'); " style="color:white; ">{{'Group' | translate }}</a>
                                     </th>
                                     <th><a href='#' ng-click="sort( 'date'); " style="color:white; ">Date</a></th>
-                                    <th><a href='#' ng-click="sort( 'team1'); " style="color:white; ">Teams</a></th>
-                                    <th><a href='#' ng-click="sort( 'image'); " style="color:white; ">Stade</a></th>
+                                    <th><a href='#' ng-click="sort( 'team1'); " style="color:white; ">{{'Teams' | translate }}</a></th>
+                                    <th><a href='#' ng-click="sort( 'image'); " style="color:white; ">{{'Stadium'| translate}}</a></th>
                                 </tr>
                             </thead>
                             <tbody style="color:white; ">
                                 <tr ng-repeat="match in vm.matchs | orderBy:orderProp ">
                                     <td> {{match.typematch | translate}} </td>
-                                    <td> {{match.group}} </td>
+                                    <td> {{match.group | translate}} </td>
                                     <td> {{match.date | date : 'dd MMM yyyy HH:mm Z' : timezone}} </td>
                                     <td><strong>{{match.team1 | translate}} - {{match.team2 |translate}}</strong> </td>
                                     <td><img src="assets/images/{{match.image}}.jpg " alt="{{match.image}} " class="circle "> {{match.stade}}</td>
