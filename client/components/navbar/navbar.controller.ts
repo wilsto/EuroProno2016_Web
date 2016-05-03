@@ -16,9 +16,11 @@ class NavbarController {
         this.isAdmin = Auth.isAdmin;
         this.getCurrentUser = Auth.getCurrentUser;
         this.$translate = $translate;
-        //TODO   ajouter recherche de langue pour un user
-        this.lang = navigator.language || navigator.userLanguage;
-        this.$translate.use(this.lang);
+        //recherche de langue pour un user sinon language par défaut du navigateur sinon anglais
+        var that = this;
+        this.getCurrentUser(function(me) {
+            that.$translate.use(me.lang || navigator.language || navigator.userLanguage);
+        });
     }
 }
 
