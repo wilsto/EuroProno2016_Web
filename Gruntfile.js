@@ -20,7 +20,8 @@ module.exports = function(grunt) {
         protractor: 'grunt-protractor-runner',
         buildcontrol: 'grunt-build-control',
         istanbul_check_coverage: 'grunt-mocha-istanbul',
-        ngconstant: 'grunt-ng-constant'
+        ngconstant: 'grunt-ng-constant',
+        removelogging: 'grunt-remove-logging'
     });
 
     // Time how long tasks take. Can help when optimizing build times
@@ -298,7 +299,11 @@ module.exports = function(grunt) {
                 }]
             }
         },
-
+        removelogging: {
+            dist: {
+                src: ['<%= yeoman.dist %>/**/*.js'] // Each file will be overwritten with the output!
+            }
+        },
         // Allow the use of non-minsafe AngularJS files. Automatically makes it
         // minsafe compatible so Uglify does not destroy the ng references
         ngAnnotate: {
@@ -810,6 +815,7 @@ module.exports = function(grunt) {
         'babel:server',
         'cdnify',
         'cssmin',
+        'removelogging:dist',
         'uglify',
         'filerev',
         'usemin'
