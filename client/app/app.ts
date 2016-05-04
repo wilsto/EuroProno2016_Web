@@ -6,7 +6,12 @@ angular.module('euroProno2016WebApp', [
         'euroProno2016WebApp.constants',
         'euroProno2016WebApp.teams',
         'euroProno2016WebApp.matchs',
+<<<<<<< Updated upstream
         'ngCookies',
+=======
+/*        'euroProno2016WebApp.newss',
+*/        'ngCookies',
+>>>>>>> Stashed changes
         'ngResource',
         'ngSanitize',
         'btford.socket-io',
