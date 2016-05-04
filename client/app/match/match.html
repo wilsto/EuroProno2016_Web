@@ -1,3 +1,10 @@
+<header role="banner" class="ep2016-header">
+    <div class="container navbar-container">
+        <!-- <div class="row"> -->
+        <navbar></navbar>
+        <!-- </div> -->
+    </div>
+</header>
 <div class="bg_default">
     <div class="container wrap-container">
         <div class="row">
@@ -6,8 +13,8 @@
             </div>
         </div>
         <div class="col-xs-12 col-xs-12 col-md-12 col-lg-12">
-            <div class="userStats">
-                <div class="data" style="background-image: url('assets/images/bg2.jpg');">
+            <div class="match userStats ">
+                <div class="data">
                     Filter:
                     <div class="btn-group" role="group" aria-label="Group">
                         <button type="button" class="btn btn-primary btn-xs" ng-click="vm.addFilter('','');">None</button>
@@ -31,22 +38,22 @@
                     </div>
                     <div class="table-responsive ">
                         <table class="table table-responsive ">
-                            <thead style="color:white; ">
+                            <thead>
                                 <tr>
-                                    <th><a href='#' ng-click="sort('match'); " style="color:white; ">Match</a></th>
+                                    <th><a href='#' ng-click="sort('match'); ">Match</a></th>
                                     <th>
-                                        <a href='#' ng-click="sort( 'group'); " style="color:white; ">{{'Group' | translate }}</a>
+                                        <a href='#' ng-click="sort( 'group'); ">{{'Group' | translate }}</a>
                                     </th>
-                                    <th><a href='#' ng-click="sort( 'date'); " style="color:white; ">Date</a></th>
-                                    <th><a href='#' ng-click="sort( 'team1'); " style="color:white; ">{{'Teams' | translate }}</a></th>
-                                    <th><a href='#' ng-click="sort( 'image'); " style="color:white; ">{{'Stadium'| translate}}</a></th>
+                                    <th><a href='#' ng-click="sort( 'date'); ">Date</a></th>
+                                    <th><a href='#' ng-click="sort( 'team1'); ">{{'Teams' | translate }}</a></th>
+                                    <th><a href='#' ng-click="sort( 'image'); ">{{'Stadium'| translate}}</a></th>
                                 </tr>
                             </thead>
-                            <tbody style="color:white; ">
+                            <tbody>
                                 <tr ng-repeat="match in vm.matchs | orderBy:orderProp ">
                                     <td> {{match.typematch | translate}} </td>
                                     <td> {{match.group | translate}} </td>
-                                    <td> {{match.date | date : 'dd MMM yyyy HH:mm Z' : timezone}} </td>
+                                    <td> {{match.date | date : 'dd MMM yyyy HH:mm' : timezone}} </td>
                                     <td><strong>{{match.team1 | translate}} - {{match.team2 |translate}}</strong> </td>
                                     <td><img src="assets/images/stades/{{match.image}}.jpg " alt="{{match.image}} " class="circle "> {{match.stade}}</td>
                                 </tr>
@@ -56,12 +63,12 @@
                 </div>
             </div>
         </div>
-        <div class="userStats">
+        <div class="userStats" ng-if="nav.isAdmin()">
             <div class="data">
                 <form class="form " name="form " ng-submit="vm.createMatch(form) " novalidate>
                     <div class="form-group ">
                         <label>Type match</label>
-                        <input type="text " name="typematch " autofocus class="form-control " ng-model="vm.newmatch.typematch " required style="background-color: #FFF " tabindex=1>
+                        <input type="text " name="typematch " class="form-control " ng-model="vm.newmatch.typematch " required style="background-color: #FFF " tabindex=1>
                     </div>
                     <div class="form-group ">
                         <label>Group</label>

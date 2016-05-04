@@ -28,7 +28,9 @@
     <link rel="stylesheet" href="app/admin/admin.css">
     <link rel="stylesheet" href="app/app.css">
     <link rel="stylesheet" href="app/main/main.css">
+    <link rel="stylesheet" href="app/match/match.css">
     <link rel="stylesheet" href="app/prono/prono.css">
+    <link rel="stylesheet" href="app/team/team.css">
     <link rel="stylesheet" href="app/traduction/traduction.css">
     <link rel="stylesheet" href="components/footer/footer.css">
     <link rel="stylesheet" href="components/modal/modal.css">
@@ -44,7 +46,6 @@
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
     <!-- Add your site or application content here -->
-    <navbar></navbar>
     <div ui-view=""></div>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <!--[if lt IE 9]>
@@ -80,12 +81,12 @@
     <!-- build:js({.tmp,client}) app/app.js -->
     <script src="app/app.js"></script>
     <!-- injector:js -->
-    <script src="app/team/team.module.js"></script>
     <script src="app/admin/admin.module.js"></script>
     <script src="app/match/match.module.js"></script>
-    <script src="app/news/news.module.js"></script>
+    <script src="app/team/team.module.js"></script>
     <script src="components/auth/auth.module.js"></script>
     <script src="components/util/util.module.js"></script>
+    <script src="app/traduction/traduction.controller.js"></script>
     <script src="app/admin/admin.controller.js"></script>
     <script src="app/account/account.js"></script>
     <script src="app/admin/admin.router.js"></script>
@@ -94,15 +95,12 @@
     <script src="app/match/match.controller.js"></script>
     <script src="app/account/login/login.controller.js"></script>
     <script src="app/match/match.router.js"></script>
-    <script src="app/news/news.controller.js"></script>
-    <script src="app/account/reset/reset.controller.js"></script>
-    <script src="app/news/news.router.js"></script>
     <script src="app/prono/prono.controller.js"></script>
     <script src="app/prono/prono.js"></script>
     <script src="app/team/team.controller.js"></script>
-    <script src="app/account/forgot/forgot.controller.js"></script>
+    <script src="app/account/reset/reset.controller.js"></script>
     <script src="app/team/team.router.js"></script>
-    <script src="app/traduction/traduction.controller.js"></script>
+    <script src="app/account/forgot/forgot.controller.js"></script>
     <script src="app/traduction/traduction.js"></script>
     <script src="app/account/settings/settings.controller.js"></script>
     <script src="components/auth/auth.service.js"></script>
