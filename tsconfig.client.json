@@ -24,6 +24,8 @@
         "client/app/match/match.controller.ts",
         "client/app/match/match.module.ts",
         "client/app/match/match.router.ts",
+        "client/app/news/news.controller.ts",
+        "client/app/news/news.ts",
         "client/app/prono/prono.controller.ts",
         "client/app/prono/prono.ts",
         "client/app/team/team.controller.ts",
