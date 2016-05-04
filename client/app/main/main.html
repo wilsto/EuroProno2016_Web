@@ -1,54 +1,7 @@
-<header role="banner" id="ep2016-header">
+<header role="banner" class="ep2016-header">
     <div class="container">
         <!-- <div class="row"> -->
-        <nav class="navbar navbar-default">
-            <div class="navbar-header">
-                <!-- Mobile Toggle Menu Button -->
-                <a href="#" class="js-ep2016-nav-toggle ep2016-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
-                <a class="navbar-brand" href="index.html">EuroProno 2016</a>
-                <span ng-hide="$ctrl.isLoggedIn()"><a href="/login">Login</a> | <a href="/signup">Register</a></span>
-                <span ng-show="$ctrl.isLoggedIn()"><a href="#" ng-click="$ctrl.login_click()"><i class="glyphicon glyphicon-cog"></i> {{ $ctrl.getCurrentUser().name }} </a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a ng-click="$ctrl.toggle_audio()"><i class="glyphicon glyphicon-volume-down" ng-if="$ctrl.audioOn"></i><i class="glyphicon glyphicon-volume-off" ng-if="!$ctrl.audioOn"></i></a>
-                    </li>
-                    <li class="active"><a href="#" data-nav-section="home"><span>Home</span></a>
-                </li>
-                <li><a href="#" data-nav-section="services"><span>What is ep'16</span></a></li>
-                <li><a href="#" data-nav-section="about"><span>About Us</span></a></li>
-                </ul>
-            </div>
-            <div class="login">
-                <div class="arrow-up"></div>
-                <div class="formholder">
-                    <div class="wrap">
-                        <div class="avatar">
-                            <img src="assets/images/ball_globe.gif">
-                        </div>
-                        <!--Si non connecté -->
-                        <div ng-hide="$ctrl.isLoggedIn()">
-                            <input type="text" placeholder="username" required>
-                            <div class="bar">
-                                <i></i>
-                            </div>
-                            <input type="password" placeholder="password" required>
-                            <a href="" class="forgot_link">forgot ?</a>
-                            <button>Sign in</button>
-                        </div>
-                        <!-- Pour les connectés -->
-                        <div ng-show="$ctrl.isLoggedIn()">
-                            <a class="btn btn-primary btn-login" href="/settings"><i class="iconmoon-user" style="font-size: 18px;margin-right:10px"></i> My profil</a>
-                            <a class="btn btn-success btn-login" href="/admin"><i class="icon-equalizer" style="font-size: 18px;margin-right:10px"></i>Admin</a>
-                            <a class="btn btn-default btn-login"><i class="iconmoon-gamepad" style="font-size: 18px;margin-right:10px"></i>My prono</a>
-                            <a class="btn btn-default btn-login"><i class="iconmoon-users" style="font-size: 18px;margin-right:10px"></i>My teams</a>
-                            <a class="btn btn-danger btn-login" href="/logout"><i class="iconmoon-sign-out" style="font-size: 18px;margin-right:10px"></i>Log out</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </nav>
+        <navbar class="navbar-admin"></navbar>
         <!-- </div> -->
     </div>
 </header>
@@ -219,7 +172,7 @@
             <div class="col-md-3 col-sm-6 col-xs-12">
                 <div class="ep2016-counter to-animate">
                     <i class="ep2016-counter-icon iconmoon-code to-animate-2"></i>
-                    <span class="ep2016-counter-number js-counter" data-from="0" data-to="21656" data-speed="5000" data-refresh-interval="50">21656</span>
+                    <span class="ep2016-counter-number js-counter" data-from="0" data-to="29015" data-speed="5000" data-refresh-interval="50">29015</span>
                     <span class="ep2016-counter-label">Line of codes</span>
                 </div>
             </div>

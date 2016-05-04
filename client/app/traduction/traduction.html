@@ -1,3 +1,10 @@
+<header role="banner" class="ep2016-header">
+    <div class="container navbar-container">
+        <!-- <div class="row"> -->
+        <navbar></navbar>
+        <!-- </div> -->
+    </div>
+</header>
 <div class="bg_default">
     <div class="container wrap-container">
         <div class="row">
@@ -29,18 +36,18 @@
                     <li class="list-group-item" ng-repeat="trad in vm.trads | filter:vm.search">
                         <div class="trad-info " ng-class="{'expandable':focused[$index]===1,'trad-border':focused[$index]===1}" ng-init="focused[$index]=0">
                             <span>
-                            	<select class="form-control form-trad" ng-model="trad.page" ng-change="vm.tradChange(trad)" ng-focus="focused[$index]=1" ng-blur="focused[$index]=0"
+                                <select class="form-control form-trad" ng-model="trad.page" ng-change="vm.tradChange(trad)" ng-focus="focused[$index]=1" ng-blur="focused[$index]=0"
 >
-								  <option value="Main">Main</option>
-								  <option value="Teams">Teams</option>
-								  <option value="Matchs">Matchs</option>
-								  <option value="Pronos">Pronos</option>
-									<option value="Account:Login">Account:Login</option>
-									<option value="Account:Logout">Account:Logout</option>
-									<option value="Account:Recover">Account:Recover</option>
-									<option value="Account:Settings">Account:Settings</option>
-								</select>
-							</span>
+                                  <option value="Main">Main</option>
+                                  <option value="Teams">Teams</option>
+                                  <option value="Matchs">Matchs</option>
+                                  <option value="Pronos">Pronos</option>
+                                    <option value="Account:Login">Account:Login</option>
+                                    <option value="Account:Logout">Account:Logout</option>
+                                    <option value="Account:Recover">Account:Recover</option>
+                                    <option value="Account:Settings">Account:Settings</option>
+                                </select>
+                            </span>
                             <span><div class="countryflags England" ng-if="focused[$index]===1"></div><input type="text" class="form-control form-trad" ng-model="trad.en"  ng-change="vm.tradChange(trad)" ng-focus="focused[$index]=1" ng-blur="focused[$index]=0"></span>
                             <span><div class="countryflags France" ng-if="focused[$index]===1"></div><input type="text" class="form-control form-trad" ng-model="trad.fr" ng-change="vm.tradChange(trad)" ng-focus="focused[$index]=1" ng-blur="focused[$index]=0"></span>
                             <span><div class="countryflags Germany" ng-if="focused[$index]===1"></div><input type="text" class="form-control form-trad" ng-model="trad.de" ng-change="vm.tradChange(trad)" ng-focus="focused[$index]=1" ng-blur="focused[$index]=0"></span>

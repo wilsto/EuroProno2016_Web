@@ -3,6 +3,12 @@
 (function() {
 
     class TraductionComponent {
+
+        menu = [
+            { name: 'Home', href: '/', section: '', ngclick: '', class: 'active', a_class: 'nothing' },
+            { name: 'Admin Users', href: '/admin', section: '', ngclick: '', class: 'active', a_class: 'nothing' }
+        ];
+
         constructor($http, $ngBootbox) {
             this.$ngBootbox = $ngBootbox;
             this.$http = $http;
