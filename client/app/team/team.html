@@ -8,8 +8,8 @@
         <div class="col-xs-12 col-xs-12 col-md-12 col-lg-12">
             <div class="userStats">
                 <div class="data" style="background-image: url('assets/images/bg2.jpg');">
-                    <button type="button" class="btn btn-primary btn-xs" ng-click="sort('name');" translate>sort by Name</button>
-                    <button type="button" class="btn btn-primary btn-xs" ng-click="sort('group');" translate>sort by Group</button>
+                    <button type="button" class="btn btn-primary btn-xs" ng-click="sort('name');">{{'sort by Name' | translate}} </button>
+                    <button type="button" class="btn btn-primary btn-xs" ng-click="sort('group');">{{'sort by Group' | translate}}</button>
                     <ul class="list-group user-list">
                         <li class="list-group-item" ng-repeat="team in vm.teams | orderBy:orderProp">
                             <div class="user-info">
