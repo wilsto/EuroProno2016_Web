@@ -3,7 +3,12 @@
 (function() {
 
     class PronoComponent {
-
+        menu = [
+            { name: 'Home', href: '/', section: '', ngclick: '', class: 'active', a_class: 'nothing' },
+            { name: 'Euro2016', href: '/team', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' },
+            { name: 'Prono', href: '/prono', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' },
+            { name: 'Arena', href: '/arena', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' }
+        ];
         constructor($http, Auth) {
             this.$http = $http;
             this.isLoggedIn = Auth.isLoggedIn;
@@ -114,7 +119,8 @@
 
         //sauvegarde les pronos
         saveProno() {
-            console.log('Save Prono');
+            this.prono.matchs = this.matchs;
+            console.log('Save Prono', this.prono);
             // si prono existe déjà
             if (this.toUpdate) {
                 this.$http.put('/api/pronos/' + this.prono._id, this.prono).then(response => {

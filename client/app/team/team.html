@@ -1,3 +1,10 @@
+<header role="banner" class="ep2016-header">
+    <div class="container navbar-container">
+        <!-- <div class="row"> -->
+        <navbar></navbar>
+        <!-- </div> -->
+    </div>
+</header>
 <div class="bg_default">
     <div class="container wrap-container">
         <div class="row">
@@ -8,12 +15,14 @@
         <div class="col-xs-12 col-xs-12 col-md-12 col-lg-12">
             <div class="userStats">
                 <div class="data">
-                    <button type="button" class="btn btn-primary btn-xs" ng-click="sort('name');"> {{ 'sort by Name' | translate }}</button>
-                    <button type="button" class="btn btn-primary btn-xs" ng-click="sort('group');">{{ 'sort by Group' | translate }}</button>
+                    <button type="button" class="btn btn-primary btn-xs" ng-click="vm.orderProp ='name'" translate>sort by Name</button>
+                    <button type="button" class="btn btn-primary btn-xs" ng-click="vm.orderProp = 'group'" translate>sort by Group</button>
                     <ul class="list-group user-list">
-                        <li class="list-group-item" ng-repeat="team in vm.teams | orderBy:orderProp">
+                        <li class="list-group-item" ng-repeat="team in vm.teams | orderBy:vm.orderProp">
                             <div class="user-info">
-                                <div class="col-md-1"><img src="assets/images/{{team.image}}.png" alt="{{team.image}}" class="circle"></div>
+                                <div class="col-md-1 flag flag1">
+                                    <div class="countryflagmax {{team.name}}"></div>
+                                </div>
                                 <div class="col-md-2"> {{ 'Group' | translate }} :<span class="text-muted">{{team.group}}</span></div>
                                 <div class="col-md-2"><span><strong>{{team.name | translate}}</strong> </span></div>
                                 <div class="col-md-4"><span class="text-muted">{{team.comment}}</span></div>
@@ -22,14 +31,14 @@
                     </ul>
                 </div>
             </div>
-            <div class="userStats">
+            <div class="userStats" ng-if="nav.isAdmin()">
                 <div class="data">
                     <div class="head">
                         <h2>Add new team</h2>
                         <form class="form" name="form" ng-submit="vm.createTeam(form)" novalidate>
                             <div class="form-group">
                                 <label>Code</label>
-                                <input type="text" name="code" autofocus class="form-control" ng-model="vm.newteam.code" required style="background-color: #FFF" tabindex=1>
+                                <input type="text" name="code" class="form-control" ng-model="vm.newteam.code" required style="background-color: #FFF" tabindex=1>
                             </div>
                             <div class="form-group">
                                 <label>Name</label>

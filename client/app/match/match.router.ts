@@ -7,7 +7,6 @@ angular.module('euroProno2016WebApp.matchs')
                 url: '/match',
                 templateUrl: 'app/match/match.html',
                 controller: 'MatchController',
-                controllerAs: 'vm',
-                authenticate: 'match'
+                controllerAs: 'vm'
             });
     });

@@ -28,7 +28,11 @@
     <link rel="stylesheet" href="app/admin/admin.css">
     <link rel="stylesheet" href="app/app.css">
     <link rel="stylesheet" href="app/main/main.css">
+    <link rel="stylesheet" href="app/match/match.css">
+    <link rel="stylesheet" href="app/news/news.css">
     <link rel="stylesheet" href="app/prono/prono.css">
+    <link rel="stylesheet" href="app/team/team.css">
+    <link rel="stylesheet" href="app/traduction/traduction.css">
     <link rel="stylesheet" href="components/footer/footer.css">
     <link rel="stylesheet" href="components/modal/modal.css">
     <link rel="stylesheet" href="components/navbar/navbar.css">
@@ -43,7 +47,6 @@
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
     <!-- Add your site or application content here -->
-    <navbar></navbar>
     <div ui-view=""></div>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <!--[if lt IE 9]>
@@ -54,6 +57,7 @@
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
@@ -68,6 +72,10 @@
     <script src="bower_components/jquery.easing/js/jquery.easing.js"></script>
     <script src="bower_components/angular-filter/dist/angular-filter.min.js"></script>
     <script src="bower_components/angular-translate/angular-translate.js"></script>
+    <script src="bower_components/bootbox.js/bootbox.js"></script>
+    <script src="bower_components/bootbox/bootbox.js"></script>
+    <script src="bower_components/ngBootbox/dist/ngBootbox.js"></script>
+    <script src="bower_components/angular-translate-loader-url/angular-translate-loader-url.js"></script>
     <!-- endbower -->
     <script src="socket.io-client/socket.io.js"></script>
     <!-- endbuild -->
@@ -88,11 +96,15 @@
     <script src="app/match/match.controller.js"></script>
     <script src="app/account/login/login.controller.js"></script>
     <script src="app/match/match.router.js"></script>
+    <script src="app/news/news.controller.js"></script>
+    <script src="app/news/news.js"></script>
     <script src="app/prono/prono.controller.js"></script>
     <script src="app/prono/prono.js"></script>
     <script src="app/team/team.controller.js"></script>
     <script src="app/account/reset/reset.controller.js"></script>
     <script src="app/account/forgot/forgot.controller.js"></script>
+    <script src="app/traduction/traduction.controller.js"></script>
+    <script src="app/traduction/traduction.js"></script>
     <script src="app/account/settings/settings.controller.js"></script>
     <script src="components/auth/auth.service.js"></script>
     <script src="components/auth/interceptor.service.js"></script>
