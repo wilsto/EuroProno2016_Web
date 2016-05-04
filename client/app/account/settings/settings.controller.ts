@@ -2,6 +2,14 @@
 'use strict';
 
 class SettingsController {
+
+    menu = [
+        { name: 'Home', href: '/', section: '', ngclick: '', class: 'active', a_class: 'nothing' },
+        { name: 'Euro2016', href: '/team', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' },
+        { name: 'Prono', href: '/prono', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' },
+        { name: 'Arena', href: '/arena', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' }
+    ];
+
     constructor(Auth) {
         this.errors = {};
         this.submitted = false;

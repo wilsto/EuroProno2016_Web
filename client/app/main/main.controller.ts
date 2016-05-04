@@ -9,6 +9,12 @@
         audioOn = false;
         bg = new Audio('assets/audio/bg.mp3');
 
+        menu = [
+            { name: 'Home', href: '#', section: 'home', ngclick: '', class: 'active', a_class: 'nothing' },
+            { name: 'What is ep\'16', href: '#', section: 'services', ngclick: '', class: 'nothing', a_class: 'nothing' },
+            { name: 'About Us', href: '#', section: 'about', ngclick: '', class: 'nothing', a_class: 'nothing' }
+        ];
+
         constructor($http, $scope, socket, Auth) {
             this.$http = $http;
             this.socket = socket;
@@ -31,9 +37,6 @@
             }
 
             this.parallax();
-            this.burgerMenu();
-            this.clickMenu();
-            this.windowScroll();
 
             // Animations
             this.homeAnimate();
@@ -64,106 +67,12 @@
             this.$http.delete('/api/things/' + thing._id);
         }
 
-        toggle_audio() {
-            console.log('toggle');
-            this.bg.muted = !this.bg.muted;
-            this.audioOn = !this.bg.muted;
-        }
-
-        login_click() {
-            console.log('cllick');
-            $('.login').fadeToggle('slow');
-        }
-
         // Parallax
         parallax() {
             $(window).stellar();
             console.log('parallax');
         }
 
-        // Burger Menu
-        burgerMenu() {
-            $('body').on('click', '.js-ep2016-nav-toggle', function(event) {
-                event.preventDefault();
-                if ($('#navbar').is(':visible')) {
-                    $(this).removeClass('active');
-                } else {
-                    $(this).addClass('active');
-                }
-            });
-        }
-
-        // Page Nav
-        clickMenu() {
-            $('#navbar a:not([class="external"])').click(function(event) {
-                var section = $(this).data('nav-section'),
-                    navbar = $('#navbar');
-
-                if ($('[data-section="' + section + '"]').length) {
-                    $('html, body').animate({
-                        scrollTop: $('[data-section="' + section + '"]').offset().top
-                    }, 500);
-                }
-
-                if (navbar.is(':visible')) {
-                    navbar.removeClass('in');
-                    navbar.attr('aria-expanded', 'false');
-                    $('.js-ep2016-nav-toggle').removeClass('active');
-                }
-
-                event.preventDefault();
-                return false;
-            });
-        }
-
-        // Reflect scrolling in navigation
-        navActive(section) {
-            var $el = $('#navbar > ul');
-            $el.find('li').removeClass('active');
-            $el.each(function() {
-                $(this).find('a[data-nav-section="' + section + '"]').closest('li').addClass('active');
-            });
-        }
-
-        navigationSection() {
-            var $section = $('section[data-section]');
-            $section.waypoint(function(direction) {
-                console.log('direction', direction);
-                if (direction === 'down') {
-                    navActive($(this.element).data('section'));
-                }
-            }, {
-                offset: '150px'
-            });
-            $section.waypoint(function(direction) {
-                if (direction === 'up') {
-                    navActive($(this.element).data('section'));
-                }
-            }, {
-                offset: function() {
-                    return -$(this.element).height() + 155;
-                }
-            });
-        }
-
-        // Window Scroll
-        windowScroll() {
-            console.log('windowScroll');
-            $(window).scroll(function(event) {
-                var header = $('#ep2016-header'),
-                    scrlTop = $(this).scrollTop();
-                if (scrlTop > 500 && scrlTop <= 2000) {
-                    header.addClass('navbar-fixed-top ep2016-animated slideInDown');
-                } else if (scrlTop <= 500) {
-                    if (header.hasClass('navbar-fixed-top')) {
-                        header.addClass('navbar-fixed-top ep2016-animated slideOutUp');
-                        setTimeout(function() {
-                            header.removeClass('navbar-fixed-top ep2016-animated slideInDown slideOutUp');
-                        }, 100);
-                    }
-                }
-            });
-        }
 
         // Animations
         homeAnimate() {
@@ -323,7 +232,8 @@
     angular.module('euroProno2016WebApp')
         .component('main', {
             templateUrl: 'app/main/main.html',
-            controller: MainController
+            controller: MainController,
+            controllerAs: 'vm'
         });
 
 })();

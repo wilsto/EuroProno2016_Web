@@ -6,15 +6,14 @@
     class TeamController {
         teams = [];
         orderProp = 'group';
-
+        menu = [
+            { name: 'Home', href: '/', section: '', ngclick: '', class: 'active', a_class: 'nothing' },
+            { name: 'Team', href: '/team', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' },
+            { name: 'Matchs', href: '/match', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' }
+        ];
         constructor($scope, $http) {
             this.$http = $http;
             this.loadTeams();
-
-            $scope.sort = function(type) {
-                this.orderProp = type;
-            };
-
         }
 
         loadTeams() {
