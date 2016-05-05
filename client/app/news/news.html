@@ -1,1 +1,64 @@
-<div>This is the news view.</div>
+<header role="banner" class="ep2016-header">
+    <div class="container navbar-container">
+        <!-- <div class="row"> -->
+        <navbar></navbar>
+        <!-- </div> -->
+    </div>
+</header>
+<div class="bg_default">
+    <div class="container wrap-container">
+        <div class="row">
+            <div class="col-sm-12">
+                <img src="assets/images/ball_news.png" alt="" style="max-width: 100%;height: auto;margin-bottom:30px;">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-xs-12 col-md-12 col-lg-12">
+                <div class="col-sm-12 col-md-4" ng-repeat="info in vm.news" id="news_group_{{key}}" style="background-color: white;">
+                    <div class="infoGroup">{{info.group}}</div>
+                    <div class="infoNews">
+                        <img class="imgNews" src="" ng-src="assets/images/news/{{info.image}}">
+                        <div class="transbox">
+                            <p>{{info.title | translate}} </p>
+                            <span>{{info.info | translate}}</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-12"></div>
+                </div>
+                <div class="userStats">
+                    <div class="data">
+                        <div class="head">
+                            <h2>Add new info</h2>
+                            <form class="form" name="form" ng-submit="vm.createNews(form)" novalidate>
+                                <div class="form-group">
+                                    <label>Group</label>
+                                    <select name="group" autofocus class="form-control" ng-model="vm.newinfo.group" required style="background-color: #FFF" tabindex=1>
+                                        <option>News Euro2016</option>
+                                        <option>News Site</option>
+                                        <option>Prono 2016</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Title</label>
+                                    <input type="text" name="title" class="form-control" ng-model="vm.newinfo.title" required style="background-color: #FFF" tabindex=2>
+                                </div>
+                                <div class="form-group">
+                                    <label>Info</label>
+                                    <input type="text" name="info" class="form-control" ng-model="vm.newinfo.info" required style="background-color: #FFF" tabindex=2>
+                                </div>
+                                <div class="form-group">
+                                    <label>Image</label>
+                                    <input type="text" name="image" class="form-control" ng-model="vm.newinfo.image" required style="background-color: #FFF" tabindex=3>
+                                </div>
+                                <div>
+                                    <button class="btn btn-success btn-lg " type="submit" style="float:right;width:200px">
+                                        Save
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

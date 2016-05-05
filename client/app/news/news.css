@@ -1,0 +1,47 @@
+.infoNews {
+    background: url(/assets/images/grass.jpg) no-repeat;
+    border: 1px solid #00306B;
+    -webkit-border-bottom-left-radius: 10px;
+    -webkit-border-bottom-right-radius: 10px;
+    -moz-border-radius-bottomleft: 10px;
+    -moz-border-radius-bottomright: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: block;
+}
+
+.infoGroup {
+    background: url(/assets/images/news_group.png) no-repeat;
+    border-top: 1px solid #00306B;
+    -webkit-border-top-left-radius: 10px;
+    -webkit-border-top-right-radius: 10px;
+    -moz-border-radius-topleft: 10px;
+    -moz-border-radius-topright: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: block;
+    padding: 5px;
+    width: 150px;
+    color: white;
+    opacity: 0.7;
+}
+
+.imgNews {
+    height: 100px;
+    width: 100%;
+}
+
+div.transbox {
+    margin: 20px;
+    background-color: #ffffff;
+    border: 1px solid black;
+    opacity: 0.7;
+    filter: alpha(opacity=70);
+    /* For IE8 and earlier */
+}
+
+div.transbox p {
+    margin: 5%;
+    font-weight: bold;
+    color: #000000;
+}

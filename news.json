@@ -1,0 +1,6 @@
+{ "_id" : { "$oid" : "57224aa8140bfe9c2440a496" }, "group" : "News site", "title" : "Encore un peu d'attente", "info" : "Début Euro le 10 juin 2016 / 24 équipes / 6 groupes ", "image" : "bg3.jpg", "comment" : "Winners (1984, 2000)", "__v" : 0 }
+{ "_id" : { "$oid" : "5729c80fb35a7f945c63bd43" }, "group" : "Prono 2016", "title" : "Prono 2016", "info" : "Saisie des pronos", "image" : "bg2.jpg", "__v" : 0 }
+{ "_id" : { "$oid" : "5729dc8cefd7ea8c8dbb04e0" }, "group" : "Portrait équipe", "title" : "Albanie", "info" : "L'Albanie emmenée par l'Italien Gianni De Biasi continue son ascension et participera à son premier tournoi majeur lors de l'EURO 2016.", "image" : "euro_bg.gif", "__v" : 0 }
+{ "_id" : { "$oid" : "572a0f6f18535bdc2e302a33" }, "group" : "News Euro2016", "title" : "News de l'euro", "info" : "Ici retrouvez les news de l'euro et d'europrono", "image" : "euronews.png", "__v" : 0 }
+{ "_id" : { "$oid" : "572b1830f482f4183ccf5200" }, "group" : "News Site", "title" : "d", "info" : "dd", "image" : "euronews1.png", "__v" : 0 }
+{ "_id" : { "$oid" : "572b1865f482f4183ccf5201" }, "group" : "News Site", "title" : "Twitter", "info" : "https://twitter.com/euro2016?lang=fr", "image" : "euronews.png", "__v" : 0 }
