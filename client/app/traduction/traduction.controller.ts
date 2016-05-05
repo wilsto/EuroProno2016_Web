@@ -5,7 +5,7 @@
     class TraductionComponent {
 
         menu = [
-            { name: 'Home', href: '/', section: '', ngclick: '', class: 'active', a_class: 'nothing' },
+            { name: 'Home', href: '/', section: '', ngclick: '', class: 'ac1tive', a_class: 'nothing' },
             { name: 'Admin Users', href: '/admin', section: '', ngclick: '', class: 'active', a_class: 'nothing' }
         ];
 
