@@ -21,9 +21,27 @@
             console.log('init');
 
             //on récupère les matchs
-            this.$http.get('/api/matchs').then(response => {
-                this.matchs = response.data;
+            this.$http.get('/api/matchs').then(responseMatchs => {
+                this.matchs = responseMatchs.data;
                 console.log('matchs', this.matchs);
+
+                // on récupère les pronos du joueur sinon on crèe le squelette
+                this.$http.get('/api/pronos/user_id/' + this.getCurrentUser()._id).then(responseProno => {
+                    try {
+                        this.prono = responseProno.data[0];
+                        this.toUpdate = true;
+                        this.mergeByProperty(this.matchs, this.prono.matchs, '_id');
+                        console.log('matchsMerged', this.matchs);
+                    } catch (err) {
+                        this.prono = { user_id: this.getCurrentUser()._id, date: Date.now() };
+                        this.toUpdate = false;
+                    }
+                    console.log('prono', this.prono);
+                    _.map(['A', 'B', 'C', 'D', 'E', 'F'], group => {
+                        return this.calculGroup(group);
+                    });
+                });
+
             });
 
             // onérécupère les équipes
@@ -38,20 +56,22 @@
                 });
                 console.log('teams', this.teams);
             });
-
-            // on récupère les pronos du joueur sinon on crèe le squelette
-            this.$http.get('/api/pronos/user_id/' + this.getCurrentUser()._id).then(response => {
-                try {
-                    this.prono = response.data[0];
-
-                } catch (err) {
-                    this.prono = { user_id: this.getCurrentUser()._id, date: Date.now() };
-                    this.toUpdate = false;
-                }
-                console.log('prono', this.prono);
-            });
-
         }
+
+        mergeByProperty(arr1, arr2, prop) {
+            console.log('arr1', arr1);
+            console.log('arr2', arr2);
+
+            _.each(arr2, function(arr2obj) {
+                var arr1objFinal = _.find(arr1, function(arr1obj) {
+                    return arr1obj[prop] === arr2obj[prop];
+                });
+
+                //If the object already exist extend it with the new values from arr2, otherwise just add the new object to arr1
+                arr1objFinal ? _.extend(arr1objFinal, arr2obj) : arr1.push(arr2obj);
+            });
+        }
+
 
         // dès qu'un score change dans un match (appelé par ng-change)
         scoreChange(match, groupName) {
@@ -120,7 +140,7 @@
         //sauvegarde les pronos
         saveProno() {
             this.prono.matchs = this.matchs;
-            console.log('Save Prono', this.prono);
+            this.prono.user_id = this.prono.user_id._id || this.prono.user_id;
             // si prono existe déjà
             if (this.toUpdate) {
                 this.$http.put('/api/pronos/' + this.prono._id, this.prono).then(response => {
