@@ -28,23 +28,7 @@
                     return { name: element.group, order: element.grouporder };
                 }), 'name'), 'order');
 
-                // on récupère les pronos du joueur sinon on crèe le squelette
-                this.$http.get('/api/pronos/user_id/' + this.getCurrentUser()._id).then(responseProno => {
-                    try {
-                        this.prono = responseProno.data[0];
-                        this.toUpdate = true;
-                        this.mergeByProperty(this.matchs, this.prono.matchs, '_id');
-                    } catch (err) {
-                        this.prono = { user_id: this.getCurrentUser()._id, date: Date.now() };
-                        this.toUpdate = false;
-                    }
-                    _.map(this.groups, group => {
-                        if (group.name.length < 2) {
-                            return this.calculGroup(group.name);
-                        }
-                    });
-                });
-
+                this.loadProno();
             });
 
             // on récupère les équipes
@@ -55,8 +39,31 @@
                 this.teams = _.map(this.teams, function(team) {
                     team.points = 0;
                     team.diff = 0;
+                    team.played = 0;
                     return team;
                 });
+            });
+        }
+
+        loadProno() {
+            // on récupère les pronos du joueur sinon on crèe le squelette
+            this.$http.get('/api/pronos/user_id/' + this.getCurrentUser()._id).then(responseProno => {
+                try {
+                    this.prono = responseProno.data[0];
+                    this.toUpdate = true;
+                    this.groupThird = [];
+                    this.mergeByProperty(this.matchs, this.prono.matchs, '_id');
+                } catch (err) {
+                    this.prono = { user_id: this.getCurrentUser()._id, date: Date.now() };
+                    this.toUpdate = false;
+                }
+                _.map(this.groups, group => {
+                    if (group.name.length < 2) {
+                        return this.calculGroup(group.name);
+                    }
+                });
+
+                console.log('this.groupThird', this.groupThird);
             });
         }
 
@@ -65,13 +72,11 @@
                 var arr1objFinal = _.find(arr1, function(arr1obj) {
                     return arr1obj[prop] === arr2obj[prop];
                 });
-                var team1 = arr1objFinal.team1;
-                var team2 = arr1objFinal.team2;
 
                 //If the object already exist extend it with the new values from arr2, otherwise just add the new object to arr1
                 arr1objFinal ? _.extend(arr1objFinal, arr2obj) : arr1.push(arr2obj);
-                arr1objFinal.teamId1 = team1;
-                arr1objFinal.teamId2 = team2;
+                arr1objFinal.teamId1 = arr1objFinal.teamId1 || arr1objFinal.team1;
+                arr1objFinal.teamId2 = arr1objFinal.teamId2 || arr1objFinal.team2;
             });
         }
 
@@ -107,8 +112,14 @@
                     match.team2diff = -match.result;
                     match.winner = match.team2;
                 }
-                this.calculGroup(groupName);
+            } else {
+                match.team1points = null;
+                match.team1diff = null;
+                match.team2points = null;
+                match.team2diff = null;
+                match.winner = null;
             }
+            this.calculGroup(groupName);
         }
 
         // calcul les scores pour les groupes
@@ -122,20 +133,38 @@
                     .reduce(function(memo, subteam) {
                         return {
                             points: (subteam.team1points) ? memo.points + subteam.team1points : memo.points,
+                            played: (Number.isInteger(subteam.team1points)) ? memo.played + 1 : memo.played,
+                            win: (subteam.team1points === 3) ? memo.win + 1 : memo.win,
+                            draw: (subteam.team1points === 1) ? memo.draw + 1 : memo.draw,
+                            loss: (subteam.team1points === 0) ? memo.loss + 1 : memo.loss,
+                            bp: (subteam.score1) ? memo.bp + parseInt(subteam.score1, 10) : memo.bp,
+                            bc: (subteam.score2) ? memo.bc + parseInt(subteam.score2, 10) : memo.bc,
                             diff: (subteam.team1diff) ? memo.diff + subteam.team1diff : memo.diff
                         };
-                    }, { points: 0, diff: 0 })
+                    }, { points: 0, diff: 0, played: 0, win: 0, draw: 0, loss: 0, bp: 0, bc: 0 })
                     .value();
                 var sumTeam2 = _.chain(that.groupMatchs)
                     .where({ team2: team.name })
                     .reduce(function(memo, subteam) {
                         return {
                             points: (subteam.team2points) ? memo.points + subteam.team2points : memo.points,
+                            played: (Number.isInteger(subteam.team2points)) ? memo.played + 1 : memo.played,
+                            win: (subteam.team2points === 3) ? memo.win + 1 : memo.win,
+                            draw: (subteam.team2points === 1) ? memo.draw + 1 : memo.draw,
+                            loss: (subteam.team2points === 0) ? memo.loss + 1 : memo.loss,
+                            bc: (subteam.score1) ? memo.bc + parseInt(subteam.score1, 10) : memo.bc,
+                            bp: (subteam.score2) ? memo.bp + parseInt(subteam.score2, 10) : memo.bp,
                             diff: (subteam.team2diff) ? memo.diff + subteam.team2diff : memo.diff
                         };
-                    }, { points: 0, diff: 0 })
+                    }, { points: 0, diff: 0, played: 0, win: 0, draw: 0, loss: 0, bp: 0, bc: 0 })
                     .value();
                 team.points = sumTeam2.points + sumTeam1.points;
+                team.win = sumTeam2.win + sumTeam1.win;
+                team.draw = sumTeam2.draw + sumTeam1.draw;
+                team.loss = sumTeam2.loss + sumTeam1.loss;
+                team.played = sumTeam2.played + sumTeam1.played;
+                team.bp = sumTeam2.bp + sumTeam1.bp;
+                team.bc = sumTeam2.bc + sumTeam1.bc;
                 team.diff = sumTeam2.diff + sumTeam1.diff;
             });
 
@@ -166,6 +195,8 @@
                 if (that.RunnerupGroup2[0] !== undefined) {
                     that.RunnerupGroup2[0].team2 = that.groupTeams[1].name;
                 }
+
+                this.groupThird[groupName] = that.groupTeams[2];
             }
         }
 
@@ -179,12 +210,13 @@
         //sauvegarde les pronos
         saveProno() {
             this.prono.matchs = this.matchs;
-            this.prono.user_id = this.prono.user_id._id || this.prono.user_id;
+            this.prono.user_id = this.getCurrentUser()._id;
             // si prono existe déjà
             if (this.toUpdate) {
                 //FIXME can't save twice same session
                 this.$http.put('/api/pronos/' + this.prono._id, this.prono).then(response => {
                     console.log('prono updated', response);
+                    this.loadProno();
                 });
             } else {
                 // sinon on crèe les pronos

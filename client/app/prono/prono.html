@@ -54,7 +54,13 @@
                         </table>
                         <div class="pronoPouleClassement" ng-if="group.name.length <2">
                             <div class="pronoPouleClaTitleContainer">
-                                <div class="pronoPouleClaPts">Diff.</div>
+                                <div class="pronoPouleClaPts">Bc.</div>
+                                <div class="pronoPouleClaPts">Bp.</div>
+                                <div class="pronoPouleClaPts">Dif.</div>
+                                <div class="pronoPouleClaPts">L.</div>
+                                <div class="pronoPouleClaPts">D.</div>
+                                <div class="pronoPouleClaPts">W.</div>
+                                <div class="pronoPouleClaPts">P.</div>
                                 <div class="pronoPouleClaPts">Pts</div>
                                 <h4 class="pronoPouleClaClsmt">{{'Ranking' | translate }}</h4>
                             </div>
@@ -66,7 +72,13 @@
                             </div>
                             <ul class="pronoPouleTeams">
                                 <li class="club pronoPouleTeamsLine tass" ng-repeat="team in vm.teams | filter:{group:group.name} | orderBy:['-points','-diff']">
-                                    <div class="pts diff">{{team.diff}}</div>
+                                    <div class="pts ">{{team.bc}}</div>
+                                    <div class="pts ">{{team.bp}}</div>
+                                    <div class="pts nbPts">{{team.diff}}</div>
+                                    <div class="pts ">{{team.loss}}</div>
+                                    <div class="pts ">{{team.draw}}</div>
+                                    <div class="pts ">{{team.win}}</div>
+                                    <div class="pts ">{{team.played}}</div>
                                     <div class="pts nbPts">{{team.points}}</div>
                                     <span class="countryflags-mini {{team.name}}">&nbsp;</span>
                                     <span class="equipe">
