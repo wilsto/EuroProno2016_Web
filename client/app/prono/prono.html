@@ -12,7 +12,7 @@
                 <img src="assets/images/prono_bg.jpg" alt="" style="width: 100%;height: auto;margin-bottom:30px;">
             </div>
         </div>
-        <div class="save" ng-class="vm.isLoggedIn() ? 'bg-default' : 'bg-danger'">
+        <div class="save" ng-class="vm. sLoggedIn() ? 'bg-default' : 'bg-danger'">
             <a href="/" class="btn btn-default btn-lg" ng-if="vm.isLoggedIn()">Don't Save</a>
             <a href="" class="btn btn-primary btn-lg pull-right" ng-click="vm.saveProno()" ng-if="vm.isLoggedIn()">Save</a>
             <span class="PronoNotLoggedIn" ng-if="!vm.isLoggedIn()">Please <a href="/login">login</a> or <a href="/signup">register</a> to be able to play on EuroProno2016</span>
@@ -24,24 +24,24 @@
                         <span class="title" translate>For each match, prognotic the score and choose wich team will go in finale phase.</span>
                         <span class="">{{'Teams ranking are automatically updated as soon as your enter your score.' | translate}}</span>
                     </div>
-                    <div class="col-sm-12" ng-class="{'col-md-6':value.$key.length <2}" ng-repeat="value in vm.matchs | groupBy: 'group' | toArray:true | orderBy:vm._grouporder" id="prono_group_{{key}}">
+                    <div class="col-sm-12" ng-class="{'col-md-6':group.name.length <2}" ng-repeat="group in vm.groups | orderBy:'order'">
                         <h3 class="pronoPouleTitle">
-                            <span><span ng-if="value.$key.length <2">{{'Group' | translate }}</span> {{value.$key | translate}} </span>
+                            <span><span ng-if="group.name.length <2">{{'Group' | translate }}</span> {{group.name | translate}} </span>
                         </h3>
                         <table class="pronoPouleMatchs">
                             <tbody>
-                                <tr class="match" ng-repeat="match in value | orderBy:'date'" id="prono_match_{{match._id}}">
+                                <tr class="match" ng-repeat="match in vm.matchs | orderBy:'date' | filter:vm.filterGroup(group.name)">
                                     <td class="eq eq1">
                                         {{match.team1 | translate}}
                                         </td2 <td class="flag flag1">
                                         <div class="countryflags  {{match.team1}}"></div>
                                     </td>
                                     <td class="score">
-                                        <input type="text" class="score1" size="1" maxlength="2" ng-model="match.score1" ng-change="vm.scoreChange(match, value.$key)" ng-disabled="!vm.isLoggedIn()">
+                                        <input type="text" class="score1" size="1" maxlength="2" ng-model="match.score1" ng-change="vm.scoreChange(match, group.name)" ng-disabled="!vm.isLoggedIn()">
                                         <div class="tooltipdate"><i class="icon-calendar"></i>
                                             <span class="tooltipdatetext">{{ match.date | date : 'MMM d, HH:mm' : timezone}} </span>
                                         </div>
-                                        <input type="text" class="score2" size="1" maxlength="2" ng-model="match.score2" ng-change="vm.scoreChange(match, value.$key)" ng-disabled="!vm.isLoggedIn()">
+                                        <input type="text" class="score2" size="1" maxlength="2" ng-model="match.score2" ng-change="vm.scoreChange(match, group.name)" ng-disabled="!vm.isLoggedIn()">
                                     </td>
                                     <td class="flag flag2">
                                         <div class="countryflags  {{match.team2}}"></div>
@@ -52,7 +52,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <div class="pronoPouleClassement" ng-if="value.$key.length <2">
+                        <div class="pronoPouleClassement" ng-if="group.name.length <2">
                             <div class="pronoPouleClaTitleContainer">
                                 <div class="pronoPouleClaPts">Diff.</div>
                                 <div class="pronoPouleClaPts">Pts</div>
@@ -65,7 +65,7 @@
                                 <div class="pronoPouleClaLine pronoPouleClaLine2">4</div>
                             </div>
                             <ul class="pronoPouleTeams">
-                                <li class="club pronoPouleTeamsLine tass" ng-repeat="team in vm.teams | filter:{group:value.$key} | orderBy:['-points','-diff']">
+                                <li class="club pronoPouleTeamsLine tass" ng-repeat="team in vm.teams | filter:{group:group.name} | orderBy:['-points','-diff']">
                                     <div class="pts diff">{{team.diff}}</div>
                                     <div class="pts nbPts">{{team.points}}</div>
                                     <span class="countryflags-mini {{team.name}}">&nbsp;</span>

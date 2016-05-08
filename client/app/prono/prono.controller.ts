@@ -22,8 +22,15 @@
 
             //on récupère les matchs
             this.$http.get('/api/matchs').then(responseMatchs => {
+
                 this.matchs = responseMatchs.data;
                 console.log('matchs', this.matchs);
+
+                // création des groupes à partir des infos matchs
+                this.groups = _.uniq(_.map(this.matchs, element => {
+                    return { name: element.group, order: element.grouporder };
+                }), 'name');
+                console.log('groups', this.groups);
 
                 // on récupère les pronos du joueur sinon on crèe le squelette
                 this.$http.get('/api/pronos/user_id/' + this.getCurrentUser()._id).then(responseProno => {
@@ -37,7 +44,7 @@
                         this.toUpdate = false;
                     }
                     console.log('prono', this.prono);
-                    _.map(['A', 'B', 'C', 'D', 'E', 'F'], group => {
+                    _.map(this.groups, group => {
                         return this.calculGroup(group);
                     });
                 });
@@ -59,19 +66,21 @@
         }
 
         mergeByProperty(arr1, arr2, prop) {
-            console.log('arr1', arr1);
-            console.log('arr2', arr2);
-
             _.each(arr2, function(arr2obj) {
                 var arr1objFinal = _.find(arr1, function(arr1obj) {
                     return arr1obj[prop] === arr2obj[prop];
                 });
-
                 //If the object already exist extend it with the new values from arr2, otherwise just add the new object to arr1
                 arr1objFinal ? _.extend(arr1objFinal, arr2obj) : arr1.push(arr2obj);
             });
         }
 
+        // filtre les matchs dans le bon groupe
+        filterGroup(groupName) {
+            return function(match) {
+                return match.group === groupName;
+            };
+        }
 
         // dès qu'un score change dans un match (appelé par ng-change)
         scoreChange(match, groupName) {
