@@ -18,19 +18,15 @@
         }
 
         $onInit() {
-            console.log('init');
-
             //on récupère les matchs
             this.$http.get('/api/matchs').then(responseMatchs => {
 
                 this.matchs = responseMatchs.data;
-                console.log('matchs', this.matchs);
 
                 // création des groupes à partir des infos matchs
-                this.groups = _.uniq(_.map(this.matchs, element => {
+                this.groups = _.sortBy(_.uniq(_.map(this.matchs, element => {
                     return { name: element.group, order: element.grouporder };
-                }), 'name');
-                console.log('groups', this.groups);
+                }), 'name'), 'order');
 
                 // on récupère les pronos du joueur sinon on crèe le squelette
                 this.$http.get('/api/pronos/user_id/' + this.getCurrentUser()._id).then(responseProno => {
@@ -38,20 +34,20 @@
                         this.prono = responseProno.data[0];
                         this.toUpdate = true;
                         this.mergeByProperty(this.matchs, this.prono.matchs, '_id');
-                        console.log('matchsMerged', this.matchs);
                     } catch (err) {
                         this.prono = { user_id: this.getCurrentUser()._id, date: Date.now() };
                         this.toUpdate = false;
                     }
-                    console.log('prono', this.prono);
                     _.map(this.groups, group => {
-                        return this.calculGroup(group);
+                        if (group.name.length < 2) {
+                            return this.calculGroup(group.name);
+                        }
                     });
                 });
 
             });
 
-            // onérécupère les équipes
+            // on récupère les équipes
             this.$http.get('/api/teams').then(response2 => {
                 this.teams = response2.data;
 
@@ -61,7 +57,6 @@
                     team.diff = 0;
                     return team;
                 });
-                console.log('teams', this.teams);
             });
         }
 
@@ -70,8 +65,13 @@
                 var arr1objFinal = _.find(arr1, function(arr1obj) {
                     return arr1obj[prop] === arr2obj[prop];
                 });
+                var team1 = arr1objFinal.team1;
+                var team2 = arr1objFinal.team2;
+
                 //If the object already exist extend it with the new values from arr2, otherwise just add the new object to arr1
                 arr1objFinal ? _.extend(arr1objFinal, arr2obj) : arr1.push(arr2obj);
+                arr1objFinal.teamId1 = team1;
+                arr1objFinal.teamId2 = team2;
             });
         }
 
@@ -111,11 +111,12 @@
             }
         }
 
+        // calcul les scores pour les groupes
         calculGroup(groupName) {
             var that = this;
             that.groupTeams = _.filter(this.teams, { group: groupName });
             that.groupMatchs = _.filter(this.matchs, { group: groupName });
-            _.each(this.groupTeams, function(team) {
+            _.each(that.groupTeams, function(team) {
                 var sumTeam1 = _.chain(that.groupMatchs)
                     .where({ team1: team.name })
                     .reduce(function(memo, subteam) {
@@ -137,6 +138,35 @@
                 team.points = sumTeam2.points + sumTeam1.points;
                 team.diff = sumTeam2.diff + sumTeam1.diff;
             });
+
+            //******
+            //TODO 
+            //******
+            //ordre selon les règles fifa
+            that.groupTeams = _.sortBy(that.groupTeams, ['points', 'diff']).reverse();
+
+            // si tous les matchs ont été joués dans le groupe = 12 scores, alors on reporte les équipes qualifiées pour les quarts
+            that.nbmatchs = _.compact(_.pluck(that.groupMatchs, 'score1')).length + _.compact(_.pluck(that.groupMatchs, 'score2')).length;
+            if (that.nbmatchs === 12) {
+                that.winnerGroupMatch = _.filter(this.matchs, match => {
+                    return match.teamId1 === 'Winner ' + groupName || match.teamId2 === 'Winner ' + groupName;
+                });
+                that.winnerGroupMatch[0].team1 = that.groupTeams[0].name;
+
+                that.RunnerupGroup1 = _.filter(this.matchs, match => {
+                    return match.teamId1 === 'Runner-up ' + groupName;
+                });
+                if (that.RunnerupGroup1[0] !== undefined) {
+                    that.RunnerupGroup1[0].team1 = that.groupTeams[1].name;
+                }
+
+                that.RunnerupGroup2 = _.filter(this.matchs, match => {
+                    return match.teamId2 === 'Runner-up ' + groupName;
+                });
+                if (that.RunnerupGroup2[0] !== undefined) {
+                    that.RunnerupGroup2[0].team2 = that.groupTeams[1].name;
+                }
+            }
         }
 
         // retourne la valeur la plus petite des grouporder du group (appelé par ng-repeat GROUP)
@@ -152,6 +182,7 @@
             this.prono.user_id = this.prono.user_id._id || this.prono.user_id;
             // si prono existe déjà
             if (this.toUpdate) {
+                //FIXME can't save twice same session
                 this.$http.put('/api/pronos/' + this.prono._id, this.prono).then(response => {
                     console.log('prono updated', response);
                 });
