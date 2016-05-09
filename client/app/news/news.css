@@ -8,22 +8,40 @@
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     display: block;
+    height: 100%;
 }
 
 .infoGroup {
     background: url(/assets/images/news_group.png) no-repeat;
     border-top: 1px solid #00306B;
-    -webkit-border-top-left-radius: 10px;
     -webkit-border-top-right-radius: 10px;
-    -moz-border-radius-topleft: 10px;
     -moz-border-radius-topright: 10px;
-    border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     display: block;
     padding: 5px;
-    width: 150px;
     color: white;
     opacity: 0.7;
+}
+
+.infoGroupN {
+    background: url(/assets/images/news_group.png) no-repeat;
+    display: block;
+    padding: 5px;
+    color: white;
+    opacity: 0.7;
+}
+
+.bGroup {
+    background: url(/assets/images/news_group.png) no-repeat;
+    -webkit-border-bottom-left-radius: 10px;
+    -moz-border-radius-bottomleft: 10px;
+    border-bottom-left-radius: 10px;
+    box-shadow: 1px 3px 5px 1px rgba(0, 0, 0, 0.7);
+    display: block;
+    padding: 5px;
+    color: white;
+    opacity: 0.7;
+    margin-bottom: 5px;
 }
 
 .imgNews {
@@ -31,10 +49,14 @@
     width: 100%;
 }
 
+.imgNewsS {
+    height: 80px;
+    width: 80px;
+}
+
 div.transbox {
-    margin: 20px;
+    margin: 10px;
     background-color: #ffffff;
-    border: 1px solid black;
     opacity: 0.7;
     filter: alpha(opacity=70);
     /* For IE8 and earlier */
@@ -44,4 +66,15 @@ div.transbox p {
     margin: 5%;
     font-weight: bold;
     color: #000000;
+}
+
+.fondnews {
+    margin: 0px;
+    border: 0;
+    padding: 0;
+    background: url(/assets/images/news_group.png);
+}
+
+myHeight {
+    height: 400px;
 }
