@@ -15,6 +15,7 @@
             this.isAdmin = Auth.isAdmin;
             this.getCurrentUser = Auth.getCurrentUser;
             this.matchs = [];
+            this.groupThird = [];
         }
 
         $onInit() {
@@ -51,7 +52,6 @@
                 try {
                     this.prono = responseProno.data[0];
                     this.toUpdate = true;
-                    this.groupThird = [];
                     this.mergeByProperty(this.matchs, this.prono.matchs, '_id');
                 } catch (err) {
                     this.prono = { user_id: this.getCurrentUser()._id, date: Date.now() };
@@ -63,7 +63,41 @@
                     }
                 });
 
-                console.log('this.groupThird', this.groupThird);
+                //******
+                //TODO 
+                //******
+                //ordre de tri selon les règles fifa
+                this.groupThird = _.sortBy(this.groupThird, ['points', 'diff']).reverse();
+                var qualified = _.pluck(this.groupThird.slice(0, 4), 'group').sort().join('');
+
+                // coder http://euro2016-france.net/wp-content/uploads/huitieme-finale-euro-2016-12.jpg
+                var arrayThird = {
+                    ABCD: { A: 'C', B: 'D', C: 'A', D: 'B' },
+                    ABCE: { A: 'C', B: 'A', C: 'B', D: 'E' },
+                    ABCF: { A: 'C', B: 'A', C: 'B', D: 'F' },
+                    ABDE: { A: 'D', B: 'A', C: 'B', D: 'E' },
+                    ABDF: { A: 'D', B: 'A', C: 'B', D: 'F' },
+                    ABEF: { A: 'E', B: 'A', C: 'B', D: 'F' },
+                    ACDE: { A: 'C', B: 'D', C: 'A', D: 'E' },
+                    ACDF: { A: 'C', B: 'D', C: 'A', D: 'F' },
+                    ACEF: { A: 'C', B: 'A', C: 'F', D: 'E' },
+                    ADEF: { A: 'D', B: 'A', C: 'F', D: 'E' },
+                    BCDE: { A: 'C', B: 'D', C: 'B', D: 'E' },
+                    BCDF: { A: 'C', B: 'D', C: 'B', D: 'F' },
+                    BCEF: { A: 'E', B: 'C', C: 'B', D: 'F' },
+                    BDEF: { A: 'E', B: 'D', C: 'B', D: 'F' },
+                    CDEF: { A: 'C', B: 'D', C: 'F', D: 'E' },
+                };
+
+                var matchVsWinner = {};
+                var teamVsWinner = {};
+
+                // pour chaque groupe
+                _.map(['A', 'B', 'C', 'D'], groupname => {
+                    matchVsWinner[groupname] = _.filter(this.matchs, { 'teamId1': 'Winner ' + groupname }); // le match versus le winner correspondant
+                    teamVsWinner[groupname] = _.filter(this.groupThird, { 'group': arrayThird[qualified][groupname] }); // le nom de l'équipe récupéré du tableau
+                    matchVsWinner[groupname][0].team2 = teamVsWinner[groupname][0].name; // tada !!
+                });
             });
         }
 
@@ -196,7 +230,7 @@
                     that.RunnerupGroup2[0].team2 = that.groupTeams[1].name;
                 }
 
-                this.groupThird[groupName] = that.groupTeams[2];
+                this.groupThird.push(that.groupTeams[2]);
             }
         }
 
