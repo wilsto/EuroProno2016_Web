@@ -4,8 +4,9 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var NewsSchema = new Schema({
-    group: String,
+    date: Date,
     title: String,
+    type: Number,
     info: String,
     image: String,
     active: Boolean

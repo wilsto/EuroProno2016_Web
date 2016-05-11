@@ -69,13 +69,34 @@ div.transbox p {
     color: #000000;
 }
 
-.fondnews {
+.fondnewsprono {
     margin: 0px;
     border: 0;
     padding: 0;
     background: url(/assets/images/news_group.png);
 }
 
-myHeight {
+.fondnews {
+    margin: 0px;
+    border: 0;
+    padding: 0;
+    background: url(/assets/images/register_bg.jpg);
+}
+
+.myHeight {
     height: 400px;
+    max-height: 400px;
+}
+
+.userStats .newsall {
+    display: block;
+    position: relative;
+    padding: 4px;
+    padding-left: 15px;
+    overflow: hidden;
+    background-image: url(/assets/images/bg5.jpg);
+    background-color: #cccccc;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100%;
 }

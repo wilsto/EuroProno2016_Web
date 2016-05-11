@@ -15,110 +15,105 @@
         </div>
         <!-- contenu page -->
         <div class="row">
-            <div class="userStats">
-                <div class="data" style="width: 100%;">
-                    <div class="col-sm-12 col-md-4 " ng-repeat="type in vm.types" id="news_group_{{key}}">
-                        <!-- type 1 -->
-                        <div class="myHeight" ng-if="type.type==='1'">
-                            <div class="infoGroupN"> {{type.group}}</div>
-                            <div class="row fondnews">
-                                <div ng-if="info.type===type.type" ng-repeat="info in vm.filteredNewsOne">
-                                    <div class="transbox">
-                                        <div> <img class="imgNewsS img-circle" src="" ng-src="assets/images/news/{{info.image}}"> {{info.title | translate}} </div>
-                                        <p>
-                                            {{info.info | translate}}</p>
-                                    </div>
+            <div class="userStats ">
+                <div class="newsall ">
+                    <!-- type 1 -->
+                    <div class="col-sm-12 col-md-4 myHeight">
+                        <div class="row fondnewsprono">
+                            <div class="infoGroupN">Euro prono 2016</div>
+                            <div ng-repeat="info in vm.filteredNewsOne">
+                                <div class="transbox">
+                                    <div> <img class="imgNewsS img-circle" src="" ng-src="assets/images/news/{{info.image}}"> {{info.title | translate}} </div>
+                                    <p>
+                                        {{info.info | translate}}</p>
                                 </div>
                             </div>
-                            <div class="infoGroupN">
-                                <span class="tw" ng-repeat="p in vm.paginate">
-                                    <a class="glyphicon glyphicon-unchecked" ng-click="vm.pageChanged(p.numpag)" href="#"></a>
+                        </div>
+                        <div class="infoGroupN">
+                            <span class="tw" ng-repeat="p in vm.paginOne">
+                                    <a class="glyphicon glyphicon-unchecked" ng-click="vm.pageChanged(p.numpag,1)" href="#"></a>
                                 </span>
-                            </div>
                         </div>
-                        <div ng-if="type.type==='2'">
-                            <div class="row infoGroup"> {{type.group}}</div>
-                            <div class="row">
-                                <div class="col-md-12" ng-if="info.type===type.type" ng-repeat="info in vm.news">
-                                    <div class="col-md-4" style="float:left;"><img class="imgNewsS" src="" ng-src="assets/images/news/{{info.image}}" /></div>
-                                    <div class="col-md-8"><strong>{{info.title | translate}}</strong> {{info.info | translate}}</div>
+                    </div>
+                    <!-- type 5 -->
+                    <div class="col-sm-12 col-md-4 ">
+                        <uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+                            <uib-slide ng-repeat="info in vm.typFives " index="info.id">
+                                <img ng-src="assets/images/news/{{info.image}}" style="margin:auto;">
+                                <div class="carousel-caption">
+                                    <h4>{{info.title}}</h4>
+                                    <p>{{info.info | translate}}</p>
                                 </div>
-                            </div>
-                            <div class="row bGroup">
+                            </uib-slide>
+                        </uib-carousel>
+                    </div>
+                    <!-- type 2 -->
+                    <div class="col-sm-12 col-md-4 myHeight">
+                        <div class="row ">
+                            <div class=" infoGroup">News Euro</div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-sm-12 col-md-12 fondnews" ng-repeat="info in vm.filteredNewsTwo">
+                                <div class="col-sm-4 col-md-4 " style="padding-left:0px;"><img class="imgNewsS" src="" ng-src="assets/images/news/{{info.image}}" /></div>
+                                <div><strong>{{info.title | translate}}</strong> {{info.info | translate}}</div>
                             </div>
                         </div>
+                        <div class="row bGroup">
+                            <span class="tw" ng-repeat="p in vm.paginTwo">
+                                    <a class="glyphicon glyphicon-tint" ng-click="vm.pageChanged(p.numpag,2)" href="#"></a>
+                                </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-4" ng-repeat="info in vm.news">
                         <!-- type 3 lien site -->
-                        <div ng-if="type.type==='3'">
-                            <div class="col-sm-12 col-md-12" ng-if="info.type===type.type" ng-repeat="info in vm.news" style="background-color: white;">
-                                <span class="infoGroup"> {{info.group}}</span>
-                                <a href="{{info.info}}">
-                                    <img class="imgNews" src="" ng-src="assets/images/news/{{info.image}}"></a>
-                                <a href="{{info.info}}" class="bGroup" target="_blank"><span class="glyphicon glyphicon-play">  {{info.title | translate}} </span></a>
-                            </div>
-                            <div class="row">
-                            </div>
+                        <div ng-if="info.type===3">
+                            <span class="infoGroup"> Link </span>
+                            <a href="{{info.info}}">
+                                <img class="imgNews" src="" ng-src="assets/images/news/{{info.image}}"></a>
+                            <a href="{{info.info}}" class="bGroup" target="_blank"><span class="glyphicon glyphicon-play">  {{info.title | translate}} </span></a>
                         </div>
                         <!-- type 4 -->
-                        <div ng-if="type.type==='4'">
-                            <div class="col-sm-12 col-md-12 infoNews" ng-if="info.type===type.type" ng-repeat="info in vm.news" style="background-color: white;">
-                                <div class="row infoGroupN"> {{info.group}}</div>
-                                <img class="imgNews" src="" ng-src="assets/images/news/{{info.image}}"><strong>{{info.title | translate}}</strong>
+                        <div ng-if="info.type===4">
+                            <div class="infoNews">
+                                <span class="infoGroupN"> Team Info </span>
+                                <img class="imgNews" src=" " ng-src="assets/images/news/{{info.image}} "><strong>{{info.title | translate}}</strong>
                                 <div>{{info.info | translate}}</div>
                             </div>
-                        </div>
-                        <!-- type 4 -->
-                        <div ng-if="type.type==='5'">
-                            <uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
-                                <uib-slide ng-if="info.type===type.type" ng-repeat="info in vm.news " index="info.id">
-                                    <img ng-src="assets/images/news/{{info.image}}" style="margin:auto;">
-                                    <div class="carousel-caption">
-                                        <h4>{{info.title}}</h4>
-                                        <p>{{info.info | translate}}</p>
-                                    </div>
-                                </uib-slide>
-                            </uib-carousel>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="userStats">
-                <div class="data">
-                    <div class="head">
+        <div class="row ">
+            <div class="userStats ">
+                <div class="data ">
+                    <div class="head ">
                         <h2>Add new info</h2>
-                        <form class="form" name="form" ng-submit="vm.createNews(form)" novalidate>
-                            <div class="form-group">
+                        <form class="form " name="form " ng-submit="vm.createNews(form) " novalidate>
+                            <div class="form-group ">
                                 <label>Type</label>
-                                <select name="type" autofocus class="form-control" ng-model="vm.newinfo.type" required style="background-color: #FFF" tabindex=1>
+                                <select name="type " autofocus class="form-control " ng-model="vm.newinfo.type " required style="background-color: #FFF " tabindex=1>
                                     <option>1</option>
                                     <option>2</option>
                                     <option>3</option>
                                     <option>4</option>
+                                    <option>5</option>
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <label>Group</label>
-                                <select name="group" autofocus class="form-control" ng-model="vm.newinfo.group" required style="background-color: #FFF" tabindex=1>
-                                    <option>News Euro2016</option>
-                                    <option>News Site</option>
-                                    <option>Prono 2016</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
+                            <div class="form-group ">
                                 <label>Title</label>
-                                <input type="text" name="title" class="form-control" ng-model="vm.newinfo.title" required style="background-color: #FFF" tabindex=2>
+                                <input type="text " name="title " class="form-control " ng-model="vm.newinfo.title " required style="background-color: #FFF " tabindex=2>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group ">
                                 <label>Info</label>
-                                <input type="text" name="info" class="form-control" ng-model="vm.newinfo.info" required style="background-color: #FFF" tabindex=2>
+                                <input type="text " name="info " class="form-control " ng-model="vm.newinfo.info " required style="background-color: #FFF " tabindex=2>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group ">
                                 <label>Image</label>
-                                <input type="text" name="image" class="form-control" ng-model="vm.newinfo.image" required style="background-color: #FFF" tabindex=3>
+                                <input type="text " name="image " class="form-control " ng-model="vm.newinfo.image " required style="background-color: #FFF " tabindex=3>
                             </div>
                             <div>
-                                <button class="btn btn-success btn-lg " type="submit" style="float:right;width:200px">
+                                <button class="btn btn-success btn-lg " type="submit " style="float:right;width:200px ">
                                     Save
                                 </button>
                             </div>
