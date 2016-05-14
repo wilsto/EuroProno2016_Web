@@ -81,11 +81,18 @@ div.transbox p {
     border: 0;
     padding: 0;
     background: url(/assets/images/register_bg.jpg);
+    width: 100%;
 }
 
 .myHeight {
-    height: 400px;
-    max-height: 400px;
+    height: 345px;
+    max-height: 345px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.myHeightN {
+    height: 115px;
 }
 
 .userStats .newsall {

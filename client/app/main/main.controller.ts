@@ -11,8 +11,8 @@
 
         menu = [
             { name: 'Home', href: '#', section: 'home', ngclick: '', class: 'active', a_class: 'nothing' },
-            { name: 'What is ep\'16', href: '#', section: 'services', ngclick: '', class: 'nothing', a_class: 'nothing' },
-            { name: 'About Us', href: '#', section: 'about', ngclick: '', class: 'nothing', a_class: 'nothing' }
+            { name: 'What is ep\'16', href: '#ep2016-services', section: 'services', ngclick: '', class: 'nothing', a_class: 'nothing' },
+            { name: 'About Us', href: '#ep2016-about', section: 'about', ngclick: '', class: 'nothing', a_class: 'nothing' }
         ];
 
         constructor($http, $scope, socket, Auth) {

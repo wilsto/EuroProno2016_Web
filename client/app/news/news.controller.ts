@@ -24,6 +24,7 @@
             this.bigTotalItems = 100;
             this.maxSize = 5;
             this.bigCurrentPage = 1;
+            this.myVal = false;
         }
 
         $onInit() {
@@ -136,6 +137,16 @@
             this.$http.delete('/api/newss/' + news._id).then(response => {
                 console.log('delete', response);
             });
+        }
+
+        showDetail() {
+            console.log("show details");
+            if (this.myVal === false) {
+                this.myVal = true;
+            } else {
+                this.myVal = false;
+            }
+
         }
 
     }
