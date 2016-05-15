@@ -247,7 +247,6 @@
             this.prono.user_id = this.getCurrentUser()._id;
             // si prono existe déjà
             if (this.toUpdate) {
-                //FIXME can't save twice same session
                 this.$http.put('/api/pronos/' + this.prono._id, this.prono).then(response => {
                     console.log('prono updated', response);
                     this.loadProno();
