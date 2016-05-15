@@ -19,6 +19,10 @@
         }
 
         $onInit() {
+            this.loadMatchs();
+        }
+
+        loadMatchs() {
             //on récupère les matchs
             this.$http.get('/api/matchs').then(responseMatchs => {
 
@@ -62,7 +66,6 @@
                         return this.calculGroup(group.name);
                     }
                 });
-
                 //******
                 //TODO 
                 //******
@@ -93,11 +96,15 @@
                 var teamVsWinner = {};
 
                 // pour chaque groupe
-                _.map(['A', 'B', 'C', 'D'], groupname => {
-                    matchVsWinner[groupname] = _.filter(this.matchs, { 'teamId1': 'Winner ' + groupname }); // le match versus le winner correspondant
-                    teamVsWinner[groupname] = _.filter(this.groupThird, { 'group': arrayThird[qualified][groupname] }); // le nom de l'équipe récupéré du tableau
-                    matchVsWinner[groupname][0].team2 = teamVsWinner[groupname][0].name; // tada !!
-                });
+                if (qualified.length === 4) {
+                    _.map(['A', 'B', 'C', 'D'], groupname => {
+                        console.log('qualified', qualified);
+                        matchVsWinner[groupname] = _.filter(this.matchs, { 'teamId1': 'Winner ' + groupname }); // le match versus le winner correspondant
+                        teamVsWinner[groupname] = _.filter(this.groupThird, { 'group': arrayThird[qualified][groupname] }); // le nom de l'équipe récupéré du tableau
+                        matchVsWinner[groupname][0].team2 = teamVsWinner[groupname][0].name; // tada !!
+                    });
+                }
+
             });
         }
 
@@ -214,7 +221,9 @@
                 that.winnerGroupMatch = _.filter(this.matchs, match => {
                     return match.teamId1 === 'Winner ' + groupName || match.teamId2 === 'Winner ' + groupName;
                 });
-                that.winnerGroupMatch[0].team1 = that.groupTeams[0].name;
+                if (that.winnerGroupMatch[0] !== undefined) {
+                    that.winnerGroupMatch[0].team1 = that.groupTeams[0].name;
+                }
 
                 that.RunnerupGroup1 = _.filter(this.matchs, match => {
                     return match.teamId1 === 'Runner-up ' + groupName;
@@ -239,6 +248,15 @@
             return _.min(_.map(arr, function(group) {
                 return parseInt(group.grouporder, 10);
             }));
+        }
+
+        //sauvegarde les pronos
+        resetProno() {
+            this.$http.delete('/api/pronos/' + this.prono._id).then(response => {
+                console.log('prono deleted', response);
+                this.loadMatchs();
+                this.loadProno();
+            });
         }
 
         //sauvegarde les pronos
