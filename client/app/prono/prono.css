@@ -77,6 +77,16 @@
     font-size: 12px;
 }
 
+.teamWinner {
+    text-align: center;
+    padding: 20px;
+    width: 300px;
+    margin: 0 auto;
+    border-radius: 15px;
+    font-weight: bold;
+    margin-top: 35px;
+}
+
 #pronoContentContainer {
     /*border-bottom: solid 1px #ccc;*/
     margin-bottom: 5px;
