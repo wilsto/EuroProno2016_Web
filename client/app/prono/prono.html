@@ -39,18 +39,17 @@
                                         <div class="countryflags  {{match.team1}}"></div>
                                     </td>
                                     <td class="score">
-                                        <input type="text" class="score1" size="1" maxlength="2" ng-model="match.score1" ng-change="vm.scoreChange(match, group.name)" ng-disabled="!vm.isLoggedIn()">
+                                        <input type="text" class="score1" size="1" maxlength="2" ng-model="match.score1" ng-change="vm.scoreChange(match, group.name)" ng-disabled="!vm.isLoggedIn()" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
                                         <div class="tooltipdate"> {{ match.typematch}}
                                             <span class="tooltipdatetext">{{ match.date | date : 'MMM d, HH:mm' : timezone}} </span>
                                         </div>
-                                        <input type="text" class="score2" size="1" maxlength="2" ng-model="match.score2" ng-change="vm.scoreChange(match, group.name)" ng-disabled="!vm.isLoggedIn()">
-                                    </td>
-                                    <td class="flag flag2">
-                                        <div class="countryflags  {{match.team2}}"></div>
-                                    </td>
-                                    <td class="eq eq2">
-                                        {{match.team2 | translate}}
-                                    </td>
+                                        <input type="text" class="score2" size="1" maxlength="2" ng-model="match.score2" ng-change="vm.scoreChange(match, group.name)" ng-disabled="!vm.isLoggedIn()" onkeypress='return event.charCode >= 48 && event.charCode <= 57' </td>
+                                        <td class="flag flag2">
+                                            <div class="countryflags  {{match.team2}}"></div>
+                                        </td>
+                                        <td class="eq eq2">
+                                            {{match.team2 | translate}}
+                                        </td>
                                 </tr>
                             </tbody>
                         </table>

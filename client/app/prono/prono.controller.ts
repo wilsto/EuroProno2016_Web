@@ -69,7 +69,8 @@
                         return this.calculGroup(group.name);
                     }
                 });
-                this.calculThirdQUalified();
+                this.calculThirdQualified();
+                this.calculQuarterQualified();
             });
         }
 
@@ -175,43 +176,57 @@
                 team.diff = sumTeam2.diff + sumTeam1.diff;
             });
 
-            //******
-            //TODO 
-            //******
-            //ordre selon les règles fifa
-            that.groupTeams = _.sortBy(that.groupTeams, ['points', 'diff']).reverse();
+            if (_.contains(['A', 'B', 'C', 'D', 'E', 'F'], groupName)) {
+                //******
+                //TODO 
+                //******
+                //ordre selon les règles fifa
+                that.groupTeams = _.sortBy(that.groupTeams, ['points', 'diff']).reverse();
 
-            // si tous les matchs ont été joués dans le groupe = 12 scores, alors on reporte les équipes qualifiées pour les quarts
-            that.nbmatchs = _.compact(_.pluck(that.groupMatchs, 'score1')).length + _.compact(_.pluck(that.groupMatchs, 'score2')).length;
-            if (that.nbmatchs === 12) {
-                that.winnerGroupMatch = _.filter(this.matchs, match => {
-                    return match.teamId1 === 'Winner ' + groupName || match.teamId2 === 'Winner ' + groupName;
-                });
-                if (that.winnerGroupMatch[0] !== undefined) {
-                    that.winnerGroupMatch[0].team1 = that.groupTeams[0].name;
+                // si tous les matchs ont été joués dans le groupe = 12 scores, alors on reporte les équipes qualifiées pour les quarts
+                that.nbmatchs = _.compact(_.pluck(that.groupMatchs, 'score1')).length + _.compact(_.pluck(that.groupMatchs, 'score2')).length;
+                if (that.nbmatchs === 12) {
+                    that.winnerGroupMatch = _.filter(this.matchs, match => {
+                        return match.teamId1 === 'Winner ' + groupName || match.teamId2 === 'Winner ' + groupName;
+                    });
+                    if (that.winnerGroupMatch[0] !== undefined) {
+                        that.winnerGroupMatch[0].team1 = that.groupTeams[0].name;
+                    }
+
+                    that.RunnerupGroup1 = _.filter(this.matchs, match => {
+                        return match.teamId1 === 'Runner-up ' + groupName;
+                    });
+                    if (that.RunnerupGroup1[0] !== undefined) {
+                        that.RunnerupGroup1[0].team1 = that.groupTeams[1].name;
+                    }
+
+                    that.RunnerupGroup2 = _.filter(this.matchs, match => {
+                        return match.teamId2 === 'Runner-up ' + groupName;
+                    });
+                    if (that.RunnerupGroup2[0] !== undefined) {
+                        that.RunnerupGroup2[0].team2 = that.groupTeams[1].name;
+                    }
+
+                    // supprimer si déjà présent
+                    _.remove(this.groupThird, { group: groupName });
+                    this.groupThird.push(that.groupTeams[2]);
+                } else {
+                    _.remove(this.groupThird, { group: groupName });
                 }
-
-                that.RunnerupGroup1 = _.filter(this.matchs, match => {
-                    return match.teamId1 === 'Runner-up ' + groupName;
-                });
-                if (that.RunnerupGroup1[0] !== undefined) {
-                    that.RunnerupGroup1[0].team1 = that.groupTeams[1].name;
-                }
-
-                that.RunnerupGroup2 = _.filter(this.matchs, match => {
-                    return match.teamId2 === 'Runner-up ' + groupName;
-                });
-                if (that.RunnerupGroup2[0] !== undefined) {
-                    that.RunnerupGroup2[0].team2 = that.groupTeams[1].name;
-                }
-
-                // supprimer si déjà présent
-                _.remove(this.groupThird, { group: groupName });
-                this.groupThird.push(that.groupTeams[2]);
+                this.calculThirdQualified();
+            } else if (_.contains(['Round of 16'], groupName)) {
+                this.calculQuarterQualified();
+                this.calculQuarterQualified();
+            } else if (_.contains(['Quarter Finals'], groupName)) {
+                console.log('groupName', groupName);
+            } else if (_.contains(['Semi Final'], groupName)) {
+                console.log('groupName', groupName);
+            } else if (_.contains(['Final'], groupName)) {
+                console.log('groupName', groupName);
             } else {
-                _.remove(this.groupThird, { group: groupName });
+                console.log('!!*** Groupe inconnu');
             }
-            this.calculThirdQUalified();
+
         }
 
         // retourne la valeur la plus petite des grouporder du group (appelé par ng-repeat GROUP)
@@ -221,7 +236,7 @@
             }));
         }
 
-        calculThirdQUalified() {
+        calculThirdQualified() {
             //******
             //TODO 
             //******
@@ -252,7 +267,6 @@
             var teamVsWinner = {};
 
             // pour chaque groupe
-            console.log('qualified', qualified);
             if (this.groupThird.length === 6) {
                 _.map(['A', 'B', 'C', 'D'], groupname => {
                     matchVsWinner[groupname] = _.filter(this.matchs, { 'teamId1': 'Winner ' + groupname }); // le match versus le winner correspondant
@@ -265,6 +279,22 @@
                     matchVsWinner[groupname][0].team2 = matchVsWinner[groupname][0].teamId2; // tada !!
                 });
             }
+        }
+
+
+        calculQualified(group) {
+            var match16 = _.filter(this.matchs, { 'group': group }); // les match des 16èmes
+            _.map(match16, match => {
+                var matchqualified1 = _.filter(this.matchs, { 'teamId1': 'Winner match ' + match.typematch }); // les match des quarts - Equipe de gauche
+                var matchqualified2 = _.filter(this.matchs, { 'teamId2': 'Winner match ' + match.typematch }); // les match des quarts - Equipe de droite
+
+                // si il y a un vainqueur
+                if (match.winner !== undefined && match.winner !== null) {
+                    (matchqualified1[0] !== undefined) ? matchqualified1[0].team1 = match.winner: matchqualified2[0].team2 = match.winner;
+                } else {
+                    (matchqualified1[0] !== undefined) ? matchqualified1[0].team1 = matchqualified1[0].teamId1: matchquarter2[0].team2 = matchquarter2[0].teamId2;
+                }
+            });
         }
 
         //sauvegarde les pronos
