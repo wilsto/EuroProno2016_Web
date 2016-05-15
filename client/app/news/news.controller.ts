@@ -32,7 +32,6 @@
                 // on récupère les pronos du joueur sinon on crèe le squelette
                 this.$http.get('/api/newss').then(response => {
                     try {
-
                         this.news = _.sortBy(response.data, 'date').reverse();
 
                         // type 1
@@ -100,6 +99,8 @@
                     this.newinfo.title = '';
                     this.newinfo.info = '';
                     this.newinfo.image = '';
+
+
                 });
             }
         }

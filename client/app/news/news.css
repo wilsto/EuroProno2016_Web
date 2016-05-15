@@ -50,6 +50,11 @@
     width: 100%;
 }
 
+.imgNewsL {
+    height: 160px;
+    width: 100%;
+}
+
 .imgNewsS {
     height: 80px;
     width: 80px;
@@ -85,8 +90,8 @@ div.transbox p {
 }
 
 .myHeight {
-    height: 345px;
-    max-height: 345px;
+    height: 305px;
+    max-height: 305px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
