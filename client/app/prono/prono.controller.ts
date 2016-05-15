@@ -16,6 +16,7 @@
             this.getCurrentUser = Auth.getCurrentUser;
             this.matchs = [];
             this.groupThird = [];
+            this.teamWinner = '';
         }
 
         $onInit() {
@@ -70,7 +71,11 @@
                     }
                 });
                 this.calculThirdQualified();
-                this.calculQuarterQualified();
+                _.map(this.groups, group => {
+                    if (group.name.length > 2) {
+                        return this.calculQualified(group.name);
+                    }
+                });
             });
         }
 
@@ -214,17 +219,8 @@
                     _.remove(this.groupThird, { group: groupName });
                 }
                 this.calculThirdQualified();
-            } else if (_.contains(['Round of 16'], groupName)) {
-                this.calculQuarterQualified();
-                this.calculQuarterQualified();
-            } else if (_.contains(['Quarter Finals'], groupName)) {
-                console.log('groupName', groupName);
-            } else if (_.contains(['Semi Final'], groupName)) {
-                console.log('groupName', groupName);
-            } else if (_.contains(['Final'], groupName)) {
-                console.log('groupName', groupName);
             } else {
-                console.log('!!*** Groupe inconnu');
+                this.calculQualified(groupName);
             }
 
         }
@@ -283,16 +279,29 @@
 
 
         calculQualified(group) {
-            var match16 = _.filter(this.matchs, { 'group': group }); // les match des 16èmes
-            _.map(match16, match => {
-                var matchqualified1 = _.filter(this.matchs, { 'teamId1': 'Winner match ' + match.typematch }); // les match des quarts - Equipe de gauche
-                var matchqualified2 = _.filter(this.matchs, { 'teamId2': 'Winner match ' + match.typematch }); // les match des quarts - Equipe de droite
+            console.log('group', group);
+            var matchsGroup = _.filter(this.matchs, { 'group': group }); // les match du groupe
+            console.log('matchsGroup', matchsGroup);
+            _.map(matchsGroup, match => {
+                var matchqualified1 = _.filter(this.matchs, { 'teamId1': 'Winner match ' + match.typematch }); // les match - Equipe de gauche
+                var matchqualified2 = _.filter(this.matchs, { 'teamId2': 'Winner match ' + match.typematch }); // les match - Equipe de droite
 
                 // si il y a un vainqueur
+                console.log('matchqualified1', matchqualified1);
+                console.log('matchqualified2', matchqualified2);
                 if (match.winner !== undefined && match.winner !== null) {
-                    (matchqualified1[0] !== undefined) ? matchqualified1[0].team1 = match.winner: matchqualified2[0].team2 = match.winner;
+                    if (group !== 'Final') {
+                        (matchqualified1[0] !== undefined) ? matchqualified1[0].team1 = match.winner: matchqualified2[0].team2 = match.winner;
+                    } else {
+                        console.log('We have a winner', match);
+                        this.teamWinner = match.winner;
+                        console.log('this.teamWinner', this.teamWinner);
+                        console.log('match.winner', match.winner);
+                    }
                 } else {
-                    (matchqualified1[0] !== undefined) ? matchqualified1[0].team1 = matchqualified1[0].teamId1: matchquarter2[0].team2 = matchquarter2[0].teamId2;
+                    if (group !== 'Final') {
+                        (matchqualified1[0] !== undefined) ? matchqualified1[0].team1 = matchqualified1[0].teamId1: matchqualified2[0].team2 = matchqualified2[0].teamId2;
+                    }
                 }
             });
         }
