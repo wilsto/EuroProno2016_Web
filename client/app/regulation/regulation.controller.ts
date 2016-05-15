@@ -4,7 +4,7 @@
 
     class RegulationComponent {
         menu = [
-            { name: 'Home', href: '/', section: '', ngclick: '', class: 'active', a_class: 'nothing' },
+            { name: 'News', href: '/news', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' },
             { name: 'Regulations', href: '/regulation', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' },
             { name: 'Matchs', href: '/match', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' },
             { name: 'Teams', href: '/team', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' }
