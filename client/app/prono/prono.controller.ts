@@ -53,12 +53,15 @@
         loadProno() {
             // on récupère les pronos du joueur sinon on crèe le squelette
             this.$http.get('/api/pronos/user_id/' + this.getCurrentUser()._id).then(responseProno => {
-                try {
+                if (responseProno.data[0] !== undefined) {
                     this.prono = responseProno.data[0];
+                    console.log('load prono ', this.prono);
                     this.toUpdate = true;
                     this.mergeByProperty(this.matchs, this.prono.matchs, '_id');
-                } catch (err) {
+                } else {
+                    console.log('new prono ');
                     this.prono = { user_id: this.getCurrentUser()._id, date: Date.now() };
+                    this.mergeByProperty(this.matchs, this.matchs, '_id');
                     this.toUpdate = false;
                 }
                 _.map(this.groups, group => {
@@ -66,45 +69,7 @@
                         return this.calculGroup(group.name);
                     }
                 });
-                //******
-                //TODO 
-                //******
-                //ordre de tri selon les règles fifa
-                this.groupThird = _.sortBy(this.groupThird, ['points', 'diff']).reverse();
-                var qualified = _.pluck(this.groupThird.slice(0, 4), 'group').sort().join('');
-
-                // coder http://euro2016-france.net/wp-content/uploads/huitieme-finale-euro-2016-12.jpg
-                var arrayThird = {
-                    ABCD: { A: 'C', B: 'D', C: 'A', D: 'B' },
-                    ABCE: { A: 'C', B: 'A', C: 'B', D: 'E' },
-                    ABCF: { A: 'C', B: 'A', C: 'B', D: 'F' },
-                    ABDE: { A: 'D', B: 'A', C: 'B', D: 'E' },
-                    ABDF: { A: 'D', B: 'A', C: 'B', D: 'F' },
-                    ABEF: { A: 'E', B: 'A', C: 'B', D: 'F' },
-                    ACDE: { A: 'C', B: 'D', C: 'A', D: 'E' },
-                    ACDF: { A: 'C', B: 'D', C: 'A', D: 'F' },
-                    ACEF: { A: 'C', B: 'A', C: 'F', D: 'E' },
-                    ADEF: { A: 'D', B: 'A', C: 'F', D: 'E' },
-                    BCDE: { A: 'C', B: 'D', C: 'B', D: 'E' },
-                    BCDF: { A: 'C', B: 'D', C: 'B', D: 'F' },
-                    BCEF: { A: 'E', B: 'C', C: 'B', D: 'F' },
-                    BDEF: { A: 'E', B: 'D', C: 'B', D: 'F' },
-                    CDEF: { A: 'C', B: 'D', C: 'F', D: 'E' },
-                };
-
-                var matchVsWinner = {};
-                var teamVsWinner = {};
-
-                // pour chaque groupe
-                if (qualified.length === 4) {
-                    _.map(['A', 'B', 'C', 'D'], groupname => {
-                        console.log('qualified', qualified);
-                        matchVsWinner[groupname] = _.filter(this.matchs, { 'teamId1': 'Winner ' + groupname }); // le match versus le winner correspondant
-                        teamVsWinner[groupname] = _.filter(this.groupThird, { 'group': arrayThird[qualified][groupname] }); // le nom de l'équipe récupéré du tableau
-                        matchVsWinner[groupname][0].team2 = teamVsWinner[groupname][0].name; // tada !!
-                    });
-                }
-
+                this.calculThirdQUalified();
             });
         }
 
@@ -166,6 +131,7 @@
         // calcul les scores pour les groupes
         calculGroup(groupName) {
             var that = this;
+
             that.groupTeams = _.filter(this.teams, { group: groupName });
             that.groupMatchs = _.filter(this.matchs, { group: groupName });
             _.each(that.groupTeams, function(team) {
@@ -239,8 +205,13 @@
                     that.RunnerupGroup2[0].team2 = that.groupTeams[1].name;
                 }
 
+                // supprimer si déjà présent
+                _.remove(this.groupThird, { group: groupName });
                 this.groupThird.push(that.groupTeams[2]);
+            } else {
+                _.remove(this.groupThird, { group: groupName });
             }
+            this.calculThirdQUalified();
         }
 
         // retourne la valeur la plus petite des grouporder du group (appelé par ng-repeat GROUP)
@@ -248,6 +219,52 @@
             return _.min(_.map(arr, function(group) {
                 return parseInt(group.grouporder, 10);
             }));
+        }
+
+        calculThirdQUalified() {
+            //******
+            //TODO 
+            //******
+            //ordre de tri selon les règles fifa
+            this.groupThird = _.sortBy(this.groupThird, ['points', 'diff']).reverse();
+            var qualified = _.pluck(this.groupThird.slice(0, 4), 'group').sort().join('');
+
+            // coder http://euro2016-france.net/wp-content/uploads/huitieme-finale-euro-2016-12.jpg
+            var arrayThird = {
+                ABCD: { A: 'C', B: 'D', C: 'A', D: 'B' },
+                ABCE: { A: 'C', B: 'A', C: 'B', D: 'E' },
+                ABCF: { A: 'C', B: 'A', C: 'B', D: 'F' },
+                ABDE: { A: 'D', B: 'A', C: 'B', D: 'E' },
+                ABDF: { A: 'D', B: 'A', C: 'B', D: 'F' },
+                ABEF: { A: 'E', B: 'A', C: 'B', D: 'F' },
+                ACDE: { A: 'C', B: 'D', C: 'A', D: 'E' },
+                ACDF: { A: 'C', B: 'D', C: 'A', D: 'F' },
+                ACEF: { A: 'C', B: 'A', C: 'F', D: 'E' },
+                ADEF: { A: 'D', B: 'A', C: 'F', D: 'E' },
+                BCDE: { A: 'C', B: 'D', C: 'B', D: 'E' },
+                BCDF: { A: 'C', B: 'D', C: 'B', D: 'F' },
+                BCEF: { A: 'E', B: 'C', C: 'B', D: 'F' },
+                BDEF: { A: 'E', B: 'D', C: 'B', D: 'F' },
+                CDEF: { A: 'C', B: 'D', C: 'F', D: 'E' },
+            };
+
+            var matchVsWinner = {};
+            var teamVsWinner = {};
+
+            // pour chaque groupe
+            console.log('qualified', qualified);
+            if (this.groupThird.length === 6) {
+                _.map(['A', 'B', 'C', 'D'], groupname => {
+                    matchVsWinner[groupname] = _.filter(this.matchs, { 'teamId1': 'Winner ' + groupname }); // le match versus le winner correspondant
+                    teamVsWinner[groupname] = _.filter(this.groupThird, { 'group': arrayThird[qualified][groupname] }); // le nom de l'équipe récupéré du tableau
+                    matchVsWinner[groupname][0].team2 = teamVsWinner[groupname][0].name; // tada !!
+                });
+            } else {
+                _.map(['A', 'B', 'C', 'D'], groupname => {
+                    matchVsWinner[groupname] = _.filter(this.matchs, { 'teamId1': 'Winner ' + groupname }); // le match versus le winner correspondant
+                    matchVsWinner[groupname][0].team2 = matchVsWinner[groupname][0].teamId2; // tada !!
+                });
+            }
         }
 
         //sauvegarde les pronos
