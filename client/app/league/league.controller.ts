@@ -32,7 +32,7 @@
             //on récupère les matchs
             this.$http.get('/api/leagues').then(responseLeagues => {
                 this.leagues = responseLeagues.data;
-                console.log("leagues", this.leagues);
+
             });
 
         }
@@ -47,7 +47,8 @@
                     type: this.newleague.type,
                     description: this.newleague.description,
                     image: this.newleague.image,
-                    owner_id: this.getCurrentUser()._id
+                    owner_id: this.getCurrentUser()._id,
+                    members: [{ user_id: this.getCurrentUser(), validated: true }]
                 }).then(response => {
                     this.newleague.name = '';
                     this.newleague.status = '';
@@ -56,14 +57,11 @@
 
                     this.newleague.image = '';
                     this.newleague.owner = '';
-
+                    this.loadLeagues()
                 });
             }
         }
-
     }
-
-
 
     angular.module('euroProno2016WebApp')
         .component('league', {
@@ -71,5 +69,4 @@
             controller: LeagueComponent,
             controllerAs: 'vm'
         });
-
 })();

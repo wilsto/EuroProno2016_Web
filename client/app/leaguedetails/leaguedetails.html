@@ -16,22 +16,27 @@
             <div class="col-sm-12">
                 <div id="League" class="leaguedetContent">
                     <div class="leagueContentToolTip">
-                        <span class="title" translate>{{vm.leaguesdet.name}}</span>
+                        <h2 translate>{{vm.leaguesdet.name}} </h2>
                     </div>
                     <table class="table table-responsive table-hover">
                         <thead>
                             <tr>
-                                <th><a href='#' ng-click="sort( 'members.name'); ">Members</a></th>
+                                <th><a href='#' ng-click="sort( 'name'); ">Members</a></th>
+                                <th ng-if="vm.leaguesdet.status===1"><a href='#' ng-click="sort( 'members.activated'); ">Activated</a></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="league" ng-repeat="member in vm.members ">
                                 <td> {{member.user_id.name}}</td>
-                                <td> {{member.status}}</td>
+                                <td ng-if="vm.leaguesdet.status===1"> {{member.activated}}</td>
+                                <td>
+                                    <button ng-if="vm.leaguesdet.status===1 && (nav.isAdmin() ||  vm.currentuser!==member.owner_id)" class="btn  glyphicon glyphicon-ok " ng-class="{'btn-primary': member.activated, 'btn-warning': !member.activated}" type="submit" ng-click="vm.AcceptMember(member.user_id._id)"> </button>
+                                    <button ng-if="(nav.isAdmin() ||  vm.currentuser===vm.leaguesdet.owner_id) && vm.leaguesdet.owner_id !== member.user_id._id " class="btn btn-danger glyphicon glyphicon-remove " type="submit" ng-bootbox-confirm="Are you sure you want to delete this user ({{member.user_id.name}}) from your league ? <br/><br/><b>It is irreversible. It can't be undone." ng-bootbox-confirm-action="vm.RemoveMember(member.user_id._id)"> </button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
-                    <button class="btn btn-primary" type="submit">Join League</button>
+                    <button class="btn btn-primary" type="submit" ng-click="vm.JoinLeague()">Join League</button>
                     <!-- fin auto -->
                 </div>
             </div>

@@ -17,7 +17,7 @@ function respondWithResult(res, statusCode) {
     statusCode = statusCode || 200;
     return function(entity) {
         if (entity) {
-            res.status(statusCode).json(entity);
+            return res.status(statusCode).json(entity);
         }
     };
 }
@@ -25,6 +25,7 @@ function respondWithResult(res, statusCode) {
 function saveUpdates(updates) {
     return function(entity) {
         var updated = _.merge(entity, updates);
+        updated.members = updates.members;
         updated.markModified('members');
         return updated.save()
             .then(updated => {
@@ -38,7 +39,7 @@ function removeEntity(res) {
         if (entity) {
             return entity.remove()
                 .then(() => {
-                    res.status(204).end();
+                    return res.status(204).end();
                 });
         }
     };
@@ -50,6 +51,7 @@ function handleEntityNotFound(res) {
             res.status(404).end();
             return null;
         }
+
         return entity;
     };
 }
@@ -57,7 +59,7 @@ function handleEntityNotFound(res) {
 function handleError(res, statusCode) {
     statusCode = statusCode || 500;
     return function(err) {
-        res.status(statusCode).send(err);
+        return res.status(statusCode).send(err);
     };
 }
 
@@ -70,7 +72,7 @@ export function index(req, res) {
 
 // Gets a single League from the DB
 export function show(req, res) {
-    return League.findById(req.params.id).populate('members.user_id').exec()
+    return League.findById(req.params.id).exec()
         .then(handleEntityNotFound(res))
         .then(respondWithResult(res))
         .catch(handleError(res));
@@ -94,11 +96,14 @@ export function create(req, res) {
 
 // Updates an existing League in the DB
 export function update(req, res) {
+
     if (req.body._id) {
         delete req.body._id;
     }
+
     return League.findById(req.params.id).exec()
-        .then(handleEntityNotFound(res))
+
+    .then(handleEntityNotFound(res))
         .then(saveUpdates(req.body))
         .then(respondWithResult(res))
         .catch(handleError(res));

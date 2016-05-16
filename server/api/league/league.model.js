@@ -13,12 +13,17 @@ var LeagueSchema = new mongoose.Schema({
     owner_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     /*members: mongoose.Schema.Types.Mixed,*/
 
-    members: [{
-        user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
-
-    }],
-
+    members: mongoose.Schema.Types.Mixed,
+    /*    [{
+            user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+            validated: {
+                type: Boolean,
+                default: false
+            }
+        }],*/
     active: Boolean
+}, {
+    strict: false
 });
 
 export default mongoose.model('League', LeagueSchema);
