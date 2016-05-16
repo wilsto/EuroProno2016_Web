@@ -58,6 +58,17 @@
                             <a class="btn btn-danger btn-xs" ng-bootbox-confirm="Are you sure you want to delete this?" ng-bootbox-confirm-action="vm.delete(trad, $index)"><i class="icon-trash"></i></a>
                         </div>
                     </li>
+                    <li class="list-group-item">
+                        <div class="trad-info">
+                            <span>Page</span>
+                            <span><div class="countryflags England"></div> <strong>Anglais</strong><small> (RealPage)</small></span>
+                            <span><div class="countryflags France"></div> Francais</span>
+                            <span><div class="countryflags Germany"></div> deutsch</span>
+                            <span><div class="countryflags Spain"></div> espanol</span>
+                            <a ng-click="vm.addTrad()" class="btn btn-success btn-xs"><i class="icon-plus"></i> Add</a>
+                            <a ng-click="vm.showFilter()" class="btn btn-default btn-xs"><i class="iconmoon-filter"></i></a>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>
