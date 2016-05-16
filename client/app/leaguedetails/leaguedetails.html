@@ -1,0 +1,48 @@
+<header role="banner" class="ep2016-header">
+    <div class="container navbar-container">
+        <!-- <div class="row"> -->
+        <navbar></navbar>
+        <!-- </div> -->
+    </div>
+</header>
+<div class="bg_default">
+    <div class="container wrap-container" id='leagueDetContentContainer'>
+        <div class="row">
+            <div class="col-sm-12">
+                <img src="assets/images/league_bg.jpg" alt="" style="width: 100%;height: auto;margin-bottom:30px;">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="League" class="leaguedetContent">
+                    <div class="leagueContentToolTip">
+                        <span class="title" translate>{{vm.leaguesdet.name}}</span>
+                    </div>
+                    <table class="table table-responsive table-hover">
+                        <thead>
+                            <tr>
+                                <th><a href='#' ng-click="sort( 'members.name'); ">Members</a></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="league" ng-repeat="member in vm.members ">
+                                <td> {{member.user_id.name}}</td>
+                                <td> {{member.status}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="btn btn-primary" type="submit">Join League</button>
+                    <!-- fin auto -->
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <footer></footer>
+    </div>
+</div>

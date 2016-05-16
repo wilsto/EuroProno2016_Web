@@ -47,13 +47,10 @@
                                 <td> {{league.description}} </td>
                                 <td> {{league.owner_id.name}}</td>
                                 <td>
-                                    <a href="#" ng-click="vm.openList(league._id)"><i class="glyphicon glyphicon-th-list"> </a></td>
+                                    <a href="/leaguedetails/{{league._id}}"><i class="glyphicon glyphicon-th-list"> </a></td>
                             </tr>
                         </tbody>
                     </table>
-                    <div ng-show="vm.myList">
-                        Liste des participants {{league._id}}
-                    </div>
                     <!-- fin auto -->
                 </div>
             </div>
