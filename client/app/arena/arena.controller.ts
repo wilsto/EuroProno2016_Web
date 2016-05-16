@@ -4,7 +4,8 @@
     class ArenaComponent {
 
         menu = [
-            { name: 'Arena', href: '/', section: '', ngclick: '', class: 'active', a_class: 'nothing' },
+            { name: 'Arena', href: '/arena', section: '', ngclick: '', class: 'active', a_class: 'nothing' },
+            { name: 'Prono', href: '/prono', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' },
             { name: 'Leagues', href: '/league', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' },
             { name: 'Players', href: '/player', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' }
         ];

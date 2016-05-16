@@ -9,7 +9,7 @@
     <div class="container wrap-container">
         <div class="row">
             <div class="col-sm-12">
-                <img src="assets/images/prono_bg.jpg" alt="" style="width: 100%;height: auto;margin-bottom:30px;">
+                <img src="assets/images/stades/prono_bg.jpg" alt="" style="width: 100%;height: auto;margin-bottom:30px;">
             </div>
         </div>
         <div class="save" ng-class="vm.isLoggedIn() ? 'bg-default' : 'bg-danger'">
@@ -39,11 +39,11 @@
                                         <div class="countryflags  {{match.team1}}"></div>
                                     </td>
                                     <td class="score">
-                                        <input type="text" class="score1" size="1" maxlength="2" ng-model="match.score1" ng-change="vm.scoreChange(match, group.name)" ng-disabled="!vm.isLoggedIn()" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                                        <input type="text" class="score1" size="1" maxlength="2" ng-model="match.score1" ng-change="vm.scoreChange(match, group.name)" ng-disabled="!vm.isLoggedIn()">
                                         <div class="tooltipdate"> {{ match.typematch}}
                                             <span class="tooltipdatetext">{{ match.date | date : 'MMM d, HH:mm' : timezone}} </span>
                                         </div>
-                                        <input type="text" class="score2" size="1" maxlength="2" ng-model="match.score2" ng-change="vm.scoreChange(match, group.name)" ng-disabled="!vm.isLoggedIn()" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                                        <input type="text" class="score2" size="1" maxlength="2" ng-model="match.score2" ng-change="vm.scoreChange(match, group.name)" ng-disabled="!vm.isLoggedIn()">
                                     </td>
                                     <td class="flag flag2">
                                         <div class="countryflags  {{match.team2}}"></div>
