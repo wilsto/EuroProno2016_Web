@@ -30,7 +30,7 @@
                             <span ng-switch on="info.image.substr(0,4)">
                             	<img ng-switch-when="http" class="img-news" ng-src="{{ info.image }}">
                             	<img ng-switch-when="http" ng-show="vm.focused[$index]!==1" style="position:absolute;top:5px;left:42px" src="assets/images/External-Links-icon.png">
-                            	<img ng-switch-default class="img-news" ng-src="assets/images/news/{{info.image}}">
+                            	<img ng-switch-default class="img-news" ng-src="assets/images/fixed/news/{{info.image}}">
                             </span>
                             <span ng-show="vm.focused[$index]!==1" class="news_span">{{info.date |date:'mediumDate'}}</span>
                             <span ng-show="vm.focused[$index]!==1" class="news_span">{{info.title}}</span>

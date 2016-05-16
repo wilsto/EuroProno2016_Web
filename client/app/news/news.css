@@ -10,7 +10,7 @@
 }
 
 .infoGroup {
-    background: url(/assets/images/news_group.png) no-repeat;
+    background: url(/assets/images/fixed/news_group.png) no-repeat;
     border-top: 1px solid #00306B;
     -webkit-border-top-right-radius: 10px;
     -moz-border-radius-topright: 10px;
@@ -22,7 +22,7 @@
 }
 
 .infoGroupN {
-    background: url(/assets/images/news_group.png) no-repeat;
+    background: url(/assets/images/fixed/news_group.png) no-repeat;
     display: block;
     padding: 5px;
     color: white;
@@ -31,7 +31,7 @@
 }
 
 .bGroup {
-    background: url(/assets/images/news_group.png) no-repeat;
+    background: url(/assets/images/fixed/news_group.png) no-repeat;
     box-shadow: 1px 3px 5px 1px rgba(0, 0, 0, 0.7);
     display: block;
     padding: 5px;

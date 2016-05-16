@@ -28,7 +28,8 @@
                                     <uib-slide ng-repeat="info in vm.typFives " index="info.id" ng-switch on="info.image.substr(0,4)">
                                         <a ng-href="{{info.url}}" target="_blank">
                                             <img ng-switch-when="http" src="{{info.image}}" style="max-height:300px;">
-                                            <img ng-switch-default ng-src="assets/images/news/{{info.image}}" style="margin:auto;max-height:300px;max-height:300px;">
+                                            <img ng-switch-default ng-src="assets/images/fixed/news
+/{{info.image}}" style="margin:auto;max-height:300px;max-height:300px;">
                                             <div class="carousel-caption">
                                                 <h4>{{info.title}}</h4>
                                                 <p>{{info.info | translate}}</p>
@@ -41,7 +42,7 @@
                                 <div class="infoGroupN">News Competition</div>
                                 <div class="row fondnewsprono myHeightActu">
                                     <div class="col-sm-12 col-md-12 fondnews " ng-repeat="info in vm.filteredNewsTwo ">
-                                        <img class="imgNewsS viewportNews" src=" " ng-src="assets/images/news/{{info.image}} " />
+                                        <img class="imgNewsS viewportNews" src=" " ng-src="assets/images/fixed/news/{{info.image}} " />
                                         <div class="viewportNews"><strong>{{info.title | translate}}</strong>
                                             <small style="float:right"> {{info.date | date:'mediumDate'}}</small>
                                             <br/>
@@ -69,7 +70,7 @@
                             <div ng-repeat="info in vm.filteredNewsOne">
                                 <div class="transbox">
                                     <span class="arrow" style=""></span>
-                                    <img class="imgNewsS viewportNews" src="" ng-src="assets/images/news/{{info.image}}">
+                                    <img class="imgNewsS viewportNews" src="" ng-src="assets/images/fixed/news/{{info.image}}">
                                     <div class="viewportNews">
                                         <strong>{{info.title | translate}}</strong>
                                         <small style="float:right"> {{info.date | date:'mediumDate'}}</small>
