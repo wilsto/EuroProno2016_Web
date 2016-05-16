@@ -347,8 +347,8 @@ module.exports = function(grunt) {
                     collapseBooleanAttributes: true,
                     collapseWhitespace: true,
                     removeAttributeQuotes: true,
+                    removeComments: true,
                     removeEmptyAttributes: true,
-                    removeRedundantAttributes: true,
                     removeScriptTypeAttributes: true,
                     removeStyleLinkTypeAttributes: true
                 },
