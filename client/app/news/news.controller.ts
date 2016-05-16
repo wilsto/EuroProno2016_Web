@@ -28,60 +28,61 @@
         }
 
         $onInit() {
-                console.log('init');
-                // on récupère les pronos du joueur sinon on crèe le squelette
-                this.$http.get('/api/newss').then(response => {
-                    try {
-                        this.news = _.sortBy(response.data, 'date').reverse();
+            console.log('init');
+            // on récupère les pronos du joueur sinon on crèe le squelette
+            this.$http.get('/api/newss').then(response => {
+                try {
+                    this.news = _.sortBy(response.data, 'date').reverse();
 
-                        // type 1
-                        this.typOnes = _.filter(this.news, function(o) {
-                            return o.type === 1;
-                        });
+                    // type 1
+                    this.typOnes = _.filter(this.news, function(o) {
+                        return o.type === 1;
+                    });
 
-                        this.totalOne = this.typOnes.length;
+                    this.totalOne = this.typOnes.length;
 
-                        var paginOne = [];
-                        var it;
-                        for (it = 0; it < this.totalOne / this.itemsPerPageOne; it++) {
-                            // Ceci sera exécuté 5 fois
-                            // la variable "pas" ira de 0 à 4
-                            paginOne.push({ "numpag": it + 1 });
-                        }
-                        this.paginOne = paginOne;
-                        // type 2
-                        this.typTwos = _.filter(this.news, function(o) {
-                            return o.type === 2;
-                        });
-                        this.totalTwo = this.typTwos.length;
-                        var paginTwo = [];
-                        var it;
-                        for (it = 0; it < this.totalTwo / this.itemsPerPageTwo; it++) {
-                            // Ceci sera exécuté 5 fois
-                            // la variable "pas" ira de 0 à 4
-                            paginTwo.push({ "numpag": it + 1 });
-                        }
-                        this.paginTwo = paginTwo;
-
-                        // type 5
-                        this.typFives = _.filter(this.news, function(o) {
-                            return o.type === 5;
-                        });
-                        // création des groupes à partir des infos news
-                        this.types = _.sortBy(_.uniq(_.map(this.news, element => {
-                            return { type: element.type, order: element.type, group: element.group };
-                        }), 'type'), 'order');
-
-                        this.pageChanged(1, 1);
-                        this.pageChanged(1, 2);
-                        this.pageCount();
-
-                    } catch (err) {
-                        console.log('vide');
+                    var paginOne = [];
+                    var it;
+                    for (it = 0; it < this.totalOne / this.itemsPerPageOne; it++) {
+                        // Ceci sera exécuté 5 fois
+                        // la variable "pas" ira de 0 à 4
+                        paginOne.push({ "numpag": it + 1 });
                     }
-                });
-            }
-            // create news 
+                    this.paginOne = paginOne;
+                    // type 2
+                    this.typTwos = _.filter(this.news, function(o) {
+                        return o.type === 2;
+                    });
+                    this.totalTwo = this.typTwos.length;
+                    var paginTwo = [];
+                    var it;
+                    for (it = 0; it < this.totalTwo / this.itemsPerPageTwo; it++) {
+                        // Ceci sera exécuté 5 fois
+                        // la variable "pas" ira de 0 à 4
+                        paginTwo.push({ "numpag": it + 1 });
+                    }
+                    this.paginTwo = paginTwo;
+
+                    // type 5
+                    this.typFives = _.filter(this.news, function(o) {
+                        return o.type === 5;
+                    });
+                    // création des groupes à partir des infos news
+                    this.types = _.sortBy(_.uniq(_.map(this.news, element => {
+                        return { type: element.type, order: element.type, group: element.group };
+                    }), 'type'), 'order');
+
+                    this.pageChanged(1, 1);
+                    this.pageChanged(1, 2);
+                    this.pageCount();
+
+                } catch (err) {
+                    console.log('vide');
+                }
+            });
+        }
+
+        // 
         createNews(form) {
             var d = new Date();
             var n = d.toISOString();
