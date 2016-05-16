@@ -1,0 +1,15 @@
+.form-news {
+    font-size: 16px;
+    width: 90%;
+}
+
+.img-news {
+    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+}
+
+.news_span {
+    width: 25%;
+    margin-left: 15px;
+}

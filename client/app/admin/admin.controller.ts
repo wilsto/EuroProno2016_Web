@@ -6,8 +6,9 @@
     class AdminController {
 
         menu = [
-            { name: 'Home', href: '/', section: '', ngclick: '', class: 'active', a_class: 'nothing' },
-            { name: 'Traduction', href: '/traduction', section: '', ngclick: '', class: 'active', a_class: 'nothing' }
+            { name: 'Users', href: '/admin', section: '', ngclick: '', class: 'active', a_class: 'nothing' },
+            { name: 'News', href: '/newsedit', section: '', ngclick: '', class: '', a_class: 'nothing' },
+            { name: 'Traduction', href: '/traduction', section: '', ngclick: '', class: '', a_class: 'nothing' }
         ];
 
         constructor(User, $http, $ngBootbox) {

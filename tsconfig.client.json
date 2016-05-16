@@ -32,6 +32,8 @@
         "client/app/match/match.router.ts",
         "client/app/news/news.controller.ts",
         "client/app/news/news.ts",
+        "client/app/newsedit/newsedit.controller.ts",
+        "client/app/newsedit/newsedit.ts",
         "client/app/prono/prono.controller.ts",
         "client/app/prono/prono.ts",
         "client/app/regulation/regulation.controller.ts",

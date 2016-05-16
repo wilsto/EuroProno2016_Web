@@ -1,4 +1,4 @@
-/// <reference path="../../typings/tsd.d.ts" />
+/// <reference path='../../typings/tsd.d.ts' />
 'use strict';
 (function() {
 
@@ -28,81 +28,63 @@
         }
 
         $onInit() {
-                console.log('init');
-                // on récupère les pronos du joueur sinon on crèe le squelette
-                this.$http.get('/api/newss').then(response => {
-                    try {
-                        this.news = _.sortBy(response.data, 'date').reverse();
+            console.log('init');
+            this.loadNews();
+        }
 
-                        // type 1
-                        this.typOnes = _.filter(this.news, function(o) {
-                            return o.type === 1;
-                        });
+        loadNews() {
+            this.$http.get('/api/newss').then(response => {
+                this.news = _.sortBy(response.data, 'date').reverse();
 
-                        this.totalOne = this.typOnes.length;
-
-                        var paginOne = [];
-                        var it;
-                        for (it = 0; it < this.totalOne / this.itemsPerPageOne; it++) {
-                            // Ceci sera exécuté 5 fois
-                            // la variable "pas" ira de 0 à 4
-                            paginOne.push({ "numpag": it + 1 });
-                        }
-                        this.paginOne = paginOne;
-                        // type 2
-                        this.typTwos = _.filter(this.news, function(o) {
-                            return o.type === 2;
-                        });
-                        this.totalTwo = this.typTwos.length;
-                        var paginTwo = [];
-                        var it;
-                        for (it = 0; it < this.totalTwo / this.itemsPerPageTwo; it++) {
-                            // Ceci sera exécuté 5 fois
-                            // la variable "pas" ira de 0 à 4
-                            paginTwo.push({ "numpag": it + 1 });
-                        }
-                        this.paginTwo = paginTwo;
-
-                        // type 5
-                        this.typFives = _.filter(this.news, function(o) {
-                            return o.type === 5;
-                        });
-                        // création des groupes à partir des infos news
-                        this.types = _.sortBy(_.uniq(_.map(this.news, element => {
-                            return { type: element.type, order: element.type, group: element.group };
-                        }), 'type'), 'order');
-
-                        this.pageChanged(1, 1);
-                        this.pageChanged(1, 2);
-                        this.pageCount();
-
-                    } catch (err) {
-                        console.log('vide');
-                    }
+                // type 1
+                this.typOnes = _.filter(this.news, function(o) {
+                    return o.type === 1;
                 });
-            }
-            // create news 
+
+                this.totalOne = this.typOnes.length;
+
+                var paginOne = [];
+                var it;
+                for (it = 0; it < this.totalOne / this.itemsPerPageOne; it++) {
+                    // Ceci sera exécuté 5 fois
+                    // la variable 'pas' ira de 0 à 4
+                    paginOne.push({ 'numpag': it + 1 });
+                }
+                this.paginOne = paginOne;
+                // type 2
+                this.typTwos = _.filter(this.news, function(o) {
+                    return o.type === 2;
+                });
+                this.totalTwo = this.typTwos.length;
+                var paginTwo = [];
+                for (it = 0; it < this.totalTwo / this.itemsPerPageTwo; it++) {
+                    // Ceci sera exécuté 5 fois
+                    // la variable 'pas' ira de 0 à 4
+                    paginTwo.push({ 'numpag': it + 1 });
+                }
+                this.paginTwo = paginTwo;
+
+                // type 5
+                this.typFives = _.filter(this.news, function(o) {
+                    return o.type === 5;
+                });
+                // création des groupes à partir des infos news
+                this.types = _.sortBy(_.uniq(_.map(this.news, element => {
+                    return { type: element.type, order: element.type, group: element.group };
+                }), 'type'), 'order');
+
+                this.pageChanged(1, 1);
+                this.pageChanged(1, 2);
+                this.pageCount();
+            });
+        }
+
+        // create news 
         createNews(form) {
-            var d = new Date();
-            var n = d.toISOString();
-            console.log(form.$valid);
-            if (form.$valid) {
-
-                this.$http.post('/api/newss', {
-                    type: this.newinfo.type,
-                    date: n,
-                    title: this.newinfo.title,
-                    info: this.newinfo.info,
-                    image: this.newinfo.image
-                }).then(response => {
-                    this.newinfo.type = '';
-                    this.newinfo.title = '';
-                    this.newinfo.info = '';
-                    this.newinfo.image = '';
-
-
-                });
-            }
+            this.$http.post('/api/newss', this.newinfo).then(response => {
+                this.loadNews();
+                this.newinfo = {};
+            });
         }
 
         pageCount() {
@@ -139,17 +121,6 @@
                 console.log('delete', response);
             });
         }
-
-        showDetail() {
-            console.log("show details");
-            if (this.myVal === false) {
-                this.myVal = true;
-            } else {
-                this.myVal = false;
-            }
-
-        }
-
     }
 
     angular.module('euroProno2016WebApp')
