@@ -24,8 +24,8 @@
                             <div ng-repeat="info in vm.filteredNewsOne">
                                 <div class="transbox">
                                     <div ng-switch on="info.image.substr(0,4)">
-                                        <img class="imgNewsS img-circle" ng-switch-when="http" src="" ng-src="{{info.image}}">
-                                        <img class="imgNewsS img-circle" ng-switch-default src="" ng-src="assets/images/news/{{info.image}}"> {{info.title | translate}}
+                                        <img class="imgNewsS img-circle" ng-switch-when="http" ng-src="{{info.image}}">
+                                        <img class="imgNewsS img-circle" ng-switch-default ng-src="assets/images/news/{{info.image}}"> {{info.title | translate}}
                                     </div>
                                     <p> {{info.info | translate}}</p>
                                 </div>
@@ -41,7 +41,7 @@
                     <div class="col-sm-12 col-md-4">
                         <uib-carousel active="active" interval="4000" no-wrap="noWrapSlides">
                             <uib-slide ng-repeat="info in vm.typFives " index="info.id" ng-switch on="info.image.substr(0,4)">
-                                <img ng-switch-when="http" src="{{info.image}}" style="margin:auto;">
+                                <img ng-switch-when="http" ng-src="{{info.image}}" style="margin:auto;">
                                 <img ng-switch-default ng-src="assets/images/news/{{info.image}}" style="margin:auto;">
                                 <div class="carousel-caption">
                                     <h4>{{info.title}}</h4>
@@ -58,8 +58,8 @@
                         <div class="row  ">
                             <div class="col-sm-12 col-md-12  fondnews" ng-repeat="info in vm.filteredNewsTwo">
                                 <div class="col-sm-4 col-md-4 " style="padding-left:0px;" ng-switch on="info.image.substr(0,4)">
-                                    <img class="imgNewsS" ng-switch-when="http" src="" ng-src="{{info.image}}">
-                                    <img class="imgNewsS" ng-switch-default src="" ng-src="assets/images/news/{{info.image}}" />
+                                    <img class="imgNewsS" ng-switch-when="http" ng-src="{{info.image}}">
+                                    <img class="imgNewsS" ng-switch-default ng-src="assets/images/news/{{info.image}}" />
                                 </div>
                                 <div><strong>{{info.title | translate}}</strong>
                                     <ol ng-if="info.info.length < 100">{{info.info | translate}}</ol>
@@ -81,8 +81,8 @@
                         <div class="row" ng-if="info.type===3 ">
                             <span class="infoGroup "> Link </span>
                             <a href="{{info.info}} " ng-switch on="info.image.substr(0,4)">
-                                <img class="imgNewsL" ng-switch-when="http" src="{{info.image}}">
-                                <img class="imgNewsL" ng-switch-default src="assets/images/news/{{info.image}}">
+                                <img class="imgNewsL" ng-switch-when="http" ng-src="{{info.image}}">
+                                <img class="imgNewsL" ng-switch-default ng-src="assets/images/news/{{info.image}}">
                             </a>
                             <a href="{{info.info}} " class="bGroup " target="_blank "><span class="glyphicon glyphicon-play ">  {{info.title | translate}} </span></a>
                         </div>
@@ -91,8 +91,8 @@
                             <div class="row infoNews ">
                                 <span class="infoGroupN "> Team Info </span>
                                 <span ng-switch on="info.image.substr(0,4)">
-                                   <img class="imgNews"  ng-switch-when="http" src="{{info.image}}">
-                                   <img class="imgNews" ng-switch-default src="assets/images/news/{{info.image}}">
+                                   <img class="imgNews"  ng-switch-when="http" ng-src="{{info.image}}">
+                                   <img class="imgNews" ng-switch-default ng-src="assets/images/news/{{info.image}}">
                                 </span>
                                 <strong>{{info.title | translate}}</strong>
                                 <div>{{info.info | translate}}</div>
