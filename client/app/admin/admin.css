@@ -29,6 +29,20 @@
     text-decoration: none;
 }
 
+.user-list li a {
+    margin-left: 10px;
+    height: 35px;
+}
+
 .navbar-admin {
     color: #06345F;
+}
+
+.user-info span {
+    display: inline-block;
+}
+
+.user_auto_span {
+    width: 15%;
+    margin-left: 10px;
 }

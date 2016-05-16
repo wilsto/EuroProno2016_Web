@@ -1,8 +1,5 @@
-.match {
-    padding-left: 0!important;
-    padding-right: 0!important;
-    padding-top: 15px!important;
-    padding-bottom: 15px!important;
+.matchBorder {
+    padding: 15px 0 15px 0!important;
 }
 
 .circle {

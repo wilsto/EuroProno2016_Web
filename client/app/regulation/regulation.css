@@ -1,0 +1,77 @@
+/* Quotes */
+
+.mom_quote:before {
+    display: none;
+}
+
+.mom_quote {
+    font-size: 15px;
+    background-image: none;
+    position: relative;
+    background: #D1D1D1;
+    padding: 20px;
+    padding-top: 0;
+    border: 0 solid #ffa507;
+    border-left-width: 4px;
+    margin: 0;
+    margin-bottom: 20px;
+    font-style: normal;
+    min-height: 100px;
+    border-left-color: #E07805;
+    color: #000000;
+}
+
+.mom_quote *:last-child {
+    margin-bottom: 0;
+}
+
+.mom_quote .quote-arrow {
+    position: absolute;
+    height: 0;
+    width: 0;
+    left: -1px;
+    top: 50%;
+    margin-top: -7px;
+    border-width: 7px;
+    border-color: #ffa507;
+    border-left-color: #E07805;
+    border-style: solid;
+    border-top-color: rgba(0, 0, 0, 0) !important;
+    border-bottom-color: rgba(0, 0, 0, 0) !important;
+    border-right-width: 0;
+}
+
+.quote_right {
+    float: right;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    width: 240px;
+    margin-top: 5px;
+}
+
+.quote_left {
+    float: left;
+    margin-bottom: 10px;
+    margin-right: 20px;
+    width: 240px;
+    margin-top: 5px;
+}
+
+img.viewport {
+    position: absolute;
+    top: 50%;
+    margin-top: -45px;
+    /* = image height div 2 */
+    height: 90px;
+}
+
+span.viewport {
+    padding-top: 10px;
+    margin-left: 120px;
+    /* = image width + 8 */
+    display: block;
+}
+
+.regulation p {
+    text-align: justify;
+}

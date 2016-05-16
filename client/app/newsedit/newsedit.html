@@ -1,0 +1,70 @@
+<header role="banner" class="ep2016-header">
+    <div class="container navbar-container">
+        <!-- <div class="row"> -->
+        <navbar></navbar>
+        <!-- </div> -->
+    </div>
+</header>
+<div class="bg_default">
+    <div class="container wrap-container">
+        <div class="row">
+            <div class="col-sm-12">
+                <img src="assets/images/admin_bg.jpg" alt="" style="width: 100%;height: auto;margin-bottom:30px;">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- BEGIN LOGIN FORM -->
+                <ul class="list-group user-list">
+                    <li class="list-group-item">
+                        <div class="user-info ">
+                            <p style="display: inline-block;width:80px;margin-left: 30px;">Filter News </p>
+                            <input type="text" class="form-control" style=" display: inline-block;width:75%;margin-left: 30px;" ng-model="vm.search.$">
+                            <span class="pull-right">
+                                <a ng-click="vm.addUser()" class="btn btn-success "><i class="icon-plus"></i> Add</a>
+                            </span>
+                        </div>
+                    </li>
+                    <li class="list-group-item" ng-repeat="info in vm.news | filter:vm.search">
+                        <div class="user-info " ng-class="{'expandable':vm.focused[$index]===1,'trad-border':vm.focused[$index]===1}" ng-init="vm.focused[$index]=0">
+                            <span ng-switch on="info.image.substr(0,4)">
+                            	<img ng-switch-when="http" class="img-news" ng-src="{{ info.image }}">
+                            	<img ng-switch-when="http" ng-show="vm.focused[$index]!==1" style="position:absolute;top:5px;left:42px" src="assets/images/External-Links-icon.png">
+                            	<img ng-switch-default class="img-news" ng-src="assets/images/fixed/news/{{info.image}}">
+                            </span>
+                            <span ng-show="vm.focused[$index]!==1" class="news_span">{{info.date |date:'mediumDate'}}</span>
+                            <span ng-show="vm.focused[$index]!==1" class="news_span">{{info.title}}</span>
+                            <span ng-show="vm.focused[$index]===1">
+                                <label>Title</label>
+                            	<input type="text" class="form-control form-news" ng-model="info.title" required ng-change="vm.newsChange(info)">
+                            </span>
+                            <span ng-show="vm.focused[$index]===1">
+                                <label>Type</label>
+                                <select class="form-control form-news" ng-model="info.type" required ng-change="vm.newsChange(info)" ng-options="i.id as i.name for i in vm.types">
+                                </select>
+                            </span>
+                            <span ng-show="vm.focused[$index]===1">
+                                <label>Texte</label>
+                            	<textarea class="form-control form-news " ng-model="info.info" required ng-change="vm.newsChange(info)"></textarea> 
+                            </span>
+                            <span ng-show="vm.focused[$index]===1">
+                                <label>Url</label>
+                                <input type="text" name="url" class="form-control form-news" ng-model="info.url" required ng-change="vm.newsChange(info)" >
+                            </span>
+                            <span ng-show="vm.focused[$index]===1">
+                                <label>Image</label>
+                                <input type="text " name="image" class="form-control form-news" ng-model="info.image" required ng-change="vm.newsChange(info)">
+                            </span>
+                        </div>
+                        <a ng-click="vm.save(info) " class="btn btn-xs first " ng-if="vm.focused[$index]===1 " ng-class="info.active ? 'btn-primary': 'btn-warning' "><i class="icon-cloud-upload "></i> Save</a>
+                        <a class="btn btn-danger " ng-if="vm.focused[$index]===1 " ng-bootbox-confirm="Are you sure you want to delete this info ? <br/>
+                            <br/><b>{{ info.date}}</b> : {{ info.title}}" ng-bootbox-confirm-action="vm.delete(info, $index)"><i class="icon-trash"></i></a>
+                        <a ng-click="vm.focused[$index]=1 " class="btn btn-default " ng-if="vm.focused[$index]===0 "><i class="icon-size-fullscreen "></i></a>
+                        <a ng-click="vm.focused[$index]=0 " class="btn btn-default " ng-if="vm.focused[$index]===1 "><i class="icon-size-actual "></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <footer></footer>
+    </div>
+</div>

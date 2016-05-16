@@ -15,72 +15,43 @@
         <div class="row">
             <div class="col-sm-12">
                 <!-- BEGIN LOGIN FORM -->
-                <p>Enter name, mail or leagues to filter.</p>
-                <input type="text" autofocus class="form-control">
-                <hr>
                 <ul class="list-group user-list">
-                    <li class="list-group-item" ng-repeat="user in vm.users">
-                        <div class="user-info">
-                            <img class="img-circle pull-right" width="50" height="50" ng-src="{{avatarUrl !== undefined && avatarUrl || 'assets/images/inconnu.gif'}}">
-                            <!-- <img alt="{{user.name}}" ng-src="assets/images/avatars/{{user._id}}.png" style="width:25px" class="img-circle" err-src="assets/images/avatars/avatar.png" /> -->
-                            <strong>{{user.name}}</strong>
-                            <br>
-                            <span class="text-muted">{{user.email}}</span>
+                    <li class="list-group-item">
+                        <div class="user-info ">
+                            <p style="display: inline-block;width:80px;margin-left: 30px;">Filter Users </p>
+                            <input type="text" class="form-control" style=" display: inline-block;width:75%;margin-left: 30px;" ng-model="vm.search.$">
+                            <span class="pull-right">
+                                <a ng-click="vm.addUser()" class="btn btn-success "><i class="icon-plus"></i> Add</a>
+                            </span>
                         </div>
-                        <a ng-click="vm.delete(user)" class="trash"><span class="icon-trash"></span></a>
+                    </li>
+                    <li class="list-group-item" ng-repeat="user in vm.users | filter:vm.search">
+                        <div class="user-info " ng-class="{'expandable':vm.focused[$index]===1,'trad-border':vm.focused[$index]===1}" ng-init="vm.focused[$index]=0">
+                            <span><img class="img-circle" width="50" height="50" ng-src="{{avatarUrl !== undefined && avatarUrl || 'assets/images/inconnu.gif'}}"></span><span class="user_auto_span"><strong> <input type="text" class="form-control form-trad" ng-model="user.name"  ng-change="vm.userChange(user)"></strong></span>
+                            <span class="text-muted"><input type="text " class="form-control form-trad " ng-model="user.email "  ng-change="vm.userChange(user) "></span>
+                            <span style="width:110px;">
+                                <select class="form-control form-trad" ng-model="user.role" ng-change="vm.tradChange(trad)">
+                                  <option value="user">user</option>
+                                  <option value="admin">admin</option>
+                                </select>
+                            </span>
+                            <span style="width:80px;">                                <select class="form-control form-trad" ng-model="user.lang" ng-change="vm.tradChange(trad)">
+                                  <option value="de">de</option>
+                                  <option value="en">en</option>
+                                  <option value="es">es</option>
+                                  <option value="fr">fr</option>
+                                </select></span>
+                            <span style="width:80px;">{{user.pronoStatus}}</span>
+                        </div>
+                        <a ng-click="vm.save(user) " class="btn btn-xs first " ng-if="vm.focused[$index]===1 " ng-class="user.active ? 'btn-primary': 'btn-warning' "><i class="icon-cloud-upload "></i> Save</a>
+                        <a class="btn btn-danger " ng-if="vm.focused[$index]===1 " ng-bootbox-confirm="Are you sure you want to delete this user ? <br/>
+                            <br/><b>{{ user.name}}</b> : {{ user.email}}" ng-bootbox-confirm-action="vm.delete(user, $index)"><i class="icon-trash"></i></a>
+                        <a ng-click="vm.focused[$index]=1 " class="btn btn-default " ng-if="vm.focused[$index]===0 "><i class="icon-size-fullscreen "></i></a>
+                        <a ng-click="vm.focused[$index]=0 " class="btn btn-default " ng-if="vm.focused[$index]===1 "><i class="icon-size-actual "></i></a>
                     </li>
                 </ul>
             </div>
         </div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
         <footer></footer>
     </div>
 </div>

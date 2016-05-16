@@ -10,9 +10,10 @@
         bg = new Audio('assets/audio/bg.mp3');
 
         menu = [
-            { name: 'Home', href: '#', section: 'home', ngclick: '', class: 'active', a_class: 'nothing' },
-            { name: 'What is ep\'16', href: '#', section: 'services', ngclick: '', class: 'nothing', a_class: 'nothing' },
-            { name: 'About Us', href: '#', section: 'about', ngclick: '', class: 'nothing', a_class: 'nothing' }
+            { name: 'Home', href: '/', section: '', ngclick: '', class: 'active', a_class: 'nothing' },
+            { name: 'Euro2016', href: '/news', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' },
+            { name: 'Prono', href: '/prono', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' },
+            { name: 'Arena', href: '/arena', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' }
         ];
 
         constructor($http, $scope, socket, Auth) {

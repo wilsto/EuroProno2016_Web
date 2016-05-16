@@ -1,1 +1,96 @@
-<div>This is the news view.</div>
+<header role="banner" class="ep2016-header">
+    <div class="container navbar-container">
+        <!-- <div class="row"> -->
+        <navbar></navbar>
+        <!-- </div> -->
+    </div>
+</header>
+<div class="bg_default">
+    <div class="container wrap-container" id='newsContentContainer'>
+        <!-- haut page -->
+        <div class="row">
+            <div class="col-sm-12">
+                <img src="assets/images/ball_news.png" alt="" style="max-width: 100%;height: auto;margin-bottom:30px;">
+            </div>
+        </div>
+        <div>
+            <a href="/newsedit" target="_blank" ng-if="nav.isAdmin()" style="float:right;padding-right:15px;font-weight:bold">Edit News</a>
+        </div>
+        <!-- contenu page -->
+        <div class="userStats ">
+            <div class="newsall ">
+                <div class="row" style="margin-top:15px">
+                    <!-- type 5 -->
+                    <div class="col-sm-12 col-md-6">
+                        <div class="row">
+                            <div class="col-sm-12 carousel">
+                                <uib-carousel active="active" interval="4000" no-wrap="noWrapSlides">
+                                    <uib-slide ng-repeat="info in vm.typFives " index="info.id" ng-switch on="info.image.substr(0,4)">
+                                        <a ng-href="{{info.url}}" target="_blank">
+                                            <img ng-switch-when="http" src="{{info.image}}" style="max-height:300px;">
+                                            <img ng-switch-default ng-src="assets/images/fixed/news
+/{{info.image}}" style="margin:auto;max-height:300px;max-height:300px;">
+                                            <div class="carousel-caption">
+                                                <h4>{{info.title}}</h4>
+                                                <p>{{info.info | translate}}</p>
+                                            </div>
+                                        </a>
+                                    </uib-slide>
+                                </uib-carousel>
+                            </div>
+                            <div class="col-sm-12 " style="margin-top:35px">
+                                <div class="infoGroupN">News Competition</div>
+                                <div class="row fondnewsprono myHeightActu">
+                                    <div class="col-sm-12 col-md-12 fondnews " ng-repeat="info in vm.filteredNewsTwo ">
+                                        <img class="imgNewsS viewportNews" src=" " ng-src="assets/images/fixed/news/{{info.image}} " />
+                                        <div class="viewportNews"><strong>{{info.title | translate}}</strong>
+                                            <small style="float:right"> {{info.date | date:'mediumDate'}}</small>
+                                            <br/>
+                                            <span ng-if="info.info.length < 100 ">{{info.info | translate}}</span>
+                                            <span ng-if="info.info.length > 100">
+                                                <span>{{info.info.substr(0,100)| translate}}</span>
+                                            <span ng-show="vm.myVal" class="ng-hide">{{info.info.substr(101) | translate}}</span>
+                                            <a href="" ng-click="vm.myVal = !vm.myVal" class=" glyphicon glyphicon-chevron-right "></a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row bGroup ">
+                                    <span class="tw " ng-repeat="p in vm.paginTwo ">
+                                    <a class="glyphicon glyphicon-unchecked " ng-click="vm.pageChanged(p.numpag,2) " href="# "></a>
+                                </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- type 1 -->
+                    <div class="col-sm-12 col-md-6">
+                        <div class="row fondnewsprono myHeight">
+                            <div class="infoGroupN">App EuroProno<span style="color:red">2016</span></div>
+                            <div ng-repeat="info in vm.filteredNewsOne">
+                                <div class="transbox">
+                                    <span class="arrow" style=""></span>
+                                    <img class="imgNewsS viewportNews" src="" ng-src="assets/images/fixed/news/{{info.image}}">
+                                    <div class="viewportNews">
+                                        <strong>{{info.title | translate}}</strong>
+                                        <small style="float:right"> {{info.date | date:'mediumDate'}}</small>
+                                        <br> {{info.info | translate}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="infoGroupN">
+                            <span class="tw" ng-repeat="p in vm.paginOne">
+                                    <a class="glyphicon glyphicon-unchecked" ng-click="vm.pageChanged(p.numpag,1)" href="#"></a>
+                                </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- fin row -->
+        <footer></footer>
+        <!-- fin container -->
+    </div>
+    <!-- fin bg -->
+</div>

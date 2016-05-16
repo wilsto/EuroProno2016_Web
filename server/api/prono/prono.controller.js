@@ -25,6 +25,7 @@ function respondWithResult(res, statusCode) {
 function saveUpdates(updates) {
     return function(entity) {
         var updated = _.merge(entity, updates);
+        updated.markModified('matchs');
         return updated.save()
             .then(updated => {
                 return updated;
@@ -85,6 +86,7 @@ export function showUser(req, res) {
 
 // Creates a new Prono in the DB
 export function create(req, res) {
+
     return Prono.create(req.body)
         .then(respondWithResult(res, 201))
         .catch(handleError(res));

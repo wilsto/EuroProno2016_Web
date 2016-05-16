@@ -11,7 +11,10 @@ var UserSchema = new Schema({
     name: String,
     firstname: String,
     lastname: String,
-    pronoStatus: String,
+    pronoStatus: {
+        type: String,
+        default: 'NotFilled'
+    },
     email: {
         type: String,
         lowercase: true,
@@ -27,6 +30,9 @@ var UserSchema = new Schema({
         type: String,
         default: 'user'
     },
+    lang: {
+        type: String,
+    },
     password: {
         type: String,
         required: function() {
@@ -36,6 +42,14 @@ var UserSchema = new Schema({
                 return false;
             }
         }
+    },
+    create_date: {
+        type: Date,
+        default: Date.now
+    },
+    last_connection_date: {
+        type: Date,
+        default: Date.now
     },
     provider: String,
     salt: String,

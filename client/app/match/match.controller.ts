@@ -1,4 +1,4 @@
-/// <reference path="../../../typings/tsd.d.ts" />
+/// <reference path="../../typings/tsd.d.ts" />
 'use strict';
 
 (function() {
@@ -8,10 +8,12 @@
         matchs = [];
         orderProp = 'group';
         menu = [
-            { name: 'Home', href: '/', section: '', ngclick: '', class: 'active', a_class: 'nothing' },
-            { name: 'Team', href: '/team', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' },
-            { name: 'Matchs', href: '/match', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' }
+            { name: 'News', href: '/news', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' },
+            { name: 'Regulations', href: '/regulation', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' },
+            { name: 'Matchs', href: '/match', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' },
+            { name: 'Teams', href: '/team', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' }
         ];
+
         constructor($scope, $http, $cookies, Auth) {
             this.$http = $http;
             this.loadMatchs();
@@ -30,7 +32,7 @@
 
         loadMatchs() {
             this.$http.get('api/matchs').then(response => {
-                this.allmatchs = response.data;
+                this.allmatchs = _.sortBy(response.data, ['group', 'date']);
                 this.matchs = this.filterMatch();
             });
         }
