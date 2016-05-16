@@ -17,14 +17,10 @@
             this.news = [];
             this.typOnes = [];
             this.typTwos = [];
-            this.currentPageOne = 1;
-            this.currentPageTwo = 1;
-            this.itemsPerPageOne = 2;
-            this.itemsPerPageTwo = 3;
-            this.bigTotalItems = 100;
-            this.maxSize = 5;
-            this.bigCurrentPage = 1;
-            this.myVal = false;
+            this.currentPageApp = 1;
+            this.currentPageEuro2016 = 1;
+            this.itemsPerPageApp = 8;
+            this.itemsPerPageEuro2016 = 6;
         }
 
         $onInit() {
@@ -45,7 +41,7 @@
 
                 var paginOne = [];
                 var it;
-                for (it = 0; it < this.totalOne / this.itemsPerPageOne; it++) {
+                for (it = 0; it < this.totalOne / this.itemsPerPageApp; it++) {
                     // Ceci sera exécuté 5 fois
                     // la variable 'pas' ira de 0 à 4
                     paginOne.push({ 'numpag': it + 1 });
@@ -57,7 +53,7 @@
                 });
                 this.totalTwo = this.typTwos.length;
                 var paginTwo = [];
-                for (it = 0; it < this.totalTwo / this.itemsPerPageTwo; it++) {
+                for (it = 0; it < this.totalTwo / this.itemsPerPageEuro2016; it++) {
                     // Ceci sera exécuté 5 fois
                     // la variable 'pas' ira de 0 à 4
                     paginTwo.push({ 'numpag': it + 1 });
@@ -95,21 +91,21 @@
             var itemsPerPage = 2;
             if (type === 1) {
 
-                itemsPerPage = this.itemsPerPageOne;
+                itemsPerPage = this.itemsPerPageApp;
             }
             if (type === 2) {
 
-                itemsPerPage = this.itemsPerPageTwo;
+                itemsPerPage = this.itemsPerPageEuro2016;
             }
             var begin = ((current - 1) * itemsPerPage),
                 end = begin + itemsPerPage;
 
             if (type === 1) {
-                this.currentPageOne = current;
+                this.currentPageApp = current;
                 this.filteredNewsOne = this.typOnes.slice(begin, end);
             }
             if (type === 2) {
-                this.currentPageTwo = current;
+                this.currentPageEuro2016 = current;
                 this.filteredNewsTwo = this.typTwos.slice(begin, end);
             }
 
