@@ -70,7 +70,7 @@ export function index(req, res) {
 
 // Gets a single League from the DB
 export function show(req, res) {
-    return League.findById(req.params.id).exec()
+    return League.findById(req.params.id).populate('members.user_id').exec()
         .then(handleEntityNotFound(res))
         .then(respondWithResult(res))
         .catch(handleError(res));

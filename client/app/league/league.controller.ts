@@ -9,6 +9,7 @@
             { name: 'Arena', href: '/arena', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' }
         ];
 
+
         constructor($http, Auth, $scope) {
             this.$http = $http;
             this.isLoggedIn = Auth.isLoggedIn;
@@ -31,34 +32,10 @@
             //on récupère les matchs
             this.$http.get('/api/leagues').then(responseLeagues => {
                 this.leagues = responseLeagues.data;
-
-                this.newleague = _.map(this.leagues, league => {
-                    league.owner = this.loadUser(league.owner_id);
-                    return league;
-                });
-                console.log("users news", this.newleague);
+                console.log("leagues", this.leagues);
             });
+
         }
-
-
-        loadUser(id) {
-            //on récupère les matchs
-            this.$http.get('/api/users/' + id).then(responseUsers => {
-                this.owner = responseUsers.data.name;
-                console.log("owner", this.owner);
-            });
-        }
-
-
-
-
-        // openList
-        openList(id) {
-            this.myList = true;
-            this.myId = id;
-            console.log("Leagues", id);
-        }
-
 
         // create league 
         createLeague(form) {
