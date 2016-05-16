@@ -19,6 +19,8 @@
         "client/app/admin/admin.module.ts",
         "client/app/admin/admin.router.ts",
         "client/app/app.ts",
+        "client/app/arena/arena.controller.ts",
+        "client/app/arena/arena.ts",
         "client/app/euro2016/euro2016.controller.ts",
         "client/app/euro2016/euro2016.ts",
         "client/app/league/league.controller.ts",

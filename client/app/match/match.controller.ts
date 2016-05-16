@@ -32,7 +32,7 @@
 
         loadMatchs() {
             this.$http.get('api/matchs').then(response => {
-                this.allmatchs = response.data;
+                this.allmatchs = _.sortBy(response.data, ['group', 'date']);
                 this.matchs = this.filterMatch();
             });
         }
