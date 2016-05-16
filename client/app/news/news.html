@@ -65,12 +65,18 @@
                             <div class="infoGroupN">App EuroProno<span style="color:red">2016</span></div>
                             <div ng-repeat="info in vm.filteredNewsOne">
                                 <div class="transbox">
+<<<<<<< HEAD
                                     <span class="arrow" style=""></span>
                                     <img class="imgNewsS viewportNews" src="" ng-src="assets/images/news/{{info.image}}">
                                     <div class="viewportNews">
                                         <strong>{{info.title | translate}}</strong>
                                         <small style="float:right"> {{info.date | date:'mediumDate'}}</small>
                                         <br> {{info.info | translate}}
+=======
+                                    <div ng-switch on="info.image.substr(0,4)">
+                                        <img class="imgNewsS img-circle" ng-switch-when="http" ng-src="{{info.image}}">
+                                        <img class="imgNewsS img-circle" ng-switch-default ng-src="assets/images/news/{{info.image}}"> {{info.title | translate}}
+>>>>>>> develop
                                     </div>
                                 </div>
                             </div>
@@ -81,6 +87,109 @@
                                 </span>
                         </div>
                     </div>
+<<<<<<< HEAD
+=======
+                    <!-- type 5 -->
+                    <div class="col-sm-12 col-md-4">
+                        <uib-carousel active="active" interval="4000" no-wrap="noWrapSlides">
+                            <uib-slide ng-repeat="info in vm.typFives " index="info.id" ng-switch on="info.image.substr(0,4)">
+                                <img ng-switch-when="http" ng-src="{{info.image}}" style="margin:auto;">
+                                <img ng-switch-default ng-src="assets/images/news/{{info.image}}" style="margin:auto;">
+                                <div class="carousel-caption">
+                                    <h4>{{info.title}}</h4>
+                                    <p>{{info.info | translate}}</p>
+                                </div>
+                            </uib-slide>
+                        </uib-carousel>
+                    </div>
+                    <!-- type 2 -->
+                    <div class="col-sm-12 col-md-4">
+                        <div class="row ">
+                            <div class=" infoGroup">News Euro</div>
+                        </div>
+                        <div class="row  ">
+                            <div class="col-sm-12 col-md-12  fondnews" ng-repeat="info in vm.filteredNewsTwo">
+                                <div class="col-sm-4 col-md-4 " style="padding-left:0px;" ng-switch on="info.image.substr(0,4)">
+                                    <img class="imgNewsS" ng-switch-when="http" ng-src="{{info.image}}">
+                                    <img class="imgNewsS" ng-switch-default ng-src="assets/images/news/{{info.image}}" />
+                                </div>
+                                <div><strong>{{info.title | translate}}</strong>
+                                    <ol ng-if="info.info.length < 100">{{info.info | translate}}</ol>
+                                    <div ng-show="vm.myVal" class="col-sm-12 col-md-12 ng-hide "> {{info.info.substr(81) | translate}}</div>
+                                    <ol ng-if="info.info.length > 100">{{info.info.substr(0,80) | translate}}
+                                        <a href="" ng-click="vm.showDetail()" class=" glyphicon glyphicon-chevron-right "></a>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row bGroup ">
+                            <span class="tw " ng-repeat="p in vm.paginTwo ">
+                                    <a class="glyphicon glyphicon-tint " ng-click="vm.pageChanged(p.numpag,2) " href="# "></a>
+                                </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-4 " ng-repeat="info in vm.news">
+                        <!-- type 3 lien site -->
+                        <div class="row" ng-if="info.type===3 ">
+                            <span class="infoGroup "> Link </span>
+                            <a href="{{info.info}} " ng-switch on="info.image.substr(0,4)">
+                                <img class="imgNewsL" ng-switch-when="http" ng-src="{{info.image}}">
+                                <img class="imgNewsL" ng-switch-default ng-src="assets/images/news/{{info.image}}">
+                            </a>
+                            <a href="{{info.info}} " class="bGroup " target="_blank "><span class="glyphicon glyphicon-play ">  {{info.title | translate}} </span></a>
+                        </div>
+                        <!-- type 4 -->
+                        <div ng-if="info.type===4 ">
+                            <div class="row infoNews ">
+                                <span class="infoGroupN "> Team Info </span>
+                                <span ng-switch on="info.image.substr(0,4)">
+                                   <img class="imgNews"  ng-switch-when="http" ng-src="{{info.image}}">
+                                   <img class="imgNews" ng-switch-default ng-src="assets/images/news/{{info.image}}">
+                                </span>
+                                <strong>{{info.title | translate}}</strong>
+                                <div>{{info.info | translate}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row " ng-if="nav.isAdmin()">
+            <div class="userStats ">
+                <div class="data ">
+                    <div class="head ">
+                        <h2>Add new info</h2>
+                        <form class="form " name="form " ng-submit="vm.createNews(form) " novalidate>
+                            <div class="form-group ">
+                                <label>Type</label>
+                                <select name="type " autofocus class="form-control " ng-model="vm.newinfo.type " required style="background-color: #FFF " tabindex=1>
+                                    <option value="1">1- Deux infos par page image cercle info courte</option>
+                                    <option value="2">2- Trois infos par page avec lien details si trop long</option>
+                                    <option value="3">3- lien site</option>
+                                    <option value="4">4- Portrait</option>
+                                    <option value="5">5- Caroussel</option>
+                                </select>
+                            </div>
+                            <div class="form-group ">
+                                <label>Title</label>
+                                <input type="text " name="title " class="form-control " ng-model="vm.newinfo.title " required style="background-color: #FFF " tabindex=2>
+                            </div>
+                            <div class="form-group ">
+                                <label>Info</label>
+                                <textarea name="info " class="form-control " ng-model="vm.newinfo.info " required style="background-color: #FFF " tabindex=2></textarea>
+                            </div>
+                            <div class="form-group ">
+                                <label>Image</label>
+                                <input type="text " name="image " class="form-control " ng-model="vm.newinfo.image " required style="background-color: #FFF " tabindex=3>
+                            </div>
+                            <div>
+                                <button class="btn btn-success btn-lg " type="submit " style="float:right;width:200px ">
+                                    Save
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+>>>>>>> develop
                 </div>
             </div>
         </div>

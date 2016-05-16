@@ -25,6 +25,8 @@
         "client/app/euro2016/euro2016.ts",
         "client/app/league/league.controller.ts",
         "client/app/league/league.ts",
+        "client/app/leaguedetails/leaguedetails.controller.ts",
+        "client/app/leaguedetails/leaguedetails.ts",
         "client/app/main/main.controller.ts",
         "client/app/main/main.ts",
         "client/app/match/match.controller.ts",

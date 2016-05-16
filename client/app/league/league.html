@@ -1,1 +1,106 @@
-<div>This is the league view.</div>
+<header role="banner" class="ep2016-header">
+    <div class="container navbar-container">
+        <!-- <div class="row"> -->
+        <navbar></navbar>
+        <!-- </div> -->
+    </div>
+</header>
+<div class="bg_default">
+    <div class="container wrap-container" id='leagueContentContainer'>
+        <div class="row">
+            <div class="col-sm-12">
+                <img src="assets/images/league_bg.jpg" alt="" style="width: 100%;height: auto;margin-bottom:30px;">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="League" class="leagueContent">
+                    <div class="leagueContentToolTip">
+                        Filter: <span class="title" translate><input ng-model="vm.greeting" type="text"><br></span>
+                    </div>
+                    <table class="table table-responsive table-hover">
+                        <thead>
+                            <tr>
+                                <th><a href='#' ng-click="sort('name'); ">League</a></th>
+                                <th>
+                                    <a href='#' ng-click="sort( 'status'); ">Status</a>
+                                </th>
+                                <th><a href='#' ng-click="sort( 'type'); ">Type</a></th>
+                                <th><a href='#' ng-click="sort( 'description'); ">Description</a></th>
+                                <th><a href='#' ng-click="sort( 'description'); ">Number of members</a></th>
+                                <th><a href='#' ng-click="sort( 'owner'); ">Owner</a></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="league" ng-repeat="league in vm.leagues | orderBy:orderProp  | filter :vm.greeting">
+                                <td ng-switch on="league.image.substr(0,4)">
+                                    <img class="imgLeagues" ng-switch-when="http" ng-src="{{league.image}}" class="circle ">
+                                    <img class="imgLeagues" ng-switch-default ng-src="assets/images/leagues/{{league.image}}" class="circle "> {{league.name | translate}}
+                                </td>
+                                <td ng-switch on="league.status">
+                                    <img ng-switch-when="1" src="assets/images/leagues/cadenasRed.png" alt="Private">
+                                    <img ng-switch-default src="assets/images/leagues/cadenasGreen.png" alt="Public">
+                                </td>
+                                <td ng-switch on="league.type">
+                                    <p ng-switch-when="1">Free</p>
+                                    <p ng-switch-default>With a bet</p>
+                                </td>
+                                <td> {{league.description}} </td>
+                                <td> {{league.members.length}} </td>
+                                <td> {{league.owner_id.name}}</td>
+                                <td>
+                                    <a href="/leaguedetails/{{league._id}}"><i class="glyphicon glyphicon-th-list"> </a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- fin auto -->
+                </div>
+            </div>
+        </div>
+        <div class="userStats" ng-if="nav.isAdmin()">
+            <div class="data">
+                <form class="form " name="form " ng-submit="vm.createLeague(form) " novalidate>
+                    <div class="form-group ">
+                        <label>League name</label>
+                        <input type="text " name="name " class="form-control " ng-model="vm.newleague.name " required style="background-color: #FFF " tabindex=1>
+                    </div>
+                    <div class="form-group ">
+                        <label>Status</label>
+                        <select type="text " name="status" class="form-control " ng-model="vm.newleague.status " required style="background-color: #FFF " tabindex=2>
+                            <option value="0">Public</option>
+                            <option value="1">Private</option>
+                        </select>
+                    </div>
+                    <div class="form-group ">
+                        <label>Type of league</label>
+                        <select type="text " name="type" class="form-control " ng-model="vm.newleague.type " required style="background-color: #FFF " tabindex=3>
+                            <option value="1">Free</option>
+                            <option value="2">With a bet</option>
+                        </select>
+                    </div>
+                    <div class="form-group ">
+                        <label>Description</label>
+                        <textarea name="description" class="form-control " ng-model="vm.newleague.description" required style="background-color: #FFF " tabindex=4></textarea>
+                    </div>
+                    <div class="form-group ">
+                        <label>Logo</label>
+                        <input type="text " name="image" class="form-control " ng-model="vm.newleague.image " required style="background-color: #FFF " tabindex=5>
+                    </div>
+                    <div>
+                        <button class="btn btn-success btn-lg " type="submit " style="float:right;width:200px ">
+                            Save
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <footer></footer>
+    </div>
+</div>
