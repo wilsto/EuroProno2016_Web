@@ -37,9 +37,9 @@
             <div class="userStats">
                 <div class="data">
                     <div class="head">
-                        <h2>Achievments & Skills</h2>
+                        <h2 translate>Achievments & Skills</h2>
                     </div>
-                    <p>Retrouver vos badges tout au long du tournoi!</p>
+                    <p translate>Find your badge during competition!</p>
                     <div class="badgeCount">
                         <div class="badge">
                             <i class="icon-user"></i>
@@ -54,14 +54,37 @@
                     <div class="head">
                         <h2>Leagues</h2>
                     </div>
-                    <p>
+                    <p translate>
+                        I'm owner of one or more leagues :
+                    </p>
+                    <div class="row">
+                        <div class="col-xs-4 col-md-2" ng-if="owner.owner_id._id===vm.getCurrentUser()._id" ng-repeat="owner in vm.leagues">
+                            <a href="/leaguedetails/{{owner._id}}" ng-switch on="owner.image.substr(0,4)" class="thumbnail">
+                                <img class="imgLeagues" ng-switch-when="http" ng-src="{{owner.image}}" class="circle ">
+                                <img class="imgLeagues" ng-switch-default ng-src="assets/images/leagues/{{owner.image}}" class="circle ">
+                            </a>
+                        </div>
+                    </div>
+                    <p translate>
                         I belong to one or more leagues :
                     </p>
+                    <div class="row">
+                        <div class="col-xs-4 col-md-2" ng-if="league.owner_id._id!==vm.getCurrentUser()._id" ng-repeat="league in vm.leagues">
+                            <div ng-if="member.user_id._id===vm.getCurrentUser()._id" ng-repeat="member in league.members">
+                                <a href="/leaguedetails/{{league._id}}" ng-switch on="member.image.substr(0,4)" class="thumbnail">
+                                    <img class="imgLeagues" ng-switch-when="http" ng-src="{{league.image}}" class="circle ">
+                                    <img class="imgLeagues" ng-switch-default ng-src="assets/images/leagues/{{league.image}}" class="circle ">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     <tags-input ng-model="tags" placeholder="Ajouter un groupe">
                         <auto-complete source="loadTags($query)" min-length="1" highlight-matched-text="false"></auto-complete>
                     </tags-input>
-                    <button class="btn btn-primary pull-right ladda-button" data-style="expand-right" ng-click="saveGroup()"><span class="ladda-label">Sauvegarder</span><span class="ladda-spinner"></span></button>
-                    Vous pouvez appartenir à plusieurs groupes en meme temps, cela vous permet si vous voulez vous faire un challenge entre amis et avoir votre propre classement indépendant en filtrant les résultats.
+                    <button class="btn btn-primary pull-right ladda-button" data-style="expand-right" ng-click="saveGroup()"><span class="ladda-label">Sauvegarder</span>
+                        <span class="ladda-spinner"></span>
+                    </button>
+                    <p translate>You can belong to one or more leagues simultaneous, so you can challenge your friends and have indépendant results with filters.</p>
                     <div>
                     </div>
                 </div>
@@ -75,10 +98,10 @@
                     </div>
                     <div>
                         <ul class="accomplish">
-                            <li><i class="image icon-user"></i><span>Complete Profile </span><span class="ticked"><i class="icon-question iconcol-grey"></i></span></li>
-                            <li><i class="image iconmoon-users"></i><span>Join a league </span><span class="ticked"><i class="icon-question  iconcol-grey"></i></span></li>
-                            <li><i class="image icon-game-controller"></i><span>Completed pronos </span><span class="ticked"><i class="icon-question  iconcol-grey"></i></span></li>
-                            <li><i class="image iconmoon-legal"></i><span>Game validated </span><span class="ticked"><i class="icon-check  iconcol-green"></i></span></li>
+                            <li><i class="image icon-user"></i><span translate>Complete Profile </span><span class="ticked"><i class="icon-question iconcol-grey"></i></span></li>
+                            <li><i class="image iconmoon-users"></i><span translate>Join a league </span><span class="ticked"><i class="icon-question  iconcol-grey"></i></span></li>
+                            <li><i class="image icon-game-controller"></i><span translate>Completed pronos </span><span class="ticked"><i class="icon-question  iconcol-grey"></i></span></li>
+                            <li><i class="image iconmoon-legal"></i><span translate>Game validated </span><span class="ticked"><i class="icon-check  iconcol-green"></i></span></li>
                         </ul>
                     </div>
                 </div>
@@ -88,26 +111,26 @@
                 <div class="data">
                     <div class="row">
                         <div class="col-sm-12">
-                            <h2>Change Password</h2>
+                            <h2 translate>Change Password</h2>
                         </div>
                         <div class="col-sm-12">
                             <form class="form" name="form" ng-submit="vm.changePassword(form)" novalidate>
                                 <div class="form-group">
-                                    <label>Current Password</label>
+                                    <label translate>Current Password</label>
                                     <input type="password" name="password" class="form-control" ng-model="vm.user.oldPassword" mongoose-error/>
                                     <p class="help-block" ng-show="form.password.$error.mongoose">
                                         {{ vm.errors.other }}
                                     </p>
                                 </div>
                                 <div class="form-group">
-                                    <label>New Password</label>
+                                    <label translate>New Password</label>
                                     <input type="password" name="newPassword" class="form-control" ng-model="vm.user.newPassword" ng-minlength="3" required/>
                                     <p class="help-block" ng-show="(form.newPassword.$error.minlength || form.newPassword.$error.required) && (form.newPassword.$dirty || vm.submitted)">
                                         Password must be at least 3 characters.
                                     </p>
                                 </div>
                                 <div class="form-group">
-                                    <label>Confirm New Password</label>
+                                    <label translate>Confirm New Password</label>
                                     <input type="password" name="confirmPassword" class="form-control" ng-model="vm.user.confirmPassword" match="vm.user.newPassword" ng-minlength="3" required="" />
                                     <p class="help-block" ng-show="form.confirmPassword.$error.match && vm.submitted">
                                         Passwords must match.

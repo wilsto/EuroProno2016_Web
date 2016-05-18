@@ -10,11 +10,21 @@ class SettingsController {
         { name: 'Arena', href: '/arena', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' }
     ];
 
-    constructor(Auth) {
+    constructor(Auth, $http) {
         this.errors = {};
         this.submitted = false;
         this.Auth = Auth;
         this.getCurrentUser = Auth.getCurrentUser;
+        this.$http = $http;
+        this.leagues = [];
+
+        //on récupère les matchs
+        this.$http.get('/api/leagues').then(responseLeagues => {
+            this.leagues = responseLeagues.data;
+        });
+
+
+
     }
 
     changePassword(form) {
@@ -31,6 +41,12 @@ class SettingsController {
                 });
         }
     }
+
+
+
+
+
+
 }
 
 angular.module('euroProno2016WebApp')
