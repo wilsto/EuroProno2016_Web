@@ -1,5 +1,5 @@
 .navbar-container {
-    width: 1000px;
+    width: 100%;
     background: rgba(0, 83, 148, 0.6);
     border-radius: 25px;
 }
@@ -102,7 +102,7 @@
 
 .ep2016-header.navbar-fixed-top,
 .nav-header.navbar-fixed-top {
-    width: 1045px;
+    width: 100%;
     margin: 0 auto;
     position: fixed!important;
     background: #fff;
