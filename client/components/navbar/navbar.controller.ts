@@ -26,13 +26,11 @@ class NavbarController {
     }
 
     toggle_audio() {
-        console.log('toggle');
         this.bg.muted = !this.bg.muted;
         this.audioOn = !this.bg.muted;
     }
 
     login_click() {
-        console.log('cllick');
         $('.login').fadeToggle('slow');
     }
 
@@ -51,7 +49,6 @@ class NavbarController {
     // Page Nav
     clickMenu() {
         $('#navbar a:not([class="external"])').click(function(event) {
-            console.log('section');
             var section = $(this).data('nav-section'),
                 navbar = $('#navbar');
 
@@ -84,7 +81,6 @@ class NavbarController {
         var that = this;
         var $section = $('section[data-section]');
         $section.waypoint(function(direction) {
-            console.log('direction', direction);
             if (direction === 'down') {
                 that.navActive($(this.element).data('section'));
             }
@@ -104,7 +100,6 @@ class NavbarController {
 
     // Window Scroll
     windowScroll() {
-        console.log('windowScroll');
         $(window).scroll(function(event) {
             var header = $('.ep2016-header'),
                 scrlTop = $(this).scrollTop(),

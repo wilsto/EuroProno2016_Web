@@ -1,7 +1,70 @@
 .navbar-container {
-    width: 100%;
     background: rgba(0, 83, 148, 0.6);
     border-radius: 25px;
+    right: 0;
+    left: 0;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.ep2016-header .navbar-brand,
+.nav-header .navbar-brand {
+    float: left;
+    display: block;
+    font-size: 30px;
+    font-weight: 700;
+    padding-left: 0;
+}
+
+.ep2016-header #navbar li a,
+.nav-header #navbar li a {
+    font-family: "Source Sans Pro", Arial, sans-serif;
+    position: relative;
+    font-size: 19px;
+    font-weight: 300;
+}
+
+@media screen and (min-width: 1045px) {
+    .navbar-container {
+        width: 1000px;
+    }
+    .ep2016-header .navbar-brand,
+    .nav-header .navbar-brand {
+        color: #fff;
+    }
+    .ep2016-header #navbar li a,
+    .nav-header #navbar li a {
+        color: rgba(255, 255, 255, 1);
+    }
+    .ep2016-header #navbar li.active a,
+    .nav-header #navbar li.active a {
+        background: none;
+        color: #fff;
+    }
+}
+
+@media screen and (max-width: 1044px) {
+    .navbar-container {
+        width: 100%;
+        border-radius: 0;
+        background: #FFF;
+        position: fixed!important;
+        top: 0;
+    }
+    .ep2016-header .navbar-brand,
+    .nav-header .navbar-brand {
+        color: #A4D792;
+        background: none;
+    }
+    .ep2016-header #navbar li a,
+    .nav-header #navbar li a {
+        color: rgba(0, 0, 0, 0.5);
+    }
+    .ep2016-header #navbar li.active a,
+    .nav-header #navbar li.active a {
+        background: none;
+        color: #A4D792;
+    }
 }
 
 .navbar-container-fixed {
@@ -24,18 +87,8 @@
     margin-bottom: 0;
 }
 
-.ep2016-header #navbar li a,
-.nav-header #navbar li a {
-    font-family: "Source Sans Pro", Arial, sans-serif;
-    color: rgba(255, 255, 255, 1);
-    position: relative;
-    font-size: 19px;
-    font-weight: 300;
-}
-
 .ep2016-header #navbar li a span,
 .nav-header #navbar li a span {
-    position: relative;
     display: block;
     padding-bottom: 2px;
 }
@@ -77,12 +130,6 @@
     transform: scaleX(1);
 }
 
-.ep2016-header #navbar li.active a,
-.nav-header #navbar li.active a {
-    background: none;
-    color: #fff;
-}
-
 .ep2016-header #navbar li.active a span:before,
 .nav-header #navbar li.active a span:before {
     visibility: visible;
@@ -90,19 +137,8 @@
     transform: scaleX(1);
 }
 
-.ep2016-header .navbar-brand,
-.nav-header .navbar-brand {
-    float: left;
-    display: block;
-    font-size: 30px;
-    font-weight: 700;
-    padding-left: 0;
-    color: #fff;
-}
-
 .ep2016-header.navbar-fixed-top,
 .nav-header.navbar-fixed-top {
-    width: 100%;
     margin: 0 auto;
     position: fixed!important;
     background: #fff;
@@ -112,6 +148,21 @@
     box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.1);
     margin-top: 0;
     top: 0;
+    border-radius: 0;
+}
+
+@media screen and (min-width: 1045px) {
+    .ep2016-header.navbar-fixed-top,
+    .nav-header.navbar-fixed-top {
+        width: 1045px;
+    }
+}
+
+@media screen and (max-width: 1044px) {
+    .ep2016-header.navbar-fixed-top,
+    .nav-header.navbar-fixed-top {
+        width: 100%;
+    }
 }
 
 .ep2016-header.navbar-fixed-top .navbar-brand,
@@ -172,50 +223,4 @@
     -webkit-transition: 0;
     -o-transition: 0;
     transition: 0;
-}
-
-@media screen and max-width 768px {
-    .ep2016-header,
-    .nav-header {
-        margin-top: 0;
-        background: #fff;
-        -webkit-box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.1);
-        -moz-box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.1);
-        -ms-box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.1);
-        box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.1);
-    }
-    .ep2016-header .navbar-brand,
-    .ep2016-header #navbar li a:hover,
-    .nav-header .navbar-brand,
-    .nav-header #navbar li a:hover {
-        color: #A4D792!important;
-    }
-    .ep2016-header #navbar li a,
-    .nav-header #navbar li a {
-        color: rgba(0, 0, 0, 0.5)!important;
-        -webkit-transition: .3s;
-        -o-transition: .3s;
-        transition: .3s;
-    }
-    .ep2016-header #navbar li a span:before,
-    .nav-header #navbar li a span:before {
-        background: transparent!important;
-    }
-    .ep2016-header #navbar li.active a,
-    .nav-header #navbar li.active a {
-        background: none;
-        color: #A4D792!important;
-    }
-    .ep2016-header #navbar li.active a span:before,
-    .nav-header #navbar li.active a span:before {
-        visibility: visible;
-        -webkit-transform: scaleX(1);
-        transform: scaleX(1);
-    }
-    .ep2016-header .navbar-default,
-    .nav-header .navbar-default {
-        margin-top: 0;
-        padding-right: 0;
-        padding-left: 0;
-    }
 }
