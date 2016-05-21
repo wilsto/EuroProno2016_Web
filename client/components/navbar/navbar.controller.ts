@@ -25,11 +25,6 @@ class NavbarController {
         this.currentPath = $location.path();
     }
 
-    toggle_audio() {
-        this.bg.muted = !this.bg.muted;
-        this.audioOn = !this.bg.muted;
-    }
-
     login_click() {
         $('.login').fadeToggle('slow');
     }

@@ -9,8 +9,9 @@
         audioOn = false;
         bg = new Audio('assets/audio/bg.mp3');
 
+
         menu = [
-            { name: 'Home', href: '/', section: '', ngclick: '', class: 'active', a_class: 'nothing' },
+            { name: 'Home', href: '/', section: '', ngclick: '', class: 'active', a_class: 'active' },
             { name: 'Euro2016', href: '/news', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' },
             { name: 'Prono', href: '/prono', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' },
             { name: 'Arena', href: '/arena', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' }
@@ -57,6 +58,10 @@
             this.bg.currentTime = 0;
         }
 
+        toggle_audio() {
+            this.bg.muted = !this.bg.muted;
+            this.audioOn = !this.bg.muted;
+        }
         addThing() {
             if (this.newThing) {
                 this.$http.post('/api/things', { name: this.newThing });
