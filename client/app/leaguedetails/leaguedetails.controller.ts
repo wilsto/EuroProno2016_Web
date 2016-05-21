@@ -25,12 +25,11 @@
         }
 
         loadLeagueDet(myid) {
-            //on récupère les matchs
+            //on récupère les details de la ligue
             this.$http.get('/api/leagues/' + myid).then(responseLeagues => {
                 this.leaguesdet = responseLeagues.data;
                 this.members = this.leaguesdet.members;
                 this.currentuser = this.getCurrentUser()._id;
-
             });
         }
 
@@ -53,6 +52,7 @@
                 console.log('league updated', response);
                 this.loadLeagueDet(this.leaguesdet._id);
             });
+
 
         }
 
