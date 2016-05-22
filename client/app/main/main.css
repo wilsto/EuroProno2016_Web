@@ -50,7 +50,6 @@ header:not(.navbar-fixed-top) .main-container .navbar-collapse ul {
 
 header:not(.navbar-fixed-top) #navbar li a {
     line-height: 20px;
-    color: #FFF;
 }
 
 header:not(.navbar-fixed-top) .main-container .navbar-brand {
