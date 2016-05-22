@@ -1,129 +1,63 @@
 <header role="banner" class="ep2016-header">
     <div class="container navbar-container">
-        <!-- <div class="row"> -->
         <navbar></navbar>
-        <!-- </div> -->
     </div>
 </header>
 <div class="bg_default">
     <div class="container wrap-container">
         <div class="row">
-            <div class="col-sm-12">
-                <img src="assets/images/ball_player.png" alt="" style="max-width: 100%;height: auto;margin-bottom:30px;">
-            </div>
+            <div class="col-sm-12"> <img src="assets/images/ball_player.png" alt="" style="max-width: 100%;height: auto;margin-bottom:30px;"></div>
         </div>
         <div class="col-xs-12 col-xs-12 col-md-8 col-lg-8">
             <div class="userStats">
                 <div class="data">
                     <div class="head">
-                        <h2 style="padding-left: 25px">{{vm.getCurrentUser().name}}  </h2>
-                    </div>
-                    <div class="pic">
-                        <img class="img-circle" width="150" height="150" ng-src="assets/images/{{vm.users.avatarUrl !== undefined && vm.users.avatarUrl || 'inconnu.gif'}}">
-                    </div>
-                    <form class="form" name="formU" ng-submit="vm.updUser(formU, $flow)" novalidate>
-                        <h3>
-                        <div class="input-group">
-                            <label class="input-group-addon inpset" >Full Name :</label>
-                            <middle ng-show="vm.focused===false"> {{vm.users.name}} </middle>
-                            <input ng-show="vm.focused===true" type="text" ng-model="vm.users.name" name="newUser.name" class="form-control input-group-addon" aria-describedby="basic-addon3">
-                        </div>
-                        </h3>
-                        <h3>
-                        <div class="input-group">
-                            <label class="input-group-addon  inpset" >Email :</label>
-                            <middle ng-show="vm.focused===false"> {{vm.users.email}} </middle>
-                            <input ng-show="vm.focused===true" type="text" ng-model="vm.users.email" name="newUser.email" class="form-control input-group-addon" aria-describedby="basic-addon3" >
-                        </div>
-                             </h3>
-                        <h3>
-                        <div class="input-group">
-                            <label class="input-group-addon  inpset">Language :</label>
-                            <middle ng-show="vm.focused===false">{{vm.users.lang}} </middle>
-                            <select ng-show="vm.focused===true" type="text" ng-model="vm.users.lang" name="newUser.lang" class="form-control input-group-addon" aria-describedby="basic-addon3" ><option values="fr">fr</option><option value="en">en</option></select>
-                        </div>
-                        </h3>
-                        <h3>
-                        <div class="input-group" ng-show="vm.focused===true">
-                            <small class="input-group-addon inpset" id="basic-addon">Upload Avatar :</small>
-           
-<div flow-init="{singleFile:true}" flow-name="obj.flow" flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]" class="ng-scope" flow-drop flow-files-added="vm.addAvatar( $file, $message, $flow
-)">
-<h3>
-<a name="image-example" class="anchor" href="#image-example"><span class="octicon octicon-link"></span></a>Single Image upload</h3>
-                        <div class="thumbnail" ng-show="!$flow.files.length" flow-drag-enter="style={border:'4px solid green'}" flow-drag-leave="style={}" ng-style="style">
-                            <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image">
-                        </div>
-                        <div class="thumbnail ng-hide" ng-show="$flow.files.length" flow-drag-enter="style={border:'4px solid green'}" flow-drag-leave="style={}" ng-style="style">
-                            <!-- image preview-->
-                            <img flow-img="$flow.files[0]">
-                        </div>
-                        <div>
-                            <span class="btn btn-primary" ng-show="!$flow.files.length" flow-btn="">Select image<input type="file" style="visibility: hidden; position: absolute;"></span>
-                            <span class="btn btn-info ng-hide" ng-show="$flow.files.length" flow-btn="">Change<input type="file" style="visibility: hidden; position: absolute;"></span>
-                            <span class="btn btn-danger ng-hide" ng-show="$flow.files.length" ng-click="$flow.cancel()">
-    Remove
-                         </span>
-                        </div>
-                        <p>
-                            Only PNG,GIF,JPG,JEPG files allowed.
-                        </p>
+                        <h2 style="padding-left: 25px">{{vm.getCurrentUser().name}}</h2></div>
+                    <div class="pic"> <img class="img-circle" width="150" height="150" ng-src="assets/images/{{vm.users.avatarUrl !== undefined && vm.users.avatarUrl || 'assets/images/inconnu.gif'}}"></div>
+                    <form class="form" name="formU" ng-submit="vm.updUser(formU)" novalidate>
+                        <h3><div class="input-group"> <label class="input-group-addon inpset" >Full Name :</label> <middle ng-show="vm.focused===false"> {{vm.users.name}} </middle> <input ng-show="vm.focused===true" type="text" ng-model="vm.users.name" name="newUser.name" class="form-control input-group-addon" aria-describedby="basic-addon3"></div></h3>
+                        <h3><div class="input-group"> <label class="input-group-addon inpset" >Email :</label> <middle ng-show="vm.focused===false"> {{vm.users.email}} </middle> <input ng-show="vm.focused===true" type="text" ng-model="vm.users.email" name="newUser.email" class="form-control input-group-addon" aria-describedby="basic-addon3" ></div></h3>
+                        <h3><div class="input-group"> <label class="input-group-addon inpset">Language :</label> <middle ng-show="vm.focused===false">{{vm.users.lang}} </middle> <select ng-show="vm.focused===true" type="text" ng-model="vm.users.lang" name="newUser.lang" class="form-control input-group-addon" aria-describedby="basic-addon3" ><option values="fr">fr</option><option value="en">en</option><option value="es">es</option><option value="de">de</option> </select></div></h3>
+                        <br>
+                        <br> <a href="#" style="font-size: 11px;bottom:0" class="btn btn-xs pull-right btn-primary" ng-click="vm.focused=true" ng-show="vm.focused===false"><span class="glyphicon glyphicon-pencil"></span> Modify</a>
+                        <button style="font-size:11px;bottom:0" class="btn pull-right btn-primary" type="submit" ng-show="vm.focused===true"><span class="glyphicon glyphicon-pencil"></span> Save</button>
+                    </form>
+                    <div class="socialMediaLinks"> <span data-ng-class="{'label-info': user.role.title == userRoles.user.title, 'label-warning': user.role.title == userRoles.vip.title, 'label-success': user.role.title == userRoles.admin.title}" class="label">{{vm.getCurrentUser().role.toUpperCase() }} </span></div>
                 </div>
             </div>
             </h3>
             <br>
-            <br>
-            <a href="#" style="font-size: 11px;bottom:0" class="btn btn-xs pull-right btn-primary" ng-click="vm.focused=true" ng-show="vm.focused===false"><span class="glyphicon glyphicon-pencil"></span> Modify</a>
-            <button style="font-size: 11px;bottom:0" class="btn btn-xs pull-right btn-danger" type="submit" ng-show="vm.focused===true"><span class="glyphicon glyphicon-pencil"></span> Save</button>
-            </form>
-            <div class="socialMediaLinks">
-                <span data-ng-class="{'label-info': user.role.title == userRoles.user.title, 'label-warning': user.role.title == userRoles.vip.title, 'label-success': user.role.title == userRoles.admin.title}" class="label">{{vm.getCurrentUser().role.toUpperCase() }} </span>
-            </div>
-        </div>
-    </div>
-    <br>
-    <div class="userStats">
-        <div class="data">
-            <div class="head">
-                <h2 translate>Achievments & Skills</h2>
-            </div>
-            <p translate>Find your badge during competition!</p>
-            <div class="badgeCount">
-                <div class="badge">
-                    <i class="icon-user"></i>
-                    <span>ep'16 Player</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <br>
-    <div class="userStats">
-        <div class="data">
-            <div class="head">
-                <h2>Leagues</h2>
-            </div>
-            <p translate>
-                I'm owner of one or more leagues :
-            </p>
-            <div class="row">
-                <div class="col-xs-4 col-md-2" ng-if="owner.owner_id._id===vm.getCurrentUser()._id" ng-repeat="owner in vm.leagues">
-                    <a href="/leaguedetails/{{owner._id}}" ng-switch on="owner.image.substr(0,4)" class="thumbnail">
-                        <img class="imgLeagues" ng-switch-when="http" ng-src="{{owner.image}}" class="circle ">
-                        <img class="imgLeagues" ng-switch-default ng-src="assets/images/leagues/{{owner.image}}" class="circle ">
-                    </a>
-                </div>
-            </div>
-            <p translate>
-                I belong to one or more leagues :
-            </p>
-            <div class="row">
-                <div class="col-xs-4 col-md-2" ng-if="league.owner_id._id!==vm.getCurrentUser()._id" ng-repeat="league in vm.leagues">
-                    <div ng-if="member.user_id._id===vm.getCurrentUser()._id" ng-repeat="member in league.members">
-                        <a href="/leaguedetails/{{league._id}}" ng-switch on="member.image.substr(0,4)" class="thumbnail">
-                            <img class="imgLeagues" ng-switch-when="http" ng-src="{{league.image}}" class="circle ">
-                            <img class="imgLeagues" ng-switch-default ng-src="assets/images/leagues/{{league.image}}" class="circle ">
-                        </a>
+            <div class="userStats">
+                <div class="data">
+                    <div class="head">
+                        <h2 translate>Achievments & Skills</h2></div>
+                    <p translate>Find your badge during competition!</p>
+                    <div class="badgeCount">
+                        <div class="badge"> <i class="icon-user"></i> <span>ep'16 Player</span></div>
                     </div>
+                </div>
+            </div>
+            <br>
+            <div class="userStats">
+                <div class="data">
+                    <div class="head">
+                        <h2>Leagues</h2></div>
+                    <p translate> I'm owner of one or more leagues :</p>
+                    <div class="row">
+                        <div class="col-xs-4 col-md-2" ng-if="owner.owner_id._id===vm.getCurrentUser()._id" ng-repeat="owner in vm.leagues">
+                            <a href="/leaguedetails/{{owner._id}}" ng-switch on="owner.image.substr(0,4)" class="thumbnail"> <img class="imgLeagues circle" ng-switch-when="http" ng-src="{{owner.image}}"> <img class="imgLeagues circle" ng-switch-default ng-src="assets/images/leagues/{{owner.image}}"> </a>
+                        </div>
+                    </div>
+                    <p translate> I belong to one or more leagues :</p>
+                    <div class="row">
+                        <div class="col-xs-4 col-md-2" ng-if="league.owner_id._id!==vm.getCurrentUser()._id" ng-repeat="league in vm.leagues">
+                            <div ng-if="member.user_id._id===vm.getCurrentUser()._id" ng-repeat="member in league.members">
+                                <a href="/leaguedetails/{{league._id}}" ng-switch on="member.image.substr(0,4)" class="thumbnail"> <img class="imgLeagues circle" ng-switch-when="http" ng-src="{{league.image}}"> <img class="imgLeagues circle" ng-switch-default ng-src="assets/images/leagues/{{league.image}}"> </a>
+                            </div>
+                        </div>
+                    </div> <a href="/league" class="btn btn-primary pull-right ladda-button" data-style="expand-right"><span class="ladda-label">Join Leagues</span> </a>
+                    <p translate>You can belong to one or more leagues simultaneous, so you can challenge your friends and have indépendant results with filters.</p>
+                    <div></div>
                 </div>
             </div>
             <a href="/league" class="btn btn-primary pull-right ladda-button" data-style="expand-right"><span class="ladda-label">Join Leagues</span>
@@ -132,47 +66,49 @@
             <div>
             </div>
         </div>
-    </div>
-</div>
-<div class="col-xs-12 col-xs-12 col-md-4 col-lg-4 ">
-    <div class="userStats">
-        <div class="data">
-            <div class="head">
-                <h2>Status</h2>
-            </div>
-            <div>
-                <ul class="accomplish">
-                    <li><i class="image icon-user"></i><span translate>Complete Profile </span><span class="ticked"><i data-ng-class="{'icon-question iconcol-grey': vm.status.profil == 0, 'icon-check iconcol-green': vm.status.profil == 1}"></i></i></span></li>
-                    <li><i class="image iconmoon-users"></i><span translate>Join a league </span><span class="ticked"><i data-ng-class="{'icon-question iconcol-grey': vm.status.league == 0, 'icon-check iconcol-green': vm.status.league == 1}"></i></span></li>
-                    <li><i class="image icon-game-controller"></i><span translate>Completed pronos </span><span class="ticked"><i data-ng-class="{'icon-question iconcol-grey': vm.status.prono == 0, 'icon-check iconcol-green': vm.status.prono == 1}"></i>
-                            </span></li>
-                    <li><i class="image iconmoon-legal"></i><span translate>Game validated </span><span class="ticked"><i  data-ng-class="{'icon-question iconcol-grey': vm.status.game == 0, 'icon-check iconcol-green': vm.status.game == 1}"></i></span></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <br>
-    <div class="userStats">
-        <div class="data">
-            <div class="row">
-                <div class="col-sm-12">
-                    <h2 translate>Change Password</h2>
+        <div class="col-xs-12 col-xs-12 col-md-4 col-lg-4 ">
+            <div class="userStats">
+                <div class="data">
+                    <div class="head">
+                        <h2>Status</h2></div>
+                    <div>
+                        <ul class="accomplish">
+                            <li><i class="image icon-user"></i><span translate>Complete Profile </span><span class="ticked"><i data-ng-class="{'icon-question iconcol-grey': vm.status.profil == 0, 'icon-check iconcol-green': vm.status.profil == 1}"></i></span></li>
+                            <li><i class="image iconmoon-users"></i><span translate>Join a league </span><span class="ticked"><i data-ng-class="{'icon-question iconcol-grey': vm.status.league == 0, 'icon-check iconcol-green': vm.status.league == 1}"></i></span></li>
+                            <li><i class="image icon-game-controller"></i><span translate>Completed pronos </span><span class="ticked"><i data-ng-class="{'icon-question iconcol-grey': vm.status.prono == 0, 'icon-check iconcol-green': vm.status.prono == 1}"></i> </span></li>
+                            <li><i class="image iconmoon-legal"></i><span translate>Game validated </span><span class="ticked"><i data-ng-class="{'icon-question iconcol-grey': vm.status.game == 0, 'icon-check iconcol-green': vm.status.game == 1}"></i></span></li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="col-sm-12">
-                    <form class="form" name="form" ng-submit="vm.changePassword(form)" novalidate>
-                        <div class="form-group">
-                            <label translate>Current Password</label>
-                            <input type="password" name="password" class="form-control" ng-model="vm.user.oldPassword" mongoose-error/>
-                            <p class="help-block" ng-show="form.password.$error.mongoose">
-                                {{ vm.errors.other }}
-                            </p>
-                        </div>
-                        <div class="form-group">
-                            <label translate>New Password</label>
-                            <input type="password" name="newPassword" class="form-control" ng-model="vm.user.newPassword" ng-minlength="3" required/>
-                            <p class="help-block" ng-show="(form.newPassword.$error.minlength || form.newPassword.$error.required) && (form.newPassword.$dirty || vm.submitted)">
-                                Password must be at least 3 characters.
-                            </p>
+            </div>
+            <br>
+            <div class="userStats">
+                <div class="data">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h2 translate>Change Password</h2></div>
+                        <div class="col-sm-12">
+                            <form class="form" name="form" ng-submit="vm.changePassword(form)" novalidate>
+                                <div class="form-group">
+                                    <label translate>Current Password</label>
+                                    <input type="password" name="password" class="form-control" ng-model="vm.user.oldPassword" mongoose-error/>
+                                    <p class="help-block" ng-show="form.password.$error.mongoose"> {{ vm.errors.other }}</p>
+                                </div>
+                                <div class="form-group">
+                                    <label translate>New Password</label>
+                                    <input type="password" name="newPassword" class="form-control" ng-model="vm.user.newPassword" ng-minlength="3" required/>
+                                    <p class="help-block" ng-show="(form.newPassword.$error.minlength || form.newPassword.$error.required) && (form.newPassword.$dirty || vm.submitted)"> Password must be at least 3 characters.</p>
+                                </div>
+                                <div class="form-group">
+                                    <label translate>Confirm New Password</label>
+                                    <input type="password" name="confirmPassword" class="form-control" ng-model="vm.user.confirmPassword" match="vm.user.newPassword" ng-minlength="3" required/>
+                                    <p class="help-block" ng-show="form.confirmPassword.$error.match && vm.submitted"> Passwords must match.</p>
+                                </div>
+                                <p class="help-block"> {{ vm.message }}</p>
+                                <button class="btn btn-primary pull-right" type="submit">Save changes</button>
+                                <br>
+                                <br>
+                            </form>
                         </div>
                         <div class="form-group">
                             <label translate>Confirm New Password</label>
@@ -190,6 +126,4 @@
             </div>
         </div>
     </div>
-</div>
-<footer></footer>
 </div>

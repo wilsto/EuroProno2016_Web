@@ -6,7 +6,7 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-            <li ng-hide="nav.isLoggedIn()"><span><a href="/login" class="external" translate>Login</a> | <a href="/signup" class="external" translate>Register</a></span></li>
+            <li ng-hide="nav.isLoggedIn()"><span><a href="/login" class="external" >Login</a> | <a href="/signup" class="external" >Register</a></span></li>
             <li ng-show="nav.isLoggedIn()"><a href="#" ng-click="nav.login_click()">{{ nav.getCurrentUser().name }} <i class="glyphicon glyphicon-cog"></i> </a></li>
             <li ng-hide="nav.currentPath !== '/' || 1===1">
                 <a ng-click="vm.toggle_audio()"><i class="glyphicon glyphicon-volume-down" ng-if="vm.audioOn"></i><i class="glyphicon glyphicon-volume-off" ng-if="!vm.audioOn"></i></a>
