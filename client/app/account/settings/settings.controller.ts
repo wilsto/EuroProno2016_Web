@@ -12,6 +12,7 @@ class SettingsController {
 
     constructor(Auth, $http) {
         this.errors = {};
+        this.obj = {};
         this.submitted = false;
         this.Auth = Auth;
         this.getCurrentUser = Auth.getCurrentUser;
@@ -21,12 +22,11 @@ class SettingsController {
         //users information
         this.users = this.getCurrentUser();
         this.status = this.users.status;
-
+        console.log("stat", this.status);
         //on récupère les leagues
         this.$http.get('/api/leagues').then(responseLeagues => {
             this.leagues = responseLeagues.data;
         });
-
     }
 
     changePassword(form) {
@@ -44,17 +44,22 @@ class SettingsController {
         }
     }
 
-
-    updUser(form) {
+    addAvatar($file, $message, $flow) {
+        console.log('fil', $file);
+        console.log('mes', $message);
+        console.log('flo', $flow);
+        this.users.avatar = $flow;
+    }
+    updUser(form, $flow) {
         this.submitted = true;
-        if (form.$valid) {
-            this.status.profil = 1;
-            this.users.status = this.status;
+        console.log('user', this.obj);
+        if (form.$valid && 1 === 2) {
+            this.users.status.profil = 1;
+
+            // this.users.avatar = "./client/assets/images/Ced.png";
             this.$http.put('/api/users/' + this.users._id, this.users).then(response => {
                 console.log('user updated', response);
             });
-
-
         }
         this.focused = false;
     }

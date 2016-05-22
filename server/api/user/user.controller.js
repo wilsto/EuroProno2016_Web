@@ -18,6 +18,9 @@ import passport from 'passport';
 import config from '../../config/environment';
 import jwt from 'jsonwebtoken';
 import postmark from 'postmark';
+var fs = require('fs');
+// img path
+var imgPath = './client/assets/images/Ced.png';
 
 var client = new postmark.Client("29e166e9-7166-4623-a39e-21c5c9e33ae9");
 
@@ -39,10 +42,13 @@ function respondWithResult(res, statusCode) {
 
 function saveUpdates(updates) {
     return function(entity) {
+        updates.avatar.data = fs.readFileSync(imgPath);
+        updates.avatar.contentType = 'image/png';
+        console.log("upd", updates.avatar);
         var updated = _.merge(entity, updates);
-        console.log("upd", updates.status);
         updated.status = updates.status;
         updated.markModified('status');
+
         return updated.save()
             .then(updated => {
                 return updated;
@@ -181,6 +187,23 @@ export function update(req, res) {
         .then(respondWithResult(res))
         .catch(handleError(res));
 }
+
+// Updates an existing Prono in the DB
+export function updateImag(req, res) {
+    if (req.body._id) {
+        delete req.body._id;
+    }
+
+
+
+
+    return User.findById(req.params.id).exec()
+        .then(handleEntityNotFound(res))
+        .then(saveUpdates(req.body))
+        .then(respondWithResult(res))
+        .catch(handleError(res));
+}
+
 
 
 /**
