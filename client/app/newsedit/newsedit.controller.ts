@@ -31,6 +31,10 @@
             this.loadNews();
         }
 
+        addNews() {
+            this.news.push({});
+        }
+
         loadNews() {
             this.$http.get('/api/newss').then(response => {
                 this.news = _.sortBy(response.data, 'date').reverse();

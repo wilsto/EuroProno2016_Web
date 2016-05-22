@@ -22,8 +22,10 @@ angular.module('euroProno2016WebApp', [
             .otherwise('/');
 
         $locationProvider.html5Mode(true);
-
         $translateProvider.useUrlLoader('/api/traductions/loader');
-        $translateProvider.preferredLanguage('en');
+        $translateProvider.preferredLanguage(navigator.language.substring(0, 2) || navigator.userLanguage.substring(0, 2) || 'en');
 
+    })
+    .run(function($rootScope) {
+        $rootScope.language = navigator.language.substring(0, 2) || navigator.userLanguage.substring(0, 2) || 'en';
     });

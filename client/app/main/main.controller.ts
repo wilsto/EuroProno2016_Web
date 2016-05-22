@@ -29,6 +29,13 @@
         $onInit() {
             console.log('init');
 
+            // calcul du nombre de café
+            var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+            var firstDate = new Date(2016, 3, 10);
+            var secondDate = new Date();
+            var diffDays = Math.round((secondDate.getTime() - firstDate.getTime()) / (oneDay));
+            this.coffecup = diffDays * 6;
+
             this.$http.get('/api/things').then(response => {
                 this.awesomeThings = response.data;
                 this.socket.syncUpdates('thing', this.awesomeThings);

@@ -6,16 +6,19 @@ class NavbarController {
     isCollapsed = true;
     //end-non-standard
 
-    constructor($http, Auth, $translate, $location) {
+    constructor($http, Auth, $rootScope, $translate, $location) {
         this.$http = $http;
         this.isLoggedIn = Auth.isLoggedIn;
         this.isAdmin = Auth.isAdmin;
         this.getCurrentUser = Auth.getCurrentUser;
         this.$translate = $translate;
+        this.$rootScope = $rootScope;
+
         //recherche de langue pour un user sinon language par défaut du navigateur sinon anglais
         var that = this;
         this.getCurrentUser(function(me) {
-            that.$translate.use(me.lang || navigator.language || navigator.userLanguage);
+            that.$rootScope.language = me.lang || navigator.language.substring(0, 2) || navigator.userLanguage.substring(0, 2) || 'en';
+            that.$translate.use(that.$rootScope.language);
         });
         this.burgerMenu();
         this.clickMenu();
