@@ -27,27 +27,27 @@
                                 </th>
                                 <th><a href='#' ng-click="sort( 'type'); ">Type</a></th>
                                 <th><a href='#' ng-click="sort( 'description'); ">Description</a></th>
-                                <th><a href='#' ng-click="sort( 'description'); ">Number of members</a></th>
+                                <th><a href='#' ng-click="sort( 'description'); "># of members</a></th>
                                 <th><a href='#' ng-click="sort( 'owner'); ">Owner</a></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="league" ng-repeat="league in vm.leagues | orderBy:orderProp  | filter :vm.greeting">
                                 <td ng-switch on="league.image.substr(0,4)">
-                                    <img class="imgLeagues" ng-switch-when="http" ng-src="{{league.image}}" class="circle ">
-                                    <img class="imgLeagues" ng-switch-default ng-src="assets/images/leagues/{{league.image}}" class="circle "> {{league.name | translate}}
+                                    <img class="imgLeagues" ng-switch-when="http" ng-src="{{league.image}}">
+                                    <img class="imgLeagues" ng-switch-default ng-src="assets/images/leagues/{{league.image}}"> {{league.name | translate}}
                                 </td>
                                 <td ng-switch on="league.status">
-                                    <img ng-switch-when="1" src="assets/images/leagues/cadenasRed.png" alt="Private">
-                                    <img ng-switch-default src="assets/images/leagues/cadenasGreen.png" alt="Public">
+                                    <img ng-switch-when="1" src="assets/images/leagues/cadenasRed.png" alt="Private" style="width:25px;">
+                                    <img ng-switch-default src="assets/images/leagues/cadenasGreen.png" alt="Public" style="width:25px;">
                                 </td>
                                 <td ng-switch on="league.type">
                                     <p ng-switch-when="1">Free</p>
                                     <p ng-switch-default>With a bet</p>
                                 </td>
                                 <td> {{league.description}} </td>
-                                <td> {{league.members.length}} </td>
-                                <td> {{league.owner_id.name}}</td>
+                                <td style="text-align:center"> {{league.members.length}} </td>
+                                <td style="text-align:center"> {{league.owner_id.name}}</td>
                                 <td>
                                     <a href="/leaguedetails/{{league._id}}"><i class="glyphicon glyphicon-th-list"> </a></td>
                             </tr>

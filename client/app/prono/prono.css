@@ -985,6 +985,28 @@ tr.match {
     line-height: 23px;
 }
 
+.penalties2 {
+    background-image: url("../../assets/images/soccer_off.png");
+    background-repeat: no-repeat;
+    padding-left: 18px;
+}
+
+.penalties input {
+    background: #6697BF!important;
+    color: #FFF!important;
+    width: 18px!important;
+    height: 20px!important;
+}
+
+.unbold {
+    font-weight: normal!important;
+    color: grey!important;
+}
+
+.lightImage {
+    opacity: 0.4;
+}
+
 
 /* FLAGS */
 

@@ -9,6 +9,7 @@
             { name: 'Leagues', href: '/league', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' },
             { name: 'Rules', href: '/rules', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' }
         ];
+
         constructor($http, Auth) {
             this.$http = $http;
             this.isLoggedIn = Auth.isLoggedIn;
@@ -103,12 +104,24 @@
         scoreChange(match, groupName) {
             match.result = (match.score1 && match.score2) ? match.score1 - match.score2 : null;
             if (match.result !== null) {
+                console.log('match.result', match.result);
                 if (match.result === 0) {
                     match.team1points = 1;
                     match.team1diff = match.result;
                     match.team2points = 1;
                     match.team2diff = match.result;
-                    match.winner = null;
+                    if (groupName.length === 1) {
+                        match.winner = null;
+                    } else {
+                        match.resultPenalties = (match.penalties1 && match.penalties2) ? match.penalties1 - match.penalties2 : null;
+                        console.log('match.resultPenalties ', match.resultPenalties);
+                        if (match.resultPenalties === 0) {
+                            match.winner = null;
+                        } else {
+                            match.winner = (match.resultPenalties > 0) ? match.team1 : match.team2;
+                            console.log('match.winner', match.winner);
+                        }
+                    }
                 }
                 if (match.result > 0) {
                     match.team1points = 3;

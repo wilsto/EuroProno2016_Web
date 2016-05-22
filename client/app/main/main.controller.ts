@@ -36,6 +36,16 @@
             var diffDays = Math.round((secondDate.getTime() - firstDate.getTime()) / (oneDay));
             this.coffecup = diffDays * 6;
 
+            // calcul du nombre de prono
+            this.$http.get('/api/pronos').then(responseProno => {
+                this.pronoCount = responseProno.data.length;
+            });
+
+            // calcul du nombre de league
+            this.$http.get('/api/leagues').then(responseLeague => {
+                this.leagueCount = responseLeague.data.length;
+            });
+
             this.$http.get('/api/things').then(response => {
                 this.awesomeThings = response.data;
                 this.socket.syncUpdates('thing', this.awesomeThings);

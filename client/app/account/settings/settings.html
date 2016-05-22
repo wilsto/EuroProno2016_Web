@@ -8,6 +8,9 @@
         <div class="row">
             <div class="col-sm-12"> <img src="assets/images/ball_player.png" alt="" style="max-width: 100%;height: auto;margin-bottom:30px;"></div>
         </div>
+        <div class="col-md-12">
+            <img src="assets/images/WIP.png" class="img-responsive" style="margin:0 auto;border-radius:10px;margin-bottom:20px" alt="">
+        </div>
         <div class="col-xs-12 col-xs-12 col-md-8 col-lg-8">
             <div class="userStats">
                 <div class="data">
@@ -60,11 +63,6 @@
                     <div></div>
                 </div>
             </div>
-            <a href="/league" class="btn btn-primary pull-right ladda-button" data-style="expand-right"><span class="ladda-label">Join Leagues</span>
-                    </a>
-            <p translate>You can belong to one or more leagues simultaneous, so you can challenge your friends and have indépendant results with filters.</p>
-            <div>
-            </div>
         </div>
         <div class="col-xs-12 col-xs-12 col-md-4 col-lg-4 ">
             <div class="userStats">
@@ -110,20 +108,11 @@
                                 <br>
                             </form>
                         </div>
-                        <div class="form-group">
-                            <label translate>Confirm New Password</label>
-                            <input type="password" name="confirmPassword" class="form-control" ng-model="vm.user.confirmPassword" match="vm.user.newPassword" ng-minlength="3" required="" />
-                            <p class="help-block" ng-show="form.confirmPassword.$error.match && vm.submitted">
-                                Passwords must match.
-                            </p>
-                        </div>
-                        <p class="help-block"> {{ vm.message }} </p>
-                        <button class="btn  btn-primary pull-right" type="submit">Save changes</button>
-                        <br>
-                        <br>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
+        <footer></footer>
     </div>
 </div>
