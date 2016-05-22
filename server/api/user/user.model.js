@@ -5,9 +5,6 @@ import mongoose from 'mongoose';
 mongoose.Promise = require('bluebird');
 import { Schema } from 'mongoose';
 
-
-var conn = mongoose.connection;
-
 const authTypes = ['github', 'twitter', 'facebook', 'google'];
 
 var UserSchema = new Schema({

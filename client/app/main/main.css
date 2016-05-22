@@ -45,7 +45,11 @@
 header:not(.navbar-fixed-top) .main-container .navbar-collapse ul {
     background: rgba(0, 83, 148, 0.6)!important;
     border-radius: 0 0 15px 15px;
-    margin-top: -5px;
+    margin-top: 5px;
+}
+
+header:not(.navbar-fixed-top) #navbar li a {
+    line-height: 20px;
 }
 
 header:not(.navbar-fixed-top) .main-container .navbar-brand {
@@ -68,7 +72,18 @@ header:not(.navbar-fixed-top) .main-container li span {
     width: 350px;
     display: none;
     float: left;
-    left: 210px;
+}
+
+@media screen and (min-width: 1045px) {
+    .login {
+        left: 50px;
+    }
+}
+
+@media screen and (max-width: 1054x) {
+    .login {
+        left: 50px;
+    }
 }
 
 .arrow-up {
