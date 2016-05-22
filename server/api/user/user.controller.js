@@ -1,10 +1,24 @@
+/**
+ * Using Rails-like standard naming convention for endpoints.
+ * GET     /api/users                   for admin     ->  index
+ * GET     /api/users/me                connected     ->  me 
+ * POST    /api/users                                 ->  create
+ * GET     /api/users/:id               connected     ->  show
+ * PUT     /api/users/:id               connected     ->  update
+ * PUT     /api/users/:id/password      connected     ->  changePassword
+ * DELETE  /api/users/:id               for admin     ->  destroy
+ */
+
 'use strict';
 
+import _ from 'lodash';
 import User from './user.model';
+
 import passport from 'passport';
 import config from '../../config/environment';
 import jwt from 'jsonwebtoken';
 import postmark from 'postmark';
+
 var client = new postmark.Client("29e166e9-7166-4623-a39e-21c5c9e33ae9");
 
 function validationError(res, statusCode) {
@@ -14,6 +28,39 @@ function validationError(res, statusCode) {
     }
 }
 
+function respondWithResult(res, statusCode) {
+    statusCode = statusCode || 200;
+    return function(entity) {
+        if (entity) {
+            return res.status(statusCode).json(entity);
+        }
+    };
+}
+
+function saveUpdates(updates) {
+    return function(entity) {
+        var updated = _.merge(entity, updates);
+        console.log("upd", updates.status);
+        updated.status = updates.status;
+        updated.markModified('status');
+        return updated.save()
+            .then(updated => {
+                return updated;
+            });
+    };
+}
+
+function handleEntityNotFound(res) {
+    return function(entity) {
+        if (!entity) {
+            res.status(404).end();
+            return null;
+        }
+
+        return entity;
+    };
+}
+
 function handleError(res, statusCode) {
     statusCode = statusCode || 500;
     return function(err) {
@@ -21,10 +68,6 @@ function handleError(res, statusCode) {
     };
 }
 
-/**
- * Get list of users
- * restriction: 'admin'
- */
 export function index(req, res) {
     return User.find({}, '-salt -password').exec()
         .then(users => {
@@ -106,6 +149,39 @@ export function changePassword(req, res, next) {
             }
         });
 }
+
+/*** Update user 
+export function update(req, res) {
+    var userId = req.user._id;
+
+    return User.findById(userId).exec()
+        .then(user => {
+            user.name = String(req.body.name);
+            user.email = String(req.body.email);
+            user.lang = String(req.body.lang);
+            user.status[0].profil = Number(req.body.status[0].profil);
+            user.avatar = String(req.body.avatar);
+            console.log(user.avatar);
+            return user.save()
+                .then(() => {
+                    res.status(204).end();
+                })
+                .catch(validationError(res));
+        });
+}
+*/
+// Updates an existing Prono in the DB
+export function update(req, res) {
+    if (req.body._id) {
+        delete req.body._id;
+    }
+    return User.findById(req.params.id).exec()
+        .then(handleEntityNotFound(res))
+        .then(saveUpdates(req.body))
+        .then(respondWithResult(res))
+        .catch(handleError(res));
+}
+
 
 /**
  * Get my info

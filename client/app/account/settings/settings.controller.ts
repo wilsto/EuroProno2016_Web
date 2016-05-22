@@ -17,13 +17,15 @@ class SettingsController {
         this.getCurrentUser = Auth.getCurrentUser;
         this.$http = $http;
         this.leagues = [];
+        this.focused = false;
+        //users information
+        this.users = this.getCurrentUser();
+        this.status = this.users.status;
 
-        //on récupère les matchs
+        //on récupère les leagues
         this.$http.get('/api/leagues').then(responseLeagues => {
             this.leagues = responseLeagues.data;
         });
-
-
 
     }
 
@@ -43,10 +45,19 @@ class SettingsController {
     }
 
 
+    updUser(form) {
+        this.submitted = true;
+        if (form.$valid) {
+            this.status.profil = 1;
+            this.users.status = this.status;
+            this.$http.put('/api/users/' + this.users._id, this.users).then(response => {
+                console.log('user updated', response);
+            });
 
 
-
-
+        }
+        this.focused = false;
+    }
 }
 
 angular.module('euroProno2016WebApp')
