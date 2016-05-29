@@ -26,9 +26,6 @@
                         <span class="title" translate>For each match, prognotic the score and choose wich team will go in finale phase.</span>
                         <span class="">{{'Teams ranking are automatically updated as soon as your enter your score.' | translate}}</span>
                     </div>
-                    <div class="col-md-12">
-                        <img src="assets/images/inprogress.png" class="img-responsive" style="margin:0 auto;border-radius:10px;" alt="">
-                    </div>
                     <div class="col-sm-12" ng-class="{'col-md-6':group.name.length <2}" ng-repeat="group in vm.groups ">
                         <h3 class="pronoPouleTitle">
                             <span><span ng-if="group.name.length <2">{{'Group' | translate }}</span> {{group.name | translate}} </span>
@@ -66,15 +63,23 @@
                         </table>
                         <div class="pronoPouleClassement" ng-if="group.name.length <2">
                             <div class="pronoPouleClaTitleContainer">
-                                <div class="pronoPouleClaPts">Bc.</div>
-                                <div class="pronoPouleClaPts">Bp.</div>
-                                <div class="pronoPouleClaPts">Dif.</div>
-                                <div class="pronoPouleClaPts">L.</div>
-                                <div class="pronoPouleClaPts">D.</div>
-                                <div class="pronoPouleClaPts">W.</div>
-                                <div class="pronoPouleClaPts">P.</div>
-                                <div class="pronoPouleClaPts">Pts</div>
-                                <h4 class="pronoPouleClaClsmt">{{'Ranking' | translate }}</h4>
+                                <div class="pronoPouleClaPts"  ng-if="ranking">R7</div>
+                                <div class="pronoPouleClaPts"  ng-if="ranking">R6</div>
+                                <div class="pronoPouleClaPts"  ng-if="ranking">R5</div>
+                                <div class="pronoPouleClaPts"  ng-if="ranking">R4</div>
+                                <div class="pronoPouleClaPts"  ng-if="ranking">R3</div>
+                                <div class="pronoPouleClaPts"  ng-if="ranking">R2</div>
+                                <div class="pronoPouleClaPts"  ng-if="ranking">R1</div>
+                                <div class="pronoPouleClaPts"  ng-if="ranking">Pts</div>
+                                <div class="pronoPouleClaPts" ng-if="!ranking">Bc.</div>
+                                <div class="pronoPouleClaPts" ng-if="!ranking">Bp.</div>
+                                <div class="pronoPouleClaPts" ng-if="!ranking">Dif.</div>
+                                <div class="pronoPouleClaPts" ng-if="!ranking">L.</div>
+                                <div class="pronoPouleClaPts" ng-if="!ranking">D.</div>
+                                <div class="pronoPouleClaPts" ng-if="!ranking">W.</div>
+                                <div class="pronoPouleClaPts" ng-if="!ranking">P.</div>
+                                <div class="pronoPouleClaPts" ng-if="!ranking">Pts</div>
+                                <a href="" ng-click="ranking=!ranking"><h4 class="pronoPouleClaClsmt">{{'Ranking' | translate }}</h4></a> <a href="/regulation" target="_blank"><div class=""  ng-if="ranking">See Rules</div></a>
                             </div>
                             <div class="pronoPouleCla">
                                 <div class="pronoPouleClaLine pronoPouleClaLine1">1</div>
@@ -83,15 +88,23 @@
                                 <div class="pronoPouleClaLine pronoPouleClaLine2">4</div>
                             </div>
                             <ul class="pronoPouleTeams">
-                                <li class="club pronoPouleTeamsLine tass" ng-repeat="team in vm.teams | filter:{group:group.name} | orderBy:['-points','-diff']">
-                                    <div class="pts ">{{team.bc}}</div>
-                                    <div class="pts ">{{team.bp}}</div>
-                                    <div class="pts nbPts">{{team.diff}}</div>
-                                    <div class="pts ">{{team.loss}}</div>
-                                    <div class="pts ">{{team.draw}}</div>
-                                    <div class="pts ">{{team.win}}</div>
-                                    <div class="pts ">{{team.played}}</div>
-                                    <div class="pts nbPts">{{team.points}}</div>
+                                <li class="club pronoPouleTeamsLine tass" ng-repeat="team in vm.teams | filter:{group:group.name} | orderBy:['rank1','rank2','rank3','rank4', 'rank5', 'rank6', 'rank7', 'rank8']">
+                                    <div class="pts " ng-if="ranking">{{team.rank8}}</div>
+                                    <div class="pts " ng-if="ranking">{{team.rank7}}</div>
+                                    <div class="pts " ng-if="ranking">{{team.rank6}}</div>
+                                    <div class="pts " ng-if="ranking">{{team.rank5}}</div>
+                                    <div class="pts " ng-if="ranking">{{team.rank4}}</div>
+                                    <div class="pts " ng-if="ranking">{{team.rank3}}</div>
+                                    <div class="pts " ng-if="ranking">{{team.rank2}}</div>
+                                    <div class="pts " ng-if="ranking">{{team.rank1}}</div>
+                                    <div class="pts " ng-if="!ranking">{{team.bc}}</div>
+                                    <div class="pts "  ng-if="!ranking">{{team.bp}}</div>
+                                    <div class="pts"  ng-if="!ranking">{{team.diff}}</div>
+                                    <div class="pts "  ng-if="!ranking">{{team.loss}}</div>
+                                    <div class="pts "  ng-if="!ranking">{{team.draw}}</div>
+                                    <div class="pts "  ng-if="!ranking">{{team.win}}</div>
+                                    <div class="pts "  ng-if="!ranking">{{team.played}}</div>
+                                    <div class="pts nbPts"  ng-if="!ranking">{{team.points}}</div>
                                     <span class="countryflags-mini {{team.name}}">&nbsp;</span>
                                         <span class="equipe">
                                           {{team.name | translate}}
