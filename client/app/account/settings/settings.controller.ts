@@ -22,7 +22,6 @@ class SettingsController {
         //users information
         this.users = this.getCurrentUser();
         this.status = this.users.status;
-        console.log("stat", this.status);
         //on récupère les leagues
         this.$http.get('/api/leagues').then(responseLeagues => {
             this.leagues = responseLeagues.data;
@@ -48,12 +47,14 @@ class SettingsController {
         console.log('fil', $file);
         console.log('mes', $message);
         console.log('flo', $flow);
-        this.users.avatar = $flow;
+        this.users.avatar = $file[0];
+
     }
+
     updUser(form, $flow) {
         this.submitted = true;
-        console.log('user', this.obj);
-        if (form.$valid && 1 === 2) {
+        console.log('avat', this.users.avatar.flowobj);
+        if (form.$valid) {
             this.users.status.profil = 1;
 
             // this.users.avatar = "./client/assets/images/Ced.png";

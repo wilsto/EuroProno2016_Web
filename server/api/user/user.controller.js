@@ -181,21 +181,6 @@ export function update(req, res) {
     if (req.body._id) {
         delete req.body._id;
     }
-    return User.findById(req.params.id).exec()
-        .then(handleEntityNotFound(res))
-        .then(saveUpdates(req.body))
-        .then(respondWithResult(res))
-        .catch(handleError(res));
-}
-
-// Updates an existing Prono in the DB
-export function updateImag(req, res) {
-    if (req.body._id) {
-        delete req.body._id;
-    }
-
-
-
 
     return User.findById(req.params.id).exec()
         .then(handleEntityNotFound(res))
@@ -203,8 +188,6 @@ export function updateImag(req, res) {
         .then(respondWithResult(res))
         .catch(handleError(res));
 }
-
-
 
 /**
  * Get my info
