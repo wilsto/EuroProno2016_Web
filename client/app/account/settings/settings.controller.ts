@@ -45,18 +45,21 @@ class SettingsController {
 
     addAvatar($file, $message, $flow) {
         console.log('fil', $file);
-        console.log('mes', $message);
-        console.log('flo', $flow);
-        this.users.avatar = $file[0];
+        var abc = !!{ png: 1, gif: 1, jpg: 1, jpeg: 1 }[$file[0].getExtension()]
+
+        if (abc) {
+            this.users.avatar = $file[0].file;
+        } else {
+            $flow.cancel();
+        }
 
     }
 
     updUser(form, $flow) {
         this.submitted = true;
-        console.log('avat', this.users.avatar.flowobj);
         if (form.$valid) {
             this.users.status.profil = 1;
-
+            console.log('avat', this.users.avatar);
             // this.users.avatar = "./client/assets/images/Ced.png";
             this.$http.put('/api/users/' + this.users._id, this.users).then(response => {
                 console.log('user updated', response);

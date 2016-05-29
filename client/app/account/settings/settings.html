@@ -16,7 +16,7 @@
                 <div class="data">
                     <div class="head">
                         <h2 style="padding-left: 25px">{{vm.getCurrentUser().name}}</h2> {{vm.users.avatar}}
-                        <img ng-src="data:image/jpg;base64,{{vm.users.avatar}}">
+                        <img ng-src="data:image/jpg;base64,{{vm.users.avatar.data}}">
                     </div>
                     <div class="pic"> <img class="img-circle" width="150" height="150" ng-src="data:image/jpg;base64,{{vm.users.avatar.data !== undefined && vm.users.avatar.data || 'assets/images/inconnu.gif'}}"></div>
                     <form class="form" name="formU" ng-submit="vm.updUser(formU, $flow)" novalidate>
