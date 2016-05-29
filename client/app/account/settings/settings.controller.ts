@@ -22,7 +22,6 @@ class SettingsController {
         //users information
         this.users = this.getCurrentUser();
         this.status = this.users.status;
-        console.log("stat", this.status);
         //on récupère les leagues
         this.$http.get('/api/leagues').then(responseLeagues => {
             this.leagues = responseLeagues.data;
@@ -45,18 +44,23 @@ class SettingsController {
     }
 
     addAvatar($file, $message, $flow) {
-        console.log('fil', $file);
-        console.log('mes', $message);
-        console.log('flo', $flow);
-        this.users.avatar = $flow;
+        var abc = !!{ png: 1, gif: 1, jpg: 1, jpeg: 1 }[$file[0].getExtension()]
+        this.myFile = {};
+        this.myFile['contentType'] = $file[0].file.type;
+        this.myFile['path'] = $file[0].uniqueIdentifier;
+        console.log('test', this.myFile);
+        if (abc) {
+            this.users.avatar = this.myFile;
+
+        } else {
+            $flow.cancel();
+        }
     }
+
     updUser(form, $flow) {
         this.submitted = true;
-        console.log('user', this.obj);
-        if (form.$valid && 1 === 2) {
+        if (form.$valid) {
             this.users.status.profil = 1;
-
-            // this.users.avatar = "./client/assets/images/Ced.png";
             this.$http.put('/api/users/' + this.users._id, this.users).then(response => {
                 console.log('user updated', response);
             });

@@ -15,21 +15,45 @@
             <div class="userStats">
                 <div class="data">
                     <div class="head">
-                        <h2 style="padding-left: 25px">{{vm.getCurrentUser().name}}</h2></div>
-                    <div class="pic"> <img class="img-circle" width="150" height="150" ng-src="assets/images/{{vm.users.avatarUrl !== undefined && vm.users.avatarUrl || 'assets/images/inconnu.gif'}}"></div>
-                    <form class="form" name="formU" ng-submit="vm.updUser(formU)" novalidate>
+                        <h2 style="padding-left: 25px">{{vm.getCurrentUser().name}}</h2> {{vm.users.avatar}}
+                    </div>
+                    <div class="pic"> <img class="img-circle" width="150" height="150" ng-src="data:image/png;base64,{{vm.users.avatar.data !== undefined && createObjectURL(vm.users.avatar.data) || 'assets/images/inconnu.gif'}}"></div>
+                    <form class="form" name="formU" ng-submit="vm.updUser(formU, $flow)" novalidate>
                         <h3><div class="input-group"> <label class="input-group-addon inpset" >Full Name :</label> <middle ng-show="vm.focused===false"> {{vm.users.name}} </middle> <input ng-show="vm.focused===true" type="text" ng-model="vm.users.name" name="newUser.name" class="form-control input-group-addon" aria-describedby="basic-addon3"></div></h3>
                         <h3><div class="input-group"> <label class="input-group-addon inpset" >Email :</label> <middle ng-show="vm.focused===false"> {{vm.users.email}} </middle> <input ng-show="vm.focused===true" type="text" ng-model="vm.users.email" name="newUser.email" class="form-control input-group-addon" aria-describedby="basic-addon3" ></div></h3>
                         <h3><div class="input-group"> <label class="input-group-addon inpset">Language :</label> <middle ng-show="vm.focused===false">{{vm.users.lang}} </middle> <select ng-show="vm.focused===true" type="text" ng-model="vm.users.lang" name="newUser.lang" class="form-control input-group-addon" aria-describedby="basic-addon3" ><option values="fr">fr</option><option value="en">en</option><option value="es">es</option><option value="de">de</option> </select></div></h3>
                         <br>
                         <br> <a href="#" style="font-size: 11px;bottom:0" class="btn btn-xs pull-right btn-primary" ng-click="vm.focused=true" ng-show="vm.focused===false"><span class="glyphicon glyphicon-pencil"></span> Modify</a>
                         <button style="font-size:11px;bottom:0" class="btn pull-right btn-primary" type="submit" ng-show="vm.focused===true"><span class="glyphicon glyphicon-pencil"></span> Save</button>
+                        <div class="input-group" ng-show="vm.focused===true">
+                            <small class="input-group-addon inpset" id="basic-addon">Upload Avatar :</small>
+                            <div flow-init="{singleFile:true}" flow-name="obj.flow" flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]" class="ng-scope" flow-drop flow-files-added="vm.addAvatar( $files, $message, $flow)">
+                                <h4>
+                                <a name="image-example" class="anchor" href="#image-example"><span class="octicon octicon-link"></span></a>Single Image upload
+                                </h4>
+                                <div class="thumbnail" ng-show="!$flow.files.length" flow-drag-enter="style={border:'4px solid green'}" flow-drag-leave="style={}" ng-style="style">
+                                    <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image">
+                                </div>
+                                <div class="thumbnail ng-hide" ng-show="$flow.files.length" flow-drag-enter="style={border:'4px solid green'}" flow-drag-leave="style={}" ng-style="style">
+                                    <!-- image preview-->
+                                    <img flow-img="$flow.files[0]">
+                                </div>
+                                <div>
+                                    <span class="btn btn-primary" ng-show="!$flow.files.length" flow-btn="">Select image<input type="file" style="visibility: hidden; position: absolute;"></span>
+                                    <span class="btn btn-info ng-hide" ng-show="$flow.files.length" flow-btn="">Change<input type="file" style="visibility: hidden; position: absolute;"></span>
+                                    <span class="btn btn-danger ng-hide" ng-show="$flow.files.length" ng-click="$flow.cancel()">Cancel</span>
+                                </div>
+                                <p>
+                                    Only PNG,GIF,JPG,JEPG files allowed.
+                                </p>
+                            </div>
+                        </div>
                     </form>
-                    <div class="socialMediaLinks"> <span data-ng-class="{'label-info': user.role.title == userRoles.user.title, 'label-warning': user.role.title == userRoles.vip.title, 'label-success': user.role.title == userRoles.admin.title}" class="label">{{vm.getCurrentUser().role.toUpperCase() }} </span></div>
+                    <div class="socialMediaLinks">
+                        <span data-ng-class="{'label-info': user.role.title == userRoles.user.title, 'label-warning': user.role.title == userRoles.vip.title, 'label-success': user.role.title == userRoles.admin.title}" class="label">{{vm.getCurrentUser().role.toUpperCase() }} </span>
+                    </div>
                 </div>
             </div>
-            </h3>
-            <br>
             <div class="userStats">
                 <div class="data">
                     <div class="head">

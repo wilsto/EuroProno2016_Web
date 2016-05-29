@@ -41,9 +41,6 @@ var UserSchema = new Schema({
     lang: {
         type: String
     },
-    avatarUrl: {
-        type: String
-    },
     avatar: { data: Buffer, contentType: String },
     password: {
         type: String,
