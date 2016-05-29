@@ -42,9 +42,9 @@ function respondWithResult(res, statusCode) {
 
 function saveUpdates(updates) {
     return function(entity) {
-        updates.avatar.data = fs.readFileSync(imgPath);
-        updates.avatar.contentType = 'image/png';
-        console.log("upd", updates.avatar);
+        console.log(updates.avatar.path);
+
+        updates.avatar.data = fs.readFileSync(updates.avatar.path).toString("base64");
         var updated = _.merge(entity, updates);
         updated.status = updates.status;
         updated.markModified('status');
@@ -182,6 +182,7 @@ export function update(req, res) {
         delete req.body._id;
     }
 
+    console.log("res", req.body);
     return User.findById(req.params.id).exec()
         .then(handleEntityNotFound(res))
         .then(saveUpdates(req.body))

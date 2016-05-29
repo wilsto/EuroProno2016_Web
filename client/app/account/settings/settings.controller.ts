@@ -44,23 +44,23 @@ class SettingsController {
     }
 
     addAvatar($file, $message, $flow) {
-        console.log('fil', $file);
         var abc = !!{ png: 1, gif: 1, jpg: 1, jpeg: 1 }[$file[0].getExtension()]
-
+        this.myFile = {};
+        this.myFile['contentType'] = $file[0].file.type;
+        this.myFile['path'] = $file[0].uniqueIdentifier;
+        console.log('test', this.myFile);
         if (abc) {
-            this.users.avatar = $file[0].file;
+            this.users.avatar = this.myFile;
+
         } else {
             $flow.cancel();
         }
-
     }
 
     updUser(form, $flow) {
         this.submitted = true;
         if (form.$valid) {
             this.users.status.profil = 1;
-            console.log('avat', this.users.avatar);
-            // this.users.avatar = "./client/assets/images/Ced.png";
             this.$http.put('/api/users/' + this.users._id, this.users).then(response => {
                 console.log('user updated', response);
             });

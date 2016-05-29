@@ -16,9 +16,8 @@
                 <div class="data">
                     <div class="head">
                         <h2 style="padding-left: 25px">{{vm.getCurrentUser().name}}</h2> {{vm.users.avatar}}
-                        <img ng-src="data:image/jpg;base64,{{vm.users.avatar.data}}">
                     </div>
-                    <div class="pic"> <img class="img-circle" width="150" height="150" ng-src="data:image/jpg;base64,{{vm.users.avatar.data !== undefined && vm.users.avatar.data || 'assets/images/inconnu.gif'}}"></div>
+                    <div class="pic"> <img class="img-circle" width="150" height="150" ng-src="data:image/png;base64,{{vm.users.avatar.data !== undefined && createObjectURL(vm.users.avatar.data) || 'assets/images/inconnu.gif'}}"></div>
                     <form class="form" name="formU" ng-submit="vm.updUser(formU, $flow)" novalidate>
                         <h3><div class="input-group"> <label class="input-group-addon inpset" >Full Name :</label> <middle ng-show="vm.focused===false"> {{vm.users.name}} </middle> <input ng-show="vm.focused===true" type="text" ng-model="vm.users.name" name="newUser.name" class="form-control input-group-addon" aria-describedby="basic-addon3"></div></h3>
                         <h3><div class="input-group"> <label class="input-group-addon inpset" >Email :</label> <middle ng-show="vm.focused===false"> {{vm.users.email}} </middle> <input ng-show="vm.focused===true" type="text" ng-model="vm.users.email" name="newUser.email" class="form-control input-group-addon" aria-describedby="basic-addon3" ></div></h3>
