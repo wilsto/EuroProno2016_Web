@@ -17,7 +17,7 @@
             this.isAdmin = Auth.isAdmin;
             this.getCurrentUser = Auth.getCurrentUser;
             this.leagues = [];
-            this.orderProp = 'name';
+            this.orderProp = ['name'];
             this.myList = false;
             this.myId = 1;
             $scope.sort = function(type) {
@@ -33,6 +33,7 @@
             //on récupère les matchs
             this.$http.get('/api/leagues').then(responseLeagues => {
                 this.leagues = responseLeagues.data;
+                console.log('this.leagues ', this.leagues);
 
             });
 

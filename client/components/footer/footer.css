@@ -53,3 +53,7 @@ footer.footer {
     background-size: 100% auto;
     background-position: center bottom;
 }
+
+.nopuce {
+    list-style-type: none;
+}

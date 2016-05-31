@@ -8,7 +8,7 @@
             </div>
             </div>
             <div class="row">
-            <ul>
+            <ul class="nopuce">
                 <li class="hover-dropdown"><span translate>Change language : </span> {{foo.language}}
                         <div class="btn-group dropdown">
                             <div class="dropdown dropdown ">
@@ -18,7 +18,7 @@
                                     <span ng-if="foo.lang==='es'"><span class="countryflags Spain"></span> Es&nbsp;<span class="caret"></span></span>
                                     <span ng-if="foo.lang==='de'"><span class="countryflags Germany" ></span> De&nbsp;<span class="caret"></span></span>
                                 </a>
-                                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel" style="min-width: 10px;">
+                                <ul class="dropdown-menu nopuce" role="menu" aria-labelledby="dLabel" style="min-width: 10px;">
                                     <li style="float: none;"><a href="" tabindex="-1" ng-click="foo.changeLanguage('fr')"><span class="countryflags France"></span> Fr</a></li>
                                     <li style="float: none;"><a href="" tabindex="-1" ng-click="foo.changeLanguage('en')"><span class="countryflags England"></span> En</a></li>
                                     <li style="float: none;"><a href="" tabindex="-1" ng-click="foo.changeLanguage('es')"><span class="countryflags Spain"></span> Es</a></li>

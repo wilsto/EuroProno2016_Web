@@ -256,8 +256,8 @@ h1.accroche {
     white-space: nowrap;
     font-family: Arial;
     font-size: 14px;
-    color: #161a21;
-    font-weight: 700
+    color: #276DB2;
+    font-weight: 500;
 }
 
 .pronoPoule {
@@ -1004,7 +1004,7 @@ tr.match {
 }
 
 .lightImage {
-    opacity: 0.4;
+    opacity: 0.3;
 }
 
 

@@ -16,7 +16,7 @@
             <div class="col-sm-12">
                 <div id="League" class="leagueContent">
                     <div class="leagueContentToolTip">
-                        Filter: <span class="title" translate><input ng-model="vm.greeting" type="text"><br></span>
+                        Filter: <span class="title" translate><input ng-model="vm.txtSearch" type="text"><br></span>
                     </div>
                     <table class="table table-responsive table-hover">
                         <thead>
@@ -32,18 +32,46 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="league" ng-repeat="league in vm.leagues | orderBy:orderProp  | filter :vm.greeting">
+                            <tr class="league" ng-repeat="league in vm.leagues | filter:{pinned:true}">
                                 <td ng-switch on="league.image.substr(0,4)">
-                                    <img class="imgLeagues" ng-switch-when="http" ng-src="{{league.image}}">
-                                    <img class="imgLeagues" ng-switch-default ng-src="assets/images/leagues/{{league.image}}"> {{league.name | translate}}
+                                    <a href="/leaguedetails/{{league._id}}">
+                                        <img class="imgLeagues" ng-switch-when="http" ng-src="{{league.image}}">
+                                        <img class="imgLeagues" ng-switch-default ng-src="assets/images/leagues/{{league.image}}">
+                                        <span class="btn icon-pin btn-xs btn-primary"></span> {{league.name | translate}}
+                                    </a>
                                 </td>
                                 <td ng-switch on="league.status">
-                                    <img ng-switch-when="1" src="assets/images/leagues/cadenasRed.png" alt="Private" style="width:25px;">
+                                    <img ng-switch-when="1" src="assets/images/leagues/cadenasred.png" alt="Private" style="width:25px;">
+                                    <br><span ng-switch-when="1">Private</span>
                                     <img ng-switch-default src="assets/images/leagues/cadenasGreen.png" alt="Public" style="width:25px;">
+                                    <br><span ng-switch-default>Public</span>
                                 </td>
                                 <td ng-switch on="league.type">
                                     <p ng-switch-when="1">Free</p>
-                                    <p ng-switch-default>With a bet</p>
+                                    <p ng-switch-default> <img src="assets/images/leagues/money.jpg" alt="Public" style="width:35px;"></p>
+                                </td>
+                                <td> {{league.description}} </td>
+                                <td style="text-align:center"> {{league.members.length}} </td>
+                                <td style="text-align:center"> {{league.owner_id.name}}</td>
+                                <td>
+                                    <a href="/leaguedetails/{{league._id}}"><i class="glyphicon glyphicon-th-list"> </a></td>
+                            </tr>
+                            <tr class="league" ng-repeat="league in vm.leagues | orderBy:orderProp  | filter :vm.txtSearch | filter:{pinned:'!'}">
+                                <td ng-switch on="league.image.substr(0,4)">
+                                    <a href="/leaguedetails/{{league._id}}">
+                                        <img class="imgLeagues" ng-switch-when="http" ng-src="{{league.image}}">
+                                        <img class="imgLeagues" ng-switch-default ng-src="assets/images/leagues/{{league.image}}"> {{league.name | translate}}
+                                    </a>
+                                </td>
+                                <td ng-switch on="league.status">
+                                    <img ng-switch-when="1" src="assets/images/leagues/cadenasRed.png" alt="Private" style="width:25px;">
+                                    <br><span ng-switch-when="1">Private</span>
+                                    <img ng-switch-default src="assets/images/leagues/cadenasGreen.png" alt="Public" style="width:25px;">
+                                    <br><span ng-switch-default>Public</span>
+                                </td>
+                                <td ng-switch on="league.type">
+                                    <p ng-switch-when="1">Free</p>
+                                    <p ng-switch-default> <img src="assets/images/leagues/money.jpg" alt="Public" style="width:35px;"></p>
                                 </td>
                                 <td> {{league.description}} </td>
                                 <td style="text-align:center"> {{league.members.length}} </td>
