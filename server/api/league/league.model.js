@@ -9,7 +9,10 @@ var LeagueSchema = new mongoose.Schema({
     /*1 gratuit/ 2 avec mise*/
     type: Number,
     description: String,
-    pinned: Boolean,
+    pinned: {
+        type: Boolean,
+        default: false
+    },
     owner_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     /*members: mongoose.Schema.Types.Mixed,*/
 
