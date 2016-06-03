@@ -4,11 +4,6 @@
 (function() {
 
     class MainController {
-        bg_audio = true;
-        // TODO change to false to not start music
-        audioOn = false;
-        bg = new Audio('assets/audio/bg.mp3');
-
 
         menu = [
             { name: 'Home', href: '/', section: '', ngclick: '', class: 'active', a_class: 'active' },
@@ -51,10 +46,6 @@
                 this.socket.syncUpdates('thing', this.awesomeThings);
             });
 
-            if (this.bg_audio && this.audioOn) {
-                this.bg.play();
-            }
-
             this.parallax();
 
             // Animations
@@ -69,25 +60,6 @@
         $onDestroy() {
             console.log('destroy');
             this.socket.unsyncUpdates('thing');
-
-            //arrete la musique lorsque l'on quitte le main
-            this.bg.pause();
-            this.bg.currentTime = 0;
-        }
-
-        toggle_audio() {
-            this.bg.muted = !this.bg.muted;
-            this.audioOn = !this.bg.muted;
-        }
-        addThing() {
-            if (this.newThing) {
-                this.$http.post('/api/things', { name: this.newThing });
-                this.newThing = '';
-            }
-        }
-
-        deleteThing(thing) {
-            this.$http.delete('/api/things/' + thing._id);
         }
 
         // Parallax
