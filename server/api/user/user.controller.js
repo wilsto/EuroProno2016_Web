@@ -42,9 +42,7 @@ function respondWithResult(res, statusCode) {
 
 function saveUpdates(updates) {
     return function(entity) {
-        console.log(updates.avatar.path);
 
-        updates.avatar.data = fs.readFileSync(updates.avatar.path).toString("base64");
         var updated = _.merge(entity, updates);
         updated.status = updates.status;
         updated.markModified('status');
@@ -116,7 +114,7 @@ export function show(req, res, next) {
             if (!user) {
                 return res.status(404).end();
             }
-            res.json(user.profile);
+            return res.json(user.profile);
         })
         .catch(err => next(err));
 }

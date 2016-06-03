@@ -20,11 +20,15 @@ class SettingsController {
         this.leagues = [];
         this.focused = false;
         //users information
-        this.users = this.getCurrentUser();
-        this.status = this.users.status;
+        this.currentUser = this.getCurrentUser();
         //on récupère les leagues
+        this.loadLeagues();
+    }
+
+    loadLeagues() {
         this.$http.get('/api/leagues').then(responseLeagues => {
             this.leagues = responseLeagues.data;
+            console.log('this.leagues', this.leagues);
         });
     }
 
@@ -43,30 +47,16 @@ class SettingsController {
         }
     }
 
-    addAvatar($file, $message, $flow) {
-        var abc = !!{ png: 1, gif: 1, jpg: 1, jpeg: 1 }[$file[0].getExtension()]
-        this.myFile = {};
-        this.myFile['contentType'] = $file[0].file.type;
-        this.myFile['path'] = $file[0].uniqueIdentifier;
-        console.log('test', this.myFile);
-        if (abc) {
-            this.users.avatar = this.myFile;
-
-        } else {
-            $flow.cancel();
-        }
-    }
-
-    updUser(form, $flow) {
-        this.submitted = true;
-        if (form.$valid) {
-            this.users.status.profil = 1;
-            this.$http.put('/api/users/' + this.users._id, this.users).then(response => {
-                console.log('user updated', response);
-            });
-        }
+    saveUser() {
+        this.currentUser.status.profil = 1;
+        this.$http.put('/api/users/' + this.currentUser._id, this.currentUser).then(response => {
+            console.log('user updated', response);
+            this.loadLeagues();
+            this.currentUser = this.getCurrentUser();
+        });
         this.focused = false;
     }
+}
 }
 
 angular.module('euroProno2016WebApp')

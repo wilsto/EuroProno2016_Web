@@ -221,3 +221,12 @@ div.photo span {
     border-color: white;
     text-align: left;
 }
+
+.fullinput {
+    z-index: 90;
+    width: 100%;
+    font-size: 11px;
+    background-color: white;
+    text-align: left;
+    padding-left: 25px;
+}

@@ -41,7 +41,7 @@ var UserSchema = new Schema({
     lang: {
         type: String
     },
-    avatar: { data: Buffer, contentType: String },
+    avatar: { type: String },
     password: {
         type: String,
         required: function() {
@@ -67,6 +67,8 @@ var UserSchema = new Schema({
     twitter: {},
     google: {},
     github: {}
+}, {
+    strict: false
 });
 
 /**
