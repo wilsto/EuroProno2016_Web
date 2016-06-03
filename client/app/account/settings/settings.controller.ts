@@ -57,7 +57,6 @@ class SettingsController {
         this.focused = false;
     }
 }
-}
 
 angular.module('euroProno2016WebApp')
     .controller('SettingsController', SettingsController);

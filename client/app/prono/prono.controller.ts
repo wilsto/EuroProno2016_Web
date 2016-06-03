@@ -29,6 +29,7 @@
             this.$http.get('/api/matchs').then(responseMatchs => {
 
                 this.matchs = responseMatchs.data;
+                console.log('this.matchs', this.matchs);
 
                 // création des groupes à partir des infos matchs
                 this.groups = _.sortBy(_.uniq(_.map(this.matchs, element => {
