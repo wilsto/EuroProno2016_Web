@@ -13,14 +13,21 @@
             </div>
         </div>
         Public Leagues are accessible for all, Private Leagues need approval from owner.
-        <div class="row">
+        <br/>You can join or create your own league.
+        <div class="row" ng-hide="vm.showNew">
             <div class="col-sm-12">
                 <div id="League" class="leagueContent">
-                    <div class="leagueContentToolTip">
-                        Filter: <span class="title" translate><input ng-model="vm.txtSearch" type="text"><br></span>
-                    </div>
                     <table class="table table-responsive table-hover">
                         <thead>
+                            <tr>
+                                <div class="user-info " style="margin:10px;">
+                                    <p style="display: inline-block;width:100px;">Filter Leagues </p>
+                                    <input type="text" class="form-control" style=" display: inline-block;width:50%;margin-left: 10px;" ng-model="vm.search.$">
+                                    <span class="pull-right">
+                                <a ng-click="vm.showNew = !vm.showNew" class="btn btn-primary "><i class="icon-plus"></i> Add</a>
+                            </span>
+                                </div>
+                            </tr>
                             <tr>
                                 <th><a href='#' ng-click="sort('name'); ">League</a></th>
                                 <th>
@@ -33,7 +40,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="league" ng-repeat="league in vm.leagues | filter :vm.txtSearch| filter:{pinned:true}">
+                            <tr class="league" ng-repeat="league in vm.leagues | filter:vm.search | filter:{pinned:true}">
                                 <td ng-switch on="league.image.substr(0,4)">
                                     <a href="/leaguedetails/{{league._id}}">
                                         <img class="imgLeagues" ng-switch-when="http" ng-src="{{league.image}}">
@@ -57,7 +64,7 @@
                                 <td>
                                     <a href="/leaguedetails/{{league._id}}"><i class="glyphicon glyphicon-th-list"> </a></td>
                             </tr>
-                            <tr class="league" ng-repeat="league in vm.leagues | orderBy:orderProp  | filter :vm.txtSearch | filter:{pinned:false} ">
+                            <tr class="league" ng-repeat="league in vm.leagues | orderBy:orderProp  | filter:vm.search | filter:{pinned:false} ">
                                 <td ng-switch on="league.image.substr(0,4)">
                                     <a href="/leaguedetails/{{league._id}}">
                                         <img class="imgLeagues" ng-switch-when="http" ng-src="{{league.image}}">
@@ -86,47 +93,47 @@
                 </div>
             </div>
         </div>
-        <div class="userStats" ng-if="nav.isAdmin()">
+        <br>
+        <br>
+        <br>
+        <div class="userStats" ng-show="vm.showNew">
             <div class="data">
                 <p><strong translate>Add a new league</strong></p>
-                <form class="form " name="form " ng-submit="vm.createLeague(form) " novalidate>
-                    <div class="form-group ">
-                        <label>League name</label>
-                        <input type="text " name="name " class="form-control " ng-model="vm.newleague.name " required style="background-color: #FFF " tabindex=1>
+                <form class="form" name="form" ng-submit="vm.createLeague(form)" novalidate>
+                    <div class="form-group">
+                        <label>League name</label> <small class="text-danger"> (Can not be changed after creation)</small>
+                        <input type="text " name="name " class="form-control " ng-model="vm.newleague.name" required style="background-color: #FFF " tabindex=1>
                     </div>
                     <div class="form-group ">
-                        <label>Status</label>
-                        <select type="text " name="status" class="form-control " ng-model="vm.newleague.status " required style="background-color: #FFF " tabindex=2>
+                        <label>Status</label> <small> (Public Leagues are accessible for all, Private Leagues need approval from you.)</small><small class="text-danger"> (Can not be changed after creation)</small>
+                        <select name="status" class="form-control " ng-model="vm.newleague.status" required style="background-color: #FFF " tabindex=2>
                             <option value="0">Public</option>
                             <option value="1">Private</option>
                         </select>
                     </div>
                     <div class="form-group ">
-                        <label>Type of league</label>
-                        <select type="text " name="type" class="form-control " ng-model="vm.newleague.type " required style="background-color: #FFF " tabindex=3>
+                        <label>Type of league</label> <small> (Free : you play for fun, With a bet : you play for real, you are in charge)</small><small class="text-danger"> (Can not be changed after creation)</small>
+                        <select name="type" class="form-control " ng-model="vm.newleague.type" required style="background-color: #FFF " tabindex=3>
                             <option value="1">Free</option>
                             <option value="2">With a bet</option>
                         </select>
                     </div>
                     <div class="form-group ">
-                        <label>Description</label>
+                        <label>Description</label> <small> (How do you describe your league ?)</small>
                         <textarea name="description" class="form-control " ng-model="vm.newleague.description" required style="background-color: #FFF " tabindex=4></textarea>
                     </div>
                     <div class="form-group ">
-                        <label>Logo</label>
+                        <label>Logo URL</label> <small> (PLease copy paste the URL of the image, path should be start with http://)</small>
                         <input type="text " name="image" class="form-control " ng-model="vm.newleague.image " required style="background-color: #FFF " tabindex=5>
                     </div>
                     <div>
-                        <button class="btn btn-success btn-lg " type="submit " style="float:right;width:200px ">
+                        <button class="btn btn-success btn-lg " type="submit" style="float:right;width:200px ">
                             Save
                         </button>
                     </div>
                 </form>
             </div>
         </div>
-        <br>
-        <br>
-        <br>
         <br>
         <br>
         <br>

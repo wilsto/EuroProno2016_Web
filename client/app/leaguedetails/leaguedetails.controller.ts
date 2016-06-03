@@ -36,13 +36,23 @@
         pinLeague() {
             this.leaguesdet.pinned = !this.leaguesdet.pinned;
             console.log('this.leaguesdet', this.leaguesdet);
+        }
 
+        saveLeague() {
             this.$http.put('/api/leagues/' + this.leaguesdet._id, this.leaguesdet).then(response => {
                 console.log('member approved', response);
                 this.loadLeagueDet(this.path[2]);
+                this.modify = false;
             });
-
         }
+
+        deleteLeague() {
+            this.$http.delete('/api/leagues/' + this.leaguesdet._id).then(response => {
+                this.$location.url('/league');
+            });
+        }
+
+
 
         //joindre une league
         JoinLeague() {

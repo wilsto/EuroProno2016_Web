@@ -33,14 +33,13 @@
             //on récupère les matchs
             this.$http.get('/api/leagues').then(responseLeagues => {
                 this.leagues = responseLeagues.data;
-                console.log('this.leagues ', this.leagues);
-
+                console.log('this.leagues', this.leagues);
             });
-
         }
 
         // create league 
         createLeague(form) {
+            console.log('form', form);
             if (form.$valid) {
 
                 this.$http.post('/api/leagues', {
@@ -56,10 +55,10 @@
                     this.newleague.status = '';
                     this.newleague.type = '';
                     this.newleague.description = '';
-
                     this.newleague.image = '';
                     this.newleague.owner = '';
-                    this.loadLeagues()
+                    this.loadLeagues();
+                    this.showNew = false;
                 });
             }
         }
