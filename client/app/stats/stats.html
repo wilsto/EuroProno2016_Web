@@ -1,0 +1,40 @@
+<header role="banner" class="ep2016-header">
+    <div class="container navbar-container">
+        <!-- <div class="row"> -->
+        <navbar></navbar>
+        <!-- </div> -->
+    </div>
+</header>
+<div class="bg_default">
+    <div class="container wrap-container">
+        <div class="row">
+            <div class="col-sm-12" style="center;">
+                <img src="assets/images/ball_stats.jpg" alt="" style="max-width: 100%;margin-bottom:30px; ">
+            </div>
+        </div>
+        <div class="col-xs-12 col-xs-12 col-md-6 col-lg-6">
+            <div class="userStats ">
+                <div class="data ">
+                    <h2>Stats pronostics </h2>
+                    <h4># pronos : {{vm.pronos.length}}</h4>
+                    <h5>Winners pronostics:</h5>
+                    <canvas id="line" class="chart chart-bar" chart-data="vm.data" chart-labels="vm.labels" chart-legend="true" chart-series="vm.series"></canvas>
+                    </canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-xs-12 col-md-6 col-lg-6">
+            <div class="matchBorder userStats ">
+                <div class="data">
+                    <div class="table-responsive ">
+                        <h2>Stats Euro </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- vm est une convention (view model) ca évite de se poser des quesitons quand tu change de page vm.vms
+{{vm.teams}}
+
+-->
