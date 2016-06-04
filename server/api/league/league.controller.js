@@ -152,7 +152,6 @@ export function updateMembers(req, res) {
         .catch(handleError(res));
 }
 
-
 // Updates members of a League in the DB
 export function removeMembers(req, res) {
 
