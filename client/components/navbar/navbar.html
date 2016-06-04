@@ -3,17 +3,17 @@
         <!-- Mobile Toggle Menu Button -->
         <a href="#" class="js-ep2016-nav-toggle ep2016-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
         <a class="navbar-brand" href="index.html">EuroProno 2016</a>
-        <span ng-hide="nav.isLoggedIn()"><a href="/login">Login</a> | <a href="/signup">Register</a></span>
-        <span ng-show="nav.isLoggedIn()"><a href="#" ng-click="nav.login_click()"><i class="glyphicon glyphicon-cog"></i> {{ nav.getCurrentUser().name }} </a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-            <li ng-hide="nav.currentPath !== '/'">
-                <a ng-click="nav.toggle_audio()"><i class="glyphicon glyphicon-volume-down" ng-if="nav.audioOn"></i><i class="glyphicon glyphicon-volume-off" ng-if="!nav.audioOn"></i></a>
+            <li ng-hide="nav.isLoggedIn()"><span><a href="/login" class="external" >Login</a> | <a href="/signup" class="external" >Register</a></span></li>
+            <li ng-show="nav.isLoggedIn()"><a href="#" ng-click="nav.login_click()">{{ nav.getCurrentUser().name }} <i class="glyphicon glyphicon-cog"></i> </a></li>
+            <li ng-hide="nav.currentPath !== '/' || 1===1">
+                <a ng-click="vm.toggle_audio()"><i class="glyphicon glyphicon-volume-down" ng-if="vm.audioOn"></i><i class="glyphicon glyphicon-volume-off" ng-if="!vm.audioOn"></i></a>
             </li>
             <li class="{{element.class}}" ng-repeat='element in vm.menu'>
-                 <a class="{{element.a_class}}" href="{{element.href}}" data-nav-section="{{element.section}}" ><span>{{element.name}}</span></a>
-        </li>
+                <a class="{{element.a_class}}" href="{{element.href}}" data-nav-section="{{element.section}}"> <span translate>{{element.name}}</span> </a>
+            </li>
         </ul>
     </div>
     <div class="login">
@@ -30,16 +30,16 @@
                         <i></i>
                     </div>
                     <input type="password" placeholder="password" required>
-                    <a href="" class="forgot_link">forgot ?</a>
-                    <button>Sign in</button>
+                    <a href="" class="forgot_link" translate>forgot ?</a>
+                    <button translate>Sign in</button>
                 </div>
                 <!-- Pour les connectés -->
                 <div ng-show="nav.isLoggedIn()">
-                    <a class="btn btn-primary btn-login" href="/settings"><i class="iconmoon-user" style="font-size: 18px;margin-right:10px"></i> My profil</a>
-                    <a class="btn btn-success btn-login" href="/admin" ng-if="nav.isAdmin()"><i class="icon-equalizer" style="font-size: 18px;margin-right:10px"></i>Admin</a>
-                    <a class="btn btn-default btn-login" href="/prono"><i class="iconmoon-gamepad" style="font-size: 18px;margin-right:10px"></i>My prono</a>
-                    <a class="btn btn-default btn-login"><i class="iconmoon-users" style="font-size: 18px;margin-right:10px"></i>My teams</a>
-                    <a class="btn btn-danger btn-login" href="/logout"><i class="iconmoon-sign-out" style="font-size: 18px;margin-right:10px"></i>Log out</a>
+                    <a translate class="btn btn-primary btn-login" href="/settings"><i class="iconmoon-user" style="font-size: 18px;margin-right:10px"></i> My profil</a>
+                    <a translate class="btn btn-warning btn-login" href="/admin" ng-if="nav.isAdmin()"><i class="icon-equalizer" style="font-size: 18px;margin-right:10px"></i>Admin</a>
+                    <a translate class="btn btn-default btn-login" href="/prono"><i class="iconmoon-gamepad" style="font-size: 18px;margin-right:10px"></i>My prono</a>
+                    <a translate class="btn btn-default btn-login"><i class="iconmoon-users" style="font-size: 18px;margin-right:10px"></i>My leagues</a>
+                    <a translate class="btn btn-danger btn-login" href="/logout"><i class="iconmoon-sign-out" style="font-size: 18px;margin-right:10px"></i>Log out</a>
                 </div>
             </div>
         </div>

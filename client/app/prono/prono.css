@@ -256,8 +256,8 @@ h1.accroche {
     white-space: nowrap;
     font-family: Arial;
     font-size: 14px;
-    color: #161a21;
-    font-weight: 700
+    color: #276DB2;
+    font-weight: 500;
 }
 
 .pronoPoule {
@@ -455,7 +455,7 @@ tr.match {
 .pronoPouleClassement .pronoPouleTeamsLine .pts {
     width: 32px;
     float: right;
-    text-align: right;
+    text-align: center;
     font-size: 14px;
     /* vertical-align: baseline; */
 }
@@ -983,6 +983,28 @@ tr.match {
     width: 19px;
     height: 23px;
     line-height: 23px;
+}
+
+.penalties2 {
+    background-image: url("../../assets/images/soccer_off.png");
+    background-repeat: no-repeat;
+    padding-left: 18px;
+}
+
+.penalties input {
+    background: #6697BF!important;
+    color: #FFF!important;
+    width: 18px!important;
+    height: 20px!important;
+}
+
+.unbold {
+    font-weight: normal!important;
+    color: grey!important;
+}
+
+.lightImage {
+    opacity: 0.3;
 }
 
 

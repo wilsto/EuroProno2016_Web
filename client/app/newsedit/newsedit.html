@@ -9,7 +9,7 @@
     <div class="container wrap-container">
         <div class="row">
             <div class="col-sm-12">
-                <img src="assets/images/admin_bg.jpg" alt="" style="width: 100%;height: auto;margin-bottom:30px;">
+                <img src="assets/images/ball_admin_news.jpg" alt="" style="width: 100%;height: auto;margin-bottom:30px;">
             </div>
         </div>
         <div class="row">
@@ -21,7 +21,7 @@
                             <p style="display: inline-block;width:80px;margin-left: 30px;">Filter News </p>
                             <input type="text" class="form-control" style=" display: inline-block;width:75%;margin-left: 30px;" ng-model="vm.search.$">
                             <span class="pull-right">
-                                <a ng-click="vm.addUser()" class="btn btn-success "><i class="icon-plus"></i> Add</a>
+                                <a ng-click="vm.addNews()" class="btn btn-success "><i class="icon-plus"></i> Add</a>
                             </span>
                         </div>
                     </li>
@@ -30,7 +30,7 @@
                             <span ng-switch on="info.image.substr(0,4)">
                             	<img ng-switch-when="http" class="img-news" ng-src="{{ info.image }}">
                             	<img ng-switch-when="http" ng-show="vm.focused[$index]!==1" style="position:absolute;top:5px;left:42px" src="assets/images/External-Links-icon.png">
-                            	<img ng-switch-default class="img-news" ng-src="assets/images/fixed/news/{{info.image}}">
+                            	<img ng-switch-default class="img-news" ng-src="assets/images/news/{{info.image}}">
                             </span>
                             <span ng-show="vm.focused[$index]!==1" class="news_span">{{info.date |date:'mediumDate'}}</span>
                             <span ng-show="vm.focused[$index]!==1" class="news_span">{{info.title}}</span>

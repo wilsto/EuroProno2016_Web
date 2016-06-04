@@ -37,6 +37,7 @@
     <link rel="stylesheet" href="app/newsedit/newsedit.css">
     <link rel="stylesheet" href="app/prono/prono.css">
     <link rel="stylesheet" href="app/regulation/regulation.css">
+    <link rel="stylesheet" href="app/rules/rules.css">
     <link rel="stylesheet" href="app/team/team.css">
     <link rel="stylesheet" href="app/traduction/traduction.css">
     <link rel="stylesheet" href="components/footer/footer.css">
@@ -59,6 +60,9 @@
     <script src="bower_components/es5-shim/es5-shim.js"></script>
     <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
+    <script>
+    document.execCommand('ClearAuthenticationCache', 'false');
+    </script>
     <!-- build:js({client,node_modules}) app/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -82,6 +86,10 @@
     <script src="bower_components/bootbox/bootbox.js"></script>
     <script src="bower_components/ngBootbox/dist/ngBootbox.js"></script>
     <script src="bower_components/angular-translate-loader-url/angular-translate-loader-url.js"></script>
+    <script src="bower_components/flow.js/dist/flow.js"></script>
+    <script src="bower_components/ng-flow/dist/ng-flow.js"></script>
+    <script src="bower_components/raty/lib/jquery.raty.js"></script>
+    <script src="bower_components/ngRaty/ngraty.js"></script>
     <!-- endbower -->
     <script src="socket.io-client/socket.io.js"></script>
     <!-- endbuild -->
@@ -93,7 +101,7 @@
     <script src="app/team/team.module.js"></script>
     <script src="components/auth/auth.module.js"></script>
     <script src="components/util/util.module.js"></script>
-    <script src="app/prono/prono.controller.js"></script>
+    <script src="app/prono/prono.js"></script>
     <script src="app/admin/admin.controller.js"></script>
     <script src="app/account/account.js"></script>
     <script src="app/admin/admin.router.js"></script>
@@ -114,10 +122,12 @@
     <script src="app/news/news.js"></script>
     <script src="app/newsedit/newsedit.controller.js"></script>
     <script src="app/newsedit/newsedit.js"></script>
+    <script src="app/prono/prono.controller.js"></script>
     <script src="app/account/forgot/forgot.controller.js"></script>
-    <script src="app/prono/prono.js"></script>
     <script src="app/regulation/regulation.controller.js"></script>
     <script src="app/regulation/regulation.js"></script>
+    <script src="app/rules/rules.controller.js"></script>
+    <script src="app/rules/rules.js"></script>
     <script src="app/team/team.controller.js"></script>
     <script src="app/account/reset/reset.controller.js"></script>
     <script src="app/team/team.router.js"></script>

@@ -4,11 +4,12 @@
 
     class PronoComponent {
         menu = [
-            { name: 'Home', href: '/', section: '', ngclick: '', class: 'active', a_class: 'nothing' },
-            { name: 'Euro2016', href: '/news', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' },
-            { name: 'Prono', href: '/prono', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' },
-            { name: 'Arena', href: '/arena', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' }
+            { name: 'Prono', href: '/prono', section: '', ngclick: '', class: 'active', a_class: 'nothing' },
+            { name: 'Arena', href: '/arena', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' },
+            { name: 'Leagues', href: '/league', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' },
+            { name: 'Rules', href: '/rules', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' }
         ];
+
         constructor($http, Auth) {
             this.$http = $http;
             this.isLoggedIn = Auth.isLoggedIn;
@@ -28,6 +29,7 @@
             this.$http.get('/api/matchs').then(responseMatchs => {
 
                 this.matchs = responseMatchs.data;
+                console.log('this.matchs', this.matchs);
 
                 // création des groupes à partir des infos matchs
                 this.groups = _.sortBy(_.uniq(_.map(this.matchs, element => {
@@ -108,7 +110,16 @@
                     match.team1diff = match.result;
                     match.team2points = 1;
                     match.team2diff = match.result;
-                    match.winner = null;
+                    if (groupName.length === 1) {
+                        match.winner = null;
+                    } else {
+                        match.resultPenalties = (match.penalties1 && match.penalties2) ? match.penalties1 - match.penalties2 : null;
+                        if (match.resultPenalties === 0) {
+                            match.winner = null;
+                        } else {
+                            match.winner = (match.resultPenalties > 0) ? match.team1 : match.team2;
+                        }
+                    }
                 }
                 if (match.result > 0) {
                     match.team1points = 3;
@@ -141,8 +152,15 @@
             that.groupTeams = _.filter(this.teams, { group: groupName });
             that.groupMatchs = _.filter(this.matchs, { group: groupName });
             _.each(that.groupTeams, function(team) {
+                team.versus = [];
                 var sumTeam1 = _.chain(that.groupMatchs)
                     .where({ team1: team.name })
+                    .map(function(subteam) {
+                        // sauvegarde les résultats contre les autres équipes
+                        var versus = { 'name': subteam.team1, 'versus': subteam.team2, 'points': subteam.team1points, 'diff': subteam.team1diff, 'bp': subteam.score1 };
+                        team.versus.push(versus);
+                        return subteam;
+                    })
                     .reduce(function(memo, subteam) {
                         return {
                             points: (subteam.team1points) ? memo.points + subteam.team1points : memo.points,
@@ -152,12 +170,18 @@
                             loss: (subteam.team1points === 0) ? memo.loss + 1 : memo.loss,
                             bp: (subteam.score1) ? memo.bp + parseInt(subteam.score1, 10) : memo.bp,
                             bc: (subteam.score2) ? memo.bc + parseInt(subteam.score2, 10) : memo.bc,
-                            diff: (subteam.team1diff) ? memo.diff + subteam.team1diff : memo.diff
+                            diff: (subteam.team1diff) ? memo.diff + subteam.team1diff : memo.diff,
                         };
-                    }, { points: 0, diff: 0, played: 0, win: 0, draw: 0, loss: 0, bp: 0, bc: 0 })
+                    }, { points: 0, diff: 0, played: 0, win: 0, draw: 0, loss: 0, bp: 0, bc: 0, versus: [] })
                     .value();
                 var sumTeam2 = _.chain(that.groupMatchs)
                     .where({ team2: team.name })
+                    .map(function(subteam) {
+                        // sauvegarde les résultats contre les autres équipes
+                        var versus = { 'name': subteam.team2, 'versus': subteam.team1, 'points': subteam.team2points, 'diff': subteam.team2diff, 'bp': subteam.score2 };
+                        team.versus.push(versus);
+                        return subteam;
+                    })
                     .reduce(function(memo, subteam) {
                         return {
                             points: (subteam.team2points) ? memo.points + subteam.team2points : memo.points,
@@ -182,11 +206,9 @@
             });
 
             if (_.contains(['A', 'B', 'C', 'D', 'E', 'F'], groupName)) {
-                //******
-                //TODO 
-                //******
-                //ordre selon les règles fifa
-                that.groupTeams = _.sortBy(that.groupTeams, ['points', 'diff']).reverse();
+
+                //ordre du groupe selon les règles fifa
+                that.groupTeams = that.sortGroupOrder(that.groupTeams);
 
                 // si tous les matchs ont été joués dans le groupe = 12 scores, alors on reporte les équipes qualifiées pour les quarts
                 that.nbmatchs = _.compact(_.pluck(that.groupMatchs, 'score1')).length + _.compact(_.pluck(that.groupMatchs, 'score2')).length;
@@ -232,12 +254,151 @@
             }));
         }
 
+        // tri des groupes selon les règles fifa
+        sortGroupOrder(arrGroupTeams) {
+            var that = this;
+            arrGroupTeams = _.sortBy(arrGroupTeams, ['points'].reverse());
+            arrGroupTeams.forEach(function(rank, index) {
+                arrGroupTeams[index].rank1 = 99;
+                arrGroupTeams[index].rank2 = 99;
+                arrGroupTeams[index].rank3 = 99;
+                arrGroupTeams[index].rank4 = 99;
+                arrGroupTeams[index].rank5 = 99;
+                arrGroupTeams[index].rank6 = 99;
+                arrGroupTeams[index].rank7 = 99;
+                arrGroupTeams[index].rank8 = 99;
+            });
+
+
+            // création du rank 1 : points en total
+            var val1GroupTeams = _.pluck(arrGroupTeams, 'points');
+            var rank1GroupTeams = this.rankArray(val1GroupTeams);
+            rank1GroupTeams.forEach(function(rank, index) {
+                arrGroupTeams[index].rank1 = rank1GroupTeams[index];
+            });
+
+            // création du rank 5 : diff en total
+            var val5GroupTeams = _.pluck(arrGroupTeams, 'diff');
+            var rank5GroupTeams = this.rankArray(val5GroupTeams);
+            rank5GroupTeams.forEach(function(rank, index) {
+                arrGroupTeams[index].rank5 = rank5GroupTeams[index];
+            });
+
+            // création du rank 6 : bp en total
+            var val6GroupTeams = _.pluck(arrGroupTeams, 'bp');
+            var rank6GroupTeams = this.rankArray(val6GroupTeams);
+            rank6GroupTeams.forEach(function(rank, index) {
+                arrGroupTeams[index].rank6 = rank6GroupTeams[index];
+            });
+
+            // création des groupes d'équipes exaequo = meme rang 1
+            // Il peut y en avoir plusieurs.
+            var prevRank = -1;
+            var arrGroup = new Array();
+            var nbofGroup = 0;
+            var missingFirst = true;
+            rank1GroupTeams.forEach(function(rank, index) {
+                if (rank === prevRank) {
+                    if (!arrGroup[nbofGroup]) {
+                        arrGroup[nbofGroup] = new Array(); //créer 
+                    }
+                    if (missingFirst) {
+                        arrGroup[nbofGroup].push(arrGroupTeams.slice(index - 1, index)[0]); // ajouter aussi le précédent
+                    }
+                    missingFirst = false;
+                    arrGroup[nbofGroup].push(arrGroupTeams.slice(index, index + 1)[0]); // ajouter le courant
+                } else {
+                    missingFirst = true;
+                    if (arrGroup[nbofGroup]) {
+                        nbofGroup += 1;
+                    }
+                }
+                prevRank = rank;
+            });
+
+            // si au moins un groupe d'équipes exaequo
+            // Recherche des résultats de matchs entre les exaequo
+            if (arrGroup.length > 0) {
+                arrGroup.forEach(function(groupExaequo, index) {
+                    var nameEqualTeams = _.pluck(groupExaequo, 'name');
+                    var listTeamEqual = _.chain(groupExaequo)
+                        .reduce(function(memo, team) {
+                            team.versus.forEach(function(versus) {
+                                if (_.contains(nameEqualTeams, versus.versus)) {
+                                    memo.push(versus);
+                                }
+                            });
+                            return memo;
+                        }, [])
+                        .value();
+                    var listTeamEqual2 = _.chain(listTeamEqual)
+                        .groupBy('name')
+                        .map(function(value, key) {
+                            return [key, _.reduce(value, function(result, currentObject) {
+                                return {
+                                    points: result.points + currentObject.points,
+                                    diff: result.diff + currentObject.diff,
+                                    bp: result.bp + parseInt(currentObject.bp, 10)
+                                };
+                            }, {
+                                points: 0,
+                                diff: 0,
+                                bp: 0
+                            })];
+                        })
+                        .object()
+                        .value();
+
+                    // nombre de points intra equal
+                    var val2GroupTeams = _.pluck(listTeamEqual2, 'points');
+                    var rank2GroupTeams = that.rankArray(val2GroupTeams);
+                    var iteration = 0;
+                    _.each(listTeamEqual2, function(value, key) {
+                        var rank2Team = _.filter(arrGroupTeams, { name: key });
+                        rank2Team[0].rank2 = rank2GroupTeams[iteration];
+                        iteration += 1;
+                    });
+
+                    // nombre de diff intra equal
+                    var val3GroupTeams = _.pluck(listTeamEqual2, 'diff');
+                    var rank3GroupTeams = that.rankArray(val3GroupTeams);
+                    iteration = 0;
+                    _.each(listTeamEqual2, function(value, key) {
+                        var rank3Team = _.filter(arrGroupTeams, { name: key });
+                        rank3Team[0].rank3 = rank3GroupTeams[iteration];
+                        iteration += 1;
+                    });
+
+                    // nombre de buts marqués intra equal
+                    var val4GroupTeams = _.pluck(listTeamEqual2, 'bp');
+                    var rank4GroupTeams = that.rankArray(val4GroupTeams);
+                    iteration = 0;
+                    _.each(listTeamEqual2, function(value, key) {
+                        var rank4Team = _.filter(arrGroupTeams, { name: key });
+                        rank4Team[0].rank4 = rank4GroupTeams[iteration];
+                        iteration += 1;
+                    });
+                });
+            }
+            arrGroupTeams = _.sortBy(arrGroupTeams, ['rank1', 'rank2', 'rank3', 'rank4', 'rank5', 'rank6', 'rank7', 'rank8']);
+            return arrGroupTeams;
+        }
+
+        // renvoi un tableau de rang
+        // [27,2,16,4] renvoie [1,4,2,3]
+        rankArray(arr) {
+            var sorted = arr.slice().sort(function(a, b) {
+                return b - a;
+            });
+            var ranks = arr.slice().map(function(v) {
+                return sorted.indexOf(v) + 1;
+            });
+            return ranks;
+        }
+
         calculThirdQualified() {
-            //******
-            //TODO 
-            //******
             //ordre de tri selon les règles fifa
-            this.groupThird = _.sortBy(this.groupThird, ['points', 'diff']).reverse();
+            this.groupThird = _.sortBy(this.groupThird, ['points', 'diff', 'bp', 'fairplay', 'fifa']).reverse();
             var qualified = _.pluck(this.groupThird.slice(0, 4), 'group').sort().join('');
 
             // coder http://euro2016-france.net/wp-content/uploads/huitieme-finale-euro-2016-12.jpg

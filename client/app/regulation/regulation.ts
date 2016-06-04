@@ -5,7 +5,6 @@ angular.module('euroProno2016WebApp')
         $stateProvider
             .state('regulation', {
                 url: '/regulation',
-                template: '<regulation></regulation>',
-                authenticate: 'admin'
+                template: '<regulation></regulation>'
             });
     });

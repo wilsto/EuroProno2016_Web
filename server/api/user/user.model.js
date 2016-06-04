@@ -11,10 +11,18 @@ var UserSchema = new Schema({
     name: String,
     firstname: String,
     lastname: String,
+    status: {
+        profil: { type: Number, default: 0 },
+        league: { type: Number, default: 0 },
+        prono: { type: Number, default: 0 },
+        game: { type: Number, default: 0 }
+    },
+
+    /*
     pronoStatus: {
         type: String,
         default: 'NotFilled'
-    },
+    },*/
     email: {
         type: String,
         lowercase: true,
@@ -31,8 +39,9 @@ var UserSchema = new Schema({
         default: 'user'
     },
     lang: {
-        type: String,
+        type: String
     },
+    avatar: { type: String },
     password: {
         type: String,
         required: function() {
@@ -58,6 +67,8 @@ var UserSchema = new Schema({
     twitter: {},
     google: {},
     github: {}
+}, {
+    strict: false
 });
 
 /**

@@ -14,30 +14,73 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <div id="League" class="leaguedetContent">
-                    <div class="leagueContentToolTip">
-                        <h2 translate>{{vm.leaguesdet.name}} </h2>
+                <h2>
+                <a href="/league">All Leagues > </a> {{vm.leaguesdet.name}}
+                <small> ({{vm.members.length}} members)</small>
+                <div ng-switch on="vm.leaguesdet.status " style="display: inline-block;margin-right:25px;">
+                    <img ng-switch-when="1 " src="assets/images/stades/cadenasRouge.png " alt="Private " style="width:25px; ">
+                    <small ng-switch-when="1 ">Private</small>
+                    <img ng-switch-default src="assets/images/cadenasGreen.png " alt="Public " style="width:25px; ">
+                    <small ng-switch-default>Public</small>
+                </div>
+                <div ng-switch on="vm.leaguesdet.type " style="display: inline-block;margin-right:25px; ">
+                    <p ng-switch-when="1 ">Free</p>
+                    <p ng-switch-default> <img src="assets/images/money.jpg " alt="Public " style="width:35px; "></p>
+                </div>
+                </h2>
+                <p>
+                    <button ng-if="nav.isAdmin() || vm.currentuser===vm.leaguesdet.owner_id " class="pull-right btn btn-warning glyphicon glyphicon-pencil " style="margin-left:25px;" ng-hide="vm.modify" ng-click="vm.modify = !vm.modify"> Modify</button>
+                    <button ng-if="nav.isAdmin() || vm.currentuser===vm.leaguesdet.owner_id " class="pull-right btn btn-danger glyphicon glyphicon-remove " ng-bootbox-confirm="Are you sure you want to delete this league ? <br/>
+                <br/><b>It is irreversible. It can't be undone." ng-bootbox-confirm-action="vm.deleteLeague() " ng-hide="vm.modify"> Delete </button>
+                </p>
+                <div id="League " class="leaguedetContent ">
+                    <div class="col-sm-3 leagueContentToolTip ">
+                        <p ng-switch on="vm.leaguesdet.image.substr(0,4) ">
+                            <img class="imgLeagues " ng-switch-when="http " ng-src="{{vm.leaguesdet.image}} " class="circle ">
+                            <img class="imgLeagues " ng-switch-default ng-src="assets/images/leagues/{{vm.leaguesdet.image}} " class="circle ">
+                        </p>
+                        <br>
+                        <button class="btn btn-primary " ng-click="vm.JoinLeague()">Join League</button>
                     </div>
-                    <table class="table table-responsive table-hover">
-                        <thead>
-                            <tr>
-                                <th><a href='#' ng-click="sort( 'name'); ">Members</a></th>
-                                <th ng-if="vm.leaguesdet.status===1"><a href='#' ng-click="sort( 'members.activated'); ">Activated</a></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="league" ng-repeat="member in vm.members ">
-                                <td> {{member.user_id.name}}</td>
-                                <td ng-if="vm.leaguesdet.status===1"> {{member.activated}}</td>
-                                <td>
-                                    <button ng-if="vm.leaguesdet.status===1 && (nav.isAdmin() ||  vm.currentuser!==member.owner_id)" class="btn  glyphicon glyphicon-ok " ng-class="{'btn-primary': member.activated, 'btn-warning': !member.activated}" type="submit" ng-click="vm.AcceptMember(member.user_id._id)"> </button>
-                                    <button ng-if="(nav.isAdmin() ||  vm.currentuser===vm.leaguesdet.owner_id) && vm.leaguesdet.owner_id !== member.user_id._id " class="btn btn-danger glyphicon glyphicon-remove " type="submit" ng-bootbox-confirm="Are you sure you want to delete this user ({{member.user_id.name}}) from your league ? <br/><br/><b>It is irreversible. It can't be undone." ng-bootbox-confirm-action="vm.RemoveMember(member.user_id._id)"> </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <button class="btn btn-primary" type="submit" ng-click="vm.JoinLeague()">Join League</button>
-                    <!-- fin auto -->
+                    <div class="col-sm-9 ">
+                        <table class="table table-responsive table-hover ">
+                            <thead>
+                                <tr>
+                                    <th colspan="3" style="font-weight:normal;margin-top:25px;">
+                                        <span ng-hide="vm.modify">{{vm.leaguesdet.description}}</span>
+                                        <span ng-show="vm.modify">
+                                            <div class="form-group ">
+                                                <label>Description</label> <small> (How do you describe your league ?)</small>
+                                        <button ng-if="nav.isAdmin() " class=" btn icon-pin " ng-class="{ 'btn-primary':vm.leaguesdet.pinned } " ng-show="vm.modify" ng-click="vm.pinLeague() "> Pin</button>
+                                                <textarea name="description" class="form-control " ng-model="vm.leaguesdet.description" required style="background-color: #FFF " tabindex=4></textarea>
+                                            </div>
+                                            <div class="form-group ">
+                                                <label>Logo URL</label> <small> (PLease copy paste the URL of the image, path should be start with http://)</small>
+                                                <input type="text " name="image" class="form-control " ng-model="vm.leaguesdet.image " required style="background-color: #FFF " tabindex=5>
+                                            </div>
+                                        </span>
+                                        <button ng-if="nav.isAdmin() || vm.currentuser===vm.leaguesdet.owner_id " class="pull-right btn btn-success glyphicon glyphicon-save " style="margin-left:25px;" ng-show="vm.modify" ng-click="vm.saveLeague()"> Save</button>
+                                    </th>
+                                </tr>
+                                <tr ng-hide="vm.modify">
+                                    <th><a href='#' ng-click="sort( 'name'); ">Members</a></th>
+                                    <th ng-if="vm.leaguesdet.status===1 "><a href='#' ng-click="sort( 'members.activated'); " colspan="2">Activated</a></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="league " ng-repeat="member in vm.members " ng-hide="vm.modify">
+                                    <td> {{member.user_id.name}}</td>
+                                    <td ng-if="vm.leaguesdet.status===1 "> {{member.activated}}</td>
+                                    <td>
+                                        <button ng-if="vm.leaguesdet.status===1 && (nav.isAdmin() || vm.currentuser!==member.owner_id) " class="btn glyphicon glyphicon-ok " ng-class="{ 'btn-primary': member.activated, 'btn-warning': !member.activated} " type="submit " ng-click="vm.AcceptMember(member.user_id._id) "> </button>
+                                        <button ng-if="(nav.isAdmin() || vm.currentuser===vm.leaguesdet.owner_id) && vm.leaguesdet.owner_id !==member.user_id._id " class="btn btn-danger glyphicon glyphicon-remove " type="submit " ng-bootbox-confirm="Are you sure you want to delete this user ({{member.user_id.name}}) from your league ? <br/>
+                <br/><b>It is irreversible. It can't be undone." ng-bootbox-confirm-action="vm.RemoveMember(member.user_id._id)"> </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- fin auto -->
+                    </div>
                 </div>
             </div>
         </div>

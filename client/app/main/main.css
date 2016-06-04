@@ -26,6 +26,44 @@
     margin-left: 15px;
 }
 
+.main-header {
+    width: 100%!important;
+}
+
+@media screen and (min-width: 1045px) {
+    .main-container {
+        width: 60%!important;
+    }
+}
+
+@media screen and (max-width: 1054x) {
+    .main-container {
+        width: 100%!important;
+    }
+}
+
+header:not(.navbar-fixed-top) .main-container .navbar-collapse ul {
+    background: rgba(0, 83, 148, 0.6)!important;
+    border-radius: 0 0 15px 15px;
+    margin-top: 5px;
+}
+
+header:not(.navbar-fixed-top) #navbar li a {
+    line-height: 20px;
+}
+
+header:not(.navbar-fixed-top) .main-container .navbar-brand {
+    color: #FFF!important;
+}
+
+header:not(.navbar-fixed-top) .main-container li span {
+    color: #FFF;
+}
+
+.ep2016-header.navbar-fixed-top .main-container {
+    width: 100%!important;
+}
+
 
 /* Login */
 
@@ -34,7 +72,18 @@
     width: 350px;
     display: none;
     float: left;
-    left: 210px;
+}
+
+@media screen and (min-width: 1045px) {
+    .login {
+        left: 50px;
+    }
+}
+
+@media screen and (max-width: 1054x) {
+    .login {
+        left: 50px;
+    }
 }
 
 .arrow-up {
@@ -1294,15 +1343,6 @@
     .row-bottom-padded-sm {
         padding-bottom: 2em;
     }
-}
-
-.ep2016-animated {
-    -moz-animation-duration: .3s;
-    -webkit-animation-duration: .3s;
-    animation-duration: .3s;
-    -moz-animation-fill-mode: both;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
 }
 
 .iframe-responsive-wrapper {

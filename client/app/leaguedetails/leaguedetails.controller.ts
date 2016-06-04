@@ -17,29 +17,49 @@
             this.$location = $location;
         }
         $onInit() {
-
-            this.path = this.$location.$$path.split("/");
-            this.path.length
-            console.log("location", this.path[eval(this.path.length - 1)]);
-            this.loadLeagueDet(this.path[2]); - 1
+            this.path = this.$location.$$path.split('/');
+            this.loadLeagueDet(this.path[2]);
         }
 
         loadLeagueDet(myid) {
-            //on récupère les matchs
+            //on récupère les details de la ligue
             this.$http.get('/api/leagues/' + myid).then(responseLeagues => {
                 this.leaguesdet = responseLeagues.data;
+                console.log('this.leaguesdet ', this.leaguesdet);
                 this.members = this.leaguesdet.members;
                 this.currentuser = this.getCurrentUser()._id;
 
             });
         }
 
+
+        pinLeague() {
+            this.leaguesdet.pinned = !this.leaguesdet.pinned;
+            console.log('this.leaguesdet', this.leaguesdet);
+        }
+
+        saveLeague() {
+            this.$http.put('/api/leagues/' + this.leaguesdet._id, this.leaguesdet).then(response => {
+                console.log('member approved', response);
+                this.loadLeagueDet(this.path[2]);
+                this.modify = false;
+            });
+        }
+
+        deleteLeague() {
+            this.$http.delete('/api/leagues/' + this.leaguesdet._id).then(response => {
+                this.$location.url('/league');
+            });
+        }
+
+
+
         //joindre une league
         JoinLeague() {
             var currentuser = this.getCurrentUser()._id;
             _.remove(this.members, function(member) {
                 return member.user_id._id === currentuser;
-            })
+            });
 
             if (this.leaguesdet.status === 1) {
                 this.members.push({ user_id: this.getCurrentUser(), activated: false });
@@ -54,11 +74,11 @@
                 this.loadLeagueDet(this.leaguesdet._id);
             });
 
+
         }
 
         //supprimer un membre
         RemoveMember(id) {
-
                 _.remove(this.members, function(member) {
                     return member.user_id._id === id;
                 });
@@ -76,7 +96,6 @@
 
             this.$http.put('/api/leagues/' + this.leaguesdet._id, this.leaguesdet).then(response => {
                 console.log('member approved', response);
-
             });
         }
 

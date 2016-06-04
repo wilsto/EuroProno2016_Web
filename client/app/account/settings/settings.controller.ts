@@ -10,11 +10,26 @@ class SettingsController {
         { name: 'Arena', href: '/arena', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' }
     ];
 
-    constructor(Auth) {
+    constructor(Auth, $http) {
         this.errors = {};
+        this.obj = {};
         this.submitted = false;
         this.Auth = Auth;
         this.getCurrentUser = Auth.getCurrentUser;
+        this.$http = $http;
+        this.leagues = [];
+        this.focused = false;
+        //users information
+        this.currentUser = this.getCurrentUser();
+        //on récupère les leagues
+        this.loadLeagues();
+    }
+
+    loadLeagues() {
+        this.$http.get('/api/leagues').then(responseLeagues => {
+            this.leagues = responseLeagues.data;
+            console.log('this.leagues', this.leagues);
+        });
     }
 
     changePassword(form) {
@@ -30,6 +45,16 @@ class SettingsController {
                     this.message = '';
                 });
         }
+    }
+
+    saveUser() {
+        this.currentUser.status.profil = 1;
+        this.$http.put('/api/users/' + this.currentUser._id, this.currentUser).then(response => {
+            console.log('user updated', response);
+            this.loadLeagues();
+            this.currentUser = this.getCurrentUser();
+        });
+        this.focused = false;
     }
 }
 

@@ -3,11 +3,12 @@
 
     class LeagueComponent {
         menu = [
-            { name: 'Home', href: '/', section: '', ngclick: '', class: 'active', a_class: 'nothing' },
-            { name: 'Euro2016', href: '/team', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' },
             { name: 'Prono', href: '/prono', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' },
-            { name: 'Arena', href: '/arena', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' }
+            { name: 'Arena', href: '/arena', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' },
+            { name: 'Leagues', href: '/league', section: '', ngclick: '', class: 'active', a_class: 'nothing' },
+            { name: 'Rules', href: '/rules', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' }
         ];
+
 
 
         constructor($http, Auth, $scope) {
@@ -16,7 +17,7 @@
             this.isAdmin = Auth.isAdmin;
             this.getCurrentUser = Auth.getCurrentUser;
             this.leagues = [];
-            this.orderProp = 'name';
+            this.orderProp = ['name'];
             this.myList = false;
             this.myId = 1;
             $scope.sort = function(type) {
@@ -32,13 +33,13 @@
             //on récupère les matchs
             this.$http.get('/api/leagues').then(responseLeagues => {
                 this.leagues = responseLeagues.data;
-
+                console.log('this.leagues', this.leagues);
             });
-
         }
 
         // create league 
         createLeague(form) {
+            console.log('form', form);
             if (form.$valid) {
 
                 this.$http.post('/api/leagues', {
@@ -54,10 +55,10 @@
                     this.newleague.status = '';
                     this.newleague.type = '';
                     this.newleague.description = '';
-
                     this.newleague.image = '';
                     this.newleague.owner = '';
-                    this.loadLeagues()
+                    this.loadLeagues();
+                    this.showNew = false;
                 });
             }
         }

@@ -1,11 +1,11 @@
-<header role="banner" class="ep2016-header">
-    <div class="container">
+<header role="banner" class="ep2016-header main-header">
+    <div class="container main-container">
         <!-- <div class="row"> -->
-        <navbar class="navbar-admin"></navbar>
+        <navbar></navbar>
         <!-- </div> -->
     </div>
 </header>
-<section id="ep2016-home" data-section="home" style="background-image: url('assets/images/bg2.jpg');">
+<section id="ep2016-home" data-section="home" style="background-image: url('assets/images/stades/bg2.jpg');">
     <div class="container">
         <div class="text-wrap">
             <div class="text-inner">
@@ -113,7 +113,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="ep2016-person text-center to-animate">
                     <figure><img src="assets/images/Ced.png" alt="Image"></figure>
                     <h3>Cédric</h3>
@@ -126,7 +126,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="ep2016-person text-center to-animate">
                     <figure><img src="assets/images/Ned.jpg" alt="Image" style="height:120px"></figure>
                     <h3>Edouard</h3>
@@ -139,7 +139,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="ep2016-person text-center to-animate">
                     <figure><img src="assets/images/Will.png" alt="Image"></figure>
                     <h3>Will</h3>
@@ -154,6 +154,11 @@
                         <li><a href="#" target="_blank"><i class="iconmoon-facebook"></i></a></li>
                         <li><a href="https://github.com/wilsto" target="_blank"><i class="iconmoon-github"></i></a></li>
                     </ul>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class=" to-animate">
+                    <iframe src="//www.tipeee.com/embed/project/116998" allowtransparency="true" width="100%" height="380" style="margin-top:-10px"></iframe>
                 </div>
             </div>
         </div>
@@ -171,28 +176,28 @@
             <div class="col-md-3 col-sm-6 col-xs-12">
                 <div class="ep2016-counter to-animate">
                     <i class="ep2016-counter-icon icon-game-controller to-animate-2"></i>
-                    <span class="ep2016-counter-number js-counter" data-from="0" data-to="89" data-speed="5000" data-refresh-interval="50">89</span>
+                    <span class="ep2016-counter-number js-counter" data-from="0" data-to="{{vm.pronoCount}}" data-speed="5000" data-refresh-interval="50">{{vm.pronoCount}}</span>
                     <span class="ep2016-counter-label" translate>Pronostics</span>
                 </div>
             </div>
             <div class="col-md-3 col-sm-6 col-xs-12">
                 <div class="ep2016-counter to-animate">
                     <i class="ep2016-counter-icon iconmoon-code to-animate-2"></i>
-                    <span class="ep2016-counter-number js-counter" data-from="0" data-to="29776" data-speed="5000" data-refresh-interval="50">29776</span>
+                    <span class="ep2016-counter-number js-counter" data-from="0" data-to="31062" data-speed="5000" data-refresh-interval="50">31062</span>
                     <span class="ep2016-counter-label" translate>Line of codes</span>
                 </div>
             </div>
             <div class="col-md-3 col-sm-6 col-xs-12">
                 <div class="ep2016-counter to-animate">
                     <i class="ep2016-counter-icon icon-cup to-animate-2"></i>
-                    <span class="ep2016-counter-number js-counter" data-from="0" data-to="302" data-speed="5000" data-refresh-interval="50">302</span>
+                    <span class="ep2016-counter-number js-counter" data-from="0" data-to="{{vm.coffecup}}" data-speed="5000" data-refresh-interval="50">{{vm.coffecup}}</span>
                     <span class="ep2016-counter-label" translate>Cup of coffees</span>
                 </div>
             </div>
             <div class="col-md-3 col-sm-6 col-xs-12">
                 <div class="ep2016-counter to-animate">
                     <i class="ep2016-counter-icon icon-people to-animate-2"></i>
-                    <span class="ep2016-counter-number js-counter" data-from="0" data-to="52" data-speed="5000" data-refresh-interval="50">52</span>
+                    <span class="ep2016-counter-number js-counter" data-from="0" data-to="{{vm.leagueCount}}" data-speed="5000" data-refresh-interval="50">{{vm.leagueCount}}</span>
                     <span class="ep2016-counter-label" translate>Happy leagues</span>
                 </div>
             </div>

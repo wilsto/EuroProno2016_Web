@@ -40,6 +40,8 @@
         "client/app/prono/prono.ts",
         "client/app/regulation/regulation.controller.ts",
         "client/app/regulation/regulation.ts",
+        "client/app/rules/rules.controller.ts",
+        "client/app/rules/rules.ts",
         "client/app/team/team.controller.ts",
         "client/app/team/team.module.ts",
         "client/app/team/team.router.ts",

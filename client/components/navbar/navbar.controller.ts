@@ -6,16 +6,19 @@ class NavbarController {
     isCollapsed = true;
     //end-non-standard
 
-    constructor($http, Auth, $translate, $location) {
+    constructor($http, Auth, $rootScope, $translate, $location) {
         this.$http = $http;
         this.isLoggedIn = Auth.isLoggedIn;
         this.isAdmin = Auth.isAdmin;
         this.getCurrentUser = Auth.getCurrentUser;
         this.$translate = $translate;
+        this.$rootScope = $rootScope;
+
         //recherche de langue pour un user sinon language par défaut du navigateur sinon anglais
         var that = this;
         this.getCurrentUser(function(me) {
-            that.$translate.use(me.lang || navigator.language || navigator.userLanguage);
+            that.$rootScope.language = me.lang || navigator.language.substring(0, 2) || navigator.userLanguage.substring(0, 2) || 'en';
+            that.$translate.use(that.$rootScope.language);
         });
         this.burgerMenu();
         this.clickMenu();
@@ -25,14 +28,7 @@ class NavbarController {
         this.currentPath = $location.path();
     }
 
-    toggle_audio() {
-        console.log('toggle');
-        this.bg.muted = !this.bg.muted;
-        this.audioOn = !this.bg.muted;
-    }
-
     login_click() {
-        console.log('cllick');
         $('.login').fadeToggle('slow');
     }
 
@@ -51,7 +47,6 @@ class NavbarController {
     // Page Nav
     clickMenu() {
         $('#navbar a:not([class="external"])').click(function(event) {
-            console.log('section');
             var section = $(this).data('nav-section'),
                 navbar = $('#navbar');
 
@@ -84,7 +79,6 @@ class NavbarController {
         var that = this;
         var $section = $('section[data-section]');
         $section.waypoint(function(direction) {
-            console.log('direction', direction);
             if (direction === 'down') {
                 that.navActive($(this.element).data('section'));
             }
@@ -104,7 +98,6 @@ class NavbarController {
 
     // Window Scroll
     windowScroll() {
-        console.log('windowScroll');
         $(window).scroll(function(event) {
             var header = $('.ep2016-header'),
                 scrlTop = $(this).scrollTop(),

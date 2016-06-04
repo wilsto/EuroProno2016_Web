@@ -1,0 +1,24 @@
+{ "_id" : { "$oid" : "57224aa8140bfe9c2440a496" }, "code" : "A1", "name" : "France", "group" : "A", "image" : "8", "comment" : "Winners (1984, 2000)", "__v" : 0 }
+{ "_id" : { "$oid" : "572474911390bc546b7b18f7" }, "code" : "A3", "name" : "Albania", "group" : "A", "image" : "1", "comment" : "Never previously qualified", "__v" : 0 }
+{ "_id" : { "$oid" : "572474d21390bc546b7b18f8" }, "code" : "C1", "name" : "Germany", "group" : "C", "image" : "2", "comment" : "winners 1972, 1980 (as West Germany), 1996", "__v" : 0 }
+{ "_id" : { "$oid" : "572482281390bc546b7b18f9" }, "code" : "B1", "name" : "England", "group" : "B", "image" : "3", "comment" : "semi-finals 1968, 1996", "__v" : 0 }
+{ "_id" : { "$oid" : "572482a91390bc546b7b18fa" }, "code" : "F3", "name" : "Austria", "group" : "F", "image" : "4", "comment" : "group stage 2008", "__v" : 0 }
+{ "_id" : { "$oid" : "5724838d1390bc546b7b18fb" }, "code" : "E1", "name" : "Belgium", "group" : "E", "image" : "5", "comment" : "runners-up 1980", "__v" : 0 }
+{ "_id" : { "$oid" : "572489b91390bc546b7b18fc" }, "code" : "D4", "name" : "Croatia", "group" : "D", "image" : "6", "comment" : "quarter-finals (1996, 2008)", "__v" : 0 }
+{ "_id" : { "$oid" : "572489dd1390bc546b7b18fd" }, "code" : "D1", "name" : "Spain", "group" : "D", "image" : "7", "comment" : "winners 1964, 2008, 2012", "__v" : 0 }
+{ "_id" : { "$oid" : "57248a191390bc546b7b18fe" }, "code" : "F4", "name" : "Hungary", "group" : "F", "image" : "9", "comment" : "third place 1964", "__v" : 0 }
+{ "_id" : { "$oid" : "57248b231390bc546b7b18ff" }, "code" : "C4", "name" : "Northern Ireland", "group" : "C", "image" : "10", "comment" : "never previously qualified", "__v" : 0 }
+{ "_id" : { "$oid" : "57248b441390bc546b7b1900" }, "code" : "F2", "name" : "Iceland", "group" : "F", "image" : "11", "comment" : "never previously qualified", "__v" : 0 }
+{ "_id" : { "$oid" : "57248b871390bc546b7b1901" }, "code" : "E2", "name" : "Italy", "group" : "E", "image" : "12", "comment" : "winners 1968", "__v" : 0 }
+{ "_id" : { "$oid" : "57248ba31390bc546b7b1902" }, "code" : "B3", "name" : "Wales", "group" : "B", "image" : "13", "comment" : "never previously qualified", "__v" : 0 }
+{ "_id" : { "$oid" : "57248f451390bc546b7b1903" }, "code" : "C3", "name" : "Poland", "group" : "C", "image" : "14", "comment" : "group stage 2008, 2012", "__v" : 0 }
+{ "_id" : { "$oid" : "57248f6a1390bc546b7b1904" }, "code" : "F1", "name" : "Portugal", "group" : "F", "image" : "15", "comment" : "runners-up 2004", "__v" : 0 }
+{ "_id" : { "$oid" : "57248fae1390bc546b7b1905" }, "code" : "E3", "name" : "Republic of Ireland", "group" : "E", "image" : "16", "comment" : "group stage 1988, 2012", "__v" : 0 }
+{ "_id" : { "$oid" : "57248fc31390bc546b7b1906" }, "code" : "D2", "name" : "Czech Republic", "group" : "D", "image" : "17", "comment" : "winners 1976", "__v" : 0 }
+{ "_id" : { "$oid" : "57248fdc1390bc546b7b1907" }, "code" : "A2", "name" : "Romania", "group" : "A", "image" : "18", "comment" : "quarter-finals 2000", "__v" : 0 }
+{ "_id" : { "$oid" : "57248ff41390bc546b7b1908" }, "code" : "B2", "name" : "Russia", "group" : "B", "image" : "19", "comment" : "winner 1960", "__v" : 0 }
+{ "_id" : { "$oid" : "572490061390bc546b7b1909" }, "code" : "B4", "name" : "Slovakia", "group" : "B", "image" : "20", "comment" : "never previously qualified", "__v" : 0 }
+{ "_id" : { "$oid" : "5724901b1390bc546b7b190a" }, "code" : "E4", "name" : "Sweden", "group" : "E", "image" : "21", "comment" : "semi-finals 1992", "__v" : 0 }
+{ "_id" : { "$oid" : "5724902e1390bc546b7b190b" }, "code" : "A4", "name" : "Switzerland", "group" : "A", "image" : "22", "comment" : "group stage 1996, 2004, 2008", "__v" : 0 }
+{ "_id" : { "$oid" : "572490461390bc546b7b190c" }, "code" : "D3", "name" : "Turkey", "group" : "D", "image" : "23", "comment" : "Semi-finals (2008)", "__v" : 0 }
+{ "_id" : { "$oid" : "572490581390bc546b7b190d" }, "code" : "C2", "name" : "Ukraine", "group" : "C", "image" : "24", "comment" : "group stage 2012", "__v" : 0 }

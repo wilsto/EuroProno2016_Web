@@ -15,15 +15,18 @@ angular.module('euroProno2016WebApp', [
         'validation.match',
         'angular.filter',
         'pascalprecht.translate',
-        'ngBootbox'
+        'ngBootbox',
+        'flow'
     ])
     .config(function($urlRouterProvider, $locationProvider, $translateProvider) {
         $urlRouterProvider
             .otherwise('/');
 
         $locationProvider.html5Mode(true);
-
         $translateProvider.useUrlLoader('/api/traductions/loader');
-        $translateProvider.preferredLanguage('en');
+        $translateProvider.preferredLanguage(navigator.language.substring(0, 2) || navigator.userLanguage.substring(0, 2) || 'en');
 
+    })
+    .run(function($rootScope) {
+        $rootScope.language = navigator.language.substring(0, 2) || navigator.userLanguage.substring(0, 2) || 'en';
     });

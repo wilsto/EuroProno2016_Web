@@ -1,4 +1,7 @@
 .imgLeagues {
     height: 80px;
     width: 120px;
+    border-radius: 8px;
+    border: 1px lightgrey solid;
+    padding: 4px;
 }
