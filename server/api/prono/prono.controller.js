@@ -68,6 +68,13 @@ export function index(req, res) {
         .catch(handleError(res));
 }
 
+// Gets a count of Pronos
+export function count(req, res) {
+    return Prono.count({}).exec()
+        .then(respondWithResult(res))
+        .catch(handleError(res));
+}
+
 // Gets a single Prono from the DB
 export function show(req, res) {
     return Prono.findById(req.params.id).populate('user_id').exec()

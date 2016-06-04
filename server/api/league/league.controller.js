@@ -70,6 +70,14 @@ export function index(req, res) {
         .catch(handleError(res));
 }
 
+// Gets a count of Leagues
+export function count(req, res) {
+    return League.count().exec()
+        .then(respondWithResult(res))
+        .catch(handleError(res));
+}
+
+
 // Gets a single League from the DB
 export function show(req, res) {
     return League.findById(req.params.id).populate('owner_id').exec()
