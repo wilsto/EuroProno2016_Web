@@ -11,6 +11,8 @@ router.get('/:id', controller.show);
 router.get('/owner_id/:id', controller.showUser);
 router.post('/', controller.create);
 router.put('/:id', controller.update);
+router.put('/:id/members', controller.updateMembers);
+router.put('/:id/removeMembers', controller.removeMembers);
 router.patch('/:id', controller.update);
 router.delete('/:id', controller.destroy);
 

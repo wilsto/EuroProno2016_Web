@@ -2,6 +2,21 @@
 
 import mongoose from 'mongoose';
 
+var MemberSchema = new mongoose.Schema({
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    validated: {
+        type: Boolean,
+        default: false
+    },
+    join_date: {
+        type: Date,
+        default: Date.now
+    },
+    validationDate: {
+        type: Date,
+    }
+});
+
 var LeagueSchema = new mongoose.Schema({
     name: String,
     /* 1 private 0 public*/
@@ -14,16 +29,7 @@ var LeagueSchema = new mongoose.Schema({
         default: false
     },
     owner_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-    /*members: mongoose.Schema.Types.Mixed,*/
-
-    members: mongoose.Schema.Types.Mixed,
-    /*    [{
-            user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-            validated: {
-                type: Boolean,
-                default: false
-            }
-        }],*/
+    members: [MemberSchema],
     active: Boolean
 }, {
     strict: false
