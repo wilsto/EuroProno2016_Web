@@ -14,8 +14,6 @@
 
         constructor($http, $scope, socket, Auth) {
             this.$http = $http;
-            this.socket = socket;
-            this.awesomeThings = [];
             this.isLoggedIn = Auth.isLoggedIn;
             this.isAdmin = Auth.isAdmin;
             this.getCurrentUser = Auth.getCurrentUser;
@@ -32,18 +30,17 @@
             this.coffecup = diffDays * 6;
 
             // calcul du nombre de prono
-            this.$http.get('/api/pronos').then(responseProno => {
-                this.pronoCount = responseProno.data.length;
+            this.$http.get('/api/pronos/count').then(responseProno => {
+                this.pronoCount = responseProno.data;
             });
 
             // calcul du nombre de league
-            this.$http.get('/api/leagues').then(responseLeague => {
-                this.leagueCount = responseLeague.data.length;
+            this.$http.get('/api/leagues/count').then(responseLeague => {
+                this.leagueCount = responseLeague.data;
             });
 
-            this.$http.get('/api/things').then(response => {
-                this.awesomeThings = response.data;
-                this.socket.syncUpdates('thing', this.awesomeThings);
+            this.$http.get('/api/users/count').then(response => {
+                this.playersNb = response.data;
             });
 
             this.parallax();

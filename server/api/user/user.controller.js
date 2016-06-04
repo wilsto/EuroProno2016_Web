@@ -80,6 +80,24 @@ export function index(req, res) {
         .catch(handleError(res));
 }
 
+
+export function count(req, res) {
+    return User.count({}).exec()
+        .then(users => {
+            return res.status(200).json(users);
+        })
+        .catch(handleError(res));
+}
+
+
+export function list(req, res) {
+    return User.find({}, '-salt -password').exec()
+        .then(users => {
+            return res.status(200).json(users);
+        })
+        .catch(handleError(res));
+}
+
 /**
  * Creates a new user
  */

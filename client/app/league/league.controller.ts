@@ -30,6 +30,7 @@
         }
 
         loadLeagues() {
+
             //on récupère les matchs
             this.$http.get('/api/leagues').then(responseLeagues => {
                 this.leagues = responseLeagues.data;

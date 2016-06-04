@@ -6,6 +6,7 @@ var controller = require('./prono.controller');
 var router = express.Router();
 
 router.get('/', controller.index);
+router.get('/count', controller.count);
 router.get('/:id', controller.show);
 router.get('/user_id/:id', controller.showUser);
 router.post('/', controller.create);
