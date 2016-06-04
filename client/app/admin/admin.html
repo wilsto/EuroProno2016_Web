@@ -27,7 +27,7 @@
                     </li>
                     <li class="list-group-item" ng-repeat="user in vm.users | filter:vm.search">
                         <div class="user-info " ng-class="{'expandable':vm.focused[$index]===1,'trad-border':vm.focused[$index]===1}" ng-init="vm.focused[$index]=0">
-                            <span><img class="img-circle" width="50" height="50" ng-src="{{avatarUrl !== undefined && avatarUrl || 'assets/images/inconnu.gif'}}"></span><span class="user_auto_span"><strong> <input type="text" class="form-control form-trad" ng-model="user.name"  ng-change="vm.userChange(user)"></strong></span>
+                            <span><img class="img-circle" width="50" height="50" ng-src="{{avatarUrl !== undefined && avatarUrl || 'assets/images/stades/inconnu.gif'}}"></span><span class="user_auto_span"><strong> <input type="text" class="form-control form-trad" ng-model="user.name"  ng-change="vm.userChange(user)"></strong></span>
                             <span class="text-muted"><input type="text " class="form-control form-trad " ng-model="user.email "  ng-change="vm.userChange(user) "></span>
                             <span style="width:110px;">
                                 <select class="form-control form-trad" ng-model="user.role" ng-change="vm.tradChange(trad)">

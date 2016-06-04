@@ -25,22 +25,23 @@
             //on récupère les details de la ligue
             this.$http.get('/api/leagues/' + myid).then(responseLeagues => {
                 this.leaguesdet = responseLeagues.data;
-                console.log('this.leaguesdet ', this.leaguesdet);
                 this.members = this.leaguesdet.members;
-                this.currentuser = this.getCurrentUser()._id;
+                this.currentuserId = this.getCurrentUser()._id || 'not logged In';
 
+                // Est ce que le joueur est dans la ligue présente
+                this.isInLeague = _.filter(this.members, (member) => {
+                    return member.user._id === this.currentuserId;
+                }).length > 0;
             });
         }
 
-
         pinLeague() {
             this.leaguesdet.pinned = !this.leaguesdet.pinned;
-            console.log('this.leaguesdet', this.leaguesdet);
         }
 
         saveLeague() {
             this.$http.put('/api/leagues/' + this.leaguesdet._id, this.leaguesdet).then(response => {
-                console.log('member approved', response);
+                console.log('save league');
                 this.loadLeagueDet(this.path[2]);
                 this.modify = false;
             });
@@ -52,50 +53,28 @@
             });
         }
 
-
-
         //joindre une league
-        JoinLeague() {
-            var currentuser = this.getCurrentUser()._id;
-            _.remove(this.members, function(member) {
-                return member.user_id._id === currentuser;
-            });
-
-            if (this.leaguesdet.status === 1) {
-                this.members.push({ user_id: this.getCurrentUser(), activated: false });
-            } else {
-                this.members.push({ user_id: this.getCurrentUser(), activated: true });
-            }
-
-            this.leaguesdet.members = this.members;
-
-            this.$http.put('/api/leagues/' + this.leaguesdet._id, this.leaguesdet).then(response => {
-                console.log('league updated', response);
+        joinLeague() {
+            this.$http.put('/api/leagues/' + this.leaguesdet._id + '/members', { user: this.currentuserId, validated: this.leaguesdet.status !== 1 }).then(response => {
+                console.log('league updated');
                 this.loadLeagueDet(this.leaguesdet._id);
             });
-
-
         }
 
         //supprimer un membre
-        RemoveMember(id) {
-                _.remove(this.members, function(member) {
-                    return member.user_id._id === id;
-                });
-                this.leaguesdet.members = this.members;
-                this.$http.put('/api/leagues/' + this.leaguesdet._id, this.leaguesdet).then(response => {
-                    console.log('member list updated', response);
-                });
-            }
-            //supprimer un membre
-        AcceptMember(id) {
-            _.forEach(this.members, function(value, key) {
-                if (value.user_id._id === id) { value.activated = !value.activated; }
+        removeMember(member) {
+            this.$http.put('/api/leagues/' + this.leaguesdet._id + '/removeMembers', { user: member.user._id }).then(response => {
+                console.log('member list updated');
+                this.loadLeagueDet(this.leaguesdet._id);
             });
-            this.leaguesdet.members = this.members;
+        }
 
-            this.$http.put('/api/leagues/' + this.leaguesdet._id, this.leaguesdet).then(response => {
-                console.log('member approved', response);
+        //supprimer un membre
+        AcceptMember(member) {
+            this.valDate = (!member.validated) ? new Date() : null;
+            this.$http.put('/api/leagues/' + this.leaguesdet._id + '/members', { user: member.user._id, validated: !member.validated, validationDate: this.valDate }).then(response => {
+                console.log('member approved');
+                this.loadLeagueDet(this.leaguesdet._id);
             });
         }
 
