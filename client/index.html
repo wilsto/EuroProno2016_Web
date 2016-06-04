@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="bower_components/bootstrap-social/bootstrap-social.css" />
     <link rel="stylesheet" href="bower_components/animate.css/animate.css" />
+    <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
@@ -38,6 +39,7 @@
     <link rel="stylesheet" href="app/prono/prono.css">
     <link rel="stylesheet" href="app/regulation/regulation.css">
     <link rel="stylesheet" href="app/rules/rules.css">
+    <link rel="stylesheet" href="app/stats/stats.css">
     <link rel="stylesheet" href="app/team/team.css">
     <link rel="stylesheet" href="app/traduction/traduction.css">
     <link rel="stylesheet" href="components/footer/footer.css">
@@ -90,6 +92,8 @@
     <script src="bower_components/ng-flow/dist/ng-flow.js"></script>
     <script src="bower_components/raty/lib/jquery.raty.js"></script>
     <script src="bower_components/ngRaty/ngraty.js"></script>
+    <script src="bower_components/Chart.js/Chart.js"></script>
+    <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
     <!-- endbower -->
     <script src="socket.io-client/socket.io.js"></script>
     <!-- endbuild -->
@@ -101,7 +105,7 @@
     <script src="app/team/team.module.js"></script>
     <script src="components/auth/auth.module.js"></script>
     <script src="components/util/util.module.js"></script>
-    <script src="app/prono/prono.js"></script>
+    <script src="app/regulation/regulation.controller.js"></script>
     <script src="app/admin/admin.controller.js"></script>
     <script src="app/account/account.js"></script>
     <script src="app/admin/admin.router.js"></script>
@@ -123,11 +127,13 @@
     <script src="app/newsedit/newsedit.controller.js"></script>
     <script src="app/newsedit/newsedit.js"></script>
     <script src="app/prono/prono.controller.js"></script>
+    <script src="app/prono/prono.js"></script>
     <script src="app/account/forgot/forgot.controller.js"></script>
-    <script src="app/regulation/regulation.controller.js"></script>
     <script src="app/regulation/regulation.js"></script>
     <script src="app/rules/rules.controller.js"></script>
     <script src="app/rules/rules.js"></script>
+    <script src="app/stats/stats.controller.js"></script>
+    <script src="app/stats/stats.js"></script>
     <script src="app/team/team.controller.js"></script>
     <script src="app/account/reset/reset.controller.js"></script>
     <script src="app/team/team.router.js"></script>
