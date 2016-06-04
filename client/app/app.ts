@@ -16,7 +16,8 @@ angular.module('euroProno2016WebApp', [
         'angular.filter',
         'pascalprecht.translate',
         'ngBootbox',
-        'flow'
+        'flow',
+        'chart.js'
     ])
     .config(function($urlRouterProvider, $locationProvider, $translateProvider) {
         $urlRouterProvider

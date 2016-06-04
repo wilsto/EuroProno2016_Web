@@ -42,6 +42,8 @@
         "client/app/regulation/regulation.ts",
         "client/app/rules/rules.controller.ts",
         "client/app/rules/rules.ts",
+        "client/app/stats/stats.controller.ts",
+        "client/app/stats/stats.ts",
         "client/app/team/team.controller.ts",
         "client/app/team/team.module.ts",
         "client/app/team/team.router.ts",
