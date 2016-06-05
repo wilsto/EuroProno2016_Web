@@ -42,9 +42,7 @@
 
         // create league 
         createLeague(form) {
-            console.log('form', form);
             if (form.$valid) {
-
                 this.$http.post('/api/leagues', {
                     name: this.newleague.name,
                     status: this.newleague.status,
@@ -52,7 +50,7 @@
                     description: this.newleague.description,
                     image: this.newleague.image,
                     owner_id: this.getCurrentUser()._id,
-                    members: [{ user_id: this.getCurrentUser(), validated: true }]
+                    members: [{ user: this.getCurrentUser()._id, validated: true }]
                 }).then(response => {
                     this.newleague.name = '';
                     this.newleague.status = '';
