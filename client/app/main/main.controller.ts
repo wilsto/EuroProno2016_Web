@@ -50,6 +50,14 @@
             this.aboutAnimate();
             this.countersAnimate();
             this.contactAnimate();
+
+            var mvp = document.getElementById('myViewPort');
+            mvp.setAttribute('content', 'width=device-width, initial-scale=1');
+        }
+
+        $onDestroy() {
+            var mvp = document.getElementById('myViewPort');
+            mvp.setAttribute('content', 'width=device-width');
         }
 
         // Parallax

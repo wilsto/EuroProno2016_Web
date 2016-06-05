@@ -36,7 +36,7 @@
     }
 }
 
-@media screen and (max-width: 1054x) {
+@media screen and (max-width: 1044x) {
     .main-container {
         width: 100%!important;
     }
@@ -64,6 +64,10 @@ header:not(.navbar-fixed-top) .main-container li span {
     width: 100%!important;
 }
 
+.full-width {
+    width: 100%!important;
+}
+
 
 /* Login */
 
@@ -80,7 +84,7 @@ header:not(.navbar-fixed-top) .main-container li span {
     }
 }
 
-@media screen and (max-width: 1054x) {
+@media screen and (max-width: 1044x) {
     .login {
         left: 50px;
     }

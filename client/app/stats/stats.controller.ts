@@ -47,31 +47,31 @@
 
                     var grTeam = _.groupBy(temptab, 'team');
 
-                    _.forEach(grTeam, function(element, key) {
+                    _.forEach(grTeam, function(element3, key3) {
                         var sumPoints = 0;
                         var nbButs = 0;
                         var diffButs = 0;
-                        _.forEach(element, function(element1, key1) {
-                            if (isNaN(element1.points) != true) {
+                        _.forEach(element3, function(element1, key1) {
+                            if (isNaN(element1.points) !== true) {
                                 sumPoints = sumPoints + element1.points;
                             }
-                            if (isNaN(element1.score) != true) {
-                                nbButs = nbButs + parseInt(element1.score);
+                            if (isNaN(element1.score) !== true) {
+                                nbButs = nbButs + parseInt(element1.score, 10);
                             }
-                            if (isNaN(element1.diff) != true) {
-                                diffButs = diffButs + parseInt(element1.diff);
+                            if (isNaN(element1.diff) !== true) {
+                                diffButs = diffButs + parseInt(element1.diff, 10);
                             }
-                        })
-                        lstPoints.push({ team: key, points: sumPoints });
-                        lstButs.push({ team: key, buts: nbButs });
-                        lstDiff.push({ team: key, diff: diffButs });
+                        });
+                        lstPoints.push({ team: key3, points: sumPoints });
+                        lstButs.push({ team: key3, buts: nbButs });
+                        lstDiff.push({ team: key3, diff: diffButs });
                     });
                 });
 
                 // points
                 this.minPoints = [];
                 var minPa = _.sortBy(lstPoints, 'points');
-                var minP = _.uniq(minPa, "team").slice(0, 5);
+                var minP = _.uniq(minPa, 'team').slice(0, 5);
                 this.labelsMinP = _.map(minP, 'team');
                 var lstval = _.map(minP, 'points');
                 this.minPoints.push(lstval);
@@ -79,30 +79,30 @@
                 var maxPa = _.sortBy(lstPoints, 'points').reverse();
                 var maxP = _.uniq(maxPa).slice(0, 5);
                 this.labelsMaxP = _.map(maxP, 'team');
-                var lstval = _.map(maxP, 'points');
+                lstval = _.map(maxP, 'points');
                 this.maxPoints.push(lstval);
                 // buts
                 this.minButs = [];
                 var minB = _.sortBy(_.uniq(lstButs), 'buts').slice(0, 5);
                 this.labelsMinB = _.map(minB, 'team');
-                var lstval = _.map(minB, 'buts');
+                lstval = _.map(minB, 'buts');
                 this.minButs.push(lstval);
                 this.maxButs = [];
                 var maxB = _.sortBy(_.uniq(lstButs), 'buts').reverse().slice(0, 5);
                 this.labelsMaxB = _.map(maxB, 'team');
-                var lstval = _.map(maxB, 'buts');
+                lstval = _.map(maxB, 'buts');
                 this.maxButs.push(lstval);
 
                 //diff
                 this.minDiff = [];
-                var minB = _.sortBy(_.uniq(lstDiff), 'diff').slice(0, 5);
+                minB = _.sortBy(_.uniq(lstDiff), 'diff').slice(0, 5);
                 this.labelsMinD = _.map(minB, 'team');
-                var lstval = _.map(minB, 'diff');
+                lstval = _.map(minB, 'diff');
                 this.minDiff.push(lstval);
                 this.maxDiff = [];
-                var maxB = _.sortBy(_.uniq(lstDiff), 'diff').reverse().slice(0, 5);
+                maxB = _.sortBy(_.uniq(lstDiff), 'diff').reverse().slice(0, 5);
                 this.labelsMaxD = _.map(maxB, 'team');
-                var lstval = _.map(maxB, 'diff');
+                lstval = _.map(maxB, 'diff');
                 this.maxDiff.push(lstval);
 
 
@@ -113,13 +113,11 @@
                 }), 'count').reverse();
 
                 this.labels = _.map(Final, 'team');
-                var lstval = _.map(Final, 'count');
+                lstval = _.map(Final, 'count');
                 this.data.push(lstval);
 
             });
         }
-
-
     }
 
     angular.module('euroProno2016WebApp')
@@ -128,6 +126,4 @@
             controller: StatsComponent,
             controllerAs: 'vm'
         });
-
 })();
-}
