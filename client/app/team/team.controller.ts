@@ -15,14 +15,20 @@
         constructor($scope, $http) {
             this.$http = $http;
             this.loadTeams();
+            this.showPlay = false;
         }
 
         loadTeams() {
-            this.$http.get('api/teams').then(response => {
-                //console.log('data', response.data);
-                this.teams = response.data;
-            });
-        }
+                this.$http.get('api/teams').then(response => {
+                    //console.log('data', response.data);
+                    this.teams = response.data;
+                });
+            }
+            // show players
+        openPlayers(team) {
+            team.showPlay = !team.showPlay;
+        };
+
 
         createTeam(form) {
             this.submitted = true;
