@@ -24,6 +24,7 @@ var LeagueSchema = new mongoose.Schema({
     /*1 gratuit/ 2 avec mise*/
     type: Number,
     description: String,
+    image: String,
     pinned: {
         type: Boolean,
         default: false
