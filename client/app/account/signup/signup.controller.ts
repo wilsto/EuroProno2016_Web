@@ -7,14 +7,15 @@ class SignupController {
     submitted = false;
     //end-non-standard
 
-    constructor(Auth, $state) {
+    constructor(Auth, $state, $http) {
         this.Auth = Auth;
+        this.$http = $http;
         this.$state = $state;
+        this.getCurrentUser = Auth.getCurrentUser;
     }
 
     register(form) {
         this.submitted = true;
-
         if (form.$valid) {
             this.Auth.createUser({
                     name: this.user.name,
@@ -22,8 +23,14 @@ class SignupController {
                     password: this.user.password
                 })
                 .then(() => {
-                    // Account created, redirect to home
-                    this.$state.go('main');
+                    this.$http.get('/api/users/me').then(response => {
+                        this.$http.put('/api/leagues/57421c4678c0540300082c97/members', { user: response.data._id, validated: true }).then(response2 => {
+                            console.log('league updated');
+                            // Account created, redirect to home
+                            this.$state.go('main');
+                        });
+                    });
+
                 })
                 .catch(err => {
                     err = err.data;
