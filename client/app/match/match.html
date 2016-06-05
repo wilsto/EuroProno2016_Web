@@ -40,7 +40,7 @@
                         <table class="table table-responsive ">
                             <thead>
                                 <tr>
-                                    <th><a href='#' ng-click="sort('match'); ">Match</a></th>
+                                    <th><a href='#' ng-click="sort('typematch'); ">Match</a></th>
                                     <th>
                                         <a href='#' ng-click="sort( 'group'); ">{{'Group' | translate }}</a>
                                     </th>
@@ -55,7 +55,7 @@
                                     <td> {{match.group | translate}} </td>
                                     <td> {{match.date | date : 'dd MMM yyyy HH:mm' : timezone}} </td>
                                     <td><strong>{{match.team1 | translate}} - {{match.team2 |translate}}</strong> </td>
-                                    <td><img src="assets/images/stades/{{match.image}}.jpg " alt="{{match.image}} " class="circle "> {{match.stade}}</td>
+                                    <td><img ng-src="assets/images/stades/{{match.image}}.jpg " alt="{{match.image}} " class="circle "> {{match.stade}}</td>
                                 </tr>
                             </tbody>
                         </table>

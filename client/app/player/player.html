@@ -1,0 +1,65 @@
+<header role="banner" class="ep2016-header">
+    <div class="container navbar-container">
+        <!-- <div class="row"> -->
+        <navbar></navbar>
+        <!-- </div> -->
+    </div>
+</header>
+<div class="bg_default">
+    <div class="container wrap-container">
+        <div class="row">
+            <div class="col-sm-12"> <img src="assets/images/ball_player.png" alt="" style="max-width: 100%;height: auto;margin-bottom:30px;"></div>
+        </div>
+        <div class="row" ng-hide="vm.showNew">
+            <div class="col-sm-12">
+                <div id="players" class="PlayersContent">
+                    <table class="table table-responsive table-hover">
+                        <thead>
+                            <tr>
+                                <div class="user-info " style="margin:10px;">
+                                    <p style="display: inline-block;width:100px;">Filter players </p>
+                                    <input type="text" class="form-control" style=" display: inline-block;width:50%;margin-left: 10px;" ng-model="vm.search.$">
+                                </div>
+                            </tr>
+                            <tr>
+                                <th>Player</th>
+                                <th>Pseudo</th>
+                                <th>Leagues</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="league" ng-repeat="player in vm.users | filter:vm.search ">
+                                <td>
+                                    <img class="imgLeagues" ng-src="{{player.avatar}}">
+                                </td>
+                                <td>
+                                    {{player.name}} <small ng-show="player.firstname" class="text-muted pull-right">({{player.lastname}} {{player.firstname}})</small>
+                                </td>
+                                <td>
+                                    <div class="logLig" ng-repeat="league in vm.leagues" | filter:vm.search>
+                                        <a href="/leaguedetails/{{league._id}}">
+                                            <div ng-if="league.owner_id._id==player._id" ng-switch on=" league.image.substr(0,4) ">
+                                                <span class="btn glyphicon glyphicon-home">
+                                            <img class="circle imgLig tour" ng-switch-when="http " ng-src="{{league.image}} ">
+                                            <img class="circle imgLig tour" ng-switch-default ng-src="assets/images/leagues/{{league.image}} ">
+                                            <h6>{{league.name}}</h6></span>
+                                            </div>
+                                            <div ng-repeat="member in league.members">
+                                                <ul ng-if="member.user==player._id && league.owner_id._id!==player._id" ng-switch on=" league.image.substr(0,4) ">
+                                                    <img class="circle imgLig " ng-switch-when="http " ng-src="{{league.image}} ">
+                                                    <img class="circle imgLig " ng-switch-default ng-src="assets/images/leagues/{{league.image}} ">
+                                                    <h6>{{league.name}}</h6>
+                                                </ul>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- fin auto -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>imgLeagues
