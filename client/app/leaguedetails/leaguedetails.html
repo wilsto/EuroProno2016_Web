@@ -41,7 +41,7 @@
                         </p>
                         <br>
                         <button class="btn btn-primary " ng-click="vm.joinLeague()" ng-if="!vm.isInLeague && nav.isLoggedIn()">Join League</button>
-                        <button class="btn btn-warning " ng-click="vm.removeMember(currentUserId)" ng-if="vm.isInLeague && vm.currentuserId !== vm.leaguesdet.owner_id._id">Quit League </button>
+                        <button class="btn btn-warning " ng-click="vm.removeMember(vm.currentuserId)" ng-if="vm.isInLeague && vm.currentuserId !== vm.leaguesdet.owner_id._id">Quit League </button>
                     </div>
                     <div class="col-sm-9 ">
                         <table class="table table-responsive table-hover table-condensed">
@@ -80,7 +80,7 @@
                                     <td ng-if="vm.leaguesdet.status===1 "> {{member.validationDate | date:'mediumDate'}}</td>
                                     <td>
                                         <button ng-if="vm.leaguesdet.status===1 && (nav.isAdmin() || vm.currentuserId && vm.currentuserId===member.owner_id)" class="btn glyphicon glyphicon-ok " ng-class="{ 'btn-primary': member.validated, 'btn-warning': !member.validated} " type="submit " ng-click="vm.AcceptMember(member)"> </button>
-                                        <button ng-if="(nav.isAdmin() || vm.currentuserId && vm.currentuserId===vm.leaguesdet.owner_id) && vm.leaguesdet.owner_id !==member.user._id " class="btn btn-danger glyphicon glyphicon-remove " type="submit " ng-bootbox-confirm="Are you sure you want to delete this user ({{member.user.name}}) from your league ? <br/><br/><b>It is irreversible. It can't be undone." ng-bootbox-confirm-action="vm.removeMember(member)"> </button>
+                                        <button ng-if="(nav.isAdmin() || vm.currentuserId && vm.currentuserId===vm.leaguesdet.owner_id) && vm.leaguesdet.owner_id !==member.user._id " class="btn btn-danger glyphicon glyphicon-remove " type="submit " ng-bootbox-confirm="Are you sure you want to delete this user ({{member.user.name}}) from your league ? <br/><br/><b>It is irreversible. It can't be undone." ng-bootbox-confirm-action="vm.removeMember(member.user._id)"> </button>
                                     </td>
                                 </tr>
                             </tbody>
