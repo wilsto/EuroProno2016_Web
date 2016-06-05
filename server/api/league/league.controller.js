@@ -34,7 +34,6 @@ function saveUpdates(updates) {
 
 function saveUpdatesMembers(updates, add) {
     return function(entity) {
-        console.log(' entity.members', entity.members.length);
         var members = _.filter(entity.members, (member) => {
             return member.user.toString() !== updates.user;
         });
@@ -43,7 +42,6 @@ function saveUpdatesMembers(updates, add) {
         if (add) {
             entity.members.push(updates);
         }
-        console.log(' entity.members', entity.members.length);
         return entity.save(function(err, res) {
             //console.log(err, res);
         });
@@ -154,7 +152,6 @@ export function updateMembers(req, res) {
 
 // Updates members of a League in the DB
 export function removeMembers(req, res) {
-
     return League.findById(req.params.id).exec()
         .then(handleEntityNotFound(res))
         .then(saveUpdatesMembers(req.body, false))

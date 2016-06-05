@@ -63,6 +63,7 @@
 
         //supprimer un membre
         removeMember(memberId) {
+            console.log(' { user: memberId }', { user: memberId });
             this.$http.put('/api/leagues/' + this.leaguesdet._id + '/removeMembers', { user: memberId }).then(response => {
                 console.log('member list updated');
                 this.loadLeagueDet(this.leaguesdet._id);

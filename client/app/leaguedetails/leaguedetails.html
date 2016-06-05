@@ -41,7 +41,7 @@
                         </p>
                         <br>
                         <button class="btn btn-primary " ng-click="vm.joinLeague()" ng-if="!vm.isInLeague && nav.isLoggedIn()">Join League</button>
-                        <button class="btn btn-warning " ng-click="vm.removeMember(currentUserId)" ng-if="vm.isInLeague && vm.currentuserId !== vm.leaguesdet.owner_id._id">Quit League </button>
+                        <button class="btn btn-warning " ng-click="vm.removeMember(vm.currentuserId)" ng-if="vm.isInLeague && vm.currentuserId !== vm.leaguesdet.owner_id._id">Quit League </button>
                     </div>
                     <div class="col-sm-9 ">
                         <table class="table table-responsive table-hover table-condensed">

@@ -20,8 +20,6 @@
         }
 
         $onInit() {
-            console.log('init');
-
             // calcul du nombre de café
             var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
             var firstDate = new Date(2016, 3, 10);
@@ -54,15 +52,9 @@
             this.contactAnimate();
         }
 
-        $onDestroy() {
-            console.log('destroy');
-            this.socket.unsyncUpdates('thing');
-        }
-
         // Parallax
         parallax() {
             $(window).stellar();
-            console.log('parallax');
         }
 
         mobilecheck() {
@@ -76,7 +68,6 @@
 
         // Animations
         homeAnimate() {
-            console.log('homeAnimate');
             if ($('#ep2016-home').length > 0) {
                 $('#ep2016-home').waypoint(function(direction) {
                     if (direction === 'down' && !$(this.element).hasClass('animated')) {
