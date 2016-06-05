@@ -14,7 +14,7 @@
         ];
 
 
-        constructor($http, Auth) {
+        constructor($http, Auth, $stateParams) {
             this.$http = $http;
             this.isLoggedIn = Auth.isLoggedIn;
             this.isAdmin = Auth.isAdmin;
@@ -22,6 +22,9 @@
             this.matchs = [];
             this.groupThird = [];
             this.teamWinner = '';
+            this.myPlayerPage = $stateParams.userId === undefined;
+            console.log('this.myPlayerPage', this.myPlayerPage);
+            this.playerId = ($stateParams.userId) ? $stateParams.userId : this.getCurrentUser()._id; // recupère le nom de l'utilisateur
         }
 
         $onInit() {
@@ -59,7 +62,7 @@
 
         loadProno() {
             // on récupère les pronos du joueur sinon on crèe le squelette
-            this.$http.get('/api/pronos/user_id/' + this.getCurrentUser()._id).then(responseProno => {
+            this.$http.get('/api/pronos/user_id/' + this.playerId).then(responseProno => {
                 if (responseProno.data[0] !== undefined) {
                     this.prono = responseProno.data[0];
                     console.log('load prono ', this.prono);

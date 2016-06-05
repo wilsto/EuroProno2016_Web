@@ -28,6 +28,10 @@ var LeagueSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    universal: {
+        type: Boolean,
+        default: false
+    },
     owner_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     members: [MemberSchema],
     active: Boolean

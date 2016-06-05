@@ -60,6 +60,10 @@ var UserSchema = new Schema({
         type: Date,
         default: Date.now
     },
+    visible: {
+        type: Boolean,
+        default: true
+    },
     provider: String,
     salt: String,
     leagues: {},

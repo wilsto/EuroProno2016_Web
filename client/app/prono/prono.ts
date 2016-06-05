@@ -6,5 +6,9 @@ angular.module('euroProno2016WebApp')
             .state('prono', {
                 url: '/prono',
                 template: '<prono></prono>'
+            })
+            .state('pronoUser', {
+                url: '/prono/:userId',
+                template: '<prono></prono>'
             });
     });
