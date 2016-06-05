@@ -16,11 +16,12 @@
 
             this.$http = $http;
             this.pronos = [];
-            this.Final = [];
+            this.matchs = [];
 
             this.labels = [];
-            this.series = ['Number of prono'];
+            this.series = ['# prono'];
             this.data = [];
+            this.data1 = [];
 
         }
         $onInit() {
@@ -32,20 +33,88 @@
             this.$http.get('/api/pronos/').then(responseProno => {
 
                 this.pronos = responseProno.data;
+                console.log('pronos ', this.pronos);
+                var lstPoints = [];
+                var lstButs = [];
+                var lstDiff = [];
+                _.forEach(this.pronos, function(element, key) {
+                    var temptab = [];
+                    _.forEach(element.matchs, function(element1, key1) {
+                        //, points: element1.team1points 
+                        temptab.push({ team: element1.team1, score: element1.score1, points: element1.team1points, diff: element1.team1diff });
+                        temptab.push({ team: element1.team2, score: element1.score2, points: element1.team2points, diff: element1.team2diff });
+                    });
 
-                this.Matchs = _.map(this.pronos, 'matchs');
+                    var grTeam = _.groupBy(temptab, 'team');
 
+                    _.forEach(grTeam, function(element, key) {
+                        var sumPoints = 0;
+                        var nbButs = 0;
+                        var diffButs = 0;
+                        _.forEach(element, function(element1, key1) {
+                            if (isNaN(element1.points) != true) {
+                                sumPoints = sumPoints + element1.points;
+                            }
+                            if (isNaN(element1.score) != true) {
+                                nbButs = nbButs + parseInt(element1.score);
+                            }
+                            if (isNaN(element1.diff) != true) {
+                                diffButs = diffButs + parseInt(element1.diff);
+                            }
+                        })
+                        lstPoints.push({ team: key, points: sumPoints });
+                        lstButs.push({ team: key, buts: nbButs });
+                        lstDiff.push({ team: key, diff: diffButs });
+                    });
+                });
+
+                // points
+                this.minPoints = [];
+                var minPa = _.sortBy(lstPoints, 'points');
+                var minP = _.uniq(minPa, "team").slice(0, 5);
+                this.labelsMinP = _.map(minP, 'team');
+                var lstval = _.map(minP, 'points');
+                this.minPoints.push(lstval);
+                this.maxPoints = [];
+                var maxPa = _.sortBy(lstPoints, 'points').reverse();
+                var maxP = _.uniq(maxPa).slice(0, 5);
+                this.labelsMaxP = _.map(maxP, 'team');
+                var lstval = _.map(maxP, 'points');
+                this.maxPoints.push(lstval);
+                // buts
+                this.minButs = [];
+                var minB = _.sortBy(_.uniq(lstButs), 'buts').slice(0, 5);
+                this.labelsMinB = _.map(minB, 'team');
+                var lstval = _.map(minB, 'buts');
+                this.minButs.push(lstval);
+                this.maxButs = [];
+                var maxB = _.sortBy(_.uniq(lstButs), 'buts').reverse().slice(0, 5);
+                this.labelsMaxB = _.map(maxB, 'team');
+                var lstval = _.map(maxB, 'buts');
+                this.maxButs.push(lstval);
+
+                //diff
+                this.minDiff = [];
+                var minB = _.sortBy(_.uniq(lstDiff), 'diff').slice(0, 5);
+                this.labelsMinD = _.map(minB, 'team');
+                var lstval = _.map(minB, 'diff');
+                this.minDiff.push(lstval);
+                this.maxDiff = [];
+                var maxB = _.sortBy(_.uniq(lstDiff), 'diff').reverse().slice(0, 5);
+                this.labelsMaxD = _.map(maxB, 'team');
+                var lstval = _.map(maxB, 'diff');
+                this.maxDiff.push(lstval);
+
+
+                this.matchs = _.map(this.pronos, 'matchs');
                 // get all winners with number of pronostics
-                this.Final = _.sortBy(_.map(_.countBy(_.map(this.Matchs, 50), 'winner'), function(value, key) {
+                var Final = _.sortBy(_.map(_.countBy(_.map(this.matchs, 50), 'winner'), function(value, key) {
                     return { team: key, count: value };
                 }), 'count').reverse();
 
-                this.labels = _.map(this.Final, 'team');
-                var lstval = _.map(this.Final, 'count');
+                this.labels = _.map(Final, 'team');
+                var lstval = _.map(Final, 'count');
                 this.data.push(lstval);
-                console.log('label ', this.labels);
-                console.log('series ', this.series);
-                console.log('data ', this.data);
 
             });
         }
@@ -61,3 +130,4 @@
         });
 
 })();
+}
