@@ -9,6 +9,7 @@ var TeamSchema = new Schema({
     name: String,
     group: String,
     image: String,
+    players: mongoose.Schema.Types.Mixed,
     comment: String
 });
 // ton schéma est crée

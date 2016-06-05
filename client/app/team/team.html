@@ -24,8 +24,55 @@
                                     <div class="countryflagmax {{team.name}}"></div>
                                 </div>
                                 <div class="col-md-2"> {{ 'Group' | translate }} :<span class="text-muted">{{team.group}}</span></div>
-                                <div class="col-md-2"><span><strong>{{team.name | translate}}</strong> </span></div>
-                                <div class="col-md-4"><span class="text-muted">{{team.comment}}</span></div>
+                                <div class="col-md-4"><span><strong>{{team.name | translate}}</strong> </span></div>
+                                <div class="col-md-4"><span class="text-muted"><a ng-click="vm.openPlayers( team)" class="btn btn-primary "><i class="glyphicon glyphicon-eye-open"></i> Players </a>
+                                 </span>
+                                </div>
+                                <div ng-show="team.showPlay">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>bio</th>
+                                                <th>Caps</th>
+                                                <th>Clubs</th>
+                                                <th>Date of birth</th>
+                                                <th>Goal for country</th>
+                                                <th>League</th>
+                                                <th>position</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="player in team.players ">
+                                                <td>
+                                                    {{player.player}}
+                                                </td>
+                                                <td>
+                                                    {{player.bio}}
+                                                </td>
+                                                <td>
+                                                    {{player.caps}}
+                                                </td>
+                                                <td>
+                                                    {{player.club}}
+                                                </td>
+                                                <td>
+                                                    {{player.dob}}
+                                                </td>
+                                                <td>
+                                                    {{player.gfc}}
+                                                </td>
+                                                <td>
+                                                    {{player.league}}
+                                                </td>
+                                                <td>
+                                                    {{player.position}}
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    </span>
+                                </div>
                             </div>
                         </li>
                     </ul>
