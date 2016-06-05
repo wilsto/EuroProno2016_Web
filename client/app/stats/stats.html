@@ -12,13 +12,51 @@
                 <img src="assets/images/ball_stats.jpg" alt="" style="max-width: 100%;margin-bottom:30px; ">
             </div>
         </div>
+        <div class="col-xs-12 col-xs-12 col-md-12 col-lg-12">
+            <h2>Stats pronostics </h2>
+            <h4># pronos : {{vm.pronos.length}}</h4>
+        </div>
         <div class="col-xs-12 col-xs-12 col-md-6 col-lg-6">
             <div class="userStats ">
                 <div class="data ">
-                    <h2>Stats pronostics </h2>
-                    <h4># pronos : {{vm.pronos.length}}</h4>
+                    <h5>More points</h5>
+                    <canvas id="line2" class="chart chart-line" chart-data="vm.maxPoints" chart-labels="vm.labelsMaxP" chart-legend="true">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-xs-12 col-md-6 col-lg-6">
+            <div class="userStats ">
+                <div class="data ">
+                    <h5>Less Points</h5>
+                    <canvas id="line1" class="chart chart-line" chart-data="vm.minPoints" chart-labels="vm.labelsMinP" chart-legend="true">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-xs-12 col-md-6 col-lg-6">
+            <div class="userStats ">
+                <div class="data ">
+                    <h5>More Goals according pronostics</h5>
+                    <canvas id="line4" class="chart chart-line" chart-data="vm.maxButs" chart-labels="vm.labelsMaxB" chart-legend="true">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-xs-12 col-md-6 col-lg-6">
+            <div class="userStats ">
+                <div class="data ">
+                    <h5>Less Goals according pronos</h5>
+                    <canvas id="line3" class="chart chart-line" chart-data="vm.minButs" chart-labels="vm.labelsMinB" chart-legend="true">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-xs-12 col-md-6 col-lg-6">
+            <div class="userStats ">
+                <div class="data ">
                     <h5>Winners pronostics:</h5>
-                    <canvas id="line" class="chart chart-bar" chart-data="vm.data" chart-labels="vm.labels" chart-legend="true" chart-series="vm.series"></canvas>
+                    <canvas id="bar" class="chart chart-bar" chart-data="vm.data" chart-labels="vm.labels" chart-legend="true" chart-series="vm.series"></canvas>
                     </canvas>
                 </div>
             </div>

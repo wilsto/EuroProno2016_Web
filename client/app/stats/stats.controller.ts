@@ -16,11 +16,12 @@
 
             this.$http = $http;
             this.pronos = [];
-            this.Final = [];
+            this.matchs = [];
 
             this.labels = [];
-            this.series = ['Number of prono'];
+            this.series = ['# prono'];
             this.data = [];
+            this.data1 = [];
 
         }
         $onInit() {
@@ -32,20 +33,72 @@
             this.$http.get('/api/pronos/').then(responseProno => {
 
                 this.pronos = responseProno.data;
+                console.log('pronos ', this.pronos);
+                var lstPoints = [];
+                var lstButs = [];
+                _.forEach(this.pronos, function(element, key) {
 
-                this.Matchs = _.map(this.pronos, 'matchs');
+                    var temptab = [];
 
+                    _.forEach(element.matchs, function(element1, key1) {
+                        //, points: element1.team1points 
+                        temptab.push({ team: element1.team1, score: element1.score1, points: element1.team1points });
+                        temptab.push({ team: element1.team2, score: element1.score2, points: element1.team2points });
+                    });
+
+                    var grTeam = _.groupBy(temptab, 'team');
+
+                    _.forEach(grTeam, function(element, key) {
+                        var sumPoints = 0;
+                        var nbButs = 0;
+                        _.forEach(element, function(element1, key1) {
+                            if (isNaN(element1.points) != true) {
+                                sumPoints = sumPoints + element1.points;
+                            }
+                            if (isNaN(element1.score) != true) {
+                                nbButs = nbButs + parseInt(element1.score);
+                            }
+                        })
+                        lstPoints.push({ team: key, points: sumPoints });
+                        lstButs.push({ team: key, buts: nbButs })
+                    });
+                });
+
+                this.minPoints = [];
+                var minPa = _.sortBy(lstPoints, 'points');
+                var minP = _.uniq(minPa, "team").slice(0, 10);
+                this.labelsMinP = _.map(minP, 'team');
+                var lstval = _.map(minP, 'points');
+                this.minPoints.push(lstval);
+
+                this.maxPoints = [];
+                var maxPa = _.sortBy(lstPoints, 'points').reverse();
+
+                var maxP = _.uniq(maxPa).slice(0, 10);
+                this.labelsMaxP = _.map(maxP, 'team');
+                var lstval = _.map(maxP, 'points');
+                this.maxPoints.push(lstval);
+
+                this.minButs = [];
+                var minB = _.sortBy(_.uniq(lstButs), 'buts').slice(0, 10);
+                this.labelsMinB = _.map(minB, 'team');
+                var lstval = _.map(minB, 'buts');
+                this.minButs.push(lstval);
+                this.maxButs = [];
+                var maxB = _.sortBy(_.uniq(lstButs), 'buts').reverse().slice(0, 10);
+                this.labelsMaxB = _.map(maxB, 'team');
+                var lstval = _.map(maxB, 'buts');
+                this.maxButs.push(lstval);
+
+                this.matchs = _.map(this.pronos, 'matchs');
                 // get all winners with number of pronostics
-                this.Final = _.sortBy(_.map(_.countBy(_.map(this.Matchs, 50), 'winner'), function(value, key) {
+                var Final = _.sortBy(_.map(_.countBy(_.map(this.matchs, 50), 'winner'), function(value, key) {
                     return { team: key, count: value };
                 }), 'count').reverse();
 
-                this.labels = _.map(this.Final, 'team');
-                var lstval = _.map(this.Final, 'count');
+                this.labels = _.map(Final, 'team');
+                var lstval = _.map(Final, 'count');
                 this.data.push(lstval);
-                console.log('label ', this.labels);
-                console.log('series ', this.series);
-                console.log('data ', this.data);
 
             });
         }
@@ -61,3 +114,4 @@
         });
 
 })();
+}
