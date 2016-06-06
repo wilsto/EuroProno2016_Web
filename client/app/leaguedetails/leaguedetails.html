@@ -17,39 +17,47 @@
                 <h2>
                 <a href="/league">All Leagues > </a> {{vm.leaguesdet.name}}
                 <small> ({{vm.members.length}} members)</small>
-                <div ng-switch on="vm.leaguesdet.status " style="display: inline-block;margin-right:25px;">
-                    <img ng-switch-when="1 " src="assets/images/stades/cadenasRouge.png " alt="Private " style="width:25px; ">
-                    <small ng-switch-when="1 ">Private</small>
-                    <img ng-switch-default src="assets/images/cadenasGreen.png " alt="Public " style="width:25px; ">
-                    <small ng-switch-default>Public</small>
-                </div>
                 <div ng-switch on="vm.leaguesdet.type " style="display: inline-block;margin-right:25px; ">
                     <p ng-switch-when="1 ">Free</p>
                     <p ng-switch-default> <img src="assets/images/money.jpg " alt="Public " style="width:35px; "></p>
                 </div>
                 </h2>
-                <h4 style="width:100%;text-align:right">This is a private league. Only approved members will appear in your arena.<br></h4>
-                <p style="width:100%;text-align:right">Click on button with checkmark to approve or ban a member from your league</p>
+                <div class="flatglow row" style="margin-bottom:10px;background:#EEE" ng-switch on="vm.leaguesdet.status ">
+                    <div class="col-xs-12 col-md-2" ng-switch on="vm.leaguesdet.image.substr(0,4) ">
+                        <img class="imgLeagues " ng-switch-when="http " ng-src="{{vm.leaguesdet.image}} " class="circle ">
+                        <img class="imgLeagues " ng-switch-default ng-src="assets/images/leagues/{{vm.leaguesdet.image}} " class="circle ">
+                    </div>
+                    <div class="col-xs-12 col-md-2">
+                        <img class="img-circle" width="40" height="40" ng-src="{{vm.leaguesdet.owner_id.avatar || 'assets/images/stades/inconnu.gif'}}">
+                        <div>
+                            <span style="font-size:20px;font-weight:bold"> {{vm.leaguesdet.owner_id.name}}</span>
+                            <br>
+                            <small ng-show="vm.leaguesdet.owner_id.firstname" class="text-muted">({{vm.leaguesdet.owner_id.firstname}} {{vm.leaguesdet.owner_id.lastname}} )</small>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-8">
+                        <h4 style="width:100%;text-align:right" ng-if="vm.leaguesdet.status===1">This is a                     <img ng-switch-when="1 " src="assets/images/stades/cadenasRouge.png " alt="Private " style="width:25px; ">
+                    <span ng-switch-when="1 ">Private</span> league. Only approved members will appear in league arena.<br><small ng-if="vm.currentuserId!==vm.leaguesdet.owner_id._id">Please contact the owner to be approved</small> <small style="width:100%;text-align:right" ng-if="vm.currentuserId===vm.leaguesdet.owner_id._id">Click on button with checkmark to approve or ban a member from your league</small> <small style="width:100%;text-align:right" ng-if="vm.currentuserId===vm.leaguesdet.owner_id._id"><br>Click on button with trash to remove permanently a member from your league</small></h4>
+                        <h4 style="width:100%;text-align:right" ng-if="vm.leaguesdet.status!==1">This is a                     <img ng-switch-default src="assets/images/cadenasGreen.png " alt="Public " style="width:25px; ">
+                    <span ng-switch-default>Public</span> league. All members will appear in league arena.<br></h4>
+                    </div>
+                </div>
                 <p>
                     <button ng-if="nav.isAdmin() || vm.currentuserId && vm.currentuserId===vm.leaguesdet.owner_id._id" class="pull-right btn btn-warning glyphicon glyphicon-pencil " style="margin-left:25px;" ng-hide="vm.modify" ng-click="vm.modify = !vm.modify"> Modify</button>
                     <button ng-if="nav.isAdmin() || vm.currentuserId && vm.currentuserId===vm.leaguesdet.owner_id._id" class="pull-right btn btn-danger glyphicon glyphicon-trash " ng-bootbox-confirm="Are you sure you want to delete this league ? <br/>
                 <br/><b>It is irreversible. It can't be undone." ng-bootbox-confirm-action="vm.deleteLeague() " ng-hide="vm.modify"> Delete </button>
                 </p>
-                <div id="League " class="leaguedetContent ">
+                <div id="League row " class="leaguedetContent ">
                     <div class="col-sm-3 leagueContentToolTip ">
-                        <p ng-switch on="vm.leaguesdet.image.substr(0,4) ">
-                            <img class="imgLeagues " ng-switch-when="http " ng-src="{{vm.leaguesdet.image}} " class="circle ">
-                            <img class="imgLeagues " ng-switch-default ng-src="assets/images/leagues/{{vm.leaguesdet.image}} " class="circle ">
-                        </p>
-                        <br>
+                        <br>&nbsp;
                         <button class="btn btn-primary " ng-click="vm.joinLeague()" ng-if="!vm.isInLeague && nav.isLoggedIn()">Join League</button>
                         <button class="btn btn-warning " ng-click="vm.removeMember(vm.currentuserId)" ng-if="vm.isInLeague && vm.currentuserId !== vm.leaguesdet.owner_id._id">Quit League </button>
                     </div>
-                    <div class="col-sm-9 ">
+                    <div class="col-sm-9 " style="margin-top:25px;">
                         <table class="table table-responsive table-hover table-condensed">
                             <thead>
                                 <tr>
-                                    <th colspan="3" style="font-weight:normal;margin-top:25px;">
+                                    <th colspan="6" style="font-weight:normal;margin-top:25px;">
                                         <span ng-hide="vm.modify">{{vm.leaguesdet.description}}</span>
                                         <span ng-show="vm.modify">
                                             <div class="form-group ">
