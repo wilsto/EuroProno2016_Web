@@ -45,7 +45,9 @@
                                     <div class="col-sm-12 col-md-12 fondnews " ng-repeat="info in vm.filteredNewsTwo " ng-switch on="info.image.substr(0,4)">
                                         <img ng-switch-when="http" class="imgNewsS viewportNews" src="{{info.image}}" style="max-height:300px;">
                                         <img ng-switch-default class="imgNewsS viewportNews" src=" " ng-src="assets/images/news/{{info.image}} " />
-                                        <div class="viewportNews"><strong>{{info.title | translate}}</strong>
+                                        <div class="viewportNews">
+                                            <a ng-show="{{info.url}}" href="{{info.url}}" target="_blank" title="more details"><i class="glyphicon glyphicon-eye-open"></i> </a>
+                                            <strong>{{info.title | translate}}  </strong>
                                             <small style="float:right"> {{info.date | date:'mediumDate'}}</small>
                                             <br/>
                                             <span ng-if="info.info.length < 100 ">{{info.info | translate}}</span>
