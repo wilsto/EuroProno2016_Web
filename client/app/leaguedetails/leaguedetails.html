@@ -29,8 +29,8 @@
                 </div>
                 </h2>
                 <p>
-                    <button ng-if="nav.isAdmin() || vm.currentuserId && vm.currentuserId===vm.leaguesdet.owner_id " class="pull-right btn btn-warning glyphicon glyphicon-pencil " style="margin-left:25px;" ng-hide="vm.modify" ng-click="vm.modify = !vm.modify"> Modify</button>
-                    <button ng-if="nav.isAdmin() || vm.currentuserId && vm.currentuserId===vm.leaguesdet.owner_id " class="pull-right btn btn-danger glyphicon glyphicon-remove " ng-bootbox-confirm="Are you sure you want to delete this league ? <br/>
+                    <button ng-if="nav.isAdmin() || vm.currentuserId && vm.currentuserId===vm.leaguesdet.owner_id._id" class="pull-right btn btn-warning glyphicon glyphicon-pencil " style="margin-left:25px;" ng-hide="vm.modify" ng-click="vm.modify = !vm.modify"> Modify</button>
+                    <button ng-if="nav.isAdmin() || vm.currentuserId && vm.currentuserId===vm.leaguesdet.owner_id._id" class="pull-right btn btn-danger glyphicon glyphicon-remove " ng-bootbox-confirm="Are you sure you want to delete this league ? <br/>
                 <br/><b>It is irreversible. It can't be undone." ng-bootbox-confirm-action="vm.deleteLeague() " ng-hide="vm.modify"> Delete </button>
                 </p>
                 <div id="League " class="leaguedetContent ">
@@ -60,7 +60,7 @@
                                                 <input type="text " name="image" class="form-control " ng-model="vm.leaguesdet.image " required style="background-color: #FFF " tabindex=5>
                                             </div>
                                         </span>
-                                        <button ng-if="nav.isAdmin() || vm.currentuserId && vm.currentuserId===vm.leaguesdet.owner_id " class="pull-right btn btn-success glyphicon glyphicon-save " style="margin-left:25px;" ng-show="vm.modify" ng-click="vm.saveLeague()"> Save</button>
+                                        <button ng-if="nav.isAdmin() || vm.currentuserId && vm.currentuserId===vm.leaguesdet.owner_id._id" class="pull-right btn btn-success glyphicon glyphicon-save " style="margin-left:25px;" ng-show="vm.modify" ng-click="vm.saveLeague()"> Save</button>
                                     </th>
                                 </tr>
                                 <tr ng-hide="vm.modify">
@@ -80,7 +80,7 @@
                                     <td style="width:130px" ng-if="vm.leaguesdet.status===1 "> {{member.validationDate | date:'mediumDate'}}</td>
                                     <td style="width:100px">
                                         <button ng-if="vm.leaguesdet.status===1 && (nav.isAdmin() || vm.currentuserId && vm.currentuserId===member.owner_id)" class="btn glyphicon glyphicon-ok " ng-class="{ 'btn-primary': member.validated, 'btn-warning': !member.validated} " type="submit " ng-click="vm.AcceptMember(member)"> </button>
-                                        <button ng-if="(nav.isAdmin() || vm.currentuserId && vm.currentuserId===vm.leaguesdet.owner_id) && vm.leaguesdet.owner_id !==member.user._id " class="btn btn-danger glyphicon glyphicon-remove " type="submit " ng-bootbox-confirm="Are you sure you want to delete this user ({{member.user.name}}) from your league ? <br/><br/><b>It is irreversible. It can't be undone." ng-bootbox-confirm-action="vm.removeMember(member.user._id)"> </button>
+                                        <button ng-if="(nav.isAdmin() || vm.currentuserId && vm.currentuserId===vm.leaguesdet.owner_id) && vm.leaguesdet.owner_id._id!==member.user._id " class="btn btn-danger glyphicon glyphicon-remove " type="submit " ng-bootbox-confirm="Are you sure you want to delete this user ({{member.user.name}}) from your league ? <br/><br/><b>It is irreversible. It can't be undone." ng-bootbox-confirm-action="vm.removeMember(member.user._id)"> </button>
                                     </td>
                                 </tr>
                             </tbody>

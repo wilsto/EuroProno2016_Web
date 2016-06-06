@@ -150,6 +150,11 @@
                 match.winner = null;
             }
             this.calculGroup(groupName);
+            _.each(this.matchs, (currentMatch) => {
+                if (currentMatch.date > match.date && (match.team1 === currentMatch.team1 || match.team1 === currentMatch.team2 || match.team2 === currentMatch.team1 || match.team2 === currentMatch.team2)) {
+                    this.scoreChange(currentMatch, currentMatch.group);
+                }
+            });
         }
 
         // calcul les scores pour les groupes
@@ -457,7 +462,6 @@
                     if (group !== 'Final') {
                         (matchqualified1[0] !== undefined) ? matchqualified1[0].team1 = match.winner: matchqualified2[0].team2 = match.winner;
                     } else {
-                        console.log('We have a winner', match);
                         this.teamWinner = match.winner;
                     }
                 } else {
