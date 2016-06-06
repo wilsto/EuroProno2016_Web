@@ -28,9 +28,11 @@
                     <p ng-switch-default> <img src="assets/images/money.jpg " alt="Public " style="width:35px; "></p>
                 </div>
                 </h2>
+                <h4 style="width:100%;text-align:right">This is a private league. Only approved members will appear in your arena.<br></h4>
+                <p style="width:100%;text-align:right">Click on button with checkmark to approve or ban a member from your league</p>
                 <p>
                     <button ng-if="nav.isAdmin() || vm.currentuserId && vm.currentuserId===vm.leaguesdet.owner_id._id" class="pull-right btn btn-warning glyphicon glyphicon-pencil " style="margin-left:25px;" ng-hide="vm.modify" ng-click="vm.modify = !vm.modify"> Modify</button>
-                    <button ng-if="nav.isAdmin() || vm.currentuserId && vm.currentuserId===vm.leaguesdet.owner_id._id" class="pull-right btn btn-danger glyphicon glyphicon-remove " ng-bootbox-confirm="Are you sure you want to delete this league ? <br/>
+                    <button ng-if="nav.isAdmin() || vm.currentuserId && vm.currentuserId===vm.leaguesdet.owner_id._id" class="pull-right btn btn-danger glyphicon glyphicon-trash " ng-bootbox-confirm="Are you sure you want to delete this league ? <br/>
                 <br/><b>It is irreversible. It can't be undone." ng-bootbox-confirm-action="vm.deleteLeague() " ng-hide="vm.modify"> Delete </button>
                 </p>
                 <div id="League " class="leaguedetContent ">
@@ -76,11 +78,11 @@
                                     <td> <img class="img-circle" width="30" height="30" ng-src="{{member.user.avatar || 'assets/images/stades/inconnu.gif'}}"></td>
                                     <td><a href="/prono/{{member.user._id}}"> {{member.user.name}} </a><small class="text-muted pull-right"> ({{member.user.firstname}} {{member.user.lastname}})</small></td>
                                     <td> {{member.join_date | date:'mediumDate'}}</td>
-                                    <td ng-if="vm.leaguesdet.status===1 "> {{member.validated}}</td>
+                                    <td ng-if="vm.leaguesdet.status===1 "> <span class="label " ng-class="member.validated ? 'label-success':'label-warning'">{{member.validated}}</span></td>
                                     <td style="width:130px" ng-if="vm.leaguesdet.status===1 "> {{member.validationDate | date:'mediumDate'}}</td>
                                     <td style="width:100px">
-                                        <button ng-if="vm.leaguesdet.status===1 && (nav.isAdmin() || vm.currentuserId && vm.currentuserId===member.owner_id)" class="btn glyphicon glyphicon-ok " ng-class="{ 'btn-primary': member.validated, 'btn-warning': !member.validated} " type="submit " ng-click="vm.AcceptMember(member)"> </button>
-                                        <button ng-if="(nav.isAdmin() || vm.currentuserId && vm.currentuserId===vm.leaguesdet.owner_id) && vm.leaguesdet.owner_id._id!==member.user._id " class="btn btn-danger glyphicon glyphicon-remove " type="submit " ng-bootbox-confirm="Are you sure you want to delete this user ({{member.user.name}}) from your league ? <br/><br/><b>It is irreversible. It can't be undone." ng-bootbox-confirm-action="vm.removeMember(member.user._id)"> </button>
+                                        <button ng-if="vm.leaguesdet.status===1 && (nav.isAdmin() || (vm.currentuserId && vm.currentuserId===vm.leaguesdet.owner_id._id))" class="btn glyphicon glyphicon-ok " ng-class="{ 'btn-success': member.validated, 'btn-warning': !member.validated} " type="submit " ng-click="vm.AcceptMember(member)"> </button>
+                                        <button ng-if="(nav.isAdmin() || (vm.currentuserId && vm.currentuserId===vm.leaguesdet.owner_id._id ) && vm.leaguesdet.owner_id._id!==member.user._id)" class="btn btn-danger glyphicon glyphicon-trash " type="submit " ng-bootbox-confirm="Are you sure you want to delete this user ({{member.user.name}}) from your league ? <br/><br/><b>It is irreversible. It can't be undone." ng-bootbox-confirm-action="vm.removeMember(member.user._id)"> </button>
                                     </td>
                                 </tr>
                             </tbody>

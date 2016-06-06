@@ -197,19 +197,19 @@ div.photo span {
     color: green;
 }
 
-.badge {
+.mybadge {
     width: 100px;
     height: 100px;
     line-height: 60px;
 }
 
-.badge i {
+.mybadge i {
     margin: 0;
     font-size: 38px;
     vertical-align: middle;
 }
 
-.badge span {
+.mybadge span {
     margin-top: -15px;
     display: block;
 }

@@ -23,8 +23,7 @@
             this.groupThird = [];
             this.teamWinner = '';
             this.myPlayerPage = $stateParams.userId === undefined;
-            console.log('this.myPlayerPage', this.myPlayerPage);
-            this.playerId = ($stateParams.userId) ? $stateParams.userId : this.getCurrentUser()._id; // recupère le nom de l'utilisateur
+            this.$stateParams = $stateParams;
         }
 
         $onInit() {
@@ -32,18 +31,21 @@
         }
 
         loadMatchs() {
+            var that = this;
             //on récupère les matchs
             this.$http.get('/api/matchs').then(responseMatchs => {
 
                 this.matchs = responseMatchs.data;
-                console.log('this.matchs', this.matchs);
 
                 // création des groupes à partir des infos matchs
                 this.groups = _.sortBy(_.uniq(_.map(this.matchs, element => {
                     return { name: element.group, order: element.grouporder };
                 }), 'name'), 'order');
 
-                this.loadProno();
+                this.getCurrentUser(function(user) {
+                    that.playerId = (that.$stateParams.userId) ? that.$stateParams.userId : user._id; // recupère le nom de l'utilisateur
+                    that.loadProno();
+                });
             });
 
             // on récupère les équipes
