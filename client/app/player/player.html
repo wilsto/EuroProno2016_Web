@@ -8,7 +8,7 @@
 <div class="bg_default">
     <div class="container wrap-container">
         <div class="row">
-            <div class="col-sm-12"> <img src="assets/images/ball_player.png" alt="" style="max-width: 100%;height: auto;margin-bottom:30px;"></div>
+            <div class="col-sm-12"> <img src="assets/images/stades/ball_player.png" alt="" style="max-width: 100%;height: auto;margin-bottom:30px;"></div>
         </div>
         <div class="row" ng-hide="vm.showNew">
             <div class="col-sm-12">
@@ -22,34 +22,34 @@
                                 </div>
                             </tr>
                             <tr>
-                                <th>Player</th>
+                                <th>Player ({{vm.users.length}})</th>
                                 <th>Pseudo</th>
                                 <th>Leagues</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="league" ng-repeat="player in vm.users | filter:vm.search ">
+                            <tr class="league" ng-repeat="player in vm.users | filter:vm.search | filter:{'visible':!false} | orderBy : 'name' ">
                                 <td>
-                                    <img class="imgLeagues" ng-src="{{player.avatar}}">
+                                    <img class="img-circle" width="50" height="50" ng-src="{{player.avatar || 'assets/images/stades/inconnu.gif'}}">
                                 </td>
                                 <td>
-                                    {{player.name}} <small ng-show="player.firstname" class="text-muted pull-right">({{player.lastname}} {{player.firstname}})</small>
+                                    <a href="/prono/{{player._id}}"> {{player.name}}</a>
+                                    <br><small ng-show="player.firstname" class="text-muted">({{player.firstname}} {{player.lastname}} )</small>
                                 </td>
-                                <td>
-                                    <div class="logLig" ng-repeat="league in vm.leagues" | filter:vm.search>
+                                <td style="width:75%">
+                                    <div class="logLig" ng-repeat="league in vm.leagues | filter:vm.search | orderBy:['-pinned','name']">
                                         <a href="/leaguedetails/{{league._id}}">
-                                            <div ng-if="league.owner_id._id==player._id" ng-switch on=" league.image.substr(0,4) ">
-                                                <span class="btn glyphicon glyphicon-home">
-                                            <img class="circle imgLig tour" ng-switch-when="http " ng-src="{{league.image}} ">
-                                            <img class="circle imgLig tour" ng-switch-default ng-src="assets/images/leagues/{{league.image}} ">
-                                            <h6>{{league.name}}</h6></span>
+                                            <div ng-if="league.owner_id._id==player._id" class="tooltipdate" ng-switch on=" league.image.substr(0,4) ">
+                                                <img class="circle imgLig tour" ng-switch-when="http " ng-src="{{league.image}} ">
+                                                <img class="circle imgLig tour" ng-switch-default ng-src="assets/images/leagues/{{league.image}} ">
+                                                <span class="tooltipdatetext">{{league.name}}</span>
                                             </div>
                                             <div ng-repeat="member in league.members">
-                                                <ul ng-if="member.user==player._id && league.owner_id._id!==player._id" ng-switch on=" league.image.substr(0,4) ">
+                                                <div ng-if="member.user==player._id && league.owner_id._id!==player._id" class="tooltipdate" ng-switch on=" league.image.substr(0,4) ">
                                                     <img class="circle imgLig " ng-switch-when="http " ng-src="{{league.image}} ">
                                                     <img class="circle imgLig " ng-switch-default ng-src="assets/images/leagues/{{league.image}} ">
-                                                    <h6>{{league.name}}</h6>
-                                                </ul>
+                                                    <span class="tooltipdatetext">{{league.name}}</span>
+                                                </div>
                                             </div>
                                         </a>
                                     </div>
@@ -61,5 +61,6 @@
                 </div>
             </div>
         </div>
+        <footer></footer>
     </div>
-</div>imgLeagues
+</div>

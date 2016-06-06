@@ -35,7 +35,9 @@ function saveUpdates(updates) {
 function saveUpdatesMembers(updates, add) {
     return function(entity) {
         var members = _.filter(entity.members, (member) => {
-            return member.user.toString() !== updates.user;
+            if (member.user !== undefined) {
+                return member.user.toString() !== updates.user;
+            }
         });
         delete entity.members;
         entity.members = members;

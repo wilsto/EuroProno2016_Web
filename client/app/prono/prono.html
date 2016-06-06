@@ -12,46 +12,65 @@
                 <img src="assets/images/stades/prono_bg.jpg" alt="" style="width: 100%;height: auto;margin-bottom:30px;">
             </div>
         </div>
-        <div class="save" ng-class="vm.isLoggedIn() ? 'bg-default' : 'bg-danger'">
-            <a href="/" class="btn btn-default btn-lg" ng-if="vm.isLoggedIn()">Don't Save</a>
-            <a href="" class="btn btn-warning btn-lg" ng-bootbox-confirm="Are you sure you want to reset your prono ? <br/>
-                <br/><b>It is irreversible. It can't be undone." ng-bootbox-confirm-action="vm.resetProno()" ng-if="vm.isLoggedIn()">Reset</a>
-            <a href="" class="btn btn-primary btn-lg pull-right" ng-click="vm.saveProno()" ng-if="vm.isLoggedIn()">Save</a>
-            <span class="PronoNotLoggedIn" ng-if="!vm.isLoggedIn()">Please <a href="/login">login</a> or <a href="/signup">register</a> to be able to play on EuroProno2016</span>
+        <div class="alert alert-danger" ng-if="vm.myPlayerPage"> Vous pouvez jouer ou affiner vos pronos jusqu'au début du premier match (vendredi 10 juin 20:59 heure francaise).
+            <br/> Après <u> pour les retardataires </u>, vous pouvez pronostiquer mais attention les matchs déjà commencés ou passés au moment de votre enregistrement seront exclus automatiquement de vos résultats. Les points seront à zéro et le match sera noté : **KO
         </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <div id="pronoPoules" class="pronoContent">
-                    <div class="pronoContentToolTip">
-                        <span class="title" translate>For each match, prognotic the score and choose wich team will go in finale phase.</span>
-                        <span class="">{{'Teams ranking are automatically updated as soon as your enter your score.' | translate}}</span>
-                    </div>
-                    <div class="col-sm-12" ng-class="{'col-md-6':group.name.length <2}" ng-repeat="group in vm.groups ">
-                        <h3 class="pronoPouleTitle">
+        <div class="col-xs-12 col-xs-12 col-md-12 col-lg-12 flatglow" style="margin-bottom:10px" ng-if="!vm.myPlayerPage">
+            <div>
+                <img style="float:left;margin-right:15px;" class="img-circle" width="50" height="50" ng-src="{{vm.prono.user_id.avatar || 'assets/images/stades/inconnu.gif'}}">
+                <div style="float:left">
+                    <span style="font-size:20px;font-weight:bold"> {{vm.prono.user_id.name}}</span>
+                    <br>
+                    <small style="float:left" ng-show="vm.prono.user_id.firstname" class="text-muted">({{vm.prono.user_id.firstname}} {{vm.prono.user_id.lastname}} )</small>
+                </div>
+            </div>
+            <span class="pull-right">
+                <div ng-if="vm.teamWinner">
+                    Champion d'europe 2016 <br>
+                    <span class="countryflags {{vm.teamWinner}}" style="margin-top:10px;margin-right:10px"></span> <strong>{{vm.teamWinner}}</strong>
+        </div>
+        </span>
+    </div>
+    <div class="save" ng-class="vm.isLoggedIn() ? 'bg-default' : 'bg-danger'" ng-if="vm.myPlayerPage">
+        <a href="/" class="btn btn-default btn-lg" ng-if="vm.isLoggedIn()">Don't Save</a>
+        <a href="" class="btn btn-warning btn-lg" ng-bootbox-confirm="Are you sure you want to reset your prono ? <br/>
+                <br/><b>It is irreversible. It can't be undone." ng-bootbox-confirm-action="vm.resetProno()" ng-if="vm.isLoggedIn()">Reset</a>
+        <a href="" class="btn btn-primary btn-lg pull-right" ng-click="vm.saveProno()" ng-if="vm.isLoggedIn()">Save</a>
+        <span class="PronoNotLoggedIn" ng-if="!vm.isLoggedIn()">Please <a href="/login">login</a> or <a href="/signup">register</a> to be able to play on EuroProno2016</span>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div id="pronoPoules" class="pronoContent">
+                <div class="pronoContentToolTip">
+                    <span class="title" translate>For each match, prognotic the score and choose wich team will go in finale phase.</span>
+                    <span class="">{{'Teams ranking are automatically updated as soon as your enter your score.' | translate}}</span>
+                </div>
+                <div class="col-sm-12" ng-class="{'col-md-6':group.name.length <2}" ng-repeat="group in vm.groups ">
+                    <h3 class="pronoPouleTitle">
                             <span><span ng-if="group.name.length <2">{{'Group' | translate }}</span> {{group.name | translate}} </span>
                         </h3>
-                        <table class="pronoPouleMatchs">
-                            <tbody>
-                                <tr class="match" ng-repeat="match in vm.matchs | orderBy:'date' | filter:vm.filterGroup(group.name)">
-                                    <td class="eq eq1" ng-class="{'unbold':match.winner.length >0 &&  match.team1 !== match.winner}">
-                                        {{match.team1 | translate}}
-                                    </td>
-                                    <td class="flag flag1">
-                                        <div class="countryflags  {{match.team1}}" ng-class="{'lightImage':match.winner.length >0 &&  match.team1 !== match.winner }"></div>
-                                    </td>
-                                    <td class="score">
-                                        <span class="penalties" ng-show="match.score1===match.score2 && match.score1.length  > 0 && match.score2.length  > 0 && group.name.length >2">                     
-                                            <input type="text" size="1" maxlength="2" ng-model="match.penalties1" ng-change="vm.scoreChange(match, group.name)" ng-disabled="!vm.isLoggedIn()" >
+                    <table class="pronoPouleMatchs">
+                        <tbody>
+                            <tr class="match" ng-repeat="match in vm.matchs | orderBy:'date' | filter:vm.filterGroup(group.name)">
+                                <td class="eq eq1" ng-class="{'unbold':match.winner.length >0 &&  match.team1 !== match.winner}">
+                                    {{match.team1 | translate}}
+                                </td>
+                                <td class="flag flag1">
+                                    <div class="countryflags  {{match.team1}}" ng-class="{'lightImage':match.winner.length >0 &&  match.team1 !== match.winner }"></div>
+                                </td>
+                                <td class="score">
+                                    <span class="penalties" ng-show="match.score1===match.score2 && match.score1.length  > 0 && match.score2.length  > 0 && group.name.length >2">                     
+                                            <input type="text" size="1" maxlength="2" ng-model="match.penalties1" ng-change="vm.scoreChange(match, group.name)" ng-disabled="!vm.isLoggedIn() || !vm.myPlayerPage" >
                                             <span class="penalties2" ></span>
-                                        </span>
-                                        <input type="text" class="score1" size="1" maxlength="2" ng-model="match.score1" ng-change="vm.scoreChange(match, group.name)" ng-disabled="!vm.isLoggedIn()">
-                                        <div class="tooltipdate"> {{ match.typematch}}
-                                            <span class="tooltipdatetext">{{ match.date | date : 'MMM d, HH:mm' : timezone}} </span>
-                                        </div>
-                                        </span>
-                                        <input type="text" class="score2" size="1" maxlength="2" ng-model="match.score2" ng-change="vm.scoreChange(match, group.name)" ng-disabled="!vm.isLoggedIn()">
-                                        <span class="penalties penalties2" ng-show="match.score1===match.score2 && match.score1.length > 0 && match.score2.length  > 0 && group.name.length >2">                     
-                                            <input type="text" size="1" maxlength="2" ng-model="match.penalties2" ng-change="vm.scoreChange(match, group.name)" ng-disabled="!vm.isLoggedIn()" >
+                                    </span>
+                                    <input type="text" class="score1" size="1" maxlength="2" ng-model="match.score1" ng-change="vm.scoreChange(match, group.name)" ng-disabled="!vm.isLoggedIn() || !vm.myPlayerPage">
+                                    <div class="tooltipdate"> {{ match.typematch}}
+                                        <span class="tooltipdatetext">{{ match.date | date : 'MMM d, HH:mm' : timezone}} </span>
+                                    </div>
+                                    </span>
+                                    <input type="text" class="score2" size="1" maxlength="2" ng-model="match.score2" ng-change="vm.scoreChange(match, group.name)" ng-disabled="!vm.isLoggedIn() || !vm.myPlayerPage">
+                                    <span class="penalties penalties2" ng-show="match.score1===match.score2 && match.score1.length > 0 && match.score2.length  > 0 && group.name.length >2">                     
+                                            <input type="text" size="1" maxlength="2" ng-model="match.penalties2" ng-change="vm.scoreChange(match, group.name)" ng-disabled="!vm.isLoggedIn() || !vm.myPlayerPage" >
                                     </td>
                                     <td class="flag flag2">
                                         <div class="countryflags  {{match.team2}}" ng-class="{'lightImage':match.winner.length >0 &&  match.team2 !== match.winner }"></div>
@@ -107,29 +126,29 @@
                                     <div class="pts "  ng-if="!ranking">{{team.played}}</div>
                                     <div class="pts nbPts"  ng-if="!ranking">{{team.points}}</div>
                                     <span class="countryflags-mini {{team.name}}">&nbsp;</span>
-                                        <span class="equipe">
+                                    <span class="equipe">
                                           {{team.name | translate}}
                                     </span>
-                                        </li>
-                                        </ul>
-                    </div>
+                                    </li>
+                                    </ul>
                 </div>
-                <!-- fin auto -->
             </div>
+            <!-- fin auto -->
         </div>
     </div>
-    <br>
-    <div class="teamWinner bg-success" ng-if="vm.teamWinner">
-        <i class="iconmoon-trophy" style="font-size:50px"></i>
-        <br/>
-        <span class="countryflags {{vm.teamWinner}}"></span> {{vm.teamWinner}}
-    </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <footer></footer>
+</div>
+<br>
+<div class="teamWinner bg-success" ng-if="vm.teamWinner">
+    <i class="iconmoon-trophy" style="font-size:50px"></i>
+    <br/>
+    <span class="countryflags {{vm.teamWinner}}"></span> {{vm.teamWinner}}
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<footer></footer>
 </div>
 </div>
