@@ -17,7 +17,7 @@
         <div class="row" ng-hide="vm.showNew">
             <div class="col-sm-12">
                 <div id="League" class="leagueContent">
-                    <table class="table table-responsive table-hover">
+                    <table class="table table-responsive ">
                         <thead>
                             <tr>
                                 <div class="user-info " style="margin:10px;">
@@ -29,42 +29,18 @@
                                 </div>
                             </tr>
                             <tr>
-                                <th><a href='#' ng-click="sort('name'); ">League</a></th>
+                                <th><a href='#' ng-click="vm.sortTable('name'); ">League</a></th>
                                 <th>
-                                    <a href='#' ng-click="sort( 'status'); ">Status</a>
+                                    <a href='#' ng-click="vm.sortTable( 'status'); ">Status</a>
                                 </th>
-                                <th><a href='#' ng-click="sort( 'type'); ">Type</a></th>
-                                <th><a href='#' ng-click="sort( 'description'); ">Description</a></th>
-                                <th><a href='#' ng-click="sort( 'members'); ">Members</a></th>
-                                <th><a href='#' ng-click="sort( 'owner'); ">Owner</a></th>
+                                <th><a href='#' ng-click="vm.sortTable( 'type'); ">Type</a></th>
+                                <th><a href='#' ng-click="vm.sortTable( 'description'); ">Description</a></th>
+                                <th><a href='#' ng-click="vm.sortTable( 'members'); ">Members</a></th>
+                                <th><a href='#' ng-click="vm.sortTable( 'owner'); ">Owner</a></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="league" ng-repeat="league in vm.leagues | filter:vm.search | filter:{pinned:true}">
-                                <td ng-switch on="league.image.substr(0,4)">
-                                    <a href="/leaguedetails/{{league._id}}">
-                                        <img class="imgLeagues" ng-switch-when="http" ng-src="{{league.image}}">
-                                        <img class="imgLeagues" ng-switch-default ng-src="assets/images/leagues/{{league.image}}">
-                                        <span class="btn icon-pin btn-xs btn-primary"></span> {{league.name | translate}}
-                                    </a>
-                                </td>
-                                <td ng-switch on="league.status">
-                                    <img ng-switch-when="1" src="assets/images/stades/cadenasRouge.png" alt="Private" style="width:25px;">
-                                    <br><span ng-switch-when="1">Private</span>
-                                    <img ng-switch-default src="assets/images/cadenasGreen.png" alt="Public" style="width:25px;">
-                                    <br><span ng-switch-default>Public</span>
-                                </td>
-                                <td ng-switch on="league.type">
-                                    <p ng-switch-when="1">Free</p>
-                                    <p ng-switch-default> <img src="assets/images/money.jpg" alt="Public" style="width:35px;"></p>
-                                </td>
-                                <td> {{league.description}} </td>
-                                <td style="text-align:center"> {{league.members.length}} </td>
-                                <td style="text-align:center"> {{league.owner_id.name}}</td>
-                                <td>
-                                    <a href="/leaguedetails/{{league._id}}"><i class="glyphicon glyphicon-th-list"> </a></td>
-                            </tr>
-                            <tr class="league" ng-repeat="league in vm.leagues | orderBy:orderProp  | filter:vm.search | filter:{pinned:false} ">
+                            <tr class="league" ng-repeat="league in vm.leagues | orderBy:vm.orderProp  | filter:vm.search | filter:{pinned:true}" style="background:rgba(0, 83, 148, 0.1);">
                                 <td ng-switch on="league.image.substr(0,4)">
                                     <a href="/leaguedetails/{{league._id}}">
                                         <img class="imgLeagues" ng-switch-when="http" ng-src="{{league.image}}">
@@ -82,8 +58,31 @@
                                     <p ng-switch-default> <img src="assets/images/money.jpg" alt="Public" style="width:35px;"></p>
                                 </td>
                                 <td> {{league.description}} </td>
-                                <td style="text-align:center"> {{league.members.length}} </td>
-                                <td style="text-align:center"> {{league.owner_id.name}}</td>
+                                <td style="text-align:center"> <span class="badge">{{league.members.length}}</span> </td>
+                                <td style="text-align:center"> <img class="img-circle" width="40" height="40" ng-src="{{league.owner_id.avatar || 'assets/images/stades/inconnu.gif'}}">{{league.owner_id.name}}</td>
+                                <td>
+                                    <a href="/leaguedetails/{{league._id}}"><i class="glyphicon glyphicon-th-list"> </a></td>
+                            </tr>
+                            <tr class="league" ng-repeat="league in vm.leagues | orderBy:vm.orderProp  | filter:vm.search | filter:{pinned:false} ">
+                                <td ng-switch on="league.image.substr(0,4)">
+                                    <a href="/leaguedetails/{{league._id}}">
+                                        <img class="imgLeagues" ng-switch-when="http" ng-src="{{league.image}}">
+                                        <img class="imgLeagues" ng-switch-default ng-src="assets/images/leagues/{{league.image}}"> {{league.name | translate}}
+                                    </a>
+                                </td>
+                                <td ng-switch on="league.status">
+                                    <img ng-switch-when="1" src="assets/images/stades/cadenasRouge.png" alt="Private" style="width:25px;">
+                                    <br><span ng-switch-when="1">Private</span>
+                                    <img ng-switch-default src="assets/images/cadenasGreen.png" alt="Public" style="width:25px;">
+                                    <br><span ng-switch-default>Public</span>
+                                </td>
+                                <td ng-switch on="league.type">
+                                    <p ng-switch-when="1">Free</p>
+                                    <p ng-switch-default> <img src="assets/images/money.jpg" alt="Public" style="width:35px;"></p>
+                                </td>
+                                <td> {{league.description}} </td>
+                                <td style="text-align:center"><span class="badge">{{league.members.length}}</span></td>
+                                <td style="text-align:center"> <img class="img-circle" width="40" height="40" ng-src="{{league.owner_id.avatar || 'assets/images/stades/inconnu.gif'}}"> {{league.owner_id.name}}</td>
                                 <td>
                                     <a href="/leaguedetails/{{league._id}}"><i class="glyphicon glyphicon-th-list"> </a></td>
                             </tr>

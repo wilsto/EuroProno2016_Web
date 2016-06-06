@@ -22,14 +22,15 @@
             this.orderProp = ['name'];
             this.myList = false;
             this.myId = 1;
-            $scope.sort = function(type) {
-                this.orderProp = type;
-            };
         }
 
         $onInit() {
             this.loadLeagues();
         }
+
+        sortTable(type) {
+            this.orderProp = type;
+        };
 
         loadLeagues() {
 
