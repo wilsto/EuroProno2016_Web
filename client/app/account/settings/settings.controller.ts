@@ -22,13 +22,69 @@ class SettingsController {
         //users information
         this.currentUser = this.getCurrentUser();
         //on récupère les leagues
-        this.loadLeagues();
+        this.getUpdStat();
     }
 
-    loadLeagues() {
+    getUpdStat() {
+        // test si league renseignée
         this.$http.get('/api/leagues').then(responseLeagues => {
-            this.leagues = responseLeagues.data;
-            console.log('this.leagues', this.leagues);
+            var allLeagues = responseLeagues.data;
+
+            this.leagues = _.filter(allLeagues, function(o) {
+                return o.name !== 'Public League';
+            });
+
+            var members = _.flatten(_.map(this.leagues, 'members'));
+            var membersId = _.map(members, 'user');
+            var presUser = membersId.indexOf(this.currentUser._id);
+
+            if (presUser !== -1) {
+                this.currentUser.status.league = 1;
+            } else {
+                this.currentUser.status.league = 0;
+            }
+            // game validated
+            this.Championsleagues = _.filter(allLeagues, function(o) {
+                return o.name === 'Champions league';
+            });
+            console.log(" this.Championsleagues", this.Championsleagues);
+
+            var clMembers = _.flatten(_.map(this.Championsleagues, 'members'));
+            var clMembersId = _.map(clMembers, function(value, key) {
+                if (value.validated === true) {
+                    return value.user;
+                }
+            });
+            var clPresUser = clMembersId.indexOf(this.currentUser._id);
+
+            if (clPresUser !== -1) {
+                this.currentUser.status.game = 1;
+            } else {
+                this.currentUser.status.game = 0;
+            }
+
+        });
+
+        // test si Finale renseignée
+        this.$http.get('/api/pronos/user_id/' + this.currentUser._id).then(responseProno => {
+            if (responseProno.data[0] !== undefined) {
+                this.prono = responseProno.data[0];
+                this.final = _.find(this.prono.matchs, function(o) {
+                    return o.group === 'Final';
+                });
+                if (this.final.winner !== undefined && this.final.winner !== null) {
+                    this.currentUser.status.prono = 1;
+                } else {
+                    this.currentUser.status.prono = 0;
+                }
+            } else {
+                this.currentUser.status.prono = 0;
+            }
+        });
+
+        this.$http.put('/api/users/' + this.currentUser._id, this.currentUser).then(response => {
+            console.log('user updated', response);
+            this.currentUser = this.getCurrentUser();
         });
     }
 
@@ -50,7 +106,7 @@ class SettingsController {
     saveUser() {
         this.currentUser.status.profil = 1;
         this.$http.put('/api/users/' + this.currentUser._id, this.currentUser).then(response => {
-            console.log('user updated', response);
+            console.log('user profil updated ', response);
             this.loadLeagues();
             this.currentUser = this.getCurrentUser();
         });
