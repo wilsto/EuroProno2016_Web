@@ -47,7 +47,7 @@ class SettingsController {
             this.Championsleagues = _.filter(allLeagues, function(o) {
                 return o.name === 'Champions league';
             });
-            console.log(" this.Championsleagues", this.Championsleagues);
+
 
             var clMembers = _.flatten(_.map(this.Championsleagues, 'members'));
             var clMembersId = _.map(clMembers, function(value, key) {
@@ -66,6 +66,22 @@ class SettingsController {
         });
 
         // test si Finale renseignée
+        this.$http.get('/api/pronos').then(lstprono => {
+            var lstprono = lstprono.data;
+
+            _.each(lstprono, (user) => {
+                var lstpronofinal = _.find(user.matchs, function(o) {
+                    return o.group === 'Final';
+                });
+
+                if (lstpronofinal.winner === undefined) {
+                    console.log(user.user_id.name + ":" + user.user_id.email);
+                }
+            });
+
+        });
+        // test si Finale renseignée
+        console.log(this.currentUser._id);
         this.$http.get('/api/pronos/user_id/' + this.currentUser._id).then(responseProno => {
             if (responseProno.data[0] !== undefined) {
                 this.prono = responseProno.data[0];
