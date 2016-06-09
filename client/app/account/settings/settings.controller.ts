@@ -67,21 +67,21 @@ class SettingsController {
 
         // test si Finale renseignée
         this.$http.get('/api/pronos').then(lstprono => {
-            var lstprono = lstprono.data;
+            var lstPronoL = lstprono.data;
 
-            _.each(lstprono, (user) => {
+            _.each(lstPronoL, (user) => {
                 var lstpronofinal = _.find(user.matchs, function(o) {
                     return o.group === 'Final';
                 });
 
                 if (lstpronofinal.winner === undefined) {
-                    console.log(user.user_id.name + ":" + user.user_id.email);
+                    console.log(user.user_id.name + ':' + user.user_id.email);
                 }
             });
 
         });
         // test si Finale renseignée
-        console.log(this.currentUser._id);
+
         this.$http.get('/api/pronos/user_id/' + this.currentUser._id).then(responseProno => {
             if (responseProno.data[0] !== undefined) {
                 this.prono = responseProno.data[0];
