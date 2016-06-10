@@ -199,7 +199,7 @@
                     .reduce(function(memo, subteam) {
                         return {
                             points: (subteam.team2points) ? memo.points + subteam.team2points : memo.points,
-                            played: (Number.isInteger(subteam.team2points)) ? memo.played + 1 : memo.played,
+                            played: (that.isInteger(subteam.team2points)) ? memo.played + 1 : memo.played,
                             win: (subteam.team2points === 3) ? memo.win + 1 : memo.win,
                             draw: (subteam.team2points === 1) ? memo.draw + 1 : memo.draw,
                             loss: (subteam.team2points === 0) ? memo.loss + 1 : memo.loss,
@@ -259,6 +259,10 @@
                 this.calculQualified(groupName);
             }
 
+        }
+
+        isInteger(x) {
+            return x % 1 === 0;
         }
 
         // retourne la valeur la plus petite des grouporder du group (appelé par ng-repeat GROUP)

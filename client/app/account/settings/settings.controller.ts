@@ -25,6 +25,7 @@ class SettingsController {
         this.getUpdStat();
     }
 
+
     getUpdStat() {
         // test si league renseignée
         this.$http.get('/api/leagues').then(responseLeagues => {
@@ -103,11 +104,16 @@ class SettingsController {
         }
     }
 
+    test() {
+        console.log('tets');
+    }
+
+
+
     saveUser() {
         this.currentUser.status.profil = 1;
         this.$http.put('/api/users/' + this.currentUser._id, this.currentUser).then(response => {
             console.log('user profil updated ', response);
-            this.loadLeagues();
             this.currentUser = this.getCurrentUser();
         });
         this.focused = false;

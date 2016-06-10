@@ -18,6 +18,7 @@
 
             this.loadLeagues();
         }
+
         loadUsers() {
             this.$http.get('/api/users/list').then(responseUsers => {
                 this.users = responseUsers.data;

@@ -14,17 +14,65 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <h1 style="width:100%;text-align:center">Arena will open soon. <br>Competition is going to start.</h1>
-                <img src="assets/images/comin-soon.jpg" alt="" class="img-responsive" alt="Responsive image">
-                <br>
+                <div class="leagueSelect flatglow row">
+                    <div class="logoTitle">
+                        Click on one league you belong to enter Arena
+                        <br>
+                    </div>
+                    <div class="logLig " ng-repeat="league in vm.leagues | filter:vm.search | orderBy:['-pinned','name']">
+                        <a href="" ng-click="vm.loadLeagueDet(league._id)">
+                            <div ng-if="league.owner_id._id==vm.playerId " class="tooltipdate" ng-switch on=" league.image.substr(0,4) ">
+                                <img class="circle imgLig tour" ng-switch-when="http " ng-src="{{league.image}} ">
+                                <img class="circle imgLig tour" ng-switch-default ng-src="assets/images/leagues/{{league.image}} ">
+                                <span class="tooltipdatetext">{{league.name}}</span>
+                            </div>
+                            <div ng-repeat="member in league.members">
+                                <div ng-if="member.user==vm.playerId && league.owner_id._id!==vm.playerId" class="tooltipdate" ng-switch on=" league.image.substr(0,4) ">
+                                    <img class="circle imgLig " ng-switch-when="http " ng-src="{{league.image}} ">
+                                    <img class="circle imgLig " ng-switch-default ng-src="assets/images/leagues/{{league.image}} ">
+                                    <span class="tooltipdatetext">{{league.name}}</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="leagueMembers">
+                    <table class="table table-responsive table-hover table-condensed">
+                        <thead>
+                            <tr>
+                                <th colspan="12" style="font-weight:normal;margin-top:25px;">
+                                    <span>{{vm.leaguesdet.description}}</span>
+                                    <br>
+                                    <br>
+                                    <small style="font-weight:normal" class="text-warning pull-right" ng-if="vm.leaguesdet.type===2">If you don't appear in a private league, that means that your inscription has not been validated by the owner.</small>
+                                </th>
+                            </tr>
+                            <tr ng-hide="vm.modify">
+                                <th colspan="2"><a href='#' ng-click="sort( 'name'); " translate>Members</a></th>
+                                <th class="c group"><a href="" ng-click="predicate = 'totalpoints'; reverse=!number"><span class="glyphicon glyphicon-arrow-down"></span></a>Pts<a href="" ng-click="predicate = 'totalpoints'; reverse=number"><span class="glyphicon glyphicon-arrow-up"></span></a></th>
+                                <th class="c group">1er tour</th>
+                                <th class="c group">2ème tour</th>
+                                <th class="c group">3ème tour</th>
+                                <th class="c group">Qualifs</th>
+                                <th class="c group ">1/8</th>
+                                <th class="c group">1/4</th>
+                                <th class="c group">1/2</th>
+                                <th class="c group">Finales</th>
+                                <th class="c group">Win</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="league " ng-repeat="member in vm.members | filter:{validated:true} | orderBy : 'user.name' " ng-hide="vm.modify">
+                                <td> <img class="img-circle" width="30" height="30" ng-src="{{member.user.avatar || 'assets/images/stades/inconnu.gif'}}"></td>
+                                <td><a href="/prono/{{member.user._id}}" class="tooltipdate"> {{member.user.name}} 
+                                    <span class="tooltipdatetext" ng-if="member.user.firstname">{{member.user.firstname}} {{member.user.lastname}}</span></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         <br>
-        <div class="teamWinner bg-success" ng-if="vm.teamWinner">
-            <i class="iconmoon-trophy" style="font-size:50px"></i>
-            <br/>
-            <span class="countryflags {{vm.teamWinner}}"></span> {{vm.teamWinner}}
-        </div>
         <br>
         <br>
         <br>
