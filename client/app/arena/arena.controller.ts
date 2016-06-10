@@ -48,6 +48,8 @@
                         if (responseProno.data[0] !== undefined) {
                             member.matchs = responseProno.data[0].matchs;
                             member.bet = responseProno.data[0].bet;
+                        } else {
+                            member.bet = { points: -1 };
                         }
                     });
                 });
