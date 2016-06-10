@@ -178,7 +178,7 @@
                     .reduce(function(memo, subteam) {
                         return {
                             points: (subteam.team1points) ? memo.points + subteam.team1points : memo.points,
-                            played: (Number.isInteger(subteam.team1points)) ? memo.played + 1 : memo.played,
+                            played: (that.isInteger(subteam.team1points)) ? memo.played + 1 : memo.played,
                             win: (subteam.team1points === 3) ? memo.win + 1 : memo.win,
                             draw: (subteam.team1points === 1) ? memo.draw + 1 : memo.draw,
                             loss: (subteam.team1points === 0) ? memo.loss + 1 : memo.loss,
