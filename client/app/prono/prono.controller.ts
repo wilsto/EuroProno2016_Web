@@ -14,10 +14,11 @@
         ];
 
 
-        constructor($http, Auth, $stateParams) {
+        constructor($http, Auth, $stateParams, $timeout) {
             this.$http = $http;
             this.isLoggedIn = Auth.isLoggedIn;
             this.isAdmin = Auth.isAdmin;
+            this.$timeout = $timeout;
             this.getCurrentUser = Auth.getCurrentUser;
             this.matchs = [];
             this.groupThird = [];
@@ -63,6 +64,7 @@
         }
 
         loadProno() {
+            var that = this;
             // on récupère les pronos du joueur sinon on crèe le squelette
             this.$http.get('/api/pronos/user_id/' + this.playerId).then(responseProno => {
                 if (responseProno.data[0] !== undefined) {
@@ -76,17 +78,20 @@
                     this.mergeByProperty(this.matchs, this.matchs, '_id');
                     this.toUpdate = false;
                 }
-                _.map(this.groups, group => {
-                    if (group.name.length < 2) {
-                        return this.calculGroup(group.name);
-                    }
-                });
-                this.calculThirdQualified();
-                _.map(this.groups, group => {
-                    if (group.name.length > 2) {
-                        return this.calculQualified(group.name);
-                    }
-                });
+                this.$timeout(function() {
+                    _.map(that.groups, group => {
+                        if (group.name.length < 2) {
+                            return that.calculGroup(group.name);
+                        }
+                    });
+                    that.calculThirdQualified();
+                    _.map(that.groups, group => {
+                        if (group.name.length > 2) {
+                            return that.calculQualified(group.name);
+                        }
+                    });
+                }, 500);
+
             });
         }
 
