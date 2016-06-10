@@ -12,6 +12,69 @@
 import _ from 'lodash';
 import Prono from './prono.model';
 import User from '../user/user.model';
+var Q = require('q');
+
+var interval = setInterval(calculateScore, 60000);
+calculateScore();
+
+function calculateScore() {
+    console.log('calculation in progress');
+    Prono.findById('575aa40f8c0d8f000a184011').exec((errpronosEuro, pronosEuro) => {
+        console.log('pronosEuro', pronosEuro.matchs.length);
+
+        Prono.find({}).populate('user_id').lean().exec((err, pronos) => {
+            var nbArray = 0;
+            _.each(pronos, (thisProno) => {
+                var deferred = Q.defer();
+                _.each(pronosEuro.matchs, (euroMatch, index) => {
+                    if (euroMatch.result !== null && euroMatch.result !== undefined) {
+                        //console.log('euroMatch', euroMatch.team1 + ' ' + euroMatch.score1 + ' - ' + euroMatch.team2 + ' ' + euroMatch.score2);
+                        var pronoMatch = null;
+                        pronoMatch = _.filter(thisProno.matchs, { '_id': euroMatch._id });
+                        pronoMatch = pronoMatch[0];
+                        pronoMatch.bet = { points: 0, pointsWinner: 0, pointsScore1: 0, pointsScore2: 0 };
+                        //console.log('pronoMatch', pronoMatch.team1 + ' ' + pronoMatch.score1 + ' - ' + pronoMatch.team2 + ' ' + pronoMatch.score2);
+                        nbArray += 1;
+                        if (euroMatch.team1points === pronoMatch.team1points) {
+                            pronoMatch.bet.points += 3;
+                            pronoMatch.bet.pointsWinner += 3;
+                        }
+                        if (euroMatch.score1 === pronoMatch.score1) {
+                            pronoMatch.bet.points += 1;
+                            pronoMatch.bet.pointsScore1 += 1;
+                        }
+                        if (euroMatch.score2 === pronoMatch.score2) {
+                            pronoMatch.bet.points += 1;
+                            pronoMatch.bet.pointsScore2 += 1;
+                        }
+                    }
+                    if (index === pronosEuro.matchs.length - 1) {
+                        thisProno.bet = { points: 0 };
+                        var allPoints = _.compact(_.map(thisProno.matchs, 'bet.points'));
+                        allPoints = _.reduce(allPoints, function(s, entry) {
+                            return s + parseFloat(entry);
+                        }, 0);
+                        thisProno.bet.points = allPoints;
+                        // mis à jour des pronos
+                        Prono.findOneAndUpdate({ "_id": thisProno._id }, {
+                                "$set": {
+                                    "matchs": thisProno.matchs,
+                                    "bet": thisProno.bet
+                                }
+                            },
+                            function(err, doc) {
+                                if (err) {
+                                    console.log('err', err);
+                                }
+                            }
+                        );
+                    }
+                });
+            });
+        });
+    });
+
+}
 
 function respondWithResult(res, statusCode) {
     statusCode = statusCode || 200;

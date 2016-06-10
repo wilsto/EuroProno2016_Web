@@ -495,7 +495,22 @@
 
         //sauvegarde les pronos
         saveProno() {
+            var dateNow = parseInt((Date.now() / 1000), 10);
+            if (dateNow > 1465585200) {
+                bootbox.confirm('Attention des matchs ont déjà commencés ou sont déjà finis, ils seront exclus et non comptabilisés de votre classement si vous enregistez à nouveau.<br/><br/><span style="color:red"><b> Nous vous déconseillons de le faire, etes vous sur de vouloir continuer ? Si vous répondez "OK", votre choix est irrémédiable.</b></span>', (result) => {
+                    console.log('result', result);
+                    if (result) {
+                        this.saveInbase();
+                    }
+                });
+            } else {
+                this.saveInbase();
+            }
+        }
+
+        saveInbase() {
             this.prono.matchs = this.matchs;
+            this.prono.date = Date.now();
             this.prono.user_id = this.getCurrentUser()._id;
             // si prono existe déjà
             if (this.toUpdate) {
@@ -511,6 +526,7 @@
                 });
             }
         }
+
     }
 
     angular.module('euroProno2016WebApp')

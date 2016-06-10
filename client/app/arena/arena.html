@@ -62,10 +62,21 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="league " ng-repeat="member in vm.members | filter:{validated:true} | orderBy : 'user.name' " ng-hide="vm.modify">
+                            <!--| filter:{validated:true} -->
+                            <tr class="league " ng-repeat="member in vm.members  | orderBy : '-bet.points' ">
                                 <td> <img class="img-circle" width="30" height="30" ng-src="{{member.user.avatar || 'assets/images/stades/inconnu.gif'}}"></td>
                                 <td><a href="/prono/{{member.user._id}}" class="tooltipdate"> {{member.user.name}} 
                                     <span class="tooltipdatetext" ng-if="member.user.firstname">{{member.user.firstname}} {{member.user.lastname}}</span></a></td>
+                                <td> {{member.bet.points}} </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                             </tr>
                         </tbody>
                     </table>

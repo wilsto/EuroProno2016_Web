@@ -39,10 +39,19 @@
         loadLeagueDet(myid) {
             //on récupère les details de la ligue
             this.$http.get('/api/leagues/' + myid).then(responseLeagues => {
-                this.leaguesdet
- = responseLeagues.data;
+                this.leaguesdet = responseLeagues.data;
                 this.members = this.leaguesdet.members;
-                this.currentuserId = this.getCurrentUser()._id || 'not logged In';
+
+                _.each(this.members, (member) => {
+                    // on récupère les pronos du joueur sinon on crèe le squelette
+                    this.$http.get('/api/pronos/user_id/' + member.user._id).then(responseProno => {
+                        if (responseProno.data[0] !== undefined) {
+                            member.matchs = responseProno.data[0].matchs;
+                            member.bet = responseProno.data[0].bet;
+                        }
+                    });
+                });
+                console.log(' this.members ', this.members);
 
                 // Est ce que le joueur est dans la ligue présente
                 this.isInLeague = _.filter(this.members, (member) => {

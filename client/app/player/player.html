@@ -37,7 +37,7 @@
                                     <br><small ng-show="player.firstname" class="text-muted">({{player.firstname}} {{player.lastname}} )</small>
                                 </td>
                                 <td style="width:75%">
-                                    <div class="logLig" ng-repeat="league in vm.leagues | filter:vm.search | orderBy:['-pinned','name']">
+                                    <div class="logLig" ng-repeat="league in vm.leagues | orderBy:['-pinned','name']">
                                         <a href="/leaguedetails/{{league._id}}">
                                             <div ng-if="league.owner_id._id==player._id" class="tooltipdate" ng-switch on=" league.image.substr(0,4) ">
                                                 <img class="circle imgLig tour" ng-switch-when="http " ng-src="{{league.image}} ">
