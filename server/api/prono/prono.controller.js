@@ -19,8 +19,8 @@ calculateScore();
 
 function calculateScore() {
     console.log('calculation in progress');
-    Prono.findById('575aa40f8c0d8f000a184011').exec((errpronosEuro, pronosEuro) => {
-        console.log('pronosEuro', pronosEuro.matchs.length);
+    Prono.findById('575abe803918c60300c5edc6').exec((errpronosEuro, pronosEuro) => {
+        //console.log('pronosEuro', pronosEuro.matchs.length);
 
         Prono.find({}).populate('user_id').lean().exec((err, pronos) => {
             var nbArray = 0;
