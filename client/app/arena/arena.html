@@ -13,7 +13,10 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-12">
+            <div style="text-align:center">
+                <h1> Please <a href="/login">login</a> to enter arena</h1>
+            </div>
+            <div class="col-sm-12" ng-if="nav.isLoggedIn()">
                 <div class="leagueSelect flatglow row">
                     <div class="logoTitle">
                         Click on one league you belong to enter Arena
@@ -71,10 +74,11 @@
                         </thead>
                         <tbody>
                             <!--| filter:{validated:true} -->
-                            <tr class="league " ng-repeat="member in vm.members  | orderBy : '-bet.points' ">
+                            <tr class="league " ng-repeat="member in vm.members  | orderBy : ['-bet.points','user.name'] ">
                                 <td> <img class="img-circle" width="30" height="30" ng-src="{{member.user.avatar || 'assets/images/stades/inconnu.gif'}}"></td>
                                 <td><a href="/prono/{{member.user._id}}" class="tooltipdate"> {{member.user.name}} 
                                     <span class="tooltipdatetext" ng-if="member.user.firstname">{{member.user.firstname}} {{member.user.lastname}}</span></a></td>
+                                <div ng-if="vm.leaguesdet.status===1 "> <span class="label " ng-class="member.validated ? 'label-success':'label-warning'">{{member.validated}}</span></div>
                                 <td> {{member.bet.points}} </td>
                                 <td></td>
                                 <td></td>
