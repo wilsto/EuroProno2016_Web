@@ -12,7 +12,6 @@
 import _ from 'lodash';
 import Prono from './prono.model';
 import User from '../user/user.model';
-var Q = require('q');
 var ObjectId = require('mongoose').Types.ObjectId;
 
 var interval = setInterval(calculateScore, 60000);
