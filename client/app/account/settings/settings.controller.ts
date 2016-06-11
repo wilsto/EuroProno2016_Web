@@ -104,12 +104,6 @@ class SettingsController {
         }
     }
 
-    test() {
-        console.log('tets');
-    }
-
-
-
     saveUser() {
         this.currentUser.status.profil = 1;
         this.$http.put('/api/users/' + this.currentUser._id, this.currentUser).then(response => {
