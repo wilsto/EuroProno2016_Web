@@ -39,6 +39,7 @@
                 }), 'count').reverse();
                 // Winner Final
                 var lstval = _.map(Final, 'count');
+                this.winLabel = _.map(Final, 'team');
                 this.winners.push(lstval);
 
                 var lstDetails = [];
