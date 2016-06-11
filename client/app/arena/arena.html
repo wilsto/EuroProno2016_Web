@@ -40,11 +40,19 @@
                     <table class="table table-responsive table-hover table-condensed">
                         <thead>
                             <tr>
-                                <th colspan="12" style="font-weight:normal;margin-top:25px;">
+                                <th colspan="6" style="font-weight:normal;margin-top:25px;">
                                     <span>{{vm.leaguesdet.description}}</span>
                                     <br>
                                     <br>
                                     <small style="font-weight:normal" class="text-warning pull-right" ng-if="vm.leaguesdet.type===2">If you don't appear in a private league, that means that your inscription has not been validated by the owner.</small>
+                                </th>
+                                <th colspan="6">
+                                    <div class="skill-name" ng-if="!vm.complete ">Progress</div>
+                                    <div class="skill-name" ng-if="vm.complete ">Complete</div>
+                                    <div class="progress" ng-class="{'progress-striped active': !vm.complete}">
+                                        <div class="progress-bar" ng-class="vm.complete ? 'progress-bar-success':'progress-bar-info'" role="progressbar" aria-valuenow="{{vm.progressMembers}}" aria-valuemin="0" aria-valuemax="100" style="width: {{vm.progressMembers}}%">
+                                        </div>
+                                    </div>
                                 </th>
                             </tr>
                             <tr ng-hide="vm.modify">

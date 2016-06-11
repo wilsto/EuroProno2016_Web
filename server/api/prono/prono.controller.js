@@ -13,21 +13,22 @@ import _ from 'lodash';
 import Prono from './prono.model';
 import User from '../user/user.model';
 var Q = require('q');
+var ObjectId = require('mongoose').Types.ObjectId;
 
 var interval = setInterval(calculateScore, 60000);
 calculateScore();
 
 function calculateScore() {
     console.log('calculation in progress');
-    Prono.findById('575abe803918c60300c5edc6').exec((errpronosEuro, pronosEuro) => {
-        //console.log('pronosEuro', pronosEuro.matchs.length);
+    Prono.findOne({ 'user_id': new ObjectId('57528b03ec21fa0300c23c86') }).exec((errpronosEuro, pronosEuro) => {
+        //console.log('errpronosEuro', errpronosEuro);
+        console.log('pronosEuro', pronosEuro.matchs.length);
 
         Prono.find({}).populate('user_id').lean().exec((err, pronos) => {
             _.each(pronos, (thisProno) => {
-                var deferred = Q.defer();
                 _.each(pronosEuro.matchs, (euroMatch, index) => {
+                    var pronoMatch = null;
                     if (euroMatch.result !== null && euroMatch.result !== undefined) {
-                        var pronoMatch = null;
                         pronoMatch = _.filter(thisProno.matchs, { '_id': euroMatch._id });
                         pronoMatch = pronoMatch[0];
                         pronoMatch.bet = { points: 0, pointsWinner: 0, pointsScore1: 0, pointsScore2: 0 };
@@ -46,7 +47,6 @@ function calculateScore() {
                             pronoMatch.bet.pointsScore2 += 1;
                         }
                     } else {
-                        var pronoMatch = null;
                         pronoMatch = _.filter(thisProno.matchs, { '_id': euroMatch._id });
                         pronoMatch = pronoMatch[0];
                         pronoMatch.bet = { points: 0, pointsWinner: 0, pointsScore1: 0, pointsScore2: 0 };

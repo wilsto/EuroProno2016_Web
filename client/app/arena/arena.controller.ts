@@ -38,11 +38,13 @@
 
         loadLeagueDet(myid) {
             //on récupère les details de la ligue
+            this.progressMembers = 0;
             this.$http.get('/api/leagues/' + myid).then(responseLeagues => {
                 this.leaguesdet = responseLeagues.data;
                 this.members = this.leaguesdet.members;
-
-                _.each(this.members, (member) => {
+                var nbMax = this.members.length;
+                this.complete = false;
+                _.each(this.members, (member, key) => {
                     // on récupère les pronos du joueur sinon on crèe le squelette
                     this.$http.get('/api/pronos/user_id/' + member.user._id).then(responseProno => {
                         if (responseProno.data[0] !== undefined) {
@@ -51,9 +53,13 @@
                         } else {
                             member.bet = { points: -1 };
                         }
+                        this.progressMembers = (key + 1) / nbMax * 100;
+                        if (this.progressMembers === 100) {
+                            this.complete = true;
+                        }
+                        console.log(' this.progressMembers ', this.progressMembers);
                     });
                 });
-                console.log(' this.members ', this.members);
 
                 // Est ce que le joueur est dans la ligue présente
                 this.isInLeague = _.filter(this.members, (member) => {
