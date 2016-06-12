@@ -15,11 +15,13 @@
         constructor($http, Auth) {
 
             this.$http = $http;
+            this.Auth = Auth;
+            this.getCurrentUser = Auth.getCurrentUser;
             this.pronos = [];
             this.matchs = [];
             this.labels = [];
-            this.series = ['Prono (mean)', 'Real'];
-            this.colours = ['#3866FF', '#FF3535'];
+            this.series = ['Pronos (mean)', 'My Prono', 'Real'];
+            this.colours = ['#FF9028', '#3866FF', '#FF3535'];
             this.winners = [];
             this.data1 = [];
 
@@ -47,13 +49,18 @@
                 var realPoints = [];
                 var realButs = [];
                 var realDiffs = [];
+                var myPoints = [];
+                var myButs = [];
+                var myDiffs = [];
                 var avgPoints = [];
                 var avgButs = [];
                 var avgDiffs = [];
+                var myUser = this.getCurrentUser()._id;
 
                 _.forEach(this.pronos, function(element, key) {
                     var pronoTab = [];
                     var realTab = [];
+                    var myTab = [];
                     // real matchs 
                     if (element.user_id._id === '57528b03ec21fa0300c23c86') {
                         // get all matchs to create one tab with team 1 and 2  
@@ -87,7 +94,6 @@
                             realButs.push(nbButsR);
                             realDiffs.push(diffButsR);
                         });
-
                     }
                     // prono matchs
                     else {
@@ -95,10 +101,38 @@
                             var myElem1 = elementP.team1.substr(0, 5);
                             var myElem2 = elementP.team2.substr(0, 5);
                             if (myElem1 != 'Winne' && myElem1 !== 'Runne' && myElem1 !== 'Third' && myElem2 != 'Winne' && myElem2 !== 'Runne' && myElem2 !== 'Third') {
+                                if (element.user_id._id === myUser) {
+                                    myTab.push({ team: elementP.team1, score: elementP.score1, points: elementP.team1points, diff: elementP.team1diff });
+                                    myTab.push({ team: elementP.team2, score: elementP.score2, points: elementP.team2points, diff: elementP.team2diff });
+                                }
                                 pronoTab.push({ team: elementP.team1, score: elementP.score1, points: elementP.team1points, diff: elementP.team1diff });
                                 pronoTab.push({ team: elementP.team2, score: elementP.score2, points: elementP.team2points, diff: elementP.team2diff });
                             }
                         });
+                        //user info
+                        if (element.user_id._id === myUser) {
+                            var myTeam = _.groupBy(myTab, 'team');
+                            _.forEach(myTeam, function(elementM, keyM) {
+                                var sumPointsM = 0;
+                                var nbButsM = 0;
+                                var diffButsM = 0;
+                                _.forEach(elementM, function(element1M, key1M) {
+                                    if (isNaN(element1M.points) !== true) {
+                                        sumPointsM = sumPointsM + element1M.points;
+                                    }
+                                    if (isNaN(element1M.score) !== true) {
+                                        nbButsM = nbButsM + parseInt(element1M.score, 10);
+                                    }
+                                    if (isNaN(element1M.diff) !== true && element1M.diff != null) {
+                                        diffButsM = diffButsM + parseInt(element1M.diff, 10);
+                                    }
+                                });
+
+                                myPoints.push(sumPointsM);
+                                myButs.push(nbButsM);
+                                myDiffs.push(diffButsM);
+                            });
+                        }
                         var pronoTeam = _.groupBy(pronoTab, 'team');
                         _.forEach(pronoTeam, function(element3, key3) {
                             var sumPoints = 0;
@@ -119,6 +153,7 @@
                         });
                     }
                 });
+
                 var teamDetails = _.groupBy(lstDetails, 'team');
                 _.forEach(teamDetails, function(elDet, key) {
                     //points
@@ -150,14 +185,17 @@
                 // points
                 this.points = [];
                 this.points.push(avgPoints);
+                this.points.push(myPoints);
                 this.points.push(realPoints);
                 // buts
                 this.buts = [];
                 this.buts.push(avgButs);
+                this.buts.push(myButs);
                 this.buts.push(realButs);
                 //diffs
                 this.diffs = [];
                 this.diffs.push(avgDiffs);
+                this.diffs.push(myDiffs);
                 this.diffs.push(realDiffs);
             });
         }
