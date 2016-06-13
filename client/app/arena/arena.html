@@ -88,21 +88,19 @@
                                         <div class="mintext">
                                         <table class="table">
                                          <thead>
-                                             <th>Match</th>
- <th>Score</th> <th>Points</th>
+                                            <th>Match</th>
+                                            <th>Score</th>
+                                            <th>Points</th>
                                          </thead>
                                          <tbody>
-                                        <tr ng-repeat="match in member.matchs">
+                                        <tr ng-repeat="match in member.matchs | filter:vm.myFilter" ng-class="{'bg-success':match.bet.points===3,'bg-big-success':match.bet.points>3,'bg-danger':match.bet.points<3}">
                                             <td>{{match.team1}} - {{match.team2}}</td>
-<td>{{match.score1}} -  {{match.score2}}</td>
-<td>{{match.bet.points}}</td>
+                                            <td>{{match.score1}} -  {{match.score2}}</td>
+                                            <td>{{match.bet.points}}</td>
                                         </tr>
                                         </tbody>
                                         </table>
-                                    
-
                                         </div>
-                                      
                                     </span></a>
                                 </td>
                                 <td></td>

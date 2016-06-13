@@ -57,7 +57,6 @@
                         if (this.progressMembers === 100) {
                             this.complete = true;
                         }
-                        console.log(' this.progressMembers ', this.progressMembers);
                     });
                 });
 
@@ -67,6 +66,14 @@
                 }).length > 0;
             });
         }
+
+        myFilter(item) {
+            var date = new Date(item.date);
+            var myDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+            var dateNow = new Date();
+            var mydateNow = dateNow.getFullYear() + '-' + (dateNow.getMonth() + 1) + '-' + dateNow.getDate();
+            return myDate <= mydateNow;
+        };
 
     }
 

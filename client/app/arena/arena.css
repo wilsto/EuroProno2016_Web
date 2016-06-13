@@ -40,5 +40,9 @@
 }
 
 .mintext {
-    font-size: 8px;
+    font-size: 11px;
+}
+
+.bg-big-success {
+    background: #A3D1A2;
 }
