@@ -3,3 +3,42 @@
     font-size: 20px;
     font-weight: bold;
 }
+
+.badge-success {
+    background-color: #468847
+}
+
+.badge-error {
+    background-color: red;
+}
+
+.tooltipdet {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltipdet .tooltipdettext {
+    visibility: hidden;
+    width: 300px;
+    size: 1px;
+    border-radius: 6px;
+    border-color: #42AAFF;
+    border-style: solid;
+    padding: 10px 0;
+    /* Position the tooltipdet */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltipdet:hover .tooltipdettext {
+    visibility: visible;
+}
+
+.titcent {
+    background-color: #BAD3FF;
+    text-align: center;
+}
+
+.mintext {
+    font-size: 8px;
+}

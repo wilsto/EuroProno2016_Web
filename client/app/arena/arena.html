@@ -59,6 +59,7 @@
                                 </th>
                             </tr>
                             <tr ng-hide="vm.modify">
+                                <th translate>Rank</th>
                                 <th colspan="2"><a href='#' ng-click="sort( 'name'); " translate>Members</a></th>
                                 <th class="c group"><a href="" ng-click="predicate = 'totalpoints'; reverse=!number"><span class="glyphicon glyphicon-arrow-down"></span></a>Pts<a href="" ng-click="predicate = 'totalpoints'; reverse=number"><span class="glyphicon glyphicon-arrow-up"></span></a></th>
                                 <th class="c group">1er tour</th>
@@ -75,12 +76,35 @@
                         <tbody>
                             <!--| filter:{validated:true} -->
                             <tr class="league " ng-repeat="member in vm.members  | orderBy : ['-bet.points','user.name'] ">
+                                <td><span class="badge" ng-class="{true:'badge-success',false:{true:'badge-error'}[$last]}[$first]">{{$index + 1}}</span></td>
                                 <td> <img class="img-circle" width="30" height="30" ng-src="{{member.user.avatar || 'assets/images/stades/inconnu.gif'}}"></td>
                                 <td><a href="/prono/{{member.user._id}}" class="tooltipdate"> {{member.user.name}} 
                                     <span class="tooltipdatetext" ng-if="member.user.firstname">{{member.user.firstname}} {{member.user.lastname}}</span></a></td>
                                 <div ng-if="vm.leaguesdet.status===1 "> <span class="label " ng-class="member.validated ? 'label-success':'label-warning'">{{member.validated}}</span></div>
-                                <td> {{member.bet.points}} </td>
-                                <td></td>
+                                <td><a href="#" class="tooltipdet"> {{member.bet.points}}
+                                    <span class="tooltipdettext">
+                                        <div class="titcent" >
+                                        Details for {{member.user.name}}</div>
+                                        <div class="mintext">
+                                        <table class="table">
+                                         <thead>
+                                             <th>Match</th>
+ <th>Score</th> <th>Points</th>
+                                         </thead>
+                                         <tbody>
+                                        <tr ng-repeat="match in member.matchs">
+                                            <td>{{match.team1}} - {{match.team2}}</td>
+<td>{{match.score1}} -  {{match.score2}}</td>
+<td>{{match.bet.points}}</td>
+                                        </tr>
+                                        </tbody>
+                                        </table>
+                                    
+
+                                        </div>
+                                      
+                                    </span></a>
+                                </td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
