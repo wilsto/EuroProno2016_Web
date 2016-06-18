@@ -23,6 +23,7 @@
             var that = this;
             this.getCurrentUser(function(user) {
                 that.playerId = user._id; // recupère le nom de l'utilisateur
+                that.playerName = user.name; // recupère le nom de l'utilisateur
                 that.loadLeagues();
             });
         }
@@ -42,6 +43,7 @@
             this.$http.get('/api/leagues/' + myid).then(responseLeagues => {
                 this.leaguesdet = responseLeagues.data;
                 this.members = this.leaguesdet.members;
+                console.log('this.members', this.members);
                 var nbMax = this.members.length;
                 this.complete = false;
                 _.each(this.members, (member, key) => {
