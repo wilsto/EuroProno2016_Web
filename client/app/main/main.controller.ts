@@ -12,7 +12,7 @@
             { name: 'Arena', href: '/arena', section: '', ngclick: '', class: 'nothing', a_class: 'nothing' }
         ];
 
-        constructor($http, $scope, socket, Auth) {
+        constructor($http, $scope, Auth) {
             this.$http = $http;
             this.isLoggedIn = Auth.isLoggedIn;
             this.isAdmin = Auth.isAdmin;

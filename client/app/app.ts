@@ -9,7 +9,6 @@ angular.module('euroProno2016WebApp', [
         'ngCookies',
         'ngResource',
         'ngSanitize',
-        'btford.socket-io',
         'ui.router',
         'ui.bootstrap',
         'validation.match',
