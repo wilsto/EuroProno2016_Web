@@ -43,7 +43,7 @@
             this.$http.get('/api/leagues/' + myid).then(responseLeagues => {
                 this.leaguesdet = responseLeagues.data;
                 this.members = this.leaguesdet.members;
-                console.log('this.members', this.members);
+                console.log('this.leaguesdet', this.leaguesdet);
                 var nbMax = this.members.length;
                 this.complete = false;
                 _.each(this.members, (member, key) => {

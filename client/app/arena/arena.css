@@ -15,6 +15,7 @@
 .tooltipdet {
     position: relative;
     display: inline-block;
+    text-align: center;
 }
 
 .tooltipdet .tooltipdettext {
@@ -28,6 +29,7 @@
     /* Position the tooltipdet */
     position: absolute;
     z-index: 1;
+    background: #FFF;
 }
 
 .tooltipdet:hover .tooltipdettext {
@@ -45,4 +47,13 @@
 
 .bg-big-success {
     background: #A3D1A2;
+}
+
+.c {
+    text-align: center;
+    width: 7%;
+}
+
+.l {
+    text-align: left;
 }

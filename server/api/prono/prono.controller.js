@@ -36,12 +36,12 @@ function calculateScore() {
                         pronoMatch.bet = { points: 0, pointsWinner: 0, pointsScore1: 0, pointsScore2: 0, invalid: 0 };
                         var matchdate = new Date(pronoMatch.date);
                         var euroMatchdate = matchdate.getTime();
+
+                        // si le match a été pronostisqué avant d'etre commencé.
                         if (mypronodate < euroMatchdate) {
                             if (euroMatch.team1points === pronoMatch.team1points) {
                                 pronoMatch.bet.points += 3;
                                 pronoMatch.bet.pointsWinner += 3;
-                                //console.log('euroMatch', euroMatch.team1 + ' ' + euroMatch.score1 + ' - ' + euroMatch.team2 + ' ' + euroMatch.score2);
-                                //console.log('pronoMatch', pronoMatch.team1 + ' ' + pronoMatch.score1 + ' - ' + pronoMatch.team2 + ' ' + pronoMatch.score2);
                             }
                             if (euroMatch.score1 === pronoMatch.score1) {
                                 pronoMatch.bet.points += 1;
@@ -59,13 +59,45 @@ function calculateScore() {
                         pronoMatch = pronoMatch[0];
                         pronoMatch.bet = { points: 0, pointsWinner: 0, pointsScore1: 0, pointsScore2: 0, invalid: 0 };
                     }
+
                     if (index === pronosEuro.matchs.length - 1) {
-                        thisProno.bet = { points: 0 };
+                        thisProno.bet = { points: 0, tour1: 0, tour2: 0, tour3: 0, qualif: 0, roundOf16: 0, quarterFinals: 0, semiFinals: 0, Finals: 0, winner: 0 };
+
+                        // Tour1
+                        var allPointsTour1 = _.compact(_.map(thisProno.matchs, function(match) {
+                            return (match.typematch === 'Day 1') ? match.bet.points : 0;
+                        }));
+                        allPointsTour1 = _.reduce(allPointsTour1, function(s, entry) {
+                            return s + parseFloat(entry);
+                        }, 0);
+
+                        // Tour2
+                        var allPointsTour2 = _.compact(_.map(thisProno.matchs, function(match) {
+                            return (match.typematch === 'Day 2') ? match.bet.points : 0;
+                        }));
+                        allPointsTour2 = _.reduce(allPointsTour2, function(s, entry) {
+                            return s + parseFloat(entry);
+                        }, 0);
+
+                        // Tour3
+                        var allPointsTour3 = _.compact(_.map(thisProno.matchs, function(match) {
+                            return (match.typematch === 'Day 3') ? match.bet.points : 0;
+                        }));
+                        allPointsTour3 = _.reduce(allPointsTour3, function(s, entry) {
+                            return s + parseFloat(entry);
+                        }, 0);
+
+                        // all points
                         var allPoints = _.compact(_.map(thisProno.matchs, 'bet.points'));
                         allPoints = _.reduce(allPoints, function(s, entry) {
                             return s + parseFloat(entry);
                         }, 0);
+
                         thisProno.bet.points = allPoints;
+                        thisProno.bet.tour1 = allPointsTour1;
+                        thisProno.bet.tour2 = allPointsTour2;
+                        thisProno.bet.tour3 = allPointsTour3;
+
                         // mis à jour des pronos
                         Prono.findOneAndUpdate({ "_id": thisProno._id }, {
                                 "$set": {
