@@ -164,9 +164,9 @@
                                             <th>Points</th>
                                          </thead>
                                          <tbody>
-                                        <tr ng-repeat="match in member.matchs | filter:{phase:'qualif' }" ng-class="{'bg-success':match.bet.points===3,'bg-big-success':match.bet.points>3,'bg-danger':match.bet.points<3}">
-                                            <td class="l">{{match.team1}} - {{match.team2}}</td>
-                                            <td>{{match.bet.points}} <span ng-if="match.bet.invalid===1">** KO -- {{member.date | date:short}}</span> </td>
+                                        <tr ng-repeat="qualif in member.bet.teamqualif" ng-class="{'bg-big-success':qualif.points===2,'bg-danger':qualif.points<2}">
+                                            <td class="l">{{qualif.team}} </td>
+                                            <td>{{qualif.points}} </td>
                                         </tr>
                                         </tbody>
                                         </table>
@@ -188,7 +188,7 @@
                                         <tr ng-repeat="match in member.matchs | filter:{group:'Round of 16' }" ng-class="{'bg-success':match.bet.points===3,'bg-big-success':match.bet.points>3,'bg-danger':match.bet.points<3}">
                                             <td class="l">{{match.team1}} - {{match.team2}}</td>
                                             <td>{{match.score1}} -  {{match.score2}}</td>
-                                            <td>{{match.bet.points}} <span ng-if="match.bet.invalid===1">** KO -- {{member.date | date:short}}</span> </td>
+                                            <td>{{match.bet.points}} <span ng-if="match.bet.invalid===1">** KO -- {{member.date | date:short}}</span><span ng-if="match.bet.invalid===2">** Wrong teams : {{match.team1good}} - {{match.team2good}}</span> </td>
                                         </tr>
                                         </tbody>
                                         </table>
@@ -210,7 +210,7 @@
                                         <tr ng-repeat="match in member.matchs | filter:{group:'Quarter Finals'}" ng-class="{'bg-success':match.bet.points===3,'bg-big-success':match.bet.points>3,'bg-danger':match.bet.points<3}">
                                             <td class="l">{{match.team1}} - {{match.team2}}</td>
                                             <td>{{match.score1}} -  {{match.score2}}</td>
-                                            <td>{{match.bet.points}} <span ng-if="match.bet.invalid===1">** KO -- {{member.date | date:short}}</span> </td>
+                                            <td>{{match.bet.points}} <span ng-if="match.bet.invalid===1">** KO -- {{member.date | date:short}}</span><span ng-if="match.bet.invalid===2">** Wrong teams : {{match.team1good}} - {{match.team2good}}</span> </td>
                                         </tr>
                                         </tbody>
                                         </table>
@@ -232,7 +232,7 @@
                                         <tr ng-repeat="match in member.matchs | filter:{group:'Semi Final'}" ng-class="{'bg-success':match.bet.points===3,'bg-big-success':match.bet.points>3,'bg-danger':match.bet.points<3}">
                                             <td class="l">{{match.team1}} - {{match.team2}}</td>
                                             <td>{{match.score1}} -  {{match.score2}}</td>
-                                            <td>{{match.bet.points}} <span ng-if="match.bet.invalid===1">** KO -- {{member.date | date:short}}</span> </td>
+                                            <td>{{match.bet.points}} <span ng-if="match.bet.invalid===1">** KO -- {{member.date | date:short}}</span><span ng-if="match.bet.invalid===2">** Wrong teams : {{match.team1good}} - {{match.team2good}}</span> </td>
                                         </tr>
                                         </tbody>
                                         </table>
@@ -254,7 +254,7 @@
                                         <tr ng-repeat="match in member.matchs | filter:{group:'Final'}:true" ng-class="{'bg-success':match.bet.points===3,'bg-big-success':match.bet.points>3,'bg-danger':match.bet.points<3}">
                                             <td class="l">{{match.team1}} - {{match.team2}}</td>
                                             <td>{{match.score1}} -  {{match.score2}}</td>
-                                            <td>{{match.bet.points}} <span ng-if="match.bet.invalid===1">** KO -- {{member.date | date:short}}</span> </td>
+                                            <td>{{match.bet.points}} <span ng-if="match.bet.invalid===1">** KO -- {{member.date | date:short}}</span><span ng-if="match.bet.invalid===2">** Wrong teams : {{match.team1good}} - {{match.team2good}}</span> </td>
                                         </tr>
                                         </tbody>
                                         </table>
@@ -274,7 +274,7 @@
                                          <tbody>
                                         <tr ng-repeat="match in member.matchs | filter:{phase:'winner' }" ng-class="{'bg-success':match.bet.points===3,'bg-big-success':match.bet.points>3,'bg-danger':match.bet.points<3}">
                                             <td class="l">{{match.team1}} - {{match.team2}}</td>
-                                            <td>{{match.bet.points}} <span ng-if="match.bet.invalid===1">** KO -- {{member.date | date:short}}</span> </td>
+                                            <td>{{match.bet.points}} <span ng-if="match.bet.invalid===1">** KO -- {{member.date | date:short}}</span><span ng-if="match.bet.invalid===2">** Wrong teams : {{match.team1good}} - {{match.team2good}}</span> </td>
                                         </tr>
                                         </tbody>
                                         </table>
