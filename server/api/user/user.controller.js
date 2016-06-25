@@ -108,7 +108,7 @@ export function create(req, res, next) {
     newUser.save()
         .then(function(user) {
             var token = jwt.sign({ _id: user._id }, config.secrets.session, {
-                expiresIn: 60 * 60 * 24 * 7
+                expiresIn: 60 * 60 * 24 * 7 * 4
             });
             client.sendEmail({
                 'From': process.env.MAILFROM,
