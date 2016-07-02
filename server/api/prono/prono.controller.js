@@ -51,7 +51,7 @@ function calculateScore() {
                         var euroMatchdate = matchdate.getTime();
 
                         // si le bon match
-                        if (pronoMatch.group.length > 1 && pronoMatch.group === 'Round of 16') {
+                        if (pronoMatch.group.length > 1) {
                             blnGoodTeams = (pronoMatch.team1 === euroMatch.team1 && pronoMatch.team2 === euroMatch.team2) ? true : false;
                             if (allTeamsRoundOf16.indexOf(pronoMatch.team1) > -1) {
                                 allPointsQualif = allPointsQualif + 2;
