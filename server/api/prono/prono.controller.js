@@ -31,13 +31,42 @@ function calculateScore() {
             return (match.group === 'Round of 16') ? match.team2 : null;
         }));
         allTeamsRoundOf16 = allTeamsRoundOf16.concat(allTeamsRoundOf16_2)
-        console.log('allTeamsRoundOf16', allTeamsRoundOf16);
+
+        // Equipes qualifiés en 16ème
+        var allTeamsQuarter = _.compact(_.map(pronosEuro.matchs, function(match) {
+            return (match.group === 'Quarter Finals') ? match.team1 : null;
+        }));
+        var allTeamsQuarter_2 = _.compact(_.map(pronosEuro.matchs, function(match) {
+            return (match.group === 'Quarter Finals') ? match.team2 : null;
+        }));
+        allTeamsQuarter = allTeamsQuarter.concat(allTeamsQuarter_2)
+
+        // Equipes qualifiés en 16ème
+        var allTeamsSemi = _.compact(_.map(pronosEuro.matchs, function(match) {
+            return (match.group === 'Semi Final') ? match.team1 : null;
+        }));
+        var allTeamsSemi_2 = _.compact(_.map(pronosEuro.matchs, function(match) {
+            return (match.group === 'Semi Final') ? match.team2 : null;
+        }));
+        allTeamsSemi = allTeamsSemi.concat(allTeamsSemi_2)
+
+        // Equipes qualifiés en 16ème
+        var allTeamsFinal = _.compact(_.map(pronosEuro.matchs, function(match) {
+            return (match.group === 'Final') ? match.team1 : null;
+        }));
+        var allTeamsFinal_2 = _.compact(_.map(pronosEuro.matchs, function(match) {
+            return (match.group === 'Final') ? match.team2 : null;
+        }));
+        allTeamsFinal = allTeamsFinal.concat(allTeamsFinal_2)
+
+        var QualifiedTeams = { 'Round of 16': allTeamsRoundOf16, 'Quarter Finals': allTeamsQuarter, 'Semi Final': allTeamsSemi, 'Final': allTeamsFinal };
+        console.log('QualifiedTeams', QualifiedTeams);
 
         Prono.find({}).populate('user_id').lean().exec((err, pronos) => {
             _.each(pronos, (thisProno) => {
                 var pronodate = new Date(thisProno.date);
                 var mypronodate = pronodate.getTime();
-                var allPointsQualif = 0;
+                var allPointsQualif = { 'Round of 16': 0, 'Quarter Finals': 0, 'Semi Final': 0, 'Final': 0 };
                 var allTeamsQualif = [];
 
                 _.each(pronosEuro.matchs, (euroMatch, index) => {
@@ -53,17 +82,17 @@ function calculateScore() {
                         // si le bon match
                         if (pronoMatch.group.length > 1) {
                             blnGoodTeams = (pronoMatch.team1 === euroMatch.team1 && pronoMatch.team2 === euroMatch.team2) ? true : false;
-                            if (allTeamsRoundOf16.indexOf(pronoMatch.team1) > -1) {
-                                allPointsQualif = allPointsQualif + 2;
-                                allTeamsQualif.push({ team: pronoMatch.team1, points: 2 });
+                            if (QualifiedTeams[pronoMatch.group].indexOf(pronoMatch.team1) > -1) {
+                                allPointsQualif[pronoMatch.group] = allPointsQualif[pronoMatch.group] + 2;
+                                allTeamsQualif.push({ team: pronoMatch.team1, points: 2, phase: pronoMatch.group });
                             } else {
-                                allTeamsQualif.push({ team: pronoMatch.team1, points: 0 });
+                                allTeamsQualif.push({ team: pronoMatch.team1, points: 0, phase: pronoMatch.group });
                             }
-                            if (allTeamsRoundOf16.indexOf(pronoMatch.team2) > -1) {
-                                allPointsQualif = allPointsQualif + 2;
-                                allTeamsQualif.push({ team: pronoMatch.team2, points: 2 });
+                            if (QualifiedTeams[pronoMatch.group].indexOf(pronoMatch.team2) > -1) {
+                                allPointsQualif[pronoMatch.group] = allPointsQualif[pronoMatch.group] + 2;
+                                allTeamsQualif.push({ team: pronoMatch.team2, points: 2, phase: pronoMatch.group });
                             } else {
-                                allTeamsQualif.push({ team: pronoMatch.team2, points: 0 });
+                                allTeamsQualif.push({ team: pronoMatch.team2, points: 0, phase: pronoMatch.group });
                             }
 
                         } else {
@@ -98,18 +127,18 @@ function calculateScore() {
                         pronoMatch = pronoMatch[0];
                         pronoMatch.bet = { points: 0, pointsWinner: 0, pointsScore1: 0, pointsScore2: 0, invalid: 0 };
 
-                        if (pronoMatch.group.length > 1 && pronoMatch.group === 'Round of 16') {
-                            if (allTeamsRoundOf16.indexOf(pronoMatch.team1) > -1) {
-                                allPointsQualif = allPointsQualif + 2;
-                                allTeamsQualif.push({ team: pronoMatch.team1, points: 2 });
+                        if (pronoMatch.group.length > 1) {
+                            if (QualifiedTeams[pronoMatch.group].indexOf(pronoMatch.team1) > -1) {
+                                allPointsQualif[pronoMatch.group] = allPointsQualif[pronoMatch.group] + 2;
+                                allTeamsQualif.push({ team: pronoMatch.team1, points: 2, phase: pronoMatch.group });
                             } else {
-                                allTeamsQualif.push({ team: pronoMatch.team1, points: 0 });
+                                allTeamsQualif.push({ team: pronoMatch.team1, points: 0, phase: pronoMatch.group });
                             }
-                            if (allTeamsRoundOf16.indexOf(pronoMatch.team2) > -1) {
-                                allPointsQualif = allPointsQualif + 2;
-                                allTeamsQualif.push({ team: pronoMatch.team2, points: 2 });
+                            if (QualifiedTeams[pronoMatch.group].indexOf(pronoMatch.team2) > -1) {
+                                allPointsQualif[pronoMatch.group] = allPointsQualif[pronoMatch.group] + 2;
+                                allTeamsQualif.push({ team: pronoMatch.team2, points: 2, phase: pronoMatch.group });
                             } else {
-                                allTeamsQualif.push({ team: pronoMatch.team2, points: 0 });
+                                allTeamsQualif.push({ team: pronoMatch.team2, points: 0, phase: pronoMatch.group });
                             }
                         }
                     }
@@ -157,13 +186,29 @@ function calculateScore() {
                             return s + parseFloat(entry);
                         }, 0);
 
+                        // QuarterFinals
+                        var allPointsSemiFinals = _.compact(_.map(thisProno.matchs, function(match) {
+                            return (match.group === 'Semi Final') ? match.bet.points : 0;
+                        }));
+                        allPointsSemiFinals = _.reduce(allPointsSemiFinals, function(s, entry) {
+                            return s + parseFloat(entry);
+                        }, 0);
+
+                        // QuarterFinals
+                        var allPointsFinals = _.compact(_.map(thisProno.matchs, function(match) {
+                            return (match.group === 'Final') ? match.bet.points : 0;
+                        }));
+                        allPointsFinals = _.reduce(allPointsFinals, function(s, entry) {
+                            return s + parseFloat(entry);
+                        }, 0);
+
                         // all points
                         var allPoints = _.compact(_.map(thisProno.matchs, 'bet.points'));
                         allPoints = _.reduce(allPoints, function(s, entry) {
                             return s + parseFloat(entry);
                         }, 0);
 
-                        thisProno.bet.points = allPoints + allPointsQualif;
+                        thisProno.bet.points = allPoints + allPointsQualif['Round of 16'] + allPointsQualif['Quarter Finals'] + allPointsQualif['Semi Final'] + allPointsQualif['Final'];
                         thisProno.bet.tour1 = allPointsTour1;
                         thisProno.bet.tour2 = allPointsTour2;
                         thisProno.bet.tour3 = allPointsTour3;
@@ -171,10 +216,10 @@ function calculateScore() {
                         thisProno.bet.teamqualif = allTeamsQualif;
                         thisProno.bet.roundOf16 = allPointsRoundOf16;
                         thisProno.bet.quarterFinals = allPointsQuarterFinals;
-                        /*                        thisProno.bet.semiFinals = allPointsSemiFinals;
-                                                thisProno.bet.Finals = allPointsSemiFinals;
-                                                thisProno.bet.winner = allPointswinner;
-                        */
+                        thisProno.bet.semiFinals = allPointsSemiFinals;
+                        thisProno.bet.Finals = allPointsFinals;
+                        //thisProno.bet.winner = allPointswinner;
+
 
                         // mis à jour des pronos
                         Prono.findOneAndUpdate({ "_id": thisProno._id }, {

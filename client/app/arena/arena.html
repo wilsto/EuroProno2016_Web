@@ -154,7 +154,7 @@
                                     </span></a>
                                 </td>
                                 <td class="c ">
-                                    <a href="#" class="tooltipdet"> {{member.bet.qualif| number}}<span class="tooltipdettext">
+                                    <a href="#" class="tooltipdet"> {{member.bet.qualif['Round of 16']| number}}<span class="tooltipdettext">
                                         <div class="titcent" >
                                          {{member.user.name}} - Qualif (max 32 points)</div>
                                         <div class="mintext">
@@ -164,7 +164,7 @@
                                             <th>Points</th>
                                          </thead>
                                          <tbody>
-                                        <tr ng-repeat="qualif in member.bet.teamqualif" ng-class="{'bg-big-success':qualif.points===2,'bg-danger':qualif.points<2}">
+                                        <tr ng-repeat="qualif in member.bet.teamqualif | filter:'Round of 16' " ng-class="{'bg-big-success':qualif.points===2,'bg-danger':qualif.points<2}">
                                             <td class="l">{{qualif.team}} </td>
                                             <td>{{qualif.points}} </td>
                                         </tr>
@@ -196,7 +196,7 @@
                                     </span></a>
                                 </td>
                                 <td class="c ">
-                                    <a href="#" class="tooltipdet"> {{member.bet.quarterFinals| number}}<span class="tooltipdettext">
+                                    <a href="#" class="tooltipdet"> {{member.bet.quarterFinals + member.bet.qualif['Quarter Finals']| number}}<span class="tooltipdettext">
                                         <div class="titcent" >
                                         {{member.user.name}} - Quarter Finals (max 36 points)</div>
                                         <div class="mintext">
@@ -214,11 +214,25 @@
                                         </tr>
                                         </tbody>
                                         </table>
+
+                                        <table class="table">
+                                         <thead>
+                                            <th>Qualified Team</th>
+                                            <th>Points</th>
+                                         </thead>
+                                         <tbody>
+                                        <tr ng-repeat="qualif in member.bet.teamqualif | filter:'Quarter Finals' " ng-class="{'bg-big-success':qualif.points===2,'bg-danger':qualif.points<2}">
+                                            <td class="l">{{qualif.team}} </td>
+                                            <td>{{qualif.points}} </td>
+                                        </tr>
+                                        </tbody>
+                                        </table>
+
                                         </div>
                                     </span></a>
                                 </td>
                                 <td class="c ">
-                                    <a href="#" class="tooltipdet">{{member.bet.semiFinals| number}}<span class="tooltipdettext">
+                                    <a href="#" class="tooltipdet">{{member.bet.semiFinals + member.bet.qualif['Semi Final']| number}}<span class="tooltipdettext">
                                         <div class="titcent" >
                                         {{member.user.name}} - Semi Finals (max 18 points)</div>
                                         <div class="mintext">
@@ -236,11 +250,24 @@
                                         </tr>
                                         </tbody>
                                         </table>
+
+                                        <table class="table">
+                                         <thead>
+                                            <th>Qualified Team</th>
+                                            <th>Points</th>
+                                         </thead>
+                                         <tbody>
+                                        <tr ng-repeat="qualif in member.bet.teamqualif | filter:'Semi Final' " ng-class="{'bg-big-success':qualif.points===2,'bg-danger':qualif.points<2}">
+                                            <td class="l">{{qualif.team}} </td>
+                                            <td>{{qualif.points}} </td>
+                                        </tr>
+                                        </tbody>
+                                        </table>
                                         </div>
                                     </span></a>
                                 </td>
                                 <td class="c ">
-                                    <a href="#" class="tooltipdet"> {{member.bet.Finals| number}}<span class="tooltipdettext">
+                                    <a href="#" class="tooltipdet"> {{member.bet.Finals + member.bet.qualif['Final']| number}}<span class="tooltipdettext">
                                         <div class="titcent" >
                                         {{member.user.name}} - Final (max 9 points)</div>
                                         <div class="mintext">
@@ -255,6 +282,19 @@
                                             <td class="l">{{match.team1}} - {{match.team2}}</td>
                                             <td>{{match.score1}} -  {{match.score2}}</td>
                                             <td>{{match.bet.points}} <span ng-if="match.bet.invalid===1">** KO -- {{member.date | date:short}}</span><span ng-if="match.bet.invalid===2">** Wrong teams : {{match.team1good}} - {{match.team2good}}</span> </td>
+                                        </tr>
+                                        </tbody>
+                                        </table>
+                                        
+                                        <table class="table">
+                                         <thead>
+                                            <th>Qualified Team</th>
+                                            <th>Points</th>
+                                         </thead>
+                                         <tbody>
+                                        <tr ng-repeat="qualif in member.bet.teamqualif | filter:'Final' " ng-class="{'bg-big-success':qualif.points===2,'bg-danger':qualif.points<2}">
+                                            <td class="l">{{qualif.team}} </td>
+                                            <td>{{qualif.points}} </td>
                                         </tr>
                                         </tbody>
                                         </table>
