@@ -60,7 +60,8 @@ function calculateScore() {
         allTeamsFinal = allTeamsFinal.concat(allTeamsFinal_2)
 
         var QualifiedTeams = { 'Round of 16': allTeamsRoundOf16, 'Quarter Finals': allTeamsQuarter, 'Semi Final': allTeamsSemi, 'Final': allTeamsFinal };
-        console.log('QualifiedTeams', QualifiedTeams);
+        // console.log('QualifiedTeams', QualifiedTeams);
+        var euroWinner = _.filter(pronosEuro.matchs, { '_id': '5724ec9a93d5d62c81c95b9c' })[0].winner;
 
         Prono.find({}).populate('user_id').lean().exec((err, pronos) => {
             _.each(pronos, (thisProno) => {
@@ -68,7 +69,9 @@ function calculateScore() {
                 var mypronodate = pronodate.getTime();
                 var allPointsQualif = { 'Round of 16': 0, 'Quarter Finals': 0, 'Semi Final': 0, 'Final': 0 };
                 var allTeamsQualif = [];
+                var teamWinner = _.filter(thisProno.matchs, { '_id': '5724ec9a93d5d62c81c95b9c' })[0].winner;
 
+                console.log('teamWinner', teamWinner);
                 _.each(pronosEuro.matchs, (euroMatch, index) => {
                     var pronoMatch = null;
                     var blnGoodTeams = false;
@@ -208,7 +211,6 @@ function calculateScore() {
                             return s + parseFloat(entry);
                         }, 0);
 
-                        thisProno.bet.points = allPoints + allPointsQualif['Round of 16'] + allPointsQualif['Quarter Finals'] + allPointsQualif['Semi Final'] + allPointsQualif['Final'];
                         thisProno.bet.tour1 = allPointsTour1;
                         thisProno.bet.tour2 = allPointsTour2;
                         thisProno.bet.tour3 = allPointsTour3;
@@ -218,7 +220,9 @@ function calculateScore() {
                         thisProno.bet.quarterFinals = allPointsQuarterFinals;
                         thisProno.bet.semiFinals = allPointsSemiFinals;
                         thisProno.bet.Finals = allPointsFinals;
-                        //thisProno.bet.winner = allPointswinner;
+                        thisProno.bet.winner = (teamWinner === euroWinner) ? 5 : 0;
+                        thisProno.bet.winnerDetails = (teamWinner === euroWinner) ? { team: teamWinner, euro: euroWinner } : { team: teamWinner, euro: euroWinner };
+                        thisProno.bet.points = allPoints + allPointsQualif['Round of 16'] + allPointsQualif['Quarter Finals'] + allPointsQualif['Semi Final'] + allPointsQualif['Final'] + thisProno.bet.winner;
 
 
                         // mis à jour des pronos

@@ -292,7 +292,7 @@
                                             <th>Points</th>
                                          </thead>
                                          <tbody>
-                                        <tr ng-repeat="qualif in member.bet.teamqualif | filter:'Final' " ng-class="{'bg-big-success':qualif.points===2,'bg-danger':qualif.points<2}">
+                                        <tr ng-repeat="qualif in member.bet.teamqualif | filter:'Final':true " ng-class="{'bg-big-success':qualif.points===2,'bg-danger':qualif.points<2}">
                                             <td class="l">{{qualif.team}} </td>
                                             <td>{{qualif.points}} </td>
                                         </tr>
@@ -302,19 +302,21 @@
                                     </span></a>
                                 </td>
                                 <td class="c ">
-                                    <a href="#" class="tooltipdet">{{member.bet.winner| number}}<span class="tooltipdettext">
+                                    <a href="#" class="tooltipdet">{{member.bet.winner | number}}<span class="tooltipdettext">
                                         <div class="titcent" >
                                           {{member.user.name}} - Winner (max 5 points)</div>
                                         <div class="mintext">
                                         <table class="table">
                                          <thead>
                                             <th>Team</th>
+                                            <th>Euro</th>
                                             <th>Points</th>
                                          </thead>
                                          <tbody>
-                                        <tr ng-repeat="match in member.matchs | filter:{phase:'winner' }" ng-class="{'bg-success':match.bet.points===3,'bg-big-success':match.bet.points>3,'bg-danger':match.bet.points<3}">
-                                            <td class="l">{{match.team1}} - {{match.team2}}</td>
-                                            <td>{{match.bet.points}} <span ng-if="match.bet.invalid===1">** KO -- {{member.date | date:short}}</span><span ng-if="match.bet.invalid===2">** Wrong teams : {{match.team1good}} - {{match.team2good}}</span> </td>
+                                        <tr ng-class="{'bg-big-success':member.bet.winner.points>5,'bg-danger':member.bet.winner.points<5}">
+                                            <td>{{member.bet.winnerDetails.team }} </td>
+                                            <td>{{member.bet.winnerDetails.euro }} </td>
+                                            <td>{{member.bet.winner }} </td>
                                         </tr>
                                         </tbody>
                                         </table>
